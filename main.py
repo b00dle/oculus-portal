@@ -12,6 +12,8 @@ from lib.SceneManager import *
 from lib.ViewingManager import *
 from lib.portal_lib.PortalManager import *
 from lib.interface_lib.Interface import *
+from lib.interface_lib.Manipulator import *
+
 
 # import python libraries
 import sys
@@ -48,6 +50,9 @@ def start():
 
 
   #### --- INTERFACE TESTS --- ####
+
+  # add manipulator
+  manipulator = Manipulator()
 
   # add display
   display = avango.gua.nodes.TransformNode(Name = "display_node")

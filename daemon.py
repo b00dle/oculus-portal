@@ -311,6 +311,7 @@ init_old_spheron()
 init_keyboard()
 init_mouse()
 init_spacemouse()
+init_pointer()
 
 '''
 init_pst_tracking()
