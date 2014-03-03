@@ -57,7 +57,11 @@ def start():
   interface1 = Slider()
   interface1.my_constructor("Nr1", avango.gua.make_trans_mat(0.0, 1.0, 2.0), display, loader)
   interface2 = Slider()
-  interface2.my_constructor("Nr1", avango.gua.make_trans_mat(0.0, 1.4, 2.0), display, loader)
+  interface2.my_constructor("Nr2", avango.gua.make_trans_mat(0.0, 1.4, 2.0), display, loader)
+
+  # add switch
+  switch1 = Switch()
+  switch1.my_constructor("Switch1", avango.gua.make_trans_mat(5.0, 1.0, 2.0), display, loader)
 
 
   # run application loop
