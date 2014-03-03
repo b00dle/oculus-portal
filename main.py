@@ -60,10 +60,6 @@ def start():
   interface2.my_constructor("Nr1", avango.gua.make_trans_mat(0.0, 1.4, 2.0), display, loader)
 
 
-
-
-
-
   # run application loop
   viewing_manager.run(locals(), globals())
 
