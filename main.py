@@ -29,6 +29,8 @@ def start():
     newGMD.close()
   #####################################################
 
+  loader = avango.gua.nodes.GeometryLoader()
+
   # initialize materials
   avango.gua.load_shading_models_from("data/materials")
   avango.gua.load_materials_from("data/materials")
@@ -49,7 +51,7 @@ def start():
 
   # add display
   display = avango.gua.nodes.TransformNode(Name = "display_node")
-  graph.Root.value.Children.value.append(display)
+  scene_manager.graphs[0].Root.value.Children.value.append(display)
 
   # add slider to display
   interface1 = Slider()
