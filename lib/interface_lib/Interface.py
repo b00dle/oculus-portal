@@ -18,7 +18,7 @@ import math
 class Slider(avango.script.Script):
 
   sfObjectTransformOut = avango.SFFloat()
-  sfTransformInput = avango.gua.SFMat4()
+  sfTransformInput = avango.gua.SFMatrix4()
 
   def __init__(self):
     self.super(Slider).__init__()
