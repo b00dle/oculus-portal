@@ -63,7 +63,7 @@ def start():
 
 
   # run application loop
-  viewing_manager.run(locals(), globals()
+  viewing_manager.run(locals(), globals())
 
 if __name__ == '__main__':
   start()
