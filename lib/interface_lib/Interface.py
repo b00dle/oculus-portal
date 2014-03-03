@@ -7,9 +7,18 @@ import avango.oculus
 
 import math
 
+
+#class Switch(avango.script.Script):
+
+  #sfObjectTransformOut = avango.SFFloat()
+  #sfTransformInput = avango.gua.SFMat4()
+
+
+
 class Slider(avango.script.Script):
 
-  sfObjectTransform = avango.gua.SFVec2()
+  sfObjectTransformOut = avango.SFFloat()
+  sfTransformInput = avango.gua.SFMat4()
 
   def __init__(self):
     self.super(Slider).__init__()
@@ -48,9 +57,6 @@ class Slider(avango.script.Script):
   #@field_has_changed(TimeIn)0
 
 
-
-
-
   def create_line_visualization(self, LOADER, PARENT_NODE, START_POINT, END_POINT, MATERIAL_NAME):
     _line = LOADER.create_geometry_from_file('line_geometry',
                                             'data/objects/cube.obj',
@@ -83,3 +89,19 @@ class Slider(avango.script.Script):
 
 
 
+  @field_has_changed(sfTransformInput)
+  def change_slider_transformation(self):
+    slider_x = self.sfTransformInput.get_translate().x
+
+    if slider_x < self.slider_min:
+      slider_x = self.slider_min
+
+    if slider_x > self.slider_max:
+      slider_x = self.slider_max
+
+    self.slider_geometry.Transform.value = avango.gua.make_trans_mat(
+                                            slider_x,
+                                            self.slider_transform.Transform.value.get_translate().y,
+                                            self.slider_transform.Transform.value.get_translate().z)
+
+    self.sfObjectTransformOut.value = slider_x # TODO: Umrechnung von Pos auf Prozentwert

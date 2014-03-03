@@ -1,0 +1,329 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"slider",
+				"slider_x"
+			],
+			[
+				"slid",
+				"slider_x"
+			],
+			[
+				"sli",
+				"slider_x"
+			],
+			[
+				"make",
+				"make_trans_mat"
+			],
+			[
+				"crea",
+				"create_geometry_from_file"
+			],
+			[
+				"Scen",
+				"SceneGraph"
+			],
+			[
+				"Sce",
+				"SceneGraph"
+			],
+			[
+				"simple",
+				"simplescene"
+			],
+			[
+				"PORTAL",
+				"PORTAL_UPDATER"
+			],
+			[
+				"simpl",
+				"simplescene"
+			],
+			[
+				"NA",
+				"NAV_NODE"
+			],
+			[
+				"camer",
+				"camera_room"
+			],
+			[
+				"Simple",
+				"SimpleScene"
+			],
+			[
+				"Pip",
+				"Pipelines"
+			],
+			[
+				"Use",
+				"UserPositionIn"
+			],
+			[
+				"US",
+				"UserPositionIn"
+			],
+			[
+				"nav",
+				"nav_node"
+			],
+			[
+				"portal",
+				"portal_user"
+			],
+			[
+				"Portal",
+				"PortalUser"
+			],
+			[
+				"ve",
+				"velocity_x"
+			],
+			[
+				"pick",
+				"_pick_result"
+			],
+			[
+				"inter",
+				"_intersection"
+			],
+			[
+				"jump",
+				"jump_velocity"
+			],
+			[
+				"jum",
+				"jump_start"
+			],
+			[
+				"fiel",
+				"field_has_changed"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/qini0404/Desktop/oculus_portal/oculus-portal/lib/interface_lib/Interface.py",
+		"/home/qini0404/Desktop/oculus_portal/oculus-portal/main.py",
+		"/home/qini0404/Desktop/interface_oculus/oculus_interface/device.py",
+		"/home/qini0404/Desktop/interface_oculus/oculus_interface/navigator.py",
+		"/home/qini0404/Desktop/oculus_portal/oculus-portal/OculusKombiSetup.sublime-project",
+		"/home/qini0404/Desktop/interface_oculus/oculus_interface/SimpleViewer.py",
+		"/home/qini0404/Desktop/interface_oculus/oculus_interface/scene.py",
+		"/home/qini0404/Desktop/interface_oculus/oculus_interface/Picker.py",
+		"/home/qini0404/Desktop/interface_oculus/oculus_interface/Manipulator.py",
+		"/home/qini0404/Desktop/interface_oculus/oculus_interface/main.py",
+		"/home/qini0404/Desktop/interface_oculus/oculus_interface/Interface.py",
+		"/home/qini0404/Desktop/interface_oculus/oculus_interface/daemon.py",
+		"/home/qini0404/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/qini0404/Desktop/testing_portals/simple_room.py",
+		"/home/qini0404/Desktop/testing_portals/simple_scene.py",
+		"/home/qini0404/Desktop/testing_portals/main.py",
+		"/home/qini0404/Desktop/testing_portals/start.sh",
+		"/opt/guacamole/develop/avango/examples/oculus_tutorial/main.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/main.py",
+		"/home/qini0404/Desktop/simple_example/main.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/lib/SceneManager.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/lib/OculusViewingSetup.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/lib/OculusNavigation.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/lib/OculusInputMapping.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/lib/TrackingReader.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/daemon.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/lib/MultiViewingSetup.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/lib/Device.py",
+		"/home/qini0404/Desktop/project/oculusviewingdemo/lib/GroundFollowing.py",
+		"/opt/guacamole/avango-gua/examples/multipipe_example/main.py",
+		"/opt/guacamole/avango-gua/examples/multipipe_example/oilrig_scene.py",
+		"/opt/guacamole/avango-gua/examples/multipipe_example/weimar_scene.py",
+		"/opt/guacamole/vr_exercises/03_events_&_dataflow/lib/Intersection.py",
+		"/home/qini0404/events_&_dataflow/start.sh",
+		"/home/qini0404/events_&_dataflow/daemon.py",
+		"/home/qini0404/events_&_dataflow/lib/Intersection.py",
+		"/home/qini0404/events_&_dataflow/lib/Navigation.py",
+		"/home/qini0404/events_&_dataflow/lib/SimpleViewingSetup.py",
+		"/home/qini0404/events_&_dataflow/main.py",
+		"/home/qini0404/events_&_dataflow/lib/Device.py",
+		"/home/qini0404/events_&_dataflow/lib/Avatar.py",
+		"/home/qini0404/events_&_dataflow/numpy",
+		"/home/qini0404/Project/Tim/avango/avango-oculus/examples/oculus_tracking/SimpleViewer.py",
+		"/home/qini0404/Downloads/CGFramework-assigment_2/src/main.cpp",
+		"/home/qini0404/Downloads/CGFramework-assigment_1/src/main.cpp",
+		"/home/qini0404/input_mapping/main.py",
+		"/home/qini0404/input_mapping/lib/Manipulation.py",
+		"/opt/guacamole/vr_exercises/input_mapping/start.sh",
+		"/opt/guacamole/vr_exercises/input_mapping/daemon.py",
+		"/opt/guacamole/vr_exercises/input_mapping/main.py",
+		"/opt/guacamole/vr_exercises/input_mapping/list-ev"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"pipe",
+			"portal_updater",
+			"PreRenderPipelines",
+			"pre_pipe",
+			"create_pipeline",
+			"pipes",
+			"nav_node",
+			"navigator",
+			"create",
+			"_pick_result",
+			"20",
+			"1"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "OculusKombiSetup.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 216.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
