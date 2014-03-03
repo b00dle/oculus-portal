@@ -1,0 +1,304 @@
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping}{\section{lib.\-Input\-Mapping.\-Input\-Mapping \-Class \-Reference}
+\label{classlib_1_1InputMapping_1_1InputMapping}\index{lib.\-Input\-Mapping.\-Input\-Mapping@{lib.\-Input\-Mapping.\-Input\-Mapping}}
+}
+
+
+\-This class accumulates the relative device inputs to an absolute matrix for the platform and uses an instance of \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} to correct this matrix with respect to gravity.  
+
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1InputMapping_1_1InputMapping_ab4a3995be0f7af87e9f8acb66d5937a4}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Default constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a8962ab3f5220f309662a3256918e65c6}{my\-\_\-constructor}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a0fa20a9a62552a818a25b9a74d6553fe}{mf\-\_\-rel\-\_\-input\-\_\-values\-\_\-changed}
+\begin{DoxyCompactList}\small\item\em \-Evaluated when device input values change. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a74828896cf9cc06ec30006622f4fbc0a}{modify\-\_\-abs\-\_\-uncorrected\-\_\-mat}
+\begin{DoxyCompactList}\small\item\em \-Modify the uncorrected matrix of this input mapping with specific values. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a00868486bc1a374614aa6a3cbf5debee}{transform\-\_\-vector\-\_\-with\-\_\-matrix}
+\begin{DoxyCompactList}\small\item\em \-Transforms a vector using a transformation matrix. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a3114d8a9971e14b4d532d2ff796f0a9f}{set\-\_\-abs\-\_\-mat}
+\begin{DoxyCompactList}\small\item\em \-Set a value for sf\-\_\-abs\-\_\-mat. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a13e9339405e549217c911cfd96554408}{set\-\_\-input\-\_\-factors}
+\begin{DoxyCompactList}\small\item\em \-Sets the translation and rotation input factors. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1InputMapping_1_1InputMapping_af79fe48135a7975ea035dee40787a580}{activate\-\_\-realistic\-\_\-mode}
+\begin{DoxyCompactList}\small\item\em \-Activates the realistic mode (only 3 \-D\-O\-F navigation, \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} enabled) \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a150b816c011d17e3e7f041217784941a}{deactivate\-\_\-realistic\-\_\-mode}
+\begin{DoxyCompactList}\small\item\em \-Activates the unrealistic mode (6 \-D\-O\-F navigation, \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} disabled) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1InputMapping_1_1InputMapping_a396458f246bffe449a0579ebea3f2180}{realistic}
+\begin{DoxyCompactList}\small\item\em \-Boolean value to indicate if the user is navigating in 3-\/\-D\-O\-F (realistic) or 6-\/\-D\-O\-F (unrealistic) mode. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1InputMapping_1_1InputMapping_a100f4ad4024ad43b6979661150401dd8}{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N}
+\begin{DoxyCompactList}\small\item\em \-Reference to the \hyperlink{namespacelib_1_1Navigation}{\-Navigation} instance from which this \hyperlink{classlib_1_1InputMapping_1_1InputMapping}{\-Input\-Mapping} is created. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1InputMapping_1_1InputMapping_a1df8b547b3cd8df7a8c89c3ce682202c}{\-G\-R\-O\-U\-N\-D\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}
+\begin{DoxyCompactList}\small\item\em \-Reference to the \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance used by this \hyperlink{classlib_1_1InputMapping_1_1InputMapping}{\-Input\-Mapping}. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1InputMapping_1_1InputMapping_a23fb40438e3288f6b762b917fb55694e}{lf\-\_\-quat\-\_\-angle}
+\begin{DoxyCompactList}\small\item\em \-Quaternion angle of last frame to prevent blackscreen. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1InputMapping_1_1InputMapping_a8fd624b0a9dab37f427ae7ffdd35a88c}{input\-\_\-trans\-\_\-factor}
+\item 
+\hyperlink{classlib_1_1InputMapping_1_1InputMapping_ae329d4e40a99472bc0e5fd036c60fdc0}{input\-\_\-rot\-\_\-factor}
+\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classlib_1_1InputMapping_1_1InputMapping_aec01e470e9cd8c524b19b8a01afb4fdb}{mf\-\_\-rel\-\_\-input\-\_\-values} = avango.\-M\-F\-Float()
+\begin{DoxyCompactList}\small\item\em \-The relative input values of the device. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a1b87d0b4819c4602c57873d4e51ad7d6}{sf\-\_\-station\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-The absolute matrix indicating where the device is placed in space. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1InputMapping_1_1InputMapping_ac7a4f5655e3bc96a8f797e2b1c0b4a84}{sf\-\_\-abs\-\_\-uncorrected\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-The absolute matrix to accumulate the relative inputs on. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a44f8fd2a985a8b7f9c700db4403344d7}{sf\-\_\-abs\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-The absolute matrix after \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} correction. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1InputMapping_1_1InputMapping_a8fd624b0a9dab37f427ae7ffdd35a88c}{input\-\_\-trans\-\_\-factor} = 1.\-0
+\begin{DoxyCompactList}\small\item\em \-Factor to modify the translation input. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1InputMapping_1_1InputMapping_ae329d4e40a99472bc0e5fd036c60fdc0}{input\-\_\-rot\-\_\-factor} = 1.\-0
+\begin{DoxyCompactList}\small\item\em \-Factor to modify the rotation input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-This class accumulates the relative device inputs to an absolute matrix for the platform and uses an instance of \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} to correct this matrix with respect to gravity. 
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_ab4a3995be0f7af87e9f8acb66d5937a4}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Input\-Mapping.\-Input\-Mapping.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1InputMapping_1_1InputMapping_ab4a3995be0f7af87e9f8acb66d5937a4}
+
+
+\-Default constructor. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_af79fe48135a7975ea035dee40787a580}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!activate\-\_\-realistic\-\_\-mode@{activate\-\_\-realistic\-\_\-mode}}
+\index{activate\-\_\-realistic\-\_\-mode@{activate\-\_\-realistic\-\_\-mode}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{activate\-\_\-realistic\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Input\-Mapping.\-Input\-Mapping.\-activate\-\_\-realistic\-\_\-mode} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1InputMapping_1_1InputMapping_af79fe48135a7975ea035dee40787a580}
+
+
+\-Activates the realistic mode (only 3 \-D\-O\-F navigation, \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} enabled) 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a150b816c011d17e3e7f041217784941a}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!deactivate\-\_\-realistic\-\_\-mode@{deactivate\-\_\-realistic\-\_\-mode}}
+\index{deactivate\-\_\-realistic\-\_\-mode@{deactivate\-\_\-realistic\-\_\-mode}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{deactivate\-\_\-realistic\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Input\-Mapping.\-Input\-Mapping.\-deactivate\-\_\-realistic\-\_\-mode} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1InputMapping_1_1InputMapping_a150b816c011d17e3e7f041217784941a}
+
+
+\-Activates the unrealistic mode (6 \-D\-O\-F navigation, \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} disabled) 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a0fa20a9a62552a818a25b9a74d6553fe}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!mf\-\_\-rel\-\_\-input\-\_\-values\-\_\-changed@{mf\-\_\-rel\-\_\-input\-\_\-values\-\_\-changed}}
+\index{mf\-\_\-rel\-\_\-input\-\_\-values\-\_\-changed@{mf\-\_\-rel\-\_\-input\-\_\-values\-\_\-changed}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{mf\-\_\-rel\-\_\-input\-\_\-values\-\_\-changed}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Input\-Mapping.\-Input\-Mapping.\-mf\-\_\-rel\-\_\-input\-\_\-values\-\_\-changed} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1InputMapping_1_1InputMapping_a0fa20a9a62552a818a25b9a74d6553fe}
+
+
+\-Evaluated when device input values change. 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a74828896cf9cc06ec30006622f4fbc0a}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!modify\-\_\-abs\-\_\-uncorrected\-\_\-mat@{modify\-\_\-abs\-\_\-uncorrected\-\_\-mat}}
+\index{modify\-\_\-abs\-\_\-uncorrected\-\_\-mat@{modify\-\_\-abs\-\_\-uncorrected\-\_\-mat}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{modify\-\_\-abs\-\_\-uncorrected\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Input\-Mapping.\-Input\-Mapping.\-modify\-\_\-abs\-\_\-uncorrected\-\_\-mat} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-T\-R\-A\-N\-S\-F\-O\-R\-M\-E\-D\-\_\-\-T\-R\-A\-N\-S\-\_\-\-V\-E\-C\-T\-O\-R, }
+\item[{}]{\-T\-R\-A\-N\-S\-F\-O\-R\-M\-E\-D\-\_\-\-R\-O\-T\-\_\-\-V\-E\-C\-T\-O\-R, }
+\item[{}]{\-R\-O\-T\-A\-T\-I\-O\-N\-\_\-\-C\-E\-N\-T\-E\-R}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1InputMapping_1_1InputMapping_a74828896cf9cc06ec30006622f4fbc0a}
+
+
+\-Modify the uncorrected matrix of this input mapping with specific values. 
+
+\-Used for coupling purposes. 
+\begin{DoxyParams}{\-Parameters}
+{\em \-T\-R\-A\-N\-S\-F\-O\-R\-M\-E\-D\-\_\-\-T\-R\-A\-N\-S\-\_\-\-V\-E\-C\-T\-O\-R} & \-The translation vector to be applied. \\
+\hline
+{\em \-T\-R\-A\-N\-S\-F\-O\-R\-M\-E\-D\-\_\-\-R\-O\-T\-\_\-\-V\-E\-C\-T\-O\-R} & \-The vector containing the rotation values to be applied. \\
+\hline
+{\em \-R\-O\-T\-A\-T\-I\-O\-N\-\_\-\-C\-E\-N\-T\-E\-R} & \-The center to rotate around. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a8962ab3f5220f309662a3256918e65c6}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!my\-\_\-constructor@{my\-\_\-constructor}}
+\index{my\-\_\-constructor@{my\-\_\-constructor}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{my\-\_\-constructor}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Input\-Mapping.\-Input\-Mapping.\-my\-\_\-constructor} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N, }
+\item[{}]{\-D\-E\-V\-I\-C\-E\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E, }
+\item[{}]{\-G\-R\-O\-U\-N\-D\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E, }
+\item[{}]{\-S\-T\-A\-R\-T\-I\-N\-G\-\_\-\-M\-A\-T\-R\-I\-X}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1InputMapping_1_1InputMapping_a8962ab3f5220f309662a3256918e65c6}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-N\-A\-V\-I\-G\-A\-T\-I\-O\-N} & \-The navigation instance from which this input mapping is created. \\
+\hline
+{\em \-D\-E\-V\-I\-C\-E\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E} & \-Instance of \hyperlink{namespacelib_1_1Device}{\-Device} class to take the input values from. \\
+\hline
+{\em \-G\-R\-O\-U\-N\-D\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E} & \-Instance of \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} to be used for matrix correction. \\
+\hline
+{\em \-S\-T\-A\-R\-T\-I\-N\-G\-\_\-\-M\-A\-T\-R\-I\-X} & \-Initial matrix to accumulate the relative inputs on. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a3114d8a9971e14b4d532d2ff796f0a9f}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!set\-\_\-abs\-\_\-mat@{set\-\_\-abs\-\_\-mat}}
+\index{set\-\_\-abs\-\_\-mat@{set\-\_\-abs\-\_\-mat}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{set\-\_\-abs\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Input\-Mapping.\-Input\-Mapping.\-set\-\_\-abs\-\_\-mat} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-M\-A\-T\-R\-I\-X}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1InputMapping_1_1InputMapping_a3114d8a9971e14b4d532d2ff796f0a9f}
+
+
+\-Set a value for sf\-\_\-abs\-\_\-mat. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-M\-A\-T\-R\-I\-X} & \-The matrix to be set to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a13e9339405e549217c911cfd96554408}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!set\-\_\-input\-\_\-factors@{set\-\_\-input\-\_\-factors}}
+\index{set\-\_\-input\-\_\-factors@{set\-\_\-input\-\_\-factors}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{set\-\_\-input\-\_\-factors}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Input\-Mapping.\-Input\-Mapping.\-set\-\_\-input\-\_\-factors} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-T\-R\-A\-N\-S\-L\-A\-T\-I\-O\-N\-\_\-\-F\-A\-C\-T\-O\-R = {\ttfamily 1.0}, }
+\item[{}]{\-R\-O\-T\-A\-T\-I\-O\-N\-\_\-\-F\-A\-C\-T\-O\-R = {\ttfamily 1.0}}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1InputMapping_1_1InputMapping_a13e9339405e549217c911cfd96554408}
+
+
+\-Sets the translation and rotation input factors. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-T\-R\-A\-N\-S\-L\-A\-T\-I\-O\-N\-\_\-\-F\-A\-C\-T\-O\-R} & \-Translation modification factor to be set. 1.\-0 by default. \\
+\hline
+{\em \-R\-O\-T\-A\-T\-I\-O\-N\-\_\-\-F\-A\-C\-T\-O\-R} & \-Rotation modification factor to be set. 1.\-0 by default. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a00868486bc1a374614aa6a3cbf5debee}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!transform\-\_\-vector\-\_\-with\-\_\-matrix@{transform\-\_\-vector\-\_\-with\-\_\-matrix}}
+\index{transform\-\_\-vector\-\_\-with\-\_\-matrix@{transform\-\_\-vector\-\_\-with\-\_\-matrix}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{transform\-\_\-vector\-\_\-with\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Input\-Mapping.\-Input\-Mapping.\-transform\-\_\-vector\-\_\-with\-\_\-matrix} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-V\-E\-C\-T\-O\-R, }
+\item[{}]{\-M\-A\-T\-R\-I\-X}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1InputMapping_1_1InputMapping_a00868486bc1a374614aa6a3cbf5debee}
+
+
+\-Transforms a vector using a transformation matrix. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-V\-E\-C\-T\-O\-R} & \-The vector to be transformed. \\
+\hline
+{\em \-M\-A\-T\-R\-I\-X} & \-The matrix to be applied for transformation. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a1df8b547b3cd8df7a8c89c3ce682202c}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!\-G\-R\-O\-U\-N\-D\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E@{\-G\-R\-O\-U\-N\-D\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}}
+\index{\-G\-R\-O\-U\-N\-D\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E@{\-G\-R\-O\-U\-N\-D\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{\-G\-R\-O\-U\-N\-D\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::\-G\-R\-O\-U\-N\-D\-\_\-\-F\-O\-L\-L\-O\-W\-I\-N\-G\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}}}\label{classlib_1_1InputMapping_1_1InputMapping_a1df8b547b3cd8df7a8c89c3ce682202c}
+
+
+\-Reference to the \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance used by this \hyperlink{classlib_1_1InputMapping_1_1InputMapping}{\-Input\-Mapping}. 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_ae329d4e40a99472bc0e5fd036c60fdc0}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!input\-\_\-rot\-\_\-factor@{input\-\_\-rot\-\_\-factor}}
+\index{input\-\_\-rot\-\_\-factor@{input\-\_\-rot\-\_\-factor}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{input\-\_\-rot\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::input\-\_\-rot\-\_\-factor} = 1.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1InputMapping_1_1InputMapping_ae329d4e40a99472bc0e5fd036c60fdc0}
+
+
+\-Factor to modify the rotation input. 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_ae329d4e40a99472bc0e5fd036c60fdc0}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!input\-\_\-rot\-\_\-factor@{input\-\_\-rot\-\_\-factor}}
+\index{input\-\_\-rot\-\_\-factor@{input\-\_\-rot\-\_\-factor}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{input\-\_\-rot\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::input\-\_\-rot\-\_\-factor}}}\label{classlib_1_1InputMapping_1_1InputMapping_ae329d4e40a99472bc0e5fd036c60fdc0}
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a8fd624b0a9dab37f427ae7ffdd35a88c}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!input\-\_\-trans\-\_\-factor@{input\-\_\-trans\-\_\-factor}}
+\index{input\-\_\-trans\-\_\-factor@{input\-\_\-trans\-\_\-factor}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{input\-\_\-trans\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::input\-\_\-trans\-\_\-factor} = 1.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1InputMapping_1_1InputMapping_a8fd624b0a9dab37f427ae7ffdd35a88c}
+
+
+\-Factor to modify the translation input. 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a8fd624b0a9dab37f427ae7ffdd35a88c}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!input\-\_\-trans\-\_\-factor@{input\-\_\-trans\-\_\-factor}}
+\index{input\-\_\-trans\-\_\-factor@{input\-\_\-trans\-\_\-factor}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{input\-\_\-trans\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::input\-\_\-trans\-\_\-factor}}}\label{classlib_1_1InputMapping_1_1InputMapping_a8fd624b0a9dab37f427ae7ffdd35a88c}
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a23fb40438e3288f6b762b917fb55694e}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!lf\-\_\-quat\-\_\-angle@{lf\-\_\-quat\-\_\-angle}}
+\index{lf\-\_\-quat\-\_\-angle@{lf\-\_\-quat\-\_\-angle}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{lf\-\_\-quat\-\_\-angle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::lf\-\_\-quat\-\_\-angle}}}\label{classlib_1_1InputMapping_1_1InputMapping_a23fb40438e3288f6b762b917fb55694e}
+
+
+\-Quaternion angle of last frame to prevent blackscreen. 
+
+\-Used if new angle is nan. \hypertarget{classlib_1_1InputMapping_1_1InputMapping_aec01e470e9cd8c524b19b8a01afb4fdb}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!mf\-\_\-rel\-\_\-input\-\_\-values@{mf\-\_\-rel\-\_\-input\-\_\-values}}
+\index{mf\-\_\-rel\-\_\-input\-\_\-values@{mf\-\_\-rel\-\_\-input\-\_\-values}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{mf\-\_\-rel\-\_\-input\-\_\-values}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::mf\-\_\-rel\-\_\-input\-\_\-values} = avango.\-M\-F\-Float()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1InputMapping_1_1InputMapping_aec01e470e9cd8c524b19b8a01afb4fdb}
+
+
+\-The relative input values of the device. 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a100f4ad4024ad43b6979661150401dd8}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N@{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N}}
+\index{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N@{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N}}}\label{classlib_1_1InputMapping_1_1InputMapping_a100f4ad4024ad43b6979661150401dd8}
+
+
+\-Reference to the \hyperlink{namespacelib_1_1Navigation}{\-Navigation} instance from which this \hyperlink{classlib_1_1InputMapping_1_1InputMapping}{\-Input\-Mapping} is created. 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a396458f246bffe449a0579ebea3f2180}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!realistic@{realistic}}
+\index{realistic@{realistic}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{realistic}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::realistic}}}\label{classlib_1_1InputMapping_1_1InputMapping_a396458f246bffe449a0579ebea3f2180}
+
+
+\-Boolean value to indicate if the user is navigating in 3-\/\-D\-O\-F (realistic) or 6-\/\-D\-O\-F (unrealistic) mode. 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_a44f8fd2a985a8b7f9c700db4403344d7}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!sf\-\_\-abs\-\_\-mat@{sf\-\_\-abs\-\_\-mat}}
+\index{sf\-\_\-abs\-\_\-mat@{sf\-\_\-abs\-\_\-mat}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{sf\-\_\-abs\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::sf\-\_\-abs\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1InputMapping_1_1InputMapping_a44f8fd2a985a8b7f9c700db4403344d7}
+
+
+\-The absolute matrix after \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} correction. 
+
+\hypertarget{classlib_1_1InputMapping_1_1InputMapping_ac7a4f5655e3bc96a8f797e2b1c0b4a84}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!sf\-\_\-abs\-\_\-uncorrected\-\_\-mat@{sf\-\_\-abs\-\_\-uncorrected\-\_\-mat}}
+\index{sf\-\_\-abs\-\_\-uncorrected\-\_\-mat@{sf\-\_\-abs\-\_\-uncorrected\-\_\-mat}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{sf\-\_\-abs\-\_\-uncorrected\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::sf\-\_\-abs\-\_\-uncorrected\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1InputMapping_1_1InputMapping_ac7a4f5655e3bc96a8f797e2b1c0b4a84}
+
+
+\-The absolute matrix to accumulate the relative inputs on. 
+
+\-Will be corrected by \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance. \hypertarget{classlib_1_1InputMapping_1_1InputMapping_a1b87d0b4819c4602c57873d4e51ad7d6}{\index{lib\-::\-Input\-Mapping\-::\-Input\-Mapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}!sf\-\_\-station\-\_\-mat@{sf\-\_\-station\-\_\-mat}}
+\index{sf\-\_\-station\-\_\-mat@{sf\-\_\-station\-\_\-mat}!lib::InputMapping::InputMapping@{lib\-::\-Input\-Mapping\-::\-Input\-Mapping}}
+\subsubsection[{sf\-\_\-station\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Input\-Mapping.\-Input\-Mapping\-::sf\-\_\-station\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1InputMapping_1_1InputMapping_a1b87d0b4819c4602c57873d4e51ad7d6}
+
+
+\-The absolute matrix indicating where the device is placed in space. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{InputMapping_8py}{\-Input\-Mapping.\-py}\end{DoxyCompactItemize}

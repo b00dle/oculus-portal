@@ -1,0 +1,128 @@
+\hypertarget{classlib_1_1Device_1_1OldSpheronDevice}{\section{lib.\-Device.\-Old\-Spheron\-Device \-Class \-Reference}
+\label{classlib_1_1Device_1_1OldSpheronDevice}\index{lib.\-Device.\-Old\-Spheron\-Device@{lib.\-Device.\-Old\-Spheron\-Device}}
+}
+
+
+\-Internal representation and reader for an old spheron.  
+
+
+\-Inheritance diagram for lib.\-Device.\-Old\-Spheron\-Device\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classlib_1_1Device_1_1OldSpheronDevice}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1Device_1_1OldSpheronDevice_a37bdcbbad80feb7567fdae8873bd3173}{my\-\_\-constructor}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Device_1_1OldSpheronDevice_a7635b290ae8265eedae17a9773a9bcc8}{frame\-\_\-callback}
+\begin{DoxyCompactList}\small\item\em \-Callback\-: \-Evaluated every frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1Device_1_1OldSpheronDevice_a68dcdc6d331895c294990cb3e5023a54}{device\-\_\-sensor}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacelib_1_1Device}{\-Device} sensor for the device's inputs. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Device_1_1OldSpheronDevice_a28e856c40978fd59ea474fe80424fca3}{button\-\_\-sensor}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacelib_1_1Device}{\-Device} sensor for the device's button inputs. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Device_1_1OldSpheronDevice_ad875e2d7a7a00065947fd6367a9228ef}{frame\-\_\-trigger}
+\begin{DoxyCompactList}\small\item\em \-Triggers framewise evaluation of frame\-\_\-callback method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classlib_1_1Device_1_1OldSpheronDevice_a9cfb9fb037b8aaa46875766b80cdc6a6}{translation\-\_\-factor} = 0.\-5
+\begin{DoxyCompactList}\small\item\em \-Factor to modify the device's translation input. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1Device_1_1OldSpheronDevice_a76924c896cd3b56a82d6089b89eb406d}{rotation\-\_\-factor} = 1.\-4
+\begin{DoxyCompactList}\small\item\em \-Factor to modify the device's rotation input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Internal representation and reader for an old spheron. 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1Device_1_1OldSpheronDevice_a7635b290ae8265eedae17a9773a9bcc8}{\index{lib\-::\-Device\-::\-Old\-Spheron\-Device@{lib\-::\-Device\-::\-Old\-Spheron\-Device}!frame\-\_\-callback@{frame\-\_\-callback}}
+\index{frame\-\_\-callback@{frame\-\_\-callback}!lib::Device::OldSpheronDevice@{lib\-::\-Device\-::\-Old\-Spheron\-Device}}
+\subsubsection[{frame\-\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Device.\-Old\-Spheron\-Device.\-frame\-\_\-callback} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Device_1_1OldSpheronDevice_a7635b290ae8265eedae17a9773a9bcc8}
+
+
+\-Callback\-: \-Evaluated every frame. 
+
+\hypertarget{classlib_1_1Device_1_1OldSpheronDevice_a37bdcbbad80feb7567fdae8873bd3173}{\index{lib\-::\-Device\-::\-Old\-Spheron\-Device@{lib\-::\-Device\-::\-Old\-Spheron\-Device}!my\-\_\-constructor@{my\-\_\-constructor}}
+\index{my\-\_\-constructor@{my\-\_\-constructor}!lib::Device::OldSpheronDevice@{lib\-::\-Device\-::\-Old\-Spheron\-Device}}
+\subsubsection[{my\-\_\-constructor}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Device.\-Old\-Spheron\-Device.\-my\-\_\-constructor} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-D\-E\-V\-I\-C\-E\-\_\-\-S\-T\-A\-T\-I\-O\-N, }
+\item[{}]{\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Device_1_1OldSpheronDevice_a37bdcbbad80feb7567fdae8873bd3173}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-D\-E\-V\-I\-C\-E\-\_\-\-S\-T\-A\-T\-I\-O\-N} & \-The name of the input device as chosen in daemon. \\
+\hline
+{\em \-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-The tracking name as chosen in daemon, \-None if no tracking is available. \\
+\hline
+{\em \-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T} & \-Tracking matrix to be used if no tracking is available. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1Device_1_1OldSpheronDevice_a28e856c40978fd59ea474fe80424fca3}{\index{lib\-::\-Device\-::\-Old\-Spheron\-Device@{lib\-::\-Device\-::\-Old\-Spheron\-Device}!button\-\_\-sensor@{button\-\_\-sensor}}
+\index{button\-\_\-sensor@{button\-\_\-sensor}!lib::Device::OldSpheronDevice@{lib\-::\-Device\-::\-Old\-Spheron\-Device}}
+\subsubsection[{button\-\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Old\-Spheron\-Device\-::button\-\_\-sensor}}}\label{classlib_1_1Device_1_1OldSpheronDevice_a28e856c40978fd59ea474fe80424fca3}
+
+
+\hyperlink{namespacelib_1_1Device}{\-Device} sensor for the device's button inputs. 
+
+\hypertarget{classlib_1_1Device_1_1OldSpheronDevice_a68dcdc6d331895c294990cb3e5023a54}{\index{lib\-::\-Device\-::\-Old\-Spheron\-Device@{lib\-::\-Device\-::\-Old\-Spheron\-Device}!device\-\_\-sensor@{device\-\_\-sensor}}
+\index{device\-\_\-sensor@{device\-\_\-sensor}!lib::Device::OldSpheronDevice@{lib\-::\-Device\-::\-Old\-Spheron\-Device}}
+\subsubsection[{device\-\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Old\-Spheron\-Device\-::device\-\_\-sensor}}}\label{classlib_1_1Device_1_1OldSpheronDevice_a68dcdc6d331895c294990cb3e5023a54}
+
+
+\hyperlink{namespacelib_1_1Device}{\-Device} sensor for the device's inputs. 
+
+\hypertarget{classlib_1_1Device_1_1OldSpheronDevice_ad875e2d7a7a00065947fd6367a9228ef}{\index{lib\-::\-Device\-::\-Old\-Spheron\-Device@{lib\-::\-Device\-::\-Old\-Spheron\-Device}!frame\-\_\-trigger@{frame\-\_\-trigger}}
+\index{frame\-\_\-trigger@{frame\-\_\-trigger}!lib::Device::OldSpheronDevice@{lib\-::\-Device\-::\-Old\-Spheron\-Device}}
+\subsubsection[{frame\-\_\-trigger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Old\-Spheron\-Device\-::frame\-\_\-trigger}}}\label{classlib_1_1Device_1_1OldSpheronDevice_ad875e2d7a7a00065947fd6367a9228ef}
+
+
+\-Triggers framewise evaluation of frame\-\_\-callback method. 
+
+\hypertarget{classlib_1_1Device_1_1OldSpheronDevice_a76924c896cd3b56a82d6089b89eb406d}{\index{lib\-::\-Device\-::\-Old\-Spheron\-Device@{lib\-::\-Device\-::\-Old\-Spheron\-Device}!rotation\-\_\-factor@{rotation\-\_\-factor}}
+\index{rotation\-\_\-factor@{rotation\-\_\-factor}!lib::Device::OldSpheronDevice@{lib\-::\-Device\-::\-Old\-Spheron\-Device}}
+\subsubsection[{rotation\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Old\-Spheron\-Device\-::rotation\-\_\-factor} = 1.\-4\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Device_1_1OldSpheronDevice_a76924c896cd3b56a82d6089b89eb406d}
+
+
+\-Factor to modify the device's rotation input. 
+
+
+
+\-Reimplemented from \hyperlink{classlib_1_1Device_1_1MultiDofDevice_a04b79f1c36851426cd8845111d3d7e5f}{lib.\-Device.\-Multi\-Dof\-Device}.
+
+\hypertarget{classlib_1_1Device_1_1OldSpheronDevice_a9cfb9fb037b8aaa46875766b80cdc6a6}{\index{lib\-::\-Device\-::\-Old\-Spheron\-Device@{lib\-::\-Device\-::\-Old\-Spheron\-Device}!translation\-\_\-factor@{translation\-\_\-factor}}
+\index{translation\-\_\-factor@{translation\-\_\-factor}!lib::Device::OldSpheronDevice@{lib\-::\-Device\-::\-Old\-Spheron\-Device}}
+\subsubsection[{translation\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Old\-Spheron\-Device\-::translation\-\_\-factor} = 0.\-5\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Device_1_1OldSpheronDevice_a9cfb9fb037b8aaa46875766b80cdc6a6}
+
+
+\-Factor to modify the device's translation input. 
+
+
+
+\-Reimplemented from \hyperlink{classlib_1_1Device_1_1MultiDofDevice_a92b1c30e0edb14afd629c053d6719594}{lib.\-Device.\-Multi\-Dof\-Device}.
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{Device_8py}{\-Device.\-py}\end{DoxyCompactItemize}

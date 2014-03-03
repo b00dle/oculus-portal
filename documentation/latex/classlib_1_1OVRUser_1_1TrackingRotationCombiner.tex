@@ -1,0 +1,127 @@
+\hypertarget{classlib_1_1OVRUser_1_1TrackingRotationCombiner}{\section{lib.\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner \-Class \-Reference}
+\label{classlib_1_1OVRUser_1_1TrackingRotationCombiner}\index{lib.\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner@{lib.\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner}}
+}
+
+
+\-Helper class to combine the rotation input from an \-Oculus \-Rift with the translation input of a tracking system.  
+
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1OVRUser_1_1TrackingRotationCombiner_aadfb3f4aa4dab4bd992646cacbc1fcab}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Default constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1OVRUser_1_1TrackingRotationCombiner_a759580d053cc6d8949167c6de6c8c97a}{my\-\_\-constructor}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1OVRUser_1_1TrackingRotationCombiner_ae5f2747b088db123edf4ffeb534ef705}{get\-\_\-sf\-\_\-avatar\-\_\-body\-\_\-matrix}
+\begin{DoxyCompactList}\small\item\em \-Returns the avatar body matrix of the headtracking reader. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1OVRUser_1_1TrackingRotationCombiner_a8cd5a4b8b090ff514c294e02fb6163c6}{evaluate}
+\begin{DoxyCompactList}\small\item\em \-Evaluated every frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1OVRUser_1_1TrackingRotationCombiner_a661f1b58b4a6e7af4a03769cf29c70e0}{ovr\-\_\-rotation\-\_\-reader}
+\begin{DoxyCompactList}\small\item\em \-Instance of \hyperlink{namespacelib_1_1OVRRotationReader}{\-O\-V\-R\-Rotation\-Reader} to capture the \-Oculus \-Rift's rotation input. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1TrackingRotationCombiner_af1d1139c73a70aded3d9a4ae8ad3c29f}{headtracking\-\_\-reader}
+\begin{DoxyCompactList}\small\item\em \-Instance of a child class of \hyperlink{namespacelib_1_1TrackingReader}{\-Tracking\-Reader} to supply translation input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classlib_1_1OVRUser_1_1TrackingRotationCombiner_af0898b8f021737fba390f797782860db}{sf\-\_\-combined\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-Combination of rotation and translation input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Helper class to combine the rotation input from an \-Oculus \-Rift with the translation input of a tracking system. 
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1OVRUser_1_1TrackingRotationCombiner_aadfb3f4aa4dab4bd992646cacbc1fcab}{\index{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::OVRUser::TrackingRotationCombiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1OVRUser_1_1TrackingRotationCombiner_aadfb3f4aa4dab4bd992646cacbc1fcab}
+
+
+\-Default constructor. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1OVRUser_1_1TrackingRotationCombiner_a8cd5a4b8b090ff514c294e02fb6163c6}{\index{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!lib::OVRUser::TrackingRotationCombiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}}
+\subsubsection[{evaluate}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner.\-evaluate} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1OVRUser_1_1TrackingRotationCombiner_a8cd5a4b8b090ff514c294e02fb6163c6}
+
+
+\-Evaluated every frame. 
+
+\hypertarget{classlib_1_1OVRUser_1_1TrackingRotationCombiner_ae5f2747b088db123edf4ffeb534ef705}{\index{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}!get\-\_\-sf\-\_\-avatar\-\_\-body\-\_\-matrix@{get\-\_\-sf\-\_\-avatar\-\_\-body\-\_\-matrix}}
+\index{get\-\_\-sf\-\_\-avatar\-\_\-body\-\_\-matrix@{get\-\_\-sf\-\_\-avatar\-\_\-body\-\_\-matrix}!lib::OVRUser::TrackingRotationCombiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}}
+\subsubsection[{get\-\_\-sf\-\_\-avatar\-\_\-body\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner.\-get\-\_\-sf\-\_\-avatar\-\_\-body\-\_\-matrix} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1OVRUser_1_1TrackingRotationCombiner_ae5f2747b088db123edf4ffeb534ef705}
+
+
+\-Returns the avatar body matrix of the headtracking reader. 
+
+\hypertarget{classlib_1_1OVRUser_1_1TrackingRotationCombiner_a759580d053cc6d8949167c6de6c8c97a}{\index{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}!my\-\_\-constructor@{my\-\_\-constructor}}
+\index{my\-\_\-constructor@{my\-\_\-constructor}!lib::OVRUser::TrackingRotationCombiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}}
+\subsubsection[{my\-\_\-constructor}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner.\-my\-\_\-constructor} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-S\-F\-\_\-\-O\-C\-U\-L\-U\-S\-\_\-\-T\-R\-A\-N\-S\-F\-O\-R\-M, }
+\item[{}]{\-H\-E\-A\-D\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1OVRUser_1_1TrackingRotationCombiner_a759580d053cc6d8949167c6de6c8c97a}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-S\-F\-\_\-\-O\-C\-U\-L\-U\-S\-\_\-\-T\-R\-A\-N\-S\-F\-O\-R\-M} & \-Transform field of the \-Oculus \-Rift to be used as rotation input. \\
+\hline
+{\em \-H\-E\-A\-D\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-Name of the \-Oculus \-Rift's tracking target to be used as translation input. \\
+\hline
+{\em \-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T} & \-Matrix to be used if no tracking target name was specified. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1OVRUser_1_1TrackingRotationCombiner_af1d1139c73a70aded3d9a4ae8ad3c29f}{\index{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}!headtracking\-\_\-reader@{headtracking\-\_\-reader}}
+\index{headtracking\-\_\-reader@{headtracking\-\_\-reader}!lib::OVRUser::TrackingRotationCombiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}}
+\subsubsection[{headtracking\-\_\-reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner\-::headtracking\-\_\-reader}}}\label{classlib_1_1OVRUser_1_1TrackingRotationCombiner_af1d1139c73a70aded3d9a4ae8ad3c29f}
+
+
+\-Instance of a child class of \hyperlink{namespacelib_1_1TrackingReader}{\-Tracking\-Reader} to supply translation input. 
+
+\hypertarget{classlib_1_1OVRUser_1_1TrackingRotationCombiner_a661f1b58b4a6e7af4a03769cf29c70e0}{\index{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}!ovr\-\_\-rotation\-\_\-reader@{ovr\-\_\-rotation\-\_\-reader}}
+\index{ovr\-\_\-rotation\-\_\-reader@{ovr\-\_\-rotation\-\_\-reader}!lib::OVRUser::TrackingRotationCombiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}}
+\subsubsection[{ovr\-\_\-rotation\-\_\-reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner\-::ovr\-\_\-rotation\-\_\-reader}}}\label{classlib_1_1OVRUser_1_1TrackingRotationCombiner_a661f1b58b4a6e7af4a03769cf29c70e0}
+
+
+\-Instance of \hyperlink{namespacelib_1_1OVRRotationReader}{\-O\-V\-R\-Rotation\-Reader} to capture the \-Oculus \-Rift's rotation input. 
+
+\hypertarget{classlib_1_1OVRUser_1_1TrackingRotationCombiner_af0898b8f021737fba390f797782860db}{\index{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}!sf\-\_\-combined\-\_\-mat@{sf\-\_\-combined\-\_\-mat}}
+\index{sf\-\_\-combined\-\_\-mat@{sf\-\_\-combined\-\_\-mat}!lib::OVRUser::TrackingRotationCombiner@{lib\-::\-O\-V\-R\-User\-::\-Tracking\-Rotation\-Combiner}}
+\subsubsection[{sf\-\_\-combined\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-Tracking\-Rotation\-Combiner\-::sf\-\_\-combined\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1OVRUser_1_1TrackingRotationCombiner_af0898b8f021737fba390f797782860db}
+
+
+\-Combination of rotation and translation input. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{OVRUser_8py}{\-O\-V\-R\-User.\-py}\end{DoxyCompactItemize}

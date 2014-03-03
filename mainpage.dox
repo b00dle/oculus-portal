@@ -1,0 +1,100 @@
+/**
+\mainpage Oculus-Powerwall Framework Documentation - Configuration files
+
+The Oculus-Powerwall Framework was designed to enable users to create a variety of viewing setups using different input devices and user types in the VR lab at Bauhaus University Weimar. It is based on the rendering framework guacamole. In order to specify a concrete viewing setup within the framework, a XML configuration file is used. On this page, the structure of such a configuration file will be illustrated and explained.
+
+<br>
+<b>Overall structure</b><br>
+The configuration file consists of three main parts included in the <setup>-tag: the specification of global settings, the registration of devices and their corresponding platforms and the registration of users. Global settings include options that are valid for all users and devices which are going to be registered later on. In the device section, all the desired input devices are named and it is said where they should be initially placed in the virutal world. Finally, one specifies the different users to be created and appends them to a platform registered before.<br><br>
+
+<b>Global settings</b><br>
+The specification of global settings is done within the <global>-tag and should be done at the beginning of the file. In the following, all available settings will be illustrated.
+
+<em><transmitteroffset></em><br>
+This sets the global transmitter offset to be applied by the framework. The default is set to (0.0, 0.0, 0.0).<br>
+Usage example: <code> <transmitteroffset><x>0.0</x><y>0.0043</y><z>1.6</z><transmitteroffset></code>
+
+<em><notrackingposition></em><br>
+This is the default position to be applied if a device or user has no tracking station specified. The default is set to an identity matrix<br>
+Usage example: <code><notrackingposition><x>0.0</x><y>1.75</y><z>1.5</z></notrackingposition></code>
+
+<em><groundfollowing></em><br>
+This tag specifies two attributes of the ground following (gravity) algorithm to be used. The first attribute "activated" is a boolean saying if gravity should be activated by default. The second attribute "raystartheight" indicates from which height the ray is shot down to determine the intersection. The default values are False and 0.75.<br>
+Usage example: <code><groundfollowing><activated>True</activated><raystartheight>0.75</raystartheight></groundfollowing></code>
+
+<em><animatecoupling></em><br>
+A boolean saying if a rotation center interpolation during the coupling process is desired. The default is set to False.<br>
+Usage example: <code><animatecoupling>True</animatecoupling></code>
+
+<em><movementtraces></em><br>
+A boolean saying if platform should leave traces behind them. The default is set to False.<br>
+Usage example: <code><movementtraces>True</movementtraces></code>
+
+<br>
+
+<b>Registration of devices and platforms</b><br>
+Every time a device is registered, a corresponding platform in the virtual world is created which is moved and controlled by this device. All the settings for devices and platforms are done within the <device>-tag, one for each device that should be registered. In general, the following information is necessary.
+
+<em><type></em><br>
+A string indicating which type the new device is. To be chosen from "KeyboardMouse", "Spacemouse", "XBoxController" and "Spheron".<br>
+Usage example: <code><type>XBoxController</type></code>
+
+<em><inputsensor></em><br>
+A string indicating the name on which this device was registered in daemon.py. Not applicable for device type "KeyboardMouse", as it is assumed that just one keyboard and one mouse are connected to the computer.<br>
+Usage example: <code><inputsensor>device-xbox-1</inputsensor></code>
+
+<em><trackingstation></em><br>
+A string indicating the name on which this device's tracking target was registered in daemon.py. If this attribute is not supplied, the default tracking values from the global settings section are applied.<br>
+Usage example: <code><trackingstation>tracking-oculus-stag</trackingstation></code>
+
+<em><platformpos></em><br>
+Three dimensional coordinates on where to place the newly created platform in the virtual world.<br>
+Usage example: <code><platformpos><x>0.0</x><y>0.0</y><z>6.0</z></platformpos></code>
+
+<em><platformrot></em><br>
+The starting yaw angle of the newly created platform.<br>
+Usage example: <code><platformrot><yaw>0.0</yaw></platformrot></code>
+
+<em><platformsize></em><br>
+The physical size of the platform in meters (e.g. size of the tracking space). The default is set to 1.0 m x 1.0 m. <br>
+Usage example: <code><platformrot><yaw>0.0</yaw></platformrot></code>
+
+<br>
+
+<b>Registration of users</b><br>
+This section shows which attributes are needed in order to create a user in the virtual world. The settings must be done in the <user>-tag for each user seperately.
+
+<em><type></em><br>
+A string indicating which type the new user is. To be chosen from "PowerWallUser", "OVRUser" and "DesktopUser".<br>
+Usage example: <code><type>DesktopUser</type></code>
+
+<em><headtrackingstation></em><br>
+A string indicating the name on which this user's tracking target was registered in daemon.py. If this attribute is not supplied, the default tracking values from the global settings section are applied. Not applicable for DesktopUsers.<br>
+Usage example: <code><type>DesktopUser</type></code>
+
+<em><startplatform></em><br>
+An integer number to indicate to which platform the new user should be appended to. Corresponds to the order in which the devices were created, the counting starts from 0.<br>
+Usage example: <code><startplatform>2</startplatform></code>
+
+<em><warnings></em><br>
+A boolean indicating if the user should be warned by fences when he or she is close to the physical border of the platform. Not applicable for DesktopUsers. <br>
+Usage example: <code><warnings>True</warnings></code>
+
+<em><windowsize></em><br>
+The width and height of the window to be created in pixels. Only applicable for DesktopUsers.<br>
+Usage example: <code><windowsize><width>1280</width><height>800</height></windowsize></code>
+
+<em><screensize></em><br>
+The physical width and height of the window to be created in meters. Only applicable for DesktopUsers.<br>
+Usage example: <code><screensize><width>1.06</width><height>0.74</height></screensize></code>
+
+<br>
+<b>Summary</b><br>
+Now you basically already know how to use the Oculus-Powerwall framework. However, if you are interested in understanding and modifying the concrete functionalites, the following pages provide an overview of all files, classes, attributes and functions used in and programmed for this framework.
+
+<br>
+<b>Contact</b><br>
+joshua.reibert@uni-weimar.de<br>
+tim.weissker@uni-weimar.de
+
+*/

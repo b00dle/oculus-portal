@@ -1,0 +1,248 @@
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing}{\section{lib.\-Ground\-Following.\-Ground\-Following \-Class \-Reference}
+\label{classlib_1_1GroundFollowing_1_1GroundFollowing}\index{lib.\-Ground\-Following.\-Ground\-Following@{lib.\-Ground\-Following.\-Ground\-Following}}
+}
+
+
+\-Class to realize a simple ground following method.  
+
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a6ab95d63abff68cb58f2217267b03270}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Default constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a71388dac8f9da5b43c5944cf304206a2}{my\-\_\-constructor}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a6d9282f78e918b6bfe61bc9cd96938f8}{evaluate}
+\begin{DoxyCompactList}\small\item\em \-Evaluated every frame. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_ab4ea027ca20128d4f0fd9dc6561dbf3c}{activate}
+\begin{DoxyCompactList}\small\item\em \-Activates the ground following algorithm. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_addc4f0818838bd32a5a9baf19095f677}{deactivate}
+\begin{DoxyCompactList}\small\item\em \-Deactivates the ground following algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a9977ccb4b08b2f9acdf000fad5fa47b9}{activated}
+\begin{DoxyCompactList}\small\item\em \-Indicates if the ground following algorithm is activated or deactivated. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_ad93d12deac0e2495f9836630f7d2f611}{falling}
+\begin{DoxyCompactList}\small\item\em \-A boolean indicating if the user is currently falling. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_afdb7528c0d8ff5d49277e6c70757a9fc}{initial\-\_\-fall\-\_\-velocity}
+\begin{DoxyCompactList}\small\item\em \-The starting velocity when the user is falling in meters per frame. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a300eb3b23cb5a995bfb603a2c8a981ff}{scale\-\_\-factor}
+\begin{DoxyCompactList}\small\item\em \-Scaling factor used for the modification of up and down vectors. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a64a624d0d290ac48a18046afd5b509f3}{fall\-\_\-velocity}
+\begin{DoxyCompactList}\small\item\em \-Speed when the user is falling in meters per frame. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_ad4282b9b37472435fc2a508dea180af7}{ground\-\_\-pick\-\_\-length}
+\begin{DoxyCompactList}\small\item\em \-Length of the ground following ray. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a8ddb73a0e3f3b97ea191866edc79b4f2}{ground\-\_\-pick\-\_\-direction}
+\begin{DoxyCompactList}\small\item\em \-Direction of the ground following ray (downwards). \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_ae7fce065061a116be68532308fb5a1de}{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}
+\begin{DoxyCompactList}\small\item\em \-Reference to the scenegraph to intersect the ground following ray with. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_ab9cec0c413ea4adb281fd333147f8cac}{ray\-\_\-start\-\_\-height}
+\begin{DoxyCompactList}\small\item\em \-Starting height of the ground following ray. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a03a9851898521686e124901b5efef042}{ground\-\_\-intersection}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacelib_1_1Intersection}{\-Intersection} class to determine the intersections of the ground following ray with the objects in the scenegraph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_ae8324e409a0d8af729e0c75e37799fbb}{sf\-\_\-abs\-\_\-input\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-The input matrix to be corrected by the ground following algorithm. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a52efd0a353d19dd1c990b8723da57599}{sf\-\_\-abs\-\_\-output\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-The corrected matrix after the ground following algorithm was applied. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_adbae19702e3080255c5463375e7c57e3}{sf\-\_\-gf\-\_\-start\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-The matrix representing the position where the sent ray to the ground starts. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a15123ba4f08697cfe7493a29fc5161e5}{sf\-\_\-station\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-The matrix representing the position of the device belonging to the platform. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1GroundFollowing_1_1GroundFollowing_a37bf265d037a27939194ac8f4fd65acc}{mf\-\_\-ground\-\_\-pick\-\_\-result} = avango.\-gua.\-M\-F\-Pick\-Result()
+\begin{DoxyCompactList}\small\item\em \-Intersections of the ground following ray with the objects in the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Class to realize a simple ground following method. 
+
+\-This class takes a matrix as an input and corrects it with respect to gravity using the scenegraph. \-Therefore, a ray is shot from a specific start height downwards and the intersection point is compared to the position of the device belonging to the platform. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a6ab95d63abff68cb58f2217267b03270}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Ground\-Following.\-Ground\-Following.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a6ab95d63abff68cb58f2217267b03270}
+
+
+\-Default constructor. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_ab4ea027ca20128d4f0fd9dc6561dbf3c}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!activate@{activate}}
+\index{activate@{activate}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{activate}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Ground\-Following.\-Ground\-Following.\-activate} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_ab4ea027ca20128d4f0fd9dc6561dbf3c}
+
+
+\-Activates the ground following algorithm. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_addc4f0818838bd32a5a9baf19095f677}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{deactivate}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Ground\-Following.\-Ground\-Following.\-deactivate} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_addc4f0818838bd32a5a9baf19095f677}
+
+
+\-Deactivates the ground following algorithm. 
+
+\-The input matrix is just passed through after calling this method. \hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a6d9282f78e918b6bfe61bc9cd96938f8}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{evaluate}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Ground\-Following.\-Ground\-Following.\-evaluate} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a6d9282f78e918b6bfe61bc9cd96938f8}
+
+
+\-Evaluated every frame. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a71388dac8f9da5b43c5944cf304206a2}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!my\-\_\-constructor@{my\-\_\-constructor}}
+\index{my\-\_\-constructor@{my\-\_\-constructor}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{my\-\_\-constructor}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Ground\-Following.\-Ground\-Following.\-my\-\_\-constructor} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H, }
+\item[{}]{\-S\-F\-\_\-\-S\-T\-A\-T\-I\-O\-N\-\_\-\-M\-A\-T, }
+\item[{}]{\-S\-E\-T\-T\-I\-N\-G\-S}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a71388dac8f9da5b43c5944cf304206a2}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-S\-C\-E\-N\-E\-G\-R\-A\-P\-H} & \-Reference to the scenegraph of the currently displayed scene. \\
+\hline
+{\em \-S\-F\-\_\-\-S\-T\-A\-T\-I\-O\-N\-\_\-\-M\-A\-T} & \-The field containing the current position of the device belonging to the platform. \\
+\hline
+{\em \-S\-E\-T\-T\-I\-N\-G\-S} & \-A list of a boolean and a floating number representing self.\-activated and self.\-ray\-\_\-start\-\_\-height \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a9977ccb4b08b2f9acdf000fad5fa47b9}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!activated@{activated}}
+\index{activated@{activated}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{activated}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::activated}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a9977ccb4b08b2f9acdf000fad5fa47b9}
+
+
+\-Indicates if the ground following algorithm is activated or deactivated. 
+
+\-In the last case, the input matrix is simply passed through. \hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a64a624d0d290ac48a18046afd5b509f3}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!fall\-\_\-velocity@{fall\-\_\-velocity}}
+\index{fall\-\_\-velocity@{fall\-\_\-velocity}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{fall\-\_\-velocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::fall\-\_\-velocity}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a64a624d0d290ac48a18046afd5b509f3}
+
+
+\-Speed when the user is falling in meters per frame. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_ad93d12deac0e2495f9836630f7d2f611}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!falling@{falling}}
+\index{falling@{falling}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{falling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::falling}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_ad93d12deac0e2495f9836630f7d2f611}
+
+
+\-A boolean indicating if the user is currently falling. 
+
+\-Used for fall speed computations. \hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a03a9851898521686e124901b5efef042}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!ground\-\_\-intersection@{ground\-\_\-intersection}}
+\index{ground\-\_\-intersection@{ground\-\_\-intersection}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{ground\-\_\-intersection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::ground\-\_\-intersection}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a03a9851898521686e124901b5efef042}
+
+
+\hyperlink{namespacelib_1_1Intersection}{\-Intersection} class to determine the intersections of the ground following ray with the objects in the scenegraph. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a8ddb73a0e3f3b97ea191866edc79b4f2}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!ground\-\_\-pick\-\_\-direction@{ground\-\_\-pick\-\_\-direction}}
+\index{ground\-\_\-pick\-\_\-direction@{ground\-\_\-pick\-\_\-direction}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{ground\-\_\-pick\-\_\-direction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::ground\-\_\-pick\-\_\-direction}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a8ddb73a0e3f3b97ea191866edc79b4f2}
+
+
+\-Direction of the ground following ray (downwards). 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_ad4282b9b37472435fc2a508dea180af7}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!ground\-\_\-pick\-\_\-length@{ground\-\_\-pick\-\_\-length}}
+\index{ground\-\_\-pick\-\_\-length@{ground\-\_\-pick\-\_\-length}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{ground\-\_\-pick\-\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::ground\-\_\-pick\-\_\-length}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_ad4282b9b37472435fc2a508dea180af7}
+
+
+\-Length of the ground following ray. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_afdb7528c0d8ff5d49277e6c70757a9fc}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!initial\-\_\-fall\-\_\-velocity@{initial\-\_\-fall\-\_\-velocity}}
+\index{initial\-\_\-fall\-\_\-velocity@{initial\-\_\-fall\-\_\-velocity}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{initial\-\_\-fall\-\_\-velocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::initial\-\_\-fall\-\_\-velocity}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_afdb7528c0d8ff5d49277e6c70757a9fc}
+
+
+\-The starting velocity when the user is falling in meters per frame. 
+
+\-Is increased the longer the falling process goes on. \hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a37bf265d037a27939194ac8f4fd65acc}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!mf\-\_\-ground\-\_\-pick\-\_\-result@{mf\-\_\-ground\-\_\-pick\-\_\-result}}
+\index{mf\-\_\-ground\-\_\-pick\-\_\-result@{mf\-\_\-ground\-\_\-pick\-\_\-result}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{mf\-\_\-ground\-\_\-pick\-\_\-result}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::mf\-\_\-ground\-\_\-pick\-\_\-result} = avango.\-gua.\-M\-F\-Pick\-Result()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a37bf265d037a27939194ac8f4fd65acc}
+
+
+\-Intersections of the ground following ray with the objects in the scene. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_ab9cec0c413ea4adb281fd333147f8cac}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!ray\-\_\-start\-\_\-height@{ray\-\_\-start\-\_\-height}}
+\index{ray\-\_\-start\-\_\-height@{ray\-\_\-start\-\_\-height}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{ray\-\_\-start\-\_\-height}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::ray\-\_\-start\-\_\-height}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_ab9cec0c413ea4adb281fd333147f8cac}
+
+
+\-Starting height of the ground following ray. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a300eb3b23cb5a995bfb603a2c8a981ff}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!scale\-\_\-factor@{scale\-\_\-factor}}
+\index{scale\-\_\-factor@{scale\-\_\-factor}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{scale\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::scale\-\_\-factor}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a300eb3b23cb5a995bfb603a2c8a981ff}
+
+
+\-Scaling factor used for the modification of up and down vectors. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_ae7fce065061a116be68532308fb5a1de}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H@{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}}
+\index{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H@{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_ae7fce065061a116be68532308fb5a1de}
+
+
+\-Reference to the scenegraph to intersect the ground following ray with. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_ae8324e409a0d8af729e0c75e37799fbb}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!sf\-\_\-abs\-\_\-input\-\_\-mat@{sf\-\_\-abs\-\_\-input\-\_\-mat}}
+\index{sf\-\_\-abs\-\_\-input\-\_\-mat@{sf\-\_\-abs\-\_\-input\-\_\-mat}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{sf\-\_\-abs\-\_\-input\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::sf\-\_\-abs\-\_\-input\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_ae8324e409a0d8af729e0c75e37799fbb}
+
+
+\-The input matrix to be corrected by the ground following algorithm. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a52efd0a353d19dd1c990b8723da57599}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!sf\-\_\-abs\-\_\-output\-\_\-mat@{sf\-\_\-abs\-\_\-output\-\_\-mat}}
+\index{sf\-\_\-abs\-\_\-output\-\_\-mat@{sf\-\_\-abs\-\_\-output\-\_\-mat}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{sf\-\_\-abs\-\_\-output\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::sf\-\_\-abs\-\_\-output\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a52efd0a353d19dd1c990b8723da57599}
+
+
+\-The corrected matrix after the ground following algorithm was applied. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_adbae19702e3080255c5463375e7c57e3}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!sf\-\_\-gf\-\_\-start\-\_\-mat@{sf\-\_\-gf\-\_\-start\-\_\-mat}}
+\index{sf\-\_\-gf\-\_\-start\-\_\-mat@{sf\-\_\-gf\-\_\-start\-\_\-mat}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{sf\-\_\-gf\-\_\-start\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::sf\-\_\-gf\-\_\-start\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_adbae19702e3080255c5463375e7c57e3}
+
+
+\-The matrix representing the position where the sent ray to the ground starts. 
+
+\hypertarget{classlib_1_1GroundFollowing_1_1GroundFollowing_a15123ba4f08697cfe7493a29fc5161e5}{\index{lib\-::\-Ground\-Following\-::\-Ground\-Following@{lib\-::\-Ground\-Following\-::\-Ground\-Following}!sf\-\_\-station\-\_\-mat@{sf\-\_\-station\-\_\-mat}}
+\index{sf\-\_\-station\-\_\-mat@{sf\-\_\-station\-\_\-mat}!lib::GroundFollowing::GroundFollowing@{lib\-::\-Ground\-Following\-::\-Ground\-Following}}
+\subsubsection[{sf\-\_\-station\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Ground\-Following.\-Ground\-Following\-::sf\-\_\-station\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1GroundFollowing_1_1GroundFollowing_a15123ba4f08697cfe7493a29fc5161e5}
+
+
+\-The matrix representing the position of the device belonging to the platform. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{GroundFollowing_8py}{\-Ground\-Following.\-py}\end{DoxyCompactItemize}

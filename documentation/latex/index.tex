@@ -1,0 +1,99 @@
+\-The \-Oculus-\/\-Powerwall \-Framework was designed to enable users to create a variety of viewing setups using different input devices and user types in the \-V\-R lab at \-Bauhaus \-University \-Weimar. \-It is based on the rendering framework guacamole. \-In order to specify a concrete viewing setup within the framework, a \-X\-M\-L configuration file is used. \-On this page, the structure of such a configuration file will be illustrated and explained.
+
+\par
+ {\bfseries \-Overall structure}\par
+ \-The configuration file consists of three main parts included in the $<$setup$>$-\/tag\-: the specification of global settings, the registration of devices and their corresponding platforms and the registration of users. \-Global settings include options that are valid for all users and devices which are going to be registered later on. \-In the device section, all the desired input devices are named and it is said where they should be initially placed in the virutal world. \-Finally, one specifies the different users to be created and appends them to a platform registered before.\par
+\par
+
+
+{\bfseries \-Global settings}\par
+ \-The specification of global settings is done within the $<$global$>$-\/tag and should be done at the beginning of the file. \-In the following, all available settings will be illustrated.
+
+{\itshape $<$transmitteroffset$>$\/}\par
+ \-This sets the global transmitter offset to be applied by the framework. \-The default is set to (0.\-0, 0.\-0, 0.\-0).\par
+ \-Usage example\-: {\ttfamily  $<$transmitteroffset$>$$<$x$>$0.\-0$<$/x$>$$<$y$>$0.\-0043$<$/y$>$$<$z$>$1.\-6$<$/z$>$$<$transmitteroffset$>$}
+
+{\itshape $<$notrackingposition$>$\/}\par
+ \-This is the default position to be applied if a device or user has no tracking station specified. \-The default is set to an identity matrix\par
+ \-Usage example\-: {\ttfamily $<$notrackingposition$>$$<$x$>$0.\-0$<$/x$>$$<$y$>$1.\-75$<$/y$>$$<$z$>$1.\-5$<$/z$>$$<$/notrackingposition$>$}
+
+{\itshape $<$groundfollowing$>$\/}\par
+ \-This tag specifies two attributes of the ground following (gravity) algorithm to be used. \-The first attribute \char`\"{}activated\char`\"{} is a boolean saying if gravity should be activated by default. \-The second attribute \char`\"{}raystartheight\char`\"{} indicates from which height the ray is shot down to determine the intersection. \-The default values are \-False and 0.\-75.\par
+ \-Usage example\-: {\ttfamily $<$groundfollowing$>$$<$activated$>$\-True$<$/activated$>$$<$raystartheight$>$0.\-75$<$/raystartheight$>$$<$/groundfollowing$>$}
+
+{\itshape $<$animatecoupling$>$\/}\par
+ \-A boolean saying if a rotation center interpolation during the coupling process is desired. \-The default is set to \-False.\par
+ \-Usage example\-: {\ttfamily $<$animatecoupling$>$\-True$<$/animatecoupling$>$}
+
+{\itshape $<$movementtraces$>$\/}\par
+ \-A boolean saying if platform should leave traces behind them. \-The default is set to \-False.\par
+ \-Usage example\-: {\ttfamily $<$movementtraces$>$\-True$<$/movementtraces$>$}
+
+\par
+
+
+{\bfseries \-Registration of devices and platforms}\par
+ \-Every time a device is registered, a corresponding platform in the virtual world is created which is moved and controlled by this device. \-All the settings for devices and platforms are done within the $<$device$>$-\/tag, one for each device that should be registered. \-In general, the following information is necessary.
+
+{\itshape $<$type$>$\/}\par
+ \-A string indicating which type the new device is. \-To be chosen from \char`\"{}\-Keyboard\-Mouse\char`\"{}, \char`\"{}\-Spacemouse\char`\"{}, \char`\"{}\-X\-Box\-Controller\char`\"{} and \char`\"{}\-Spheron\char`\"{}.\par
+ \-Usage example\-: {\ttfamily $<$type$>$\-X\-Box\-Controller$<$/type$>$}
+
+{\itshape $<$inputsensor$>$\/}\par
+ \-A string indicating the name on which this device was registered in \hyperlink{daemon_8py}{daemon.\-py}. \-Not applicable for device type \char`\"{}\-Keyboard\-Mouse\char`\"{}, as it is assumed that just one keyboard and one mouse are connected to the computer.\par
+ \-Usage example\-: {\ttfamily $<$inputsensor$>$device-\/xbox-\/1$<$/inputsensor$>$}
+
+{\itshape $<$trackingstation$>$\/}\par
+ \-A string indicating the name on which this device's tracking target was registered in \hyperlink{daemon_8py}{daemon.\-py}. \-If this attribute is not supplied, the default tracking values from the global settings section are applied.\par
+ \-Usage example\-: {\ttfamily $<$trackingstation$>$tracking-\/oculus-\/stag$<$/trackingstation$>$}
+
+{\itshape $<$platformpos$>$\/}\par
+ \-Three dimensional coordinates on where to place the newly created platform in the virtual world.\par
+ \-Usage example\-: {\ttfamily $<$platformpos$>$$<$x$>$0.\-0$<$/x$>$$<$y$>$0.\-0$<$/y$>$$<$z$>$6.\-0$<$/z$>$$<$/platformpos$>$}
+
+{\itshape $<$platformrot$>$\/}\par
+ \-The starting yaw angle of the newly created platform.\par
+ \-Usage example\-: {\ttfamily $<$platformrot$>$$<$yaw$>$0.\-0$<$/yaw$>$$<$/platformrot$>$}
+
+{\itshape $<$platformsize$>$\/}\par
+ \-The physical size of the platform in meters (e.\-g. size of the tracking space). \-The default is set to 1.\-0 m x 1.\-0 m. \par
+ \-Usage example\-: {\ttfamily $<$platformrot$>$$<$yaw$>$0.\-0$<$/yaw$>$$<$/platformrot$>$}
+
+\par
+
+
+{\bfseries \-Registration of users}\par
+ \-This section shows which attributes are needed in order to create a user in the virtual world. \-The settings must be done in the $<$user$>$-\/tag for each user seperately.
+
+{\itshape $<$type$>$\/}\par
+ \-A string indicating which type the new user is. \-To be chosen from \char`\"{}\-Power\-Wall\-User\char`\"{}, \char`\"{}\-O\-V\-R\-User\char`\"{} and \char`\"{}\-Desktop\-User\char`\"{}.\par
+ \-Usage example\-: {\ttfamily $<$type$>$\-Desktop\-User$<$/type$>$}
+
+{\itshape $<$headtrackingstation$>$\/}\par
+ \-A string indicating the name on which this user's tracking target was registered in \hyperlink{daemon_8py}{daemon.\-py}. \-If this attribute is not supplied, the default tracking values from the global settings section are applied. \-Not applicable for \-Desktop\-Users.\par
+ \-Usage example\-: {\ttfamily $<$type$>$\-Desktop\-User$<$/type$>$}
+
+{\itshape $<$startplatform$>$\/}\par
+ \-An integer number to indicate to which platform the new user should be appended to. \-Corresponds to the order in which the devices were created, the counting starts from 0.\par
+ \-Usage example\-: {\ttfamily $<$startplatform$>$2$<$/startplatform$>$}
+
+{\itshape $<$warnings$>$\/}\par
+ \-A boolean indicating if the user should be warned by fences when he or she is close to the physical border of the platform. \-Not applicable for \-Desktop\-Users. \par
+ \-Usage example\-: {\ttfamily $<$warnings$>$\-True$<$/warnings$>$}
+
+{\itshape $<$windowsize$>$\/}\par
+ \-The width and height of the window to be created in pixels. \-Only applicable for \-Desktop\-Users.\par
+ \-Usage example\-: {\ttfamily $<$windowsize$>$$<$width$>$1280$<$/width$>$$<$height$>$800$<$/height$>$$<$/windowsize$>$}
+
+{\itshape $<$screensize$>$\/}\par
+ \-The physical width and height of the window to be created in meters. \-Only applicable for \-Desktop\-Users.\par
+ \-Usage example\-: {\ttfamily $<$screensize$>$$<$width$>$1.\-06$<$/width$>$$<$height$>$0.\-74$<$/height$>$$<$/screensize$>$}
+
+\par
+ {\bfseries \-Summary}\par
+ \-Now you basically already know how to use the \-Oculus-\/\-Powerwall framework. \-However, if you are interested in understanding and modifying the concrete functionalites, the following pages provide an overview of all files, classes, attributes and functions used in and programmed for this framework.
+
+\par
+ {\bfseries \-Contact}\par
+ \href{mailto:joshua.reibert@uni-weimar.de}{\tt joshua.\-reibert@uni-\/weimar.\-de}\par
+ \href{mailto:tim.weissker@uni-weimar.de}{\tt tim.\-weissker@uni-\/weimar.\-de} 

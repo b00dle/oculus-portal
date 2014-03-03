@@ -1,0 +1,119 @@
+\hypertarget{classlib_1_1Device_1_1XBoxDevice}{\section{lib.\-Device.\-X\-Box\-Device \-Class \-Reference}
+\label{classlib_1_1Device_1_1XBoxDevice}\index{lib.\-Device.\-X\-Box\-Device@{lib.\-Device.\-X\-Box\-Device}}
+}
+
+
+\-Internal representation and reader for a \-X-\/\-Box controller.  
+
+
+\-Inheritance diagram for lib.\-Device.\-X\-Box\-Device\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classlib_1_1Device_1_1XBoxDevice}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1Device_1_1XBoxDevice_a416d05b6cdef6b8f4a27f75c64d73eb2}{my\-\_\-constructor}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Device_1_1XBoxDevice_a4f509463d7654ad9469024d69311a8e6}{frame\-\_\-callback}
+\begin{DoxyCompactList}\small\item\em \-Callback\-: \-Evaluated every frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1Device_1_1XBoxDevice_a7247268308b222d4b8fda7ffa6bc8cf8}{device\-\_\-sensor}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacelib_1_1Device}{\-Device} sensor for the device's inputs. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Device_1_1XBoxDevice_ad310e2d3730d9d865af733d8c83c586b}{frame\-\_\-trigger}
+\begin{DoxyCompactList}\small\item\em \-Triggers framewise evaluation of frame\-\_\-callback method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classlib_1_1Device_1_1XBoxDevice_a3f49c1e0a121515d887ab15e258ca0c8}{translation\-\_\-factor} = 0.\-3
+\begin{DoxyCompactList}\small\item\em \-Factor to modify the device's translation input. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1Device_1_1XBoxDevice_a44db7cf83243a611c6881b0835baee28}{rotation\-\_\-factor} = 2.\-0
+\begin{DoxyCompactList}\small\item\em \-Factor to modify the device's rotation input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Internal representation and reader for a \-X-\/\-Box controller. 
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1Device_1_1XBoxDevice_a4f509463d7654ad9469024d69311a8e6}{\index{lib\-::\-Device\-::\-X\-Box\-Device@{lib\-::\-Device\-::\-X\-Box\-Device}!frame\-\_\-callback@{frame\-\_\-callback}}
+\index{frame\-\_\-callback@{frame\-\_\-callback}!lib::Device::XBoxDevice@{lib\-::\-Device\-::\-X\-Box\-Device}}
+\subsubsection[{frame\-\_\-callback}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Device.\-X\-Box\-Device.\-frame\-\_\-callback} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Device_1_1XBoxDevice_a4f509463d7654ad9469024d69311a8e6}
+
+
+\-Callback\-: \-Evaluated every frame. 
+
+\hypertarget{classlib_1_1Device_1_1XBoxDevice_a416d05b6cdef6b8f4a27f75c64d73eb2}{\index{lib\-::\-Device\-::\-X\-Box\-Device@{lib\-::\-Device\-::\-X\-Box\-Device}!my\-\_\-constructor@{my\-\_\-constructor}}
+\index{my\-\_\-constructor@{my\-\_\-constructor}!lib::Device::XBoxDevice@{lib\-::\-Device\-::\-X\-Box\-Device}}
+\subsubsection[{my\-\_\-constructor}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Device.\-X\-Box\-Device.\-my\-\_\-constructor} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-D\-E\-V\-I\-C\-E\-\_\-\-S\-T\-A\-T\-I\-O\-N, }
+\item[{}]{\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Device_1_1XBoxDevice_a416d05b6cdef6b8f4a27f75c64d73eb2}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-D\-E\-V\-I\-C\-E\-\_\-\-S\-T\-A\-T\-I\-O\-N} & \-The name of the input device as chosen in daemon. \\
+\hline
+{\em \-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-The tracking name as chosen in daemon, \-None if no tracking is available. \\
+\hline
+{\em \-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T} & \-Tracking matrix to be used if no tracking is available. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1Device_1_1XBoxDevice_a7247268308b222d4b8fda7ffa6bc8cf8}{\index{lib\-::\-Device\-::\-X\-Box\-Device@{lib\-::\-Device\-::\-X\-Box\-Device}!device\-\_\-sensor@{device\-\_\-sensor}}
+\index{device\-\_\-sensor@{device\-\_\-sensor}!lib::Device::XBoxDevice@{lib\-::\-Device\-::\-X\-Box\-Device}}
+\subsubsection[{device\-\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-X\-Box\-Device\-::device\-\_\-sensor}}}\label{classlib_1_1Device_1_1XBoxDevice_a7247268308b222d4b8fda7ffa6bc8cf8}
+
+
+\hyperlink{namespacelib_1_1Device}{\-Device} sensor for the device's inputs. 
+
+\hypertarget{classlib_1_1Device_1_1XBoxDevice_ad310e2d3730d9d865af733d8c83c586b}{\index{lib\-::\-Device\-::\-X\-Box\-Device@{lib\-::\-Device\-::\-X\-Box\-Device}!frame\-\_\-trigger@{frame\-\_\-trigger}}
+\index{frame\-\_\-trigger@{frame\-\_\-trigger}!lib::Device::XBoxDevice@{lib\-::\-Device\-::\-X\-Box\-Device}}
+\subsubsection[{frame\-\_\-trigger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-X\-Box\-Device\-::frame\-\_\-trigger}}}\label{classlib_1_1Device_1_1XBoxDevice_ad310e2d3730d9d865af733d8c83c586b}
+
+
+\-Triggers framewise evaluation of frame\-\_\-callback method. 
+
+\hypertarget{classlib_1_1Device_1_1XBoxDevice_a44db7cf83243a611c6881b0835baee28}{\index{lib\-::\-Device\-::\-X\-Box\-Device@{lib\-::\-Device\-::\-X\-Box\-Device}!rotation\-\_\-factor@{rotation\-\_\-factor}}
+\index{rotation\-\_\-factor@{rotation\-\_\-factor}!lib::Device::XBoxDevice@{lib\-::\-Device\-::\-X\-Box\-Device}}
+\subsubsection[{rotation\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-X\-Box\-Device\-::rotation\-\_\-factor} = 2.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Device_1_1XBoxDevice_a44db7cf83243a611c6881b0835baee28}
+
+
+\-Factor to modify the device's rotation input. 
+
+
+
+\-Reimplemented from \hyperlink{classlib_1_1Device_1_1MultiDofDevice_a04b79f1c36851426cd8845111d3d7e5f}{lib.\-Device.\-Multi\-Dof\-Device}.
+
+\hypertarget{classlib_1_1Device_1_1XBoxDevice_a3f49c1e0a121515d887ab15e258ca0c8}{\index{lib\-::\-Device\-::\-X\-Box\-Device@{lib\-::\-Device\-::\-X\-Box\-Device}!translation\-\_\-factor@{translation\-\_\-factor}}
+\index{translation\-\_\-factor@{translation\-\_\-factor}!lib::Device::XBoxDevice@{lib\-::\-Device\-::\-X\-Box\-Device}}
+\subsubsection[{translation\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-X\-Box\-Device\-::translation\-\_\-factor} = 0.\-3\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Device_1_1XBoxDevice_a3f49c1e0a121515d887ab15e258ca0c8}
+
+
+\-Factor to modify the device's translation input. 
+
+
+
+\-Reimplemented from \hyperlink{classlib_1_1Device_1_1MultiDofDevice_a92b1c30e0edb14afd629c053d6719594}{lib.\-Device.\-Multi\-Dof\-Device}.
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{Device_8py}{\-Device.\-py}\end{DoxyCompactItemize}

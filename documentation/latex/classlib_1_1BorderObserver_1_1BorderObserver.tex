@@ -1,0 +1,160 @@
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver}{\section{lib.\-Border\-Observer.\-Border\-Observer \-Class \-Reference}
+\label{classlib_1_1BorderObserver_1_1BorderObserver}\index{lib.\-Border\-Observer.\-Border\-Observer@{lib.\-Border\-Observer.\-Border\-Observer}}
+}
+
+
+\-Class to check whether users on a platform are close to platform borders.  
+
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_af17370c6f789ae77072169736f7a5db8}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Default constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_a0c8a0a4d64b15ae66bb84879ee5d44a6}{my\-\_\-constructor}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_a8c8681cf716d688fe782efcec21aff26}{add\-\_\-user}
+\begin{DoxyCompactList}\small\item\em \-Adds a user to the list of observed ones. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_af972bcaea2599f0598384a1b7f7c359d}{evaluate}
+\begin{DoxyCompactList}\small\item\em \-Evaluated every frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_a965fa9bf7643ca61b36a65af599c703f}{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}
+\begin{DoxyCompactList}\small\item\em \-Reference to the platform on which the observed users stand. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_ab3c3b586d967e89d21d2eb9c40eb155e}{platform\-\_\-width}
+\begin{DoxyCompactList}\small\item\em \-Physical width of the platform in meters. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_aff2968f9062237a68dacb5bd74a693db}{platform\-\_\-depth}
+\begin{DoxyCompactList}\small\item\em \-Physical depth of the platform in meters. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_a25ba74cce5dc46c522e75b5c92fc696c}{checked\-\_\-borders}
+\begin{DoxyCompactList}\small\item\em \-A list of four booleans about which borders of the platform should be observed. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_a99b5a746ff7a7a2c3cf3838253e9067c}{user\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-A list of users to be observed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classlib_1_1BorderObserver_1_1BorderObserver_a9521c87181073a5123559b5debf7238f}{warning\-\_\-tolerance} = 0.\-7
+\begin{DoxyCompactList}\small\item\em \-Distance to a border when the warning plane should be displayed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Class to check whether users on a platform are close to platform borders. 
+
+\-If one of the observed users is close to a platform border, the corresponding border plane is made visible. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_af17370c6f789ae77072169736f7a5db8}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Border\-Observer.\-Border\-Observer.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1BorderObserver_1_1BorderObserver_af17370c6f789ae77072169736f7a5db8}
+
+
+\-Default constructor. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_a8c8681cf716d688fe782efcec21aff26}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!add\-\_\-user@{add\-\_\-user}}
+\index{add\-\_\-user@{add\-\_\-user}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{add\-\_\-user}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Border\-Observer.\-Border\-Observer.\-add\-\_\-user} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-U\-S\-E\-R\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1BorderObserver_1_1BorderObserver_a8c8681cf716d688fe782efcec21aff26}
+
+
+\-Adds a user to the list of observed ones. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-U\-S\-E\-R\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E} & \-The user to be added. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_af972bcaea2599f0598384a1b7f7c359d}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{evaluate}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Border\-Observer.\-Border\-Observer.\-evaluate} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1BorderObserver_1_1BorderObserver_af972bcaea2599f0598384a1b7f7c359d}
+
+
+\-Evaluated every frame. 
+
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_a0c8a0a4d64b15ae66bb84879ee5d44a6}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!my\-\_\-constructor@{my\-\_\-constructor}}
+\index{my\-\_\-constructor@{my\-\_\-constructor}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{my\-\_\-constructor}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Border\-Observer.\-Border\-Observer.\-my\-\_\-constructor} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-C\-H\-E\-C\-K\-E\-D\-\_\-\-B\-O\-R\-D\-E\-R\-S, }
+\item[{}]{\-U\-S\-E\-R\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E, }
+\item[{}]{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1BorderObserver_1_1BorderObserver_a0c8a0a4d64b15ae66bb84879ee5d44a6}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-C\-H\-E\-C\-K\-E\-D\-\_\-\-B\-O\-R\-D\-E\-R\-S} & \-A list of four booleans about which borders of the platform should be observed. \mbox{[}display\-\_\-left\-\_\-border, display\-\_\-right\-\_\-border, display\-\_\-front\-\_\-border, display\-\_\-back\-\_\-border\mbox{]} \\
+\hline
+{\em \-U\-S\-E\-R\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E} & \-The first user to be observed. \\
+\hline
+{\em \-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E} & \-The platform on which the observed users are. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_a25ba74cce5dc46c522e75b5c92fc696c}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!checked\-\_\-borders@{checked\-\_\-borders}}
+\index{checked\-\_\-borders@{checked\-\_\-borders}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{checked\-\_\-borders}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Border\-Observer.\-Border\-Observer\-::checked\-\_\-borders}}}\label{classlib_1_1BorderObserver_1_1BorderObserver_a25ba74cce5dc46c522e75b5c92fc696c}
+
+
+\-A list of four booleans about which borders of the platform should be observed. 
+
+\mbox{[}left, right, front, back\mbox{]}. \hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_aff2968f9062237a68dacb5bd74a693db}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!platform\-\_\-depth@{platform\-\_\-depth}}
+\index{platform\-\_\-depth@{platform\-\_\-depth}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{platform\-\_\-depth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Border\-Observer.\-Border\-Observer\-::platform\-\_\-depth}}}\label{classlib_1_1BorderObserver_1_1BorderObserver_aff2968f9062237a68dacb5bd74a693db}
+
+
+\-Physical depth of the platform in meters. 
+
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_a965fa9bf7643ca61b36a65af599c703f}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E@{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}}
+\index{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E@{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Border\-Observer.\-Border\-Observer\-::\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}}}\label{classlib_1_1BorderObserver_1_1BorderObserver_a965fa9bf7643ca61b36a65af599c703f}
+
+
+\-Reference to the platform on which the observed users stand. 
+
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_ab3c3b586d967e89d21d2eb9c40eb155e}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!platform\-\_\-width@{platform\-\_\-width}}
+\index{platform\-\_\-width@{platform\-\_\-width}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{platform\-\_\-width}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Border\-Observer.\-Border\-Observer\-::platform\-\_\-width}}}\label{classlib_1_1BorderObserver_1_1BorderObserver_ab3c3b586d967e89d21d2eb9c40eb155e}
+
+
+\-Physical width of the platform in meters. 
+
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_a99b5a746ff7a7a2c3cf3838253e9067c}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!user\-\_\-list@{user\-\_\-list}}
+\index{user\-\_\-list@{user\-\_\-list}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{user\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Border\-Observer.\-Border\-Observer\-::user\-\_\-list}}}\label{classlib_1_1BorderObserver_1_1BorderObserver_a99b5a746ff7a7a2c3cf3838253e9067c}
+
+
+\-A list of users to be observed. 
+
+\hypertarget{classlib_1_1BorderObserver_1_1BorderObserver_a9521c87181073a5123559b5debf7238f}{\index{lib\-::\-Border\-Observer\-::\-Border\-Observer@{lib\-::\-Border\-Observer\-::\-Border\-Observer}!warning\-\_\-tolerance@{warning\-\_\-tolerance}}
+\index{warning\-\_\-tolerance@{warning\-\_\-tolerance}!lib::BorderObserver::BorderObserver@{lib\-::\-Border\-Observer\-::\-Border\-Observer}}
+\subsubsection[{warning\-\_\-tolerance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Border\-Observer.\-Border\-Observer\-::warning\-\_\-tolerance} = 0.\-7\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1BorderObserver_1_1BorderObserver_a9521c87181073a5123559b5debf7238f}
+
+
+\-Distance to a border when the warning plane should be displayed. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{BorderObserver_8py}{\-Border\-Observer.\-py}\end{DoxyCompactItemize}

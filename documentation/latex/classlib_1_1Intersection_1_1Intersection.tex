@@ -1,0 +1,279 @@
+\hypertarget{classlib_1_1Intersection_1_1Intersection}{\section{lib.\-Intersection.\-Intersection \-Class \-Reference}
+\label{classlib_1_1Intersection_1_1Intersection}\index{lib.\-Intersection.\-Intersection@{lib.\-Intersection.\-Intersection}}
+}
+
+
+\-Helper class to determine the intersections of a ray with the objects in a scene.  
+
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1Intersection_1_1Intersection_a5a33b5d25908f77536156171000b5b58}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Default constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Intersection_1_1Intersection_a24cc43ce37b5817cb4d4eacc9db26a39}{my\-\_\-constructor}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Intersection_1_1Intersection_aa27b7b10a0e211405cf19b6e05a95281}{evaluate}
+\begin{DoxyCompactList}\small\item\em \-Evaluated every frame. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Intersection_1_1Intersection_a9e31ec3d9251db71c8e2b66d91c23346}{set\-\_\-pick\-\_\-length}
+\begin{DoxyCompactList}\small\item\em \-Sets the pick\-\_\-length attribute. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Intersection_1_1Intersection_afe08bc90d7c6dc806d67a0fe9be12e67}{set\-\_\-pick\-\_\-direction}
+\begin{DoxyCompactList}\small\item\em \-Sets the pick\-\_\-direction attribute. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Intersection_1_1Intersection_ad49cb21fbe7a7c94ca8212a0e3421b8a}{dot}
+\begin{DoxyCompactList}\small\item\em \-Dot prodcut between two vectors. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Intersection_1_1Intersection_a45032076f1fe019a9d206e9213fe2d54}{cross}
+\begin{DoxyCompactList}\small\item\em \-Cross prodcut between two vectors. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Intersection_1_1Intersection_a136e4cfa2ada69034767fb5523c304b3}{activate}
+\begin{DoxyCompactList}\small\item\em \-Activate the intersection procedure. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Intersection_1_1Intersection_a467d2946429de30b1428f2f32fb868ac}{deactivate}
+\begin{DoxyCompactList}\small\item\em \-Deactivate the intersection procedure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1Intersection_1_1Intersection_af5dafd3b3480af4a8dd0e16cc31e4294}{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}
+\begin{DoxyCompactList}\small\item\em \-Reference to the scenegraph. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Intersection_1_1Intersection_a9d06103ebb441f8e0d4b24ac2a36ff51}{ray}
+\begin{DoxyCompactList}\small\item\em \-The spatial ray to be analyzed. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Intersection_1_1Intersection_a4f12c5d21a96db855b981ed5ff89bed2}{picking\-\_\-options}
+\begin{DoxyCompactList}\small\item\em \-Picking options for the intersection process. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Intersection_1_1Intersection_a0d7872b7eba2c5bd05a6ed665ee60913}{picking\-\_\-mask}
+\begin{DoxyCompactList}\small\item\em \-Picking mask of the intersection process. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Intersection_1_1Intersection_a0da8b24f0692f2c46ad7580db973ba95}{pick\-\_\-length}
+\begin{DoxyCompactList}\small\item\em \-Length of the ray in meters. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Intersection_1_1Intersection_ae74f509c5388cd83b6cb585c78e80370}{pick\-\_\-direction}
+\begin{DoxyCompactList}\small\item\em \-Direction of the ray. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classlib_1_1Intersection_1_1Intersection_a4369beca425c5fd77f4bb99545917e78}{sf\-\_\-pick\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-Starting matrix of the ray to be analyzed. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1Intersection_1_1Intersection_ac17b7d07bd1c9c571ec1913f9947cbae}{mf\-\_\-pick\-\_\-result} = avango.\-gua.\-M\-F\-Pick\-Result()
+\begin{DoxyCompactList}\small\item\em \-Intersections of the ray with the objects in the scene. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Intersection_1_1Intersection_a567c2cbd4f38af03670adf7a8b9872e6}{activated} = \-True
+\begin{DoxyCompactList}\small\item\em \-Indicates if the intersection computation is activated or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Helper class to determine the intersections of a ray with the objects in a scene. 
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a5a33b5d25908f77536156171000b5b58}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Intersection.\-Intersection.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Intersection_1_1Intersection_a5a33b5d25908f77536156171000b5b58}
+
+
+\-Default constructor. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a136e4cfa2ada69034767fb5523c304b3}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!activate@{activate}}
+\index{activate@{activate}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{activate}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Intersection.\-Intersection.\-activate} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Intersection_1_1Intersection_a136e4cfa2ada69034767fb5523c304b3}
+
+
+\-Activate the intersection procedure. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a45032076f1fe019a9d206e9213fe2d54}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!cross@{cross}}
+\index{cross@{cross}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{cross}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Intersection.\-Intersection.\-cross} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-V\-E\-C1, }
+\item[{}]{\-V\-E\-C2}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Intersection_1_1Intersection_a45032076f1fe019a9d206e9213fe2d54}
+
+
+\-Cross prodcut between two vectors. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-V\-E\-C1} & \-Left vector. \\
+\hline
+{\em \-V\-E\-C2} & \-Right vector. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a467d2946429de30b1428f2f32fb868ac}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{deactivate}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Intersection.\-Intersection.\-deactivate} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Intersection_1_1Intersection_a467d2946429de30b1428f2f32fb868ac}
+
+
+\-Deactivate the intersection procedure. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_ad49cb21fbe7a7c94ca8212a0e3421b8a}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!dot@{dot}}
+\index{dot@{dot}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{dot}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Intersection.\-Intersection.\-dot} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-V\-E\-C1, }
+\item[{}]{\-V\-E\-C2}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Intersection_1_1Intersection_ad49cb21fbe7a7c94ca8212a0e3421b8a}
+
+
+\-Dot prodcut between two vectors. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-V\-E\-C1} & \-Left vector. \\
+\hline
+{\em \-V\-E\-C2} & \-Right vector. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1Intersection_1_1Intersection_aa27b7b10a0e211405cf19b6e05a95281}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{evaluate}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Intersection.\-Intersection.\-evaluate} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Intersection_1_1Intersection_aa27b7b10a0e211405cf19b6e05a95281}
+
+
+\-Evaluated every frame. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a24cc43ce37b5817cb4d4eacc9db26a39}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!my\-\_\-constructor@{my\-\_\-constructor}}
+\index{my\-\_\-constructor@{my\-\_\-constructor}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{my\-\_\-constructor}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Intersection.\-Intersection.\-my\-\_\-constructor} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H, }
+\item[{}]{\-S\-F\-\_\-\-M\-A\-T, }
+\item[{}]{\-P\-I\-C\-K\-\_\-\-L\-E\-N\-G\-T\-H, }
+\item[{}]{\-P\-I\-C\-K\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Intersection_1_1Intersection_a24cc43ce37b5817cb4d4eacc9db26a39}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-S\-C\-E\-N\-E\-G\-R\-A\-P\-H} & \-The scenegraph where to look for intersections of the ray. \\
+\hline
+{\em \-S\-F\-\_\-\-M\-A\-T} & \-Starting matrix of the ray. \\
+\hline
+{\em \-P\-I\-C\-K\-\_\-\-L\-E\-N\-G\-T\-H} & \-Length of the ray in meters. \\
+\hline
+{\em \-P\-I\-C\-K\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N} & \-Direction of the ray. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1Intersection_1_1Intersection_afe08bc90d7c6dc806d67a0fe9be12e67}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!set\-\_\-pick\-\_\-direction@{set\-\_\-pick\-\_\-direction}}
+\index{set\-\_\-pick\-\_\-direction@{set\-\_\-pick\-\_\-direction}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{set\-\_\-pick\-\_\-direction}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Intersection.\-Intersection.\-set\-\_\-pick\-\_\-direction} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-P\-I\-C\-K\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Intersection_1_1Intersection_afe08bc90d7c6dc806d67a0fe9be12e67}
+
+
+\-Sets the pick\-\_\-direction attribute. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-P\-I\-C\-K\-\_\-\-D\-I\-R\-E\-C\-T\-I\-O\-N} & \-New pick direction. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a9e31ec3d9251db71c8e2b66d91c23346}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!set\-\_\-pick\-\_\-length@{set\-\_\-pick\-\_\-length}}
+\index{set\-\_\-pick\-\_\-length@{set\-\_\-pick\-\_\-length}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{set\-\_\-pick\-\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Intersection.\-Intersection.\-set\-\_\-pick\-\_\-length} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-P\-I\-C\-K\-\_\-\-L\-E\-N\-G\-T\-H}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Intersection_1_1Intersection_a9e31ec3d9251db71c8e2b66d91c23346}
+
+
+\-Sets the pick\-\_\-length attribute. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-P\-I\-C\-K\-\_\-\-L\-E\-N\-G\-T\-H} & \-New pick length. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a567c2cbd4f38af03670adf7a8b9872e6}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!activated@{activated}}
+\index{activated@{activated}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{activated}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Intersection.\-Intersection\-::activated} = \-True\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Intersection_1_1Intersection_a567c2cbd4f38af03670adf7a8b9872e6}
+
+
+\-Indicates if the intersection computation is activated or not. 
+
+\-In the last case, nothing will be written in mf\-\_\-pick\-\_\-result. \hypertarget{classlib_1_1Intersection_1_1Intersection_ac17b7d07bd1c9c571ec1913f9947cbae}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!mf\-\_\-pick\-\_\-result@{mf\-\_\-pick\-\_\-result}}
+\index{mf\-\_\-pick\-\_\-result@{mf\-\_\-pick\-\_\-result}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{mf\-\_\-pick\-\_\-result}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Intersection.\-Intersection\-::mf\-\_\-pick\-\_\-result} = avango.\-gua.\-M\-F\-Pick\-Result()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Intersection_1_1Intersection_ac17b7d07bd1c9c571ec1913f9947cbae}
+
+
+\-Intersections of the ray with the objects in the scene. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_ae74f509c5388cd83b6cb585c78e80370}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!pick\-\_\-direction@{pick\-\_\-direction}}
+\index{pick\-\_\-direction@{pick\-\_\-direction}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{pick\-\_\-direction}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Intersection.\-Intersection\-::pick\-\_\-direction}}}\label{classlib_1_1Intersection_1_1Intersection_ae74f509c5388cd83b6cb585c78e80370}
+
+
+\-Direction of the ray. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a0da8b24f0692f2c46ad7580db973ba95}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!pick\-\_\-length@{pick\-\_\-length}}
+\index{pick\-\_\-length@{pick\-\_\-length}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{pick\-\_\-length}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Intersection.\-Intersection\-::pick\-\_\-length}}}\label{classlib_1_1Intersection_1_1Intersection_a0da8b24f0692f2c46ad7580db973ba95}
+
+
+\-Length of the ray in meters. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a0d7872b7eba2c5bd05a6ed665ee60913}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!picking\-\_\-mask@{picking\-\_\-mask}}
+\index{picking\-\_\-mask@{picking\-\_\-mask}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{picking\-\_\-mask}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Intersection.\-Intersection\-::picking\-\_\-mask}}}\label{classlib_1_1Intersection_1_1Intersection_a0d7872b7eba2c5bd05a6ed665ee60913}
+
+
+\-Picking mask of the intersection process. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a4f12c5d21a96db855b981ed5ff89bed2}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!picking\-\_\-options@{picking\-\_\-options}}
+\index{picking\-\_\-options@{picking\-\_\-options}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{picking\-\_\-options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Intersection.\-Intersection\-::picking\-\_\-options}}}\label{classlib_1_1Intersection_1_1Intersection_a4f12c5d21a96db855b981ed5ff89bed2}
+
+
+\-Picking options for the intersection process. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a9d06103ebb441f8e0d4b24ac2a36ff51}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!ray@{ray}}
+\index{ray@{ray}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{ray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Intersection.\-Intersection\-::ray}}}\label{classlib_1_1Intersection_1_1Intersection_a9d06103ebb441f8e0d4b24ac2a36ff51}
+
+
+\-The spatial ray to be analyzed. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_af5dafd3b3480af4a8dd0e16cc31e4294}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H@{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}}
+\index{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H@{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Intersection.\-Intersection\-::\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}}}\label{classlib_1_1Intersection_1_1Intersection_af5dafd3b3480af4a8dd0e16cc31e4294}
+
+
+\-Reference to the scenegraph. 
+
+\hypertarget{classlib_1_1Intersection_1_1Intersection_a4369beca425c5fd77f4bb99545917e78}{\index{lib\-::\-Intersection\-::\-Intersection@{lib\-::\-Intersection\-::\-Intersection}!sf\-\_\-pick\-\_\-mat@{sf\-\_\-pick\-\_\-mat}}
+\index{sf\-\_\-pick\-\_\-mat@{sf\-\_\-pick\-\_\-mat}!lib::Intersection::Intersection@{lib\-::\-Intersection\-::\-Intersection}}
+\subsubsection[{sf\-\_\-pick\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Intersection.\-Intersection\-::sf\-\_\-pick\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Intersection_1_1Intersection_a4369beca425c5fd77f4bb99545917e78}
+
+
+\-Starting matrix of the ray to be analyzed. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{Intersection_8py}{\-Intersection.\-py}\end{DoxyCompactItemize}

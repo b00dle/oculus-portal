@@ -1,0 +1,397 @@
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager}{\section{lib.\-Viewing\-Manager.\-Viewing\-Manager \-Class \-Reference}
+\label{classlib_1_1ViewingManager_1_1ViewingManager}\index{lib.\-Viewing\-Manager.\-Viewing\-Manager@{lib.\-Viewing\-Manager.\-Viewing\-Manager}}
+}
+
+
+\-Class to manage all the classes and processes in the application.  
+
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_af1ddb763f6ec01e4254b93a50254be81}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a7ab2628243f8a8890b1ac734a93732de}{create\-\_\-navigation}
+\begin{DoxyCompactList}\small\item\em \-Creates a \hyperlink{namespacelib_1_1Navigation}{\-Navigation} instance and adds it to the list of navigations. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_aa87d324bcf1c883ab07eaedfd942a841}{create\-\_\-ovr\-\_\-user}
+\begin{DoxyCompactList}\small\item\em \-Creates a \hyperlink{namespacelib_1_1OVRUser}{\-O\-V\-R\-User} instance and adds it to the list of \-O\-V\-R\-Users. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a31f3abfb47ec5976734411443b02d3fc}{create\-\_\-powerwall\-\_\-user}
+\begin{DoxyCompactList}\small\item\em \-Creates a \hyperlink{namespacelib_1_1PowerWallUser}{\-Power\-Wall\-User} instance and adds it to the list of \-Power\-Wall\-Users. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a28f221fe6cae536691fdbddd32d0c18b}{create\-\_\-desktop\-\_\-user}
+\begin{DoxyCompactList}\small\item\em \-Creates a \hyperlink{namespacelib_1_1DesktopUser}{\-Desktop\-User} instance and adds it to the list of \-Desktop\-Users. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a7f426835060b3a7b55761ff74272c7ef}{create\-\_\-border\-\_\-observer}
+\begin{DoxyCompactList}\small\item\em \-Creates a \hyperlink{namespacelib_1_1BorderObserver}{\-Border\-Observer} instance for a \hyperlink{namespacelib_1_1Platform}{\-Platform} and adds a \hyperlink{namespacelib_1_1User}{\-User} to it. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a678ad2fe59d76085059d191f7f886b81}{parse\-\_\-config\-\_\-file}
+\begin{DoxyCompactList}\small\item\em \-Parses a \-X\-M\-L configuration file, saves settings and creates navigations and users. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_acde0772e5f59272a79332538de797ba6}{get\-\_\-next\-\_\-line\-\_\-in\-\_\-file}
+\begin{DoxyCompactList}\small\item\em \-Gets the next line in the file. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_ae7cee170f6f182849b8c8c390de4d3d9}{run}
+\begin{DoxyCompactList}\small\item\em \-Starts the shell and the viewer. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a101eef4db744f0adabdcfec0e7707b1e}{list\-\_\-variables}
+\begin{DoxyCompactList}\small\item\em \-Lists the variables of the shell. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a558b079ffef42dcc6db93b1813b10a80}{background\-\_\-texture}
+\begin{DoxyCompactList}\small\item\em \-The skymap to be used for all pipelines. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_aa5997fa80391497f2864aecc007e53e9}{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}
+\begin{DoxyCompactList}\small\item\em \-Reference to the scenegraph. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_add9325869ce96e7627f14c9bc3fc4e9f}{powerwall\-\_\-user\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-List of all created \hyperlink{namespacelib_1_1PowerWallUser}{\-Power\-Wall\-User} instances. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_ad01ea0377a48901a81988c7759c74e79}{ovr\-\_\-user\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-List of all created \hyperlink{namespacelib_1_1OVRUser}{\-O\-V\-R\-User} instances. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a4343557ee71def1cfc14c3a076dc01a4}{desktop\-\_\-user\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-List of all created \hyperlink{namespacelib_1_1DesktopUser}{\-Desktop\-User} instances. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_ae0f2473d3e98f65330d3e495230a32b2}{navigation\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-List of all created \hyperlink{namespacelib_1_1Navigation}{\-Navigation} instances. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a82f545546333369a92690e85bfd66ba9}{border\-\_\-observer\-\_\-list}
+\begin{DoxyCompactList}\small\item\em \-List of all created \hyperlink{namespacelib_1_1BorderObserver}{\-Border\-Observer} instances. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a57b0588cf1fc52e900e42d9c1e4e45a1}{transmitter\-\_\-offset}
+\begin{DoxyCompactList}\small\item\em \-Transmitter offset to be read in from configuration file. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_adff6ad35845fc81c5fbc66e3ac58ff38}{no\-\_\-tracking\-\_\-mat}
+\begin{DoxyCompactList}\small\item\em \-Matrix to be used when no tracking is available to be read in from configuration file. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a3e7b032b2778307d75c9682142bc18a8}{ground\-\_\-following\-\_\-settings}
+\begin{DoxyCompactList}\small\item\em \-Settings for the \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance to be read in from configuration file\-: \mbox{[}activated, ray\-\_\-start\-\_\-height\mbox{]}. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_abe2b79e8a02cfbc1ad937ca88b0264fd}{enable\-\_\-coupling\-\_\-animation}
+\begin{DoxyCompactList}\small\item\em \-Boolean indicating if an animation should be done when a coupling of \-Navigations is initiated. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a4cb197d27a7877a90051840114cfa3f4}{enable\-\_\-movementtraces}
+\begin{DoxyCompactList}\small\item\em \-Boolean indicating if the movement of every platform should be visualized by line segments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_ac90d3c36553d5b9c26d2719dbab03cbd}{viewer} = avango.\-gua.\-nodes.\-Viewer()
+\begin{DoxyCompactList}\small\item\em \-The guacamole viewer to be used for rendering. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1ViewingManager_1_1ViewingManager_a202156171324a08f304e2745ab292371}{shell} = \-Gua\-V\-E()
+\begin{DoxyCompactList}\small\item\em \-The \-Gua\-V\-E shell to be used when the application is running. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Class to manage all the classes and processes in the application. 
+
+\-Creates \hyperlink{namespacelib_1_1Navigation}{\-Navigation}, \hyperlink{namespacelib_1_1OVRUser}{\-O\-V\-R\-User}, \hyperlink{namespacelib_1_1PowerWallUser}{\-Power\-Wall\-User} and \hyperlink{namespacelib_1_1BorderObserver}{\-Border\-Observer} instances according to the preferences read in from a \-X\-M\-L configuration file. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_af1ddb763f6ec01e4254b93a50254be81}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H, }
+\item[{}]{\-C\-O\-N\-F\-I\-G\-\_\-\-F\-I\-L\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_af1ddb763f6ec01e4254b93a50254be81}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-S\-C\-E\-N\-E\-G\-R\-A\-P\-H} & \-Reference to the scenegraph. \\
+\hline
+{\em \-C\-O\-N\-F\-I\-G\-\_\-\-F\-I\-L\-E} & \-Path to the \-X\-M\-L configuration file. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a7f426835060b3a7b55761ff74272c7ef}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!create\-\_\-border\-\_\-observer@{create\-\_\-border\-\_\-observer}}
+\index{create\-\_\-border\-\_\-observer@{create\-\_\-border\-\_\-observer}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{create\-\_\-border\-\_\-observer}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-create\-\_\-border\-\_\-observer} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-C\-H\-E\-C\-K\-E\-D\-\_\-\-B\-O\-R\-D\-E\-R\-S, }
+\item[{}]{\-U\-S\-E\-R\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E, }
+\item[{}]{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a7f426835060b3a7b55761ff74272c7ef}
+
+
+\-Creates a \hyperlink{namespacelib_1_1BorderObserver}{\-Border\-Observer} instance for a \hyperlink{namespacelib_1_1Platform}{\-Platform} and adds a \hyperlink{namespacelib_1_1User}{\-User} to it. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-C\-H\-E\-C\-K\-E\-D\-\_\-\-B\-O\-R\-D\-E\-R\-S} & \-A list of four booleans to indicate which borders of the platform should be checked\-: \mbox{[}display\-\_\-left\-\_\-border, display\-\_\-right\-\_\-border, display\-\_\-front\-\_\-border, display\-\_\-back\-\_\-border\mbox{]} \\
+\hline
+{\em \-U\-S\-E\-R\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E} & \-A first \hyperlink{namespacelib_1_1User}{\-User} to be appended to the new \hyperlink{namespacelib_1_1BorderObserver}{\-Border\-Observer}. \\
+\hline
+{\em \-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-N\-S\-T\-A\-N\-C\-E} & \-The platform to which the \hyperlink{namespacelib_1_1BorderObserver}{\-Border\-Observer} should belong to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a28f221fe6cae536691fdbddd32d0c18b}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!create\-\_\-desktop\-\_\-user@{create\-\_\-desktop\-\_\-user}}
+\index{create\-\_\-desktop\-\_\-user@{create\-\_\-desktop\-\_\-user}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{create\-\_\-desktop\-\_\-user}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-create\-\_\-desktop\-\_\-user} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D, }
+\item[{}]{\-W\-I\-N\-D\-O\-W\-\_\-\-S\-I\-Z\-E, }
+\item[{}]{\-S\-C\-R\-E\-E\-N\-\_\-\-S\-I\-Z\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a28f221fe6cae536691fdbddd32d0c18b}
+
+
+\-Creates a \hyperlink{namespacelib_1_1DesktopUser}{\-Desktop\-User} instance and adds it to the list of \-Desktop\-Users. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D} & \hyperlink{namespacelib_1_1Platform}{\-Platform} to which the user should be appended to. \\
+\hline
+{\em \-W\-I\-N\-D\-O\-W\-\_\-\-S\-I\-Z\-E} & \-Resolution of the window to be created on the display. \mbox{[}width, height\mbox{]} \\
+\hline
+{\em \-S\-C\-R\-E\-E\-N\-\_\-\-S\-I\-Z\-E} & \-Physical width of the screen space to be rendered on in meters. \mbox{[}width, height\mbox{]} \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a7ab2628243f8a8890b1ac734a93732de}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!create\-\_\-navigation@{create\-\_\-navigation}}
+\index{create\-\_\-navigation@{create\-\_\-navigation}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{create\-\_\-navigation}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-create\-\_\-navigation} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-I\-N\-P\-U\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-T\-Y\-P\-E, }
+\item[{}]{\-I\-N\-P\-U\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-S\-T\-A\-R\-T\-I\-N\-G\-\_\-\-M\-A\-T\-R\-I\-X, }
+\item[{}]{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-S\-I\-Z\-E, }
+\item[{}]{\-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G, }
+\item[{}]{\-M\-O\-V\-E\-M\-E\-N\-T\-\_\-\-T\-R\-A\-C\-E\-S, }
+\item[{}]{\-D\-E\-V\-I\-C\-E\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-N\-A\-M\-E = {\ttfamily \-None}}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a7ab2628243f8a8890b1ac734a93732de}
+
+
+\-Creates a \hyperlink{namespacelib_1_1Navigation}{\-Navigation} instance and adds it to the list of navigations. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-I\-N\-P\-U\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-T\-Y\-P\-E} & \-Type of the input device to be associated (e.\-g. \-X\-Box\-Controller\char`\"{} or \char`\"{}\-Spheron") \\
+\hline
+{\em \-I\-N\-P\-U\-T\-\_\-\-D\-E\-V\-I\-C\-E\-\_\-\-N\-A\-M\-E} & \-Name of the input device values as chosen in daemon. \\
+\hline
+{\em \-S\-T\-A\-R\-T\-I\-N\-G\-\_\-\-M\-A\-T\-R\-I\-X} & \-Initial platform matrix for the new device. \\
+\hline
+{\em \-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-S\-I\-Z\-E} & \-Physical size of the platform in meters. \mbox{[}width, depth\mbox{]} \\
+\hline
+{\em \-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G} & \-Boolean indicating if an animation should be done when a coupling of \-Navigations is initiated. \\
+\hline
+{\em \-M\-O\-V\-E\-M\-E\-N\-T\-\_\-\-T\-R\-A\-C\-E\-S} & \-Boolean indicating if the platform should leave traces behind. \\
+\hline
+{\em \-D\-E\-V\-I\-C\-E\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-N\-A\-M\-E} & \-Name of the device's tracking sensor as chosen in daemon if available. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_aa87d324bcf1c883ab07eaedfd942a841}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!create\-\_\-ovr\-\_\-user@{create\-\_\-ovr\-\_\-user}}
+\index{create\-\_\-ovr\-\_\-user@{create\-\_\-ovr\-\_\-user}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{create\-\_\-ovr\-\_\-user}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-create\-\_\-ovr\-\_\-user} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D, }
+\item[{}]{\-W\-A\-R\-N\-I\-N\-G\-S}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_aa87d324bcf1c883ab07eaedfd942a841}
+
+
+\-Creates a \hyperlink{namespacelib_1_1OVRUser}{\-O\-V\-R\-User} instance and adds it to the list of \-O\-V\-R\-Users. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-Name of the \-Oculus \-Rift's tracking target as chosen in \hyperlink{daemon_8py}{daemon.\-py} \\
+\hline
+{\em \-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D} & \hyperlink{namespacelib_1_1Platform}{\-Platform} to which the user should be appended to. \\
+\hline
+{\em \-W\-A\-R\-N\-I\-N\-G\-S} & \-Boolean value to determine if the user should be appended to a \hyperlink{namespacelib_1_1BorderObserver}{\-Border\-Observer} (i.\-e. the user is shown warning planes when close to the platform borders) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a31f3abfb47ec5976734411443b02d3fc}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!create\-\_\-powerwall\-\_\-user@{create\-\_\-powerwall\-\_\-user}}
+\index{create\-\_\-powerwall\-\_\-user@{create\-\_\-powerwall\-\_\-user}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{create\-\_\-powerwall\-\_\-user}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-create\-\_\-powerwall\-\_\-user} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D, }
+\item[{}]{\-T\-R\-A\-N\-S\-M\-I\-T\-T\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T, }
+\item[{}]{\-W\-A\-R\-N\-I\-N\-G\-S}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a31f3abfb47ec5976734411443b02d3fc}
+
+
+\-Creates a \hyperlink{namespacelib_1_1PowerWallUser}{\-Power\-Wall\-User} instance and adds it to the list of \-Power\-Wall\-Users. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-Name of the glasses' tracking target as chosen in \hyperlink{daemon_8py}{daemon.\-py} \\
+\hline
+{\em \-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D} & \hyperlink{namespacelib_1_1Platform}{\-Platform} to which the user should be appended to. \\
+\hline
+{\em \-T\-R\-A\-N\-S\-M\-I\-T\-T\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T} & \-The transmitter offset to be applied. \\
+\hline
+{\em \-W\-A\-R\-N\-I\-N\-G\-S} & \-Boolean value to determine if the user should be appended to a \hyperlink{namespacelib_1_1BorderObserver}{\-Border\-Observer} (i.\-e. the user is shown warning planes when close to the platform borders) \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_acde0772e5f59272a79332538de797ba6}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!get\-\_\-next\-\_\-line\-\_\-in\-\_\-file@{get\-\_\-next\-\_\-line\-\_\-in\-\_\-file}}
+\index{get\-\_\-next\-\_\-line\-\_\-in\-\_\-file@{get\-\_\-next\-\_\-line\-\_\-in\-\_\-file}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{get\-\_\-next\-\_\-line\-\_\-in\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-get\-\_\-next\-\_\-line\-\_\-in\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-F\-I\-L\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_acde0772e5f59272a79332538de797ba6}
+
+
+\-Gets the next line in the file. 
+
+\-Thereby, empty lines are skipped. 
+\begin{DoxyParams}{\-Parameters}
+{\em \-F\-I\-L\-E} & \-The opened file to get the line from. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a101eef4db744f0adabdcfec0e7707b1e}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!list\-\_\-variables@{list\-\_\-variables}}
+\index{list\-\_\-variables@{list\-\_\-variables}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{list\-\_\-variables}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-list\-\_\-variables} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a101eef4db744f0adabdcfec0e7707b1e}
+
+
+\-Lists the variables of the shell. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a678ad2fe59d76085059d191f7f886b81}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!parse\-\_\-config\-\_\-file@{parse\-\_\-config\-\_\-file}}
+\index{parse\-\_\-config\-\_\-file@{parse\-\_\-config\-\_\-file}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{parse\-\_\-config\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-parse\-\_\-config\-\_\-file} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-F\-I\-L\-E\-N\-A\-M\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a678ad2fe59d76085059d191f7f886b81}
+
+
+\-Parses a \-X\-M\-L configuration file, saves settings and creates navigations and users. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-F\-I\-L\-E\-N\-A\-M\-E} & \-The path of the configuration file to be read in. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_ae7cee170f6f182849b8c8c390de4d3d9}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!run@{run}}
+\index{run@{run}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Viewing\-Manager.\-Viewing\-Manager.\-run} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-L\-O\-C\-A\-L\-S, }
+\item[{}]{\-G\-L\-O\-B\-A\-L\-S}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1ViewingManager_1_1ViewingManager_ae7cee170f6f182849b8c8c390de4d3d9}
+
+
+\-Starts the shell and the viewer. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-L\-O\-C\-A\-L\-S} & \-Local variables. \\
+\hline
+{\em \-G\-L\-O\-B\-A\-L\-S} & \-Global variables. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a558b079ffef42dcc6db93b1813b10a80}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!background\-\_\-texture@{background\-\_\-texture}}
+\index{background\-\_\-texture@{background\-\_\-texture}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{background\-\_\-texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::background\-\_\-texture}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a558b079ffef42dcc6db93b1813b10a80}
+
+
+\-The skymap to be used for all pipelines. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a82f545546333369a92690e85bfd66ba9}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!border\-\_\-observer\-\_\-list@{border\-\_\-observer\-\_\-list}}
+\index{border\-\_\-observer\-\_\-list@{border\-\_\-observer\-\_\-list}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{border\-\_\-observer\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::border\-\_\-observer\-\_\-list}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a82f545546333369a92690e85bfd66ba9}
+
+
+\-List of all created \hyperlink{namespacelib_1_1BorderObserver}{\-Border\-Observer} instances. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a4343557ee71def1cfc14c3a076dc01a4}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!desktop\-\_\-user\-\_\-list@{desktop\-\_\-user\-\_\-list}}
+\index{desktop\-\_\-user\-\_\-list@{desktop\-\_\-user\-\_\-list}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{desktop\-\_\-user\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::desktop\-\_\-user\-\_\-list}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a4343557ee71def1cfc14c3a076dc01a4}
+
+
+\-List of all created \hyperlink{namespacelib_1_1DesktopUser}{\-Desktop\-User} instances. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_abe2b79e8a02cfbc1ad937ca88b0264fd}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!enable\-\_\-coupling\-\_\-animation@{enable\-\_\-coupling\-\_\-animation}}
+\index{enable\-\_\-coupling\-\_\-animation@{enable\-\_\-coupling\-\_\-animation}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{enable\-\_\-coupling\-\_\-animation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::enable\-\_\-coupling\-\_\-animation}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_abe2b79e8a02cfbc1ad937ca88b0264fd}
+
+
+\-Boolean indicating if an animation should be done when a coupling of \-Navigations is initiated. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a4cb197d27a7877a90051840114cfa3f4}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!enable\-\_\-movementtraces@{enable\-\_\-movementtraces}}
+\index{enable\-\_\-movementtraces@{enable\-\_\-movementtraces}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{enable\-\_\-movementtraces}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::enable\-\_\-movementtraces}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a4cb197d27a7877a90051840114cfa3f4}
+
+
+\-Boolean indicating if the movement of every platform should be visualized by line segments. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a3e7b032b2778307d75c9682142bc18a8}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!ground\-\_\-following\-\_\-settings@{ground\-\_\-following\-\_\-settings}}
+\index{ground\-\_\-following\-\_\-settings@{ground\-\_\-following\-\_\-settings}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{ground\-\_\-following\-\_\-settings}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::ground\-\_\-following\-\_\-settings}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a3e7b032b2778307d75c9682142bc18a8}
+
+
+\-Settings for the \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance to be read in from configuration file\-: \mbox{[}activated, ray\-\_\-start\-\_\-height\mbox{]}. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_ae0f2473d3e98f65330d3e495230a32b2}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!navigation\-\_\-list@{navigation\-\_\-list}}
+\index{navigation\-\_\-list@{navigation\-\_\-list}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{navigation\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::navigation\-\_\-list}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_ae0f2473d3e98f65330d3e495230a32b2}
+
+
+\-List of all created \hyperlink{namespacelib_1_1Navigation}{\-Navigation} instances. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_adff6ad35845fc81c5fbc66e3ac58ff38}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!no\-\_\-tracking\-\_\-mat@{no\-\_\-tracking\-\_\-mat}}
+\index{no\-\_\-tracking\-\_\-mat@{no\-\_\-tracking\-\_\-mat}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{no\-\_\-tracking\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::no\-\_\-tracking\-\_\-mat}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_adff6ad35845fc81c5fbc66e3ac58ff38}
+
+
+\-Matrix to be used when no tracking is available to be read in from configuration file. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_ad01ea0377a48901a81988c7759c74e79}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!ovr\-\_\-user\-\_\-list@{ovr\-\_\-user\-\_\-list}}
+\index{ovr\-\_\-user\-\_\-list@{ovr\-\_\-user\-\_\-list}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{ovr\-\_\-user\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::ovr\-\_\-user\-\_\-list}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_ad01ea0377a48901a81988c7759c74e79}
+
+
+\-List of all created \hyperlink{namespacelib_1_1OVRUser}{\-O\-V\-R\-User} instances. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_add9325869ce96e7627f14c9bc3fc4e9f}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!powerwall\-\_\-user\-\_\-list@{powerwall\-\_\-user\-\_\-list}}
+\index{powerwall\-\_\-user\-\_\-list@{powerwall\-\_\-user\-\_\-list}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{powerwall\-\_\-user\-\_\-list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::powerwall\-\_\-user\-\_\-list}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_add9325869ce96e7627f14c9bc3fc4e9f}
+
+
+\-List of all created \hyperlink{namespacelib_1_1PowerWallUser}{\-Power\-Wall\-User} instances. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_aa5997fa80391497f2864aecc007e53e9}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H@{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}}
+\index{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H@{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_aa5997fa80391497f2864aecc007e53e9}
+
+
+\-Reference to the scenegraph. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a202156171324a08f304e2745ab292371}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!shell@{shell}}
+\index{shell@{shell}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{shell}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::shell} = \-Gua\-V\-E()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a202156171324a08f304e2745ab292371}
+
+
+\-The \-Gua\-V\-E shell to be used when the application is running. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_a57b0588cf1fc52e900e42d9c1e4e45a1}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!transmitter\-\_\-offset@{transmitter\-\_\-offset}}
+\index{transmitter\-\_\-offset@{transmitter\-\_\-offset}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{transmitter\-\_\-offset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::transmitter\-\_\-offset}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_a57b0588cf1fc52e900e42d9c1e4e45a1}
+
+
+\-Transmitter offset to be read in from configuration file. 
+
+\hypertarget{classlib_1_1ViewingManager_1_1ViewingManager_ac90d3c36553d5b9c26d2719dbab03cbd}{\index{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}!viewer@{viewer}}
+\index{viewer@{viewer}!lib::ViewingManager::ViewingManager@{lib\-::\-Viewing\-Manager\-::\-Viewing\-Manager}}
+\subsubsection[{viewer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Viewing\-Manager.\-Viewing\-Manager\-::viewer} = avango.\-gua.\-nodes.\-Viewer()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1ViewingManager_1_1ViewingManager_ac90d3c36553d5b9c26d2719dbab03cbd}
+
+
+\-The guacamole viewer to be used for rendering. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{ViewingManager_8py}{\-Viewing\-Manager.\-py}\end{DoxyCompactItemize}

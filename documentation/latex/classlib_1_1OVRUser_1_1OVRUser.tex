@@ -1,0 +1,178 @@
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser}{\section{lib.\-O\-V\-R\-User.\-O\-V\-R\-User \-Class \-Reference}
+\label{classlib_1_1OVRUser_1_1OVRUser}\index{lib.\-O\-V\-R\-User.\-O\-V\-R\-User@{lib.\-O\-V\-R\-User.\-O\-V\-R\-User}}
+}
+
+
+\-Internal representation of an \-Oculus \-Rift user.  
+
+
+\-Inheritance diagram for lib.\-O\-V\-R\-User.\-O\-V\-R\-User\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classlib_1_1OVRUser_1_1OVRUser}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1OVRUser_1_1OVRUser_a5d1011dde798364977feacef6537a385}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_adafb47439a317521456c2e77c110c90f}{id}
+\begin{DoxyCompactList}\small\item\em \-Identification number of the \hyperlink{classlib_1_1OVRUser_1_1OVRUser}{\-O\-V\-R\-User}, starting from 0. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_a23cfa0813203eb4c15a5ad56eba7cbee}{head\-\_\-transform}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the head position of the user with respect to platform. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_adc9db0f22c3da06bd920cf92900cdf05}{left\-\_\-screen}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the user's left screen. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_ac7d2a03e753241e029d70a59731f26ce}{right\-\_\-screen}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the user's right screen. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_a928654a589e8f83c7bb14e398e1c7262}{left\-\_\-eye}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the user's left eye. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_a0d48b08791f4a871e76a9305e306ec76}{right\-\_\-eye}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the user's right eye. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_ac53e8feacced96176082bcae4965a2a3}{camera}
+\begin{DoxyCompactList}\small\item\em \-Camera to represent the user's viewport to be rendered. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_aa4d62ccc0d5383b9745d2e0a614c1a1e}{oculus\-\_\-window}
+\begin{DoxyCompactList}\small\item\em \-Window to display the rendered image to. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_ac748c2459c90d3460469c92ee29d8643}{tracking\-\_\-rotation\-\_\-combiner}
+\begin{DoxyCompactList}\small\item\em \-Instance of \hyperlink{classlib_1_1OVRUser_1_1TrackingRotationCombiner}{\-Tracking\-Rotation\-Combiner} to determine the user's position on the platform. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1OVRUser_1_1OVRUser_a3c172f5ff378e0a8c9bd5f0d78043e49}{pipeline}
+\begin{DoxyCompactList}\small\item\em \-Pipeline for rendering purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classlib_1_1OVRUser_1_1OVRUser_a5b47ee362acca69026189c9f88b67bd5}{window\-\_\-size} = avango.\-gua.\-Vec2ui(1280, 800)
+\begin{DoxyCompactList}\small\item\em \-The \-Oculus \-Rift's resolution in pixels to be applied on the window. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1OVRUser_1_1OVRUser_a7ea5c859dad1fc35e920762d7414e605}{screen\-\_\-size} = avango.\-gua.\-Vec2(0.\-16, 0.\-1)
+\begin{DoxyCompactList}\small\item\em \-Physical screen size of the \-Oculus \-Rift in meters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Internal representation of an \-Oculus \-Rift user. 
+
+\-Upon construction, this class appends the necessary nodes to the scenegraph, creates screens, eyes, camera, pipeline and initializes the headtracking. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_a5d1011dde798364977feacef6537a385}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-O\-V\-R\-User.\-O\-V\-R\-User.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-V\-I\-E\-W\-I\-N\-G\-\_\-\-M\-A\-N\-A\-G\-E\-R, }
+\item[{}]{\-H\-E\-A\-D\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-O\-V\-R\-\_\-\-U\-S\-E\-R\-\_\-\-I\-D, }
+\item[{}]{\-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D, }
+\item[{}]{\-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1OVRUser_1_1OVRUser_a5d1011dde798364977feacef6537a385}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-V\-I\-E\-W\-I\-N\-G\-\_\-\-M\-A\-N\-A\-G\-E\-R} & \-Reference to the \hyperlink{namespacelib_1_1ViewingManager}{\-Viewing\-Manager} instance from which the user is created. \\
+\hline
+{\em \-H\-E\-A\-D\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-Name of the \-Oculus \-Rift's tracking target as chosen in daemon. \\
+\hline
+{\em \-O\-V\-R\-\_\-\-U\-S\-E\-R\-\_\-\-I\-D} & \-Identification number of the \hyperlink{classlib_1_1OVRUser_1_1OVRUser}{\-O\-V\-R\-User} to be created, starting from 0. \\
+\hline
+{\em \-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D} & \hyperlink{namespacelib_1_1Platform}{\-Platform} to append the constructed \hyperlink{classlib_1_1OVRUser_1_1OVRUser}{\-O\-V\-R\-User} to. \\
+\hline
+{\em \-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T} & \-Matrix to be applied if no headtracking of the \-Oculus \-Rift is available. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_ac53e8feacced96176082bcae4965a2a3}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!camera@{camera}}
+\index{camera@{camera}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::camera}}}\label{classlib_1_1OVRUser_1_1OVRUser_ac53e8feacced96176082bcae4965a2a3}
+
+
+\-Camera to represent the user's viewport to be rendered. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_a23cfa0813203eb4c15a5ad56eba7cbee}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!head\-\_\-transform@{head\-\_\-transform}}
+\index{head\-\_\-transform@{head\-\_\-transform}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{head\-\_\-transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::head\-\_\-transform}}}\label{classlib_1_1OVRUser_1_1OVRUser_a23cfa0813203eb4c15a5ad56eba7cbee}
+
+
+\-Scenegraph node representing the head position of the user with respect to platform. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_adafb47439a317521456c2e77c110c90f}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!id@{id}}
+\index{id@{id}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::id}}}\label{classlib_1_1OVRUser_1_1OVRUser_adafb47439a317521456c2e77c110c90f}
+
+
+\-Identification number of the \hyperlink{classlib_1_1OVRUser_1_1OVRUser}{\-O\-V\-R\-User}, starting from 0. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_a928654a589e8f83c7bb14e398e1c7262}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!left\-\_\-eye@{left\-\_\-eye}}
+\index{left\-\_\-eye@{left\-\_\-eye}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{left\-\_\-eye}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::left\-\_\-eye}}}\label{classlib_1_1OVRUser_1_1OVRUser_a928654a589e8f83c7bb14e398e1c7262}
+
+
+\-Scenegraph node representing the user's left eye. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_adc9db0f22c3da06bd920cf92900cdf05}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!left\-\_\-screen@{left\-\_\-screen}}
+\index{left\-\_\-screen@{left\-\_\-screen}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{left\-\_\-screen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::left\-\_\-screen}}}\label{classlib_1_1OVRUser_1_1OVRUser_adc9db0f22c3da06bd920cf92900cdf05}
+
+
+\-Scenegraph node representing the user's left screen. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_aa4d62ccc0d5383b9745d2e0a614c1a1e}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!oculus\-\_\-window@{oculus\-\_\-window}}
+\index{oculus\-\_\-window@{oculus\-\_\-window}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{oculus\-\_\-window}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::oculus\-\_\-window}}}\label{classlib_1_1OVRUser_1_1OVRUser_aa4d62ccc0d5383b9745d2e0a614c1a1e}
+
+
+\-Window to display the rendered image to. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_a3c172f5ff378e0a8c9bd5f0d78043e49}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!pipeline@{pipeline}}
+\index{pipeline@{pipeline}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{pipeline}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::pipeline}}}\label{classlib_1_1OVRUser_1_1OVRUser_a3c172f5ff378e0a8c9bd5f0d78043e49}
+
+
+\-Pipeline for rendering purposes. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_a0d48b08791f4a871e76a9305e306ec76}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!right\-\_\-eye@{right\-\_\-eye}}
+\index{right\-\_\-eye@{right\-\_\-eye}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{right\-\_\-eye}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::right\-\_\-eye}}}\label{classlib_1_1OVRUser_1_1OVRUser_a0d48b08791f4a871e76a9305e306ec76}
+
+
+\-Scenegraph node representing the user's right eye. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_ac7d2a03e753241e029d70a59731f26ce}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!right\-\_\-screen@{right\-\_\-screen}}
+\index{right\-\_\-screen@{right\-\_\-screen}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{right\-\_\-screen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::right\-\_\-screen}}}\label{classlib_1_1OVRUser_1_1OVRUser_ac7d2a03e753241e029d70a59731f26ce}
+
+
+\-Scenegraph node representing the user's right screen. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_a7ea5c859dad1fc35e920762d7414e605}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!screen\-\_\-size@{screen\-\_\-size}}
+\index{screen\-\_\-size@{screen\-\_\-size}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{screen\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::screen\-\_\-size} = avango.\-gua.\-Vec2(0.\-16, 0.\-1)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1OVRUser_1_1OVRUser_a7ea5c859dad1fc35e920762d7414e605}
+
+
+\-Physical screen size of the \-Oculus \-Rift in meters. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_ac748c2459c90d3460469c92ee29d8643}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!tracking\-\_\-rotation\-\_\-combiner@{tracking\-\_\-rotation\-\_\-combiner}}
+\index{tracking\-\_\-rotation\-\_\-combiner@{tracking\-\_\-rotation\-\_\-combiner}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{tracking\-\_\-rotation\-\_\-combiner}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::tracking\-\_\-rotation\-\_\-combiner}}}\label{classlib_1_1OVRUser_1_1OVRUser_ac748c2459c90d3460469c92ee29d8643}
+
+
+\-Instance of \hyperlink{classlib_1_1OVRUser_1_1TrackingRotationCombiner}{\-Tracking\-Rotation\-Combiner} to determine the user's position on the platform. 
+
+\hypertarget{classlib_1_1OVRUser_1_1OVRUser_a5b47ee362acca69026189c9f88b67bd5}{\index{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}!window\-\_\-size@{window\-\_\-size}}
+\index{window\-\_\-size@{window\-\_\-size}!lib::OVRUser::OVRUser@{lib\-::\-O\-V\-R\-User\-::\-O\-V\-R\-User}}
+\subsubsection[{window\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-O\-V\-R\-User.\-O\-V\-R\-User\-::window\-\_\-size} = avango.\-gua.\-Vec2ui(1280, 800)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1OVRUser_1_1OVRUser_a5b47ee362acca69026189c9f88b67bd5}
+
+
+\-The \-Oculus \-Rift's resolution in pixels to be applied on the window. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{OVRUser_8py}{\-O\-V\-R\-User.\-py}\end{DoxyCompactItemize}

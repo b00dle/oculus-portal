@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE setup SYSTEM "config.dtd">
+
+<setup>
+
+  <global>
+    
+    <transmitteroffset>
+      <x>0.0</x>
+      <y>0.0043</y>
+      <z>1.6</z>
+    </transmitteroffset>
+
+    <notrackingposition>
+      <x>0.0</x>
+      <y>1.75</y>
+      <z>1.5</z>
+    </notrackingposition>
+
+    <groundfollowing>
+      <activated>True</activated>
+      <raystartheight>0.75</raystartheight>
+    </groundfollowing>
+
+  </global>
+
+  <device>
+
+    <type>KeyboardMouse</type>
+
+    <platformpos>
+      <x>0.0</x>
+      <y>0.0</y>
+      <z>14.0</z>
+    </platformpos>
+
+    <platformrot>
+      <yaw>0.0</yaw>
+    </platformrot>
+
+  </device>
+
+  <device>
+
+    <type>XBoxController</type>
+
+    <inputsensor>device-xbox-1</inputsensor>
+
+    <trackingstation>None</trackingstation>
+
+    <platformpos>
+      <x>0.0</x>
+      <y>0.0</y>
+      <z>6.0</z>
+    </platformpos>
+
+    <platformrot>
+      <yaw>0.0</yaw>
+    </platformrot>
+
+    <platformsize>
+      <width>3.8</width>
+      <depth>3.6</depth>
+    </platformsize>
+
+  </device>
+        
+
+  <!-- First Desktop User -->
+  
+  <user>
+
+    <type>DesktopUser</type>
+
+    <startplatform>0</startplatform>
+
+    <windowsize>
+      <width>1280</width>
+      <height>800</height>
+    </windowsize>
+
+    <screensize>
+      <width>1.06</width>
+      <height>0.74</height>
+    </screensize>
+
+  </user>
+
+  <user>
+
+    <type>DesktopUser</type>
+
+    <startplatform>1</startplatform>
+
+    <windowsize>
+      <width>1280</width>
+      <height>800</height>
+    </windowsize>
+
+    <screensize>
+      <width>1.06</width>
+      <height>0.74</height>
+    </screensize>
+
+  </user>
+   
+
+</setup>

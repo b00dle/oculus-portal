@@ -1,0 +1,43 @@
+
+{
+	"final_shading_stage" : 
+	{
+		"body" : "vec3 txl = texture2D(portal_texture, texcoords).xyz;\ngua_color = txl;",
+		"functions" : "",
+		"outputs" : null,
+		"uniforms" : 
+		{
+			"portal_texture" : "sampler2D"
+		}
+	},
+	"gbuffer_fragment_stage" : 
+	{
+		"body" : "texcoords = my_texcoords;",
+		"functions" : "",
+		"outputs" : 
+		{
+			"texcoords" : "vec2"
+		},
+		"uniforms" : null
+	},
+	"gbuffer_vertex_stage" : 
+	{
+		"body" : "my_tangent = gua_world_tangent;\nmy_texcoords = gua_texcoords;\nmy_bitangent = gua_world_bitangent;\nmy_normal = gua_world_normal;\n\ngua_position = gua_world_position;",
+		"functions" : "",
+		"outputs" : 
+		{
+			"my_bitangent" : "vec3",
+			"my_normal" : "vec3",
+			"my_tangent" : "vec3",
+			"my_texcoords" : "vec2"
+		},
+		"uniforms" : null
+	},
+	"lbuffer_stage" : 
+	{
+		"body" : "",
+		"functions" : "",
+		"outputs" : null,
+		"uniforms" : null
+	}
+}

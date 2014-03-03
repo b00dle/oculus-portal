@@ -1,0 +1,165 @@
+\hypertarget{classlib_1_1TraceLines_1_1Trace}{\section{lib.\-Trace\-Lines.\-Trace \-Class \-Reference}
+\label{classlib_1_1TraceLines_1_1Trace}\index{lib.\-Trace\-Lines.\-Trace@{lib.\-Trace\-Lines.\-Trace}}
+}
+
+
+\hyperlink{classlib_1_1TraceLines_1_1Trace}{\-Trace} class which handles the creating and updating of the trace lines.  
+
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1TraceLines_1_1Trace_a4f8d2d88d7460dff9ba5481fe22e928a}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Default constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1TraceLines_1_1Trace_ac2d612a6589e5db82b8b87569a4003d6}{calc\-\_\-transform\-\_\-mat}
+\begin{DoxyCompactList}\small\item\em \-Calculates the transformation matrix of a line segment node in the scene graph. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1TraceLines_1_1Trace_a7be07136a0c69f4da141ef1a59b91e58}{update\-\_\-scenegraph}
+\begin{DoxyCompactList}\small\item\em \-Iterates over the line segment nodes and updates them according to the point list. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1TraceLines_1_1Trace_a8e74cf7e71dd5de2b1c308f82aec01ad}{update}
+\begin{DoxyCompactList}\small\item\em \-Update function that updates the point list whenever the time\-\_\-offset was reached. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1TraceLines_1_1Trace_abb0ceca2fc653eacbd487d148936b812}{num\-\_\-tracelines}
+\item 
+\hyperlink{classlib_1_1TraceLines_1_1Trace_a2eadb743166a1588111d13912c754286}{points}
+\begin{DoxyCompactList}\small\item\em \-A list of the points the line segments are build of. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1TraceLines_1_1Trace_a1c6a11f08dde1fc15914300612a7512f}{nodes}
+\begin{DoxyCompactList}\small\item\em \-A list of scene graph nodes that contain the line geometry. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1TraceLines_1_1Trace_ab1358d4b3c99823b5efc88d95c24e788}{transform\-\_\-node}
+\begin{DoxyCompactList}\small\item\em \-A transform node that is the parent of all line segments. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1TraceLines_1_1Trace_ac824c023e057eee6a3c9325490378921}{timer}
+\begin{DoxyCompactList}\small\item\em \-A timer instance to get the current time in seconds. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1TraceLines_1_1Trace_aebc9a249a4841b2c7da8d6f79cc30d5e}{last\-\_\-time}
+\begin{DoxyCompactList}\small\item\em \-This variable stores the last time the line segments were updated and is used to check at every update call if the time given in time\-\_\-offset has passed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \hyperlink{classlib_1_1TraceLines_1_1Trace_a6073eb4ce8fe976d355ac54ded5b63f3}{time\-\_\-offset} = 0.\-2
+\begin{DoxyCompactList}\small\item\em \-The time difference in seconds after which a new trace line segment is created. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\hyperlink{classlib_1_1TraceLines_1_1Trace}{\-Trace} class which handles the creating and updating of the trace lines. 
+
+\-Is used by the platforms to draw the trace of their movement. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1TraceLines_1_1Trace_a4f8d2d88d7460dff9ba5481fe22e928a}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Trace\-Lines.\-Trace.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-P\-A\-R\-E\-N\-T\-\_\-\-N\-O\-D\-E, }
+\item[{}]{\-I\-D, }
+\item[{}]{\-T\-R\-A\-C\-I\-N\-G\-\_\-\-T\-I\-M\-E, }
+\item[{}]{\-I\-N\-I\-T\-I\-A\-L\-\_\-\-M\-A\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1TraceLines_1_1Trace_a4f8d2d88d7460dff9ba5481fe22e928a}
+
+
+\-Default constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-P\-A\-R\-E\-N\-T\-\_\-\-N\-O\-D\-E} & \-A node in the scene graph to which the line segments are appended. \\
+\hline
+{\em \-I\-D} & \-A numerical \-I\-D that is appended to the scene graph name to separate the line segments of multiple instances of this class. \\
+\hline
+{\em \-T\-R\-A\-C\-I\-N\-G\-\_\-\-T\-I\-M\-E} & \-The time line segments should be kept before they disappear. \\
+\hline
+{\em \-I\-N\-I\-T\-I\-A\-L\-\_\-\-M\-A\-T} & \-This matrix is used as initial position of all line segments. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1TraceLines_1_1Trace_ac2d612a6589e5db82b8b87569a4003d6}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!calc\-\_\-transform\-\_\-mat@{calc\-\_\-transform\-\_\-mat}}
+\index{calc\-\_\-transform\-\_\-mat@{calc\-\_\-transform\-\_\-mat}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{calc\-\_\-transform\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Trace\-Lines.\-Trace.\-calc\-\_\-transform\-\_\-mat} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-S\-T\-A\-R\-T\-\_\-\-V\-E\-C, }
+\item[{}]{\-E\-N\-D\-\_\-\-V\-E\-C}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1TraceLines_1_1Trace_ac2d612a6589e5db82b8b87569a4003d6}
+
+
+\-Calculates the transformation matrix of a line segment node in the scene graph. 
+
+\hypertarget{classlib_1_1TraceLines_1_1Trace_a8e74cf7e71dd5de2b1c308f82aec01ad}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!update@{update}}
+\index{update@{update}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Trace\-Lines.\-Trace.\-update} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-A\-B\-S\-\_\-\-M\-A\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1TraceLines_1_1Trace_a8e74cf7e71dd5de2b1c308f82aec01ad}
+
+
+\-Update function that updates the point list whenever the time\-\_\-offset was reached. 
+
+\hypertarget{classlib_1_1TraceLines_1_1Trace_a7be07136a0c69f4da141ef1a59b91e58}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!update\-\_\-scenegraph@{update\-\_\-scenegraph}}
+\index{update\-\_\-scenegraph@{update\-\_\-scenegraph}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{update\-\_\-scenegraph}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Trace\-Lines.\-Trace.\-update\-\_\-scenegraph} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1TraceLines_1_1Trace_a7be07136a0c69f4da141ef1a59b91e58}
+
+
+\-Iterates over the line segment nodes and updates them according to the point list. 
+
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1TraceLines_1_1Trace_aebc9a249a4841b2c7da8d6f79cc30d5e}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!last\-\_\-time@{last\-\_\-time}}
+\index{last\-\_\-time@{last\-\_\-time}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{last\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Trace\-Lines.\-Trace\-::last\-\_\-time}}}\label{classlib_1_1TraceLines_1_1Trace_aebc9a249a4841b2c7da8d6f79cc30d5e}
+
+
+\-This variable stores the last time the line segments were updated and is used to check at every update call if the time given in time\-\_\-offset has passed. 
+
+\hypertarget{classlib_1_1TraceLines_1_1Trace_a1c6a11f08dde1fc15914300612a7512f}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!nodes@{nodes}}
+\index{nodes@{nodes}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{nodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Trace\-Lines.\-Trace\-::nodes}}}\label{classlib_1_1TraceLines_1_1Trace_a1c6a11f08dde1fc15914300612a7512f}
+
+
+\-A list of scene graph nodes that contain the line geometry. 
+
+\hypertarget{classlib_1_1TraceLines_1_1Trace_abb0ceca2fc653eacbd487d148936b812}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!num\-\_\-tracelines@{num\-\_\-tracelines}}
+\index{num\-\_\-tracelines@{num\-\_\-tracelines}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{num\-\_\-tracelines}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Trace\-Lines.\-Trace\-::num\-\_\-tracelines}}}\label{classlib_1_1TraceLines_1_1Trace_abb0ceca2fc653eacbd487d148936b812}
+\hypertarget{classlib_1_1TraceLines_1_1Trace_a2eadb743166a1588111d13912c754286}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!points@{points}}
+\index{points@{points}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{points}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Trace\-Lines.\-Trace\-::points}}}\label{classlib_1_1TraceLines_1_1Trace_a2eadb743166a1588111d13912c754286}
+
+
+\-A list of the points the line segments are build of. 
+
+\hypertarget{classlib_1_1TraceLines_1_1Trace_a6073eb4ce8fe976d355ac54ded5b63f3}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!time\-\_\-offset@{time\-\_\-offset}}
+\index{time\-\_\-offset@{time\-\_\-offset}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{time\-\_\-offset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Trace\-Lines.\-Trace\-::time\-\_\-offset} = 0.\-2\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1TraceLines_1_1Trace_a6073eb4ce8fe976d355ac54ded5b63f3}
+
+
+\-The time difference in seconds after which a new trace line segment is created. 
+
+\hypertarget{classlib_1_1TraceLines_1_1Trace_ac824c023e057eee6a3c9325490378921}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!timer@{timer}}
+\index{timer@{timer}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{timer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Trace\-Lines.\-Trace\-::timer}}}\label{classlib_1_1TraceLines_1_1Trace_ac824c023e057eee6a3c9325490378921}
+
+
+\-A timer instance to get the current time in seconds. 
+
+\hypertarget{classlib_1_1TraceLines_1_1Trace_ab1358d4b3c99823b5efc88d95c24e788}{\index{lib\-::\-Trace\-Lines\-::\-Trace@{lib\-::\-Trace\-Lines\-::\-Trace}!transform\-\_\-node@{transform\-\_\-node}}
+\index{transform\-\_\-node@{transform\-\_\-node}!lib::TraceLines::Trace@{lib\-::\-Trace\-Lines\-::\-Trace}}
+\subsubsection[{transform\-\_\-node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Trace\-Lines.\-Trace\-::transform\-\_\-node}}}\label{classlib_1_1TraceLines_1_1Trace_ab1358d4b3c99823b5efc88d95c24e788}
+
+
+\-A transform node that is the parent of all line segments. 
+
+\-It groups the line segments in the scene graph as the given \-I\-D is added to it's name and therefore allows multiple instances of this class. 
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{TraceLines_8py}{\-Trace\-Lines.\-py}\end{DoxyCompactItemize}

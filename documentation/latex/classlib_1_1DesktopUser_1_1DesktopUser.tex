@@ -1,0 +1,148 @@
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser}{\section{lib.\-Desktop\-User.\-Desktop\-User \-Class \-Reference}
+\label{classlib_1_1DesktopUser_1_1DesktopUser}\index{lib.\-Desktop\-User.\-Desktop\-User@{lib.\-Desktop\-User.\-Desktop\-User}}
+}
+
+
+\-Internal representation of a desktop user.  
+
+
+\-Inheritance diagram for lib.\-Desktop\-User.\-Desktop\-User\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classlib_1_1DesktopUser_1_1DesktopUser}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_ae3bfb881da11b1fb564bbe934abbcd7a}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_ac94bc2ab0896281bf2f8b63eca0014de}{window\-\_\-size}
+\begin{DoxyCompactList}\small\item\em \-The window's resolution in pixels to be applied. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_a53df88c4db8bb02814412976ec4da27f}{id}
+\begin{DoxyCompactList}\small\item\em \-Identification number of the \hyperlink{classlib_1_1DesktopUser_1_1DesktopUser}{\-Desktop\-User}, starting from 0. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_a27921d96ba4507753c706d9f07c3a1dc}{head\-\_\-transform}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the head position of the user with respect to platform. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_aa1574dd41324f3879953bf1c2eae1e81}{screen}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the user's screen. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_abb5723cfd58d530bc7366502f4b1a990}{eye}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the user's eye. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_a720a932f2cf25bc04f1411674c76378e}{camera}
+\begin{DoxyCompactList}\small\item\em \-Camera to represent the user's viewport to be rendered. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_a964bd1b8e0265b2cf4bda0708c7b155f}{window}
+\begin{DoxyCompactList}\small\item\em \-Window to display the rendered image to. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_a10bd43f5142577a1aedfbc3c632170f4}{headtracking\-\_\-reader}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacelib_1_1TrackingReader}{\-Tracking\-Reader} instance to supply constant basic tracking values. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1DesktopUser_1_1DesktopUser_ad56a3bf4fbc33e2ccb95e3ce9bcd08ee}{pipeline}
+\begin{DoxyCompactList}\small\item\em \-Pipeline for rendering purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Internal representation of a desktop user. 
+
+\-Upon construction, this class appends the necessary nodes to the scenegraph, creates screens, eyes, camera, pipeline and initializes the headtracking. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_ae3bfb881da11b1fb564bbe934abbcd7a}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Desktop\-User.\-Desktop\-User.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-V\-I\-E\-W\-I\-N\-G\-\_\-\-M\-A\-N\-A\-G\-E\-R, }
+\item[{}]{\-D\-E\-S\-K\-T\-O\-P\-\_\-\-U\-S\-E\-R\-\_\-\-I\-D, }
+\item[{}]{\-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D, }
+\item[{}]{\-W\-I\-N\-D\-O\-W\-\_\-\-S\-I\-Z\-E, }
+\item[{}]{\-S\-C\-R\-E\-E\-N\-\_\-\-S\-I\-Z\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1DesktopUser_1_1DesktopUser_ae3bfb881da11b1fb564bbe934abbcd7a}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-V\-I\-E\-W\-I\-N\-G\-\_\-\-M\-A\-N\-A\-G\-E\-R} & \-Reference to the \hyperlink{namespacelib_1_1ViewingManager}{\-Viewing\-Manager} instance from which the user is created. \\
+\hline
+{\em \-D\-E\-S\-K\-T\-O\-P\-\_\-\-U\-S\-E\-R\-\_\-\-I\-D} & \-Identification number of the \hyperlink{namespacelib_1_1OVRUser}{\-O\-V\-R\-User} to be created, starting from 0. \\
+\hline
+{\em \-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D} & \hyperlink{namespacelib_1_1Platform}{\-Platform} to append the constructed \hyperlink{namespacelib_1_1OVRUser}{\-O\-V\-R\-User} to. \\
+\hline
+{\em \-W\-I\-N\-D\-O\-W\-\_\-\-S\-I\-Z\-E} & \-Resolution of the window to be created on the display. \mbox{[}width, height\mbox{]} \\
+\hline
+{\em \-S\-C\-R\-E\-E\-N\-\_\-\-S\-I\-Z\-E} & \-Physical width of the screen space to be rendered on in meters. \mbox{[}width, height\mbox{]} \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_a720a932f2cf25bc04f1411674c76378e}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!camera@{camera}}
+\index{camera@{camera}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Desktop\-User.\-Desktop\-User\-::camera}}}\label{classlib_1_1DesktopUser_1_1DesktopUser_a720a932f2cf25bc04f1411674c76378e}
+
+
+\-Camera to represent the user's viewport to be rendered. 
+
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_abb5723cfd58d530bc7366502f4b1a990}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!eye@{eye}}
+\index{eye@{eye}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{eye}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Desktop\-User.\-Desktop\-User\-::eye}}}\label{classlib_1_1DesktopUser_1_1DesktopUser_abb5723cfd58d530bc7366502f4b1a990}
+
+
+\-Scenegraph node representing the user's eye. 
+
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_a27921d96ba4507753c706d9f07c3a1dc}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!head\-\_\-transform@{head\-\_\-transform}}
+\index{head\-\_\-transform@{head\-\_\-transform}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{head\-\_\-transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Desktop\-User.\-Desktop\-User\-::head\-\_\-transform}}}\label{classlib_1_1DesktopUser_1_1DesktopUser_a27921d96ba4507753c706d9f07c3a1dc}
+
+
+\-Scenegraph node representing the head position of the user with respect to platform. 
+
+\-In desktop case, the head is at the platform's position. \hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_a10bd43f5142577a1aedfbc3c632170f4}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!headtracking\-\_\-reader@{headtracking\-\_\-reader}}
+\index{headtracking\-\_\-reader@{headtracking\-\_\-reader}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{headtracking\-\_\-reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Desktop\-User.\-Desktop\-User\-::headtracking\-\_\-reader}}}\label{classlib_1_1DesktopUser_1_1DesktopUser_a10bd43f5142577a1aedfbc3c632170f4}
+
+
+\hyperlink{namespacelib_1_1TrackingReader}{\-Tracking\-Reader} instance to supply constant basic tracking values. 
+
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_a53df88c4db8bb02814412976ec4da27f}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!id@{id}}
+\index{id@{id}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Desktop\-User.\-Desktop\-User\-::id}}}\label{classlib_1_1DesktopUser_1_1DesktopUser_a53df88c4db8bb02814412976ec4da27f}
+
+
+\-Identification number of the \hyperlink{classlib_1_1DesktopUser_1_1DesktopUser}{\-Desktop\-User}, starting from 0. 
+
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_ad56a3bf4fbc33e2ccb95e3ce9bcd08ee}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!pipeline@{pipeline}}
+\index{pipeline@{pipeline}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{pipeline}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Desktop\-User.\-Desktop\-User\-::pipeline}}}\label{classlib_1_1DesktopUser_1_1DesktopUser_ad56a3bf4fbc33e2ccb95e3ce9bcd08ee}
+
+
+\-Pipeline for rendering purposes. 
+
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_aa1574dd41324f3879953bf1c2eae1e81}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!screen@{screen}}
+\index{screen@{screen}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{screen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Desktop\-User.\-Desktop\-User\-::screen}}}\label{classlib_1_1DesktopUser_1_1DesktopUser_aa1574dd41324f3879953bf1c2eae1e81}
+
+
+\-Scenegraph node representing the user's screen. 
+
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_a964bd1b8e0265b2cf4bda0708c7b155f}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!window@{window}}
+\index{window@{window}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{window}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Desktop\-User.\-Desktop\-User\-::window}}}\label{classlib_1_1DesktopUser_1_1DesktopUser_a964bd1b8e0265b2cf4bda0708c7b155f}
+
+
+\-Window to display the rendered image to. 
+
+\hypertarget{classlib_1_1DesktopUser_1_1DesktopUser_ac94bc2ab0896281bf2f8b63eca0014de}{\index{lib\-::\-Desktop\-User\-::\-Desktop\-User@{lib\-::\-Desktop\-User\-::\-Desktop\-User}!window\-\_\-size@{window\-\_\-size}}
+\index{window\-\_\-size@{window\-\_\-size}!lib::DesktopUser::DesktopUser@{lib\-::\-Desktop\-User\-::\-Desktop\-User}}
+\subsubsection[{window\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Desktop\-User.\-Desktop\-User\-::window\-\_\-size}}}\label{classlib_1_1DesktopUser_1_1DesktopUser_ac94bc2ab0896281bf2f8b63eca0014de}
+
+
+\-The window's resolution in pixels to be applied. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{DesktopUser_8py}{\-Desktop\-User.\-py}\end{DoxyCompactItemize}

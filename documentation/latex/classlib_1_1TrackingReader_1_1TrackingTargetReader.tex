@@ -1,0 +1,143 @@
+\hypertarget{classlib_1_1TrackingReader_1_1TrackingTargetReader}{\section{lib.\-Tracking\-Reader.\-Tracking\-Target\-Reader \-Class \-Reference}
+\label{classlib_1_1TrackingReader_1_1TrackingTargetReader}\index{lib.\-Tracking\-Reader.\-Tracking\-Target\-Reader@{lib.\-Tracking\-Reader.\-Tracking\-Target\-Reader}}
+}
+
+
+\-Reads tracking values of a device registered in daemon.  
+
+
+\-Inheritance diagram for lib.\-Tracking\-Reader.\-Tracking\-Target\-Reader\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classlib_1_1TrackingReader_1_1TrackingTargetReader}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1TrackingReader_1_1TrackingTargetReader_a16e8a5c22b67a27c469f8d0c274c7865}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Default constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1TrackingReader_1_1TrackingTargetReader_a23023b23541d42c30f5bb5906ccaf8a3}{my\-\_\-constructor}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1TrackingReader_1_1TrackingTargetReader_a4711d9cbb47e0f3e8ce36bc602ab138a}{sf\-\_\-tracking\-\_\-mat\-\_\-changed}
+\begin{DoxyCompactList}\small\item\em \-Called whenever sf\-\_\-tracking\-\_\-mat changes. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1TrackingReader_1_1TrackingTargetReader_aa0cec238c80dab830dec93bacf360cfe}{set\-\_\-transmitter\-\_\-offset}
+\begin{DoxyCompactList}\small\item\em \-Sets the transmitter offset for this tracking reader. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1TrackingReader_1_1TrackingTargetReader_a5b5a2de4121284d689aeaea202088b61}{set\-\_\-receiver\-\_\-offset}
+\begin{DoxyCompactList}\small\item\em \-Sets the receiver offset for this tracking reader. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1TrackingReader_1_1TrackingTargetReader_ad7b8c73f24cbcbe803b83699a1493de7}{tracking\-\_\-sensor}
+\begin{DoxyCompactList}\small\item\em \-A device sensor to capture the tracking values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classlib_1_1TrackingReader_1_1TrackingTargetReader_aa0b35ab4b2d285f046c0500404b0d0aa}{sf\-\_\-tracking\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-Field containing the tracked values used for evaluation purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Reads tracking values of a device registered in daemon. 
+
+
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1TrackingReader_1_1TrackingTargetReader_a16e8a5c22b67a27c469f8d0c274c7865}{\index{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::TrackingReader::TrackingTargetReader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Tracking\-Reader.\-Tracking\-Target\-Reader.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1TrackingReader_1_1TrackingTargetReader_a16e8a5c22b67a27c469f8d0c274c7865}
+
+
+\-Default constructor. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1TrackingReader_1_1TrackingTargetReader_a23023b23541d42c30f5bb5906ccaf8a3}{\index{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}!my\-\_\-constructor@{my\-\_\-constructor}}
+\index{my\-\_\-constructor@{my\-\_\-constructor}!lib::TrackingReader::TrackingTargetReader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}}
+\subsubsection[{my\-\_\-constructor}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Tracking\-Reader.\-Tracking\-Target\-Reader.\-my\-\_\-constructor} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1TrackingReader_1_1TrackingTargetReader_a23023b23541d42c30f5bb5906ccaf8a3}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-The target name of the tracked object as chosen in daemon. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1TrackingReader_1_1TrackingTargetReader_a5b5a2de4121284d689aeaea202088b61}{\index{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}!set\-\_\-receiver\-\_\-offset@{set\-\_\-receiver\-\_\-offset}}
+\index{set\-\_\-receiver\-\_\-offset@{set\-\_\-receiver\-\_\-offset}!lib::TrackingReader::TrackingTargetReader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}}
+\subsubsection[{set\-\_\-receiver\-\_\-offset}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Tracking\-Reader.\-Tracking\-Target\-Reader.\-set\-\_\-receiver\-\_\-offset} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-R\-E\-C\-E\-I\-V\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1TrackingReader_1_1TrackingTargetReader_a5b5a2de4121284d689aeaea202088b61}
+
+
+\-Sets the receiver offset for this tracking reader. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-R\-E\-C\-E\-I\-V\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T} & \-The receiver offset to be set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1TrackingReader_1_1TrackingTargetReader_aa0cec238c80dab830dec93bacf360cfe}{\index{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}!set\-\_\-transmitter\-\_\-offset@{set\-\_\-transmitter\-\_\-offset}}
+\index{set\-\_\-transmitter\-\_\-offset@{set\-\_\-transmitter\-\_\-offset}!lib::TrackingReader::TrackingTargetReader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}}
+\subsubsection[{set\-\_\-transmitter\-\_\-offset}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Tracking\-Reader.\-Tracking\-Target\-Reader.\-set\-\_\-transmitter\-\_\-offset} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-T\-R\-A\-N\-S\-M\-I\-T\-T\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1TrackingReader_1_1TrackingTargetReader_aa0cec238c80dab830dec93bacf360cfe}
+
+
+\-Sets the transmitter offset for this tracking reader. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-T\-R\-A\-N\-S\-M\-I\-T\-T\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T} & \-The transmitter offset to be set. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1TrackingReader_1_1TrackingTargetReader_a4711d9cbb47e0f3e8ce36bc602ab138a}{\index{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}!sf\-\_\-tracking\-\_\-mat\-\_\-changed@{sf\-\_\-tracking\-\_\-mat\-\_\-changed}}
+\index{sf\-\_\-tracking\-\_\-mat\-\_\-changed@{sf\-\_\-tracking\-\_\-mat\-\_\-changed}!lib::TrackingReader::TrackingTargetReader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}}
+\subsubsection[{sf\-\_\-tracking\-\_\-mat\-\_\-changed}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Tracking\-Reader.\-Tracking\-Target\-Reader.\-sf\-\_\-tracking\-\_\-mat\-\_\-changed} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1TrackingReader_1_1TrackingTargetReader_a4711d9cbb47e0f3e8ce36bc602ab138a}
+
+
+\-Called whenever sf\-\_\-tracking\-\_\-mat changes. 
+
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1TrackingReader_1_1TrackingTargetReader_aa0b35ab4b2d285f046c0500404b0d0aa}{\index{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}!sf\-\_\-tracking\-\_\-mat@{sf\-\_\-tracking\-\_\-mat}}
+\index{sf\-\_\-tracking\-\_\-mat@{sf\-\_\-tracking\-\_\-mat}!lib::TrackingReader::TrackingTargetReader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}}
+\subsubsection[{sf\-\_\-tracking\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Tracking\-Reader.\-Tracking\-Target\-Reader\-::sf\-\_\-tracking\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1TrackingReader_1_1TrackingTargetReader_aa0b35ab4b2d285f046c0500404b0d0aa}
+
+
+\-Field containing the tracked values used for evaluation purposes. 
+
+\hypertarget{classlib_1_1TrackingReader_1_1TrackingTargetReader_ad7b8c73f24cbcbe803b83699a1493de7}{\index{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}!tracking\-\_\-sensor@{tracking\-\_\-sensor}}
+\index{tracking\-\_\-sensor@{tracking\-\_\-sensor}!lib::TrackingReader::TrackingTargetReader@{lib\-::\-Tracking\-Reader\-::\-Tracking\-Target\-Reader}}
+\subsubsection[{tracking\-\_\-sensor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Tracking\-Reader.\-Tracking\-Target\-Reader\-::tracking\-\_\-sensor}}}\label{classlib_1_1TrackingReader_1_1TrackingTargetReader_ad7b8c73f24cbcbe803b83699a1493de7}
+
+
+\-A device sensor to capture the tracking values. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{TrackingReader_8py}{\-Tracking\-Reader.\-py}\end{DoxyCompactItemize}

@@ -1,0 +1,27 @@
+  <!ELEMENT setup (global, device+, user+)>
+  
+  <!ELEMENT global (transmitteroffset, notrackingposition, groundfollowing)>
+  <!ELEMENT transmitteroffset (x, y, z)>
+  <!ELEMENT notrackingposition (x, y, z)>
+  <!ELEMENT groundfollowing (activated, raystartheight)>
+  <!ELEMENT activated (#PCDATA)>
+  <!ELEMENT raystartheight (#PCDATA)>
+  
+  <!ELEMENT device (type, inputsensor, trackingstation, platformpos, platformrot)>
+  <!ELEMENT type (#PCDATA)>
+  <!ELEMENT inputsensor (#PCDATA)>
+  <!ELEMENT trackingstation (#PCDATA)>
+  <!ELEMENT platformpos (x, y, z)>
+  <!ELEMENT x (#PCDATA)>
+  <!ELEMENT y (#PCDATA)>
+  <!ELEMENT z (#PCDATA)>
+  <!ELEMENT platformrot (yaw)>
+  <!ELEMENT yaw (#PCDATA)>
+  <!ELEMENT platformsize (width, depth)>
+  <!ELEMENT width (#PCDATA)>
+  <!ELEMENT depth (#PCDATA)>
+
+  <!ELEMENT user (type, headtrackingstation, startplatform)>
+  <!ELEMENT headtrackingstation (#PCDATA)>
+  <!ELEMENT startplatform (#PCDATA)>
+  <!ELEMENT warnings (#PCDATA)>

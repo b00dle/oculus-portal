@@ -1,0 +1,366 @@
+\hypertarget{classlib_1_1User_1_1User}{\section{lib.\-User.\-User \-Class \-Reference}
+\label{classlib_1_1User_1_1User}\index{lib.\-User.\-User@{lib.\-User.\-User}}
+}
+
+
+\-Base class to represent attributes and functions that all users have in common.  
+
+
+\-Inheritance diagram for lib.\-User.\-User\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.752739cm]{classlib_1_1User_1_1User}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1User_1_1User_a883183562a0fdf0c781066b8ebc6151c}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1User_1_1User_a7457c205f3ae55a20304124c48c4e33f}{set\-\_\-eye\-\_\-distance}
+\begin{DoxyCompactList}\small\item\em \-Sets the transformation values of left and right eye. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1User_1_1User_ae5fcbc18c31548304edb21eae87baa69}{set\-\_\-pipeline\-\_\-values}
+\begin{DoxyCompactList}\small\item\em \-Sets all the pipeline values to the ones specified in \hyperlink{classlib_1_1User_1_1User}{\-User} class. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1User_1_1User_a7ed5a075270b3fd775bf0fd237753e6f}{append\-\_\-to\-\_\-platform}
+\begin{DoxyCompactList}\small\item\em \-Appends a node to the children of a platform in the scenegraph. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1User_1_1User_a2087887f74d08925b51e98d439feb6f6}{create\-\_\-avatar\-\_\-representation}
+\begin{DoxyCompactList}\small\item\em \-Creates a basic avatar for this user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1User_1_1User_af909d4906b92076798e62e6db9d1174c}{node\-\_\-pretext}
+\begin{DoxyCompactList}\small\item\em \-Prefix of the scenegraph nodes this user creates. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a83a122dc9723a70d15bcc6562f051501}{head\-\_\-avatar}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the geometry and transformation of the basic avatar's head. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_ac1fe60f0d865c0f1301dd80e46ad38fe}{body\-\_\-avatar}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the geometry and transformation of the basic avatar's body. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a227267a7e99f6ed9babb200558d580a8}{table\-\_\-transform}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph transform node for the dekstop user's table. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a6b26285528c0979839c12dc0794300c3}{table\-\_\-avatar}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the geometry and transformation of the desktop user's table. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classlib_1_1User_1_1User_a633650301e37ff69cba4e51c2ed4f7a5}{sf\-\_\-abs\-\_\-head\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-Position and rotation of the user's head with respect to the platform. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a6205d8d38fb4561259698293e7b89977}{enable\-\_\-bloom} = \-True
+\begin{DoxyCompactList}\small\item\em \-Boolean variable to enable bloom on all pipelines. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1User_1_1User_a4d55fc3c26e44b1ef40c00f4949ad58c}{bloom\-\_\-intensity} = 0.\-1
+\begin{DoxyCompactList}\small\item\em \-Bloom intensity value for all pipelines. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1User_1_1User_a506b809ff697d123606946d3c11b80ed}{bloom\-\_\-threshold} = 1.\-0
+\begin{DoxyCompactList}\small\item\em \-Bloom threshold value for all pipelines. \end{DoxyCompactList}\item 
+int \hyperlink{classlib_1_1User_1_1User_aa4fba47bd0a69cca3bdf5eab595628d0}{bloom\-\_\-radius} = 10
+\begin{DoxyCompactList}\small\item\em \-Bloom radius value for all pipelines. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a24f3431fbd7ec6be6d4358854cf9ba8c}{enable\-\_\-fxaa} = \-False
+\begin{DoxyCompactList}\small\item\em \-Boolean variable to enable \-F\-X\-A\-A on all pipelines. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a7abdac6418eb34abb226a1303bf14597}{enable\-\_\-fog} = \-True
+\begin{DoxyCompactList}\small\item\em \-Boolean variable to enable fog on all pipelines. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1User_1_1User_a023761a05fa8e4fb2d760ba778e14207}{fog\-\_\-start} = 300.\-0
+\begin{DoxyCompactList}\small\item\em \-Fog starting distance for all pipelines. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1User_1_1User_abb967cb1e2b1c53747d3fc658b146e85}{fog\-\_\-end} = 400.\-0
+\begin{DoxyCompactList}\small\item\em \-Fog ending distance for all pipelines. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a6ae1d735cc350461e3a3ce700038a1dd}{enable\-\_\-frustum\-\_\-culling} = \-False
+\begin{DoxyCompactList}\small\item\em \-Boolean variable to enable frustum culling on all pipelines. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1User_1_1User_ad7d2cfa4d7167c9a32e3f688cf9bf215}{ambient\-\_\-color} = avango.\-gua.\-Color(0.\-5, 0.\-5, 0.\-5)
+\begin{DoxyCompactList}\small\item\em \-Ambient color value for all pipelines. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1User_1_1User_afef9ed6223dcef7768e39b7f134c94f6}{far\-\_\-clip} = 800.\-0
+\begin{DoxyCompactList}\small\item\em \-Distance of the far clipping plane for all pipelines. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a63294fc5fa5d9d91eb64095341ad9bb5}{enable\-\_\-backface\-\_\-culling} = \-False
+\begin{DoxyCompactList}\small\item\em \-Boolean variable to enable backface culling on all pipelines. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a5a5a10220b495e9b86d62699819222c4}{enable\-\_\-ssao} = \-True
+\begin{DoxyCompactList}\small\item\em \-Boolean variable to enable \-Ssao on all pipelines. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1User_1_1User_a08dc9a8a092cc9e8223a2ce1e4d68766}{ssao\-\_\-radius} = 2.\-0
+\begin{DoxyCompactList}\small\item\em \-Ssao radius value for all pipelines. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1User_1_1User_a71b7508fdf83ab837f009c32cd45652e}{ssao\-\_\-intensity} = 2.\-0
+\begin{DoxyCompactList}\small\item\em \-Ssao intensity value for all pipelines. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1User_1_1User_a50a8a606e278acc350db36ef6a2296a5}{enable\-\_\-fps\-\_\-display} = \-True
+\item 
+list \hyperlink{classlib_1_1User_1_1User_a40f71a472b1fc0ea63f5fc6ecb2a0b67}{avatar\-\_\-materials}
+\begin{DoxyCompactList}\small\item\em \-List of materials to choose from when an avatar is created. \end{DoxyCompactList}\item 
+list \hyperlink{classlib_1_1User_1_1User_af1d08431c58ab9f2662c26305d102996}{material\-\_\-used}
+\begin{DoxyCompactList}\small\item\em \-List of booleans to indicate if a material in avatar\-\_\-materials was already used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Base class to represent attributes and functions that all users have in common. 
+
+\-Not to be instantiated. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1User_1_1User_a883183562a0fdf0c781066b8ebc6151c}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-User.\-User.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-N\-O\-D\-E\-\_\-\-P\-R\-E\-T\-E\-X\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1User_1_1User_a883183562a0fdf0c781066b8ebc6151c}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-N\-O\-D\-E\-\_\-\-P\-R\-E\-T\-E\-X\-T} & \-The prefix to be used when creating scenegraph nodes. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1User_1_1User_a7ed5a075270b3fd775bf0fd237753e6f}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!append\-\_\-to\-\_\-platform@{append\-\_\-to\-\_\-platform}}
+\index{append\-\_\-to\-\_\-platform@{append\-\_\-to\-\_\-platform}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{append\-\_\-to\-\_\-platform}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-User.\-User.\-append\-\_\-to\-\_\-platform} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H, }
+\item[{}]{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D, }
+\item[{}]{\-N\-O\-D\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1User_1_1User_a7ed5a075270b3fd775bf0fd237753e6f}
+
+
+\-Appends a node to the children of a platform in the scenegraph. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-S\-C\-E\-N\-E\-G\-R\-A\-P\-H} & \-Reference to the scenegraph. \\
+\hline
+{\em \-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D} & \-The id of the platform to append the node to. \\
+\hline
+{\em \-N\-O\-D\-E} & \-The node to be appended to the platform node. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1User_1_1User_a2087887f74d08925b51e98d439feb6f6}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!create\-\_\-avatar\-\_\-representation@{create\-\_\-avatar\-\_\-representation}}
+\index{create\-\_\-avatar\-\_\-representation@{create\-\_\-avatar\-\_\-representation}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{create\-\_\-avatar\-\_\-representation}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-User.\-User.\-create\-\_\-avatar\-\_\-representation} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H, }
+\item[{}]{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D, }
+\item[{}]{\-S\-F\-\_\-\-A\-V\-A\-T\-A\-R\-\_\-\-B\-O\-D\-Y\-\_\-\-M\-A\-T\-R\-I\-X}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1User_1_1User_a2087887f74d08925b51e98d439feb6f6}
+
+
+\-Creates a basic avatar for this user. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-S\-C\-E\-N\-E\-G\-R\-A\-P\-H} & \-Reference to the scenegraph. \\
+\hline
+{\em \-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D} & \-The id of the platform to append the avatar to. \\
+\hline
+{\em \-S\-F\-\_\-\-A\-V\-A\-T\-A\-R\-\_\-\-B\-O\-D\-Y\-\_\-\-M\-A\-T\-R\-I\-X} & \-Field containing the transformation matrix for the avatar's body on the platform. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1User_1_1User_a7457c205f3ae55a20304124c48c4e33f}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!set\-\_\-eye\-\_\-distance@{set\-\_\-eye\-\_\-distance}}
+\index{set\-\_\-eye\-\_\-distance@{set\-\_\-eye\-\_\-distance}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{set\-\_\-eye\-\_\-distance}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-User.\-User.\-set\-\_\-eye\-\_\-distance} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-V\-A\-L\-U\-E}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1User_1_1User_a7457c205f3ae55a20304124c48c4e33f}
+
+
+\-Sets the transformation values of left and right eye. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-V\-A\-L\-U\-E} & \-The eye distance to be applied. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1User_1_1User_ae5fcbc18c31548304edb21eae87baa69}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!set\-\_\-pipeline\-\_\-values@{set\-\_\-pipeline\-\_\-values}}
+\index{set\-\_\-pipeline\-\_\-values@{set\-\_\-pipeline\-\_\-values}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{set\-\_\-pipeline\-\_\-values}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-User.\-User.\-set\-\_\-pipeline\-\_\-values} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1User_1_1User_ae5fcbc18c31548304edb21eae87baa69}
+
+
+\-Sets all the pipeline values to the ones specified in \hyperlink{classlib_1_1User_1_1User}{\-User} class. 
+
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1User_1_1User_ad7d2cfa4d7167c9a32e3f688cf9bf215}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!ambient\-\_\-color@{ambient\-\_\-color}}
+\index{ambient\-\_\-color@{ambient\-\_\-color}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{ambient\-\_\-color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::ambient\-\_\-color} = avango.\-gua.\-Color(0.\-5, 0.\-5, 0.\-5)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_ad7d2cfa4d7167c9a32e3f688cf9bf215}
+
+
+\-Ambient color value for all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a40f71a472b1fc0ea63f5fc6ecb2a0b67}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!avatar\-\_\-materials@{avatar\-\_\-materials}}
+\index{avatar\-\_\-materials@{avatar\-\_\-materials}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{avatar\-\_\-materials}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::avatar\-\_\-materials}\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a40f71a472b1fc0ea63f5fc6ecb2a0b67}
+{\bfseries \-Initial value\-:}
+\begin{DoxyCode}
+['AvatarBlue', 'AvatarCyan', 'AvatarGreen', 'AvatarMagenta',
+                      'AvatarOrange', 'AvatarRed', 'AvatarWhite', 'AvatarYellow
+      ']
+\end{DoxyCode}
+
+
+\-List of materials to choose from when an avatar is created. 
+
+\hypertarget{classlib_1_1User_1_1User_a4d55fc3c26e44b1ef40c00f4949ad58c}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!bloom\-\_\-intensity@{bloom\-\_\-intensity}}
+\index{bloom\-\_\-intensity@{bloom\-\_\-intensity}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{bloom\-\_\-intensity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::bloom\-\_\-intensity} = 0.\-1\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a4d55fc3c26e44b1ef40c00f4949ad58c}
+
+
+\-Bloom intensity value for all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_aa4fba47bd0a69cca3bdf5eab595628d0}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!bloom\-\_\-radius@{bloom\-\_\-radius}}
+\index{bloom\-\_\-radius@{bloom\-\_\-radius}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{bloom\-\_\-radius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::bloom\-\_\-radius} = 10\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_aa4fba47bd0a69cca3bdf5eab595628d0}
+
+
+\-Bloom radius value for all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a506b809ff697d123606946d3c11b80ed}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!bloom\-\_\-threshold@{bloom\-\_\-threshold}}
+\index{bloom\-\_\-threshold@{bloom\-\_\-threshold}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{bloom\-\_\-threshold}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::bloom\-\_\-threshold} = 1.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a506b809ff697d123606946d3c11b80ed}
+
+
+\-Bloom threshold value for all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_ac1fe60f0d865c0f1301dd80e46ad38fe}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!body\-\_\-avatar@{body\-\_\-avatar}}
+\index{body\-\_\-avatar@{body\-\_\-avatar}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{body\-\_\-avatar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::body\-\_\-avatar}}}\label{classlib_1_1User_1_1User_ac1fe60f0d865c0f1301dd80e46ad38fe}
+
+
+\-Scenegraph node representing the geometry and transformation of the basic avatar's body. 
+
+\hypertarget{classlib_1_1User_1_1User_a63294fc5fa5d9d91eb64095341ad9bb5}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!enable\-\_\-backface\-\_\-culling@{enable\-\_\-backface\-\_\-culling}}
+\index{enable\-\_\-backface\-\_\-culling@{enable\-\_\-backface\-\_\-culling}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{enable\-\_\-backface\-\_\-culling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::enable\-\_\-backface\-\_\-culling} = \-False\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a63294fc5fa5d9d91eb64095341ad9bb5}
+
+
+\-Boolean variable to enable backface culling on all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a6205d8d38fb4561259698293e7b89977}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!enable\-\_\-bloom@{enable\-\_\-bloom}}
+\index{enable\-\_\-bloom@{enable\-\_\-bloom}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{enable\-\_\-bloom}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::enable\-\_\-bloom} = \-True\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a6205d8d38fb4561259698293e7b89977}
+
+
+\-Boolean variable to enable bloom on all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a7abdac6418eb34abb226a1303bf14597}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!enable\-\_\-fog@{enable\-\_\-fog}}
+\index{enable\-\_\-fog@{enable\-\_\-fog}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{enable\-\_\-fog}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::enable\-\_\-fog} = \-True\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a7abdac6418eb34abb226a1303bf14597}
+
+
+\-Boolean variable to enable fog on all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a50a8a606e278acc350db36ef6a2296a5}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!enable\-\_\-fps\-\_\-display@{enable\-\_\-fps\-\_\-display}}
+\index{enable\-\_\-fps\-\_\-display@{enable\-\_\-fps\-\_\-display}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{enable\-\_\-fps\-\_\-display}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::enable\-\_\-fps\-\_\-display} = \-True\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a50a8a606e278acc350db36ef6a2296a5}
+\hypertarget{classlib_1_1User_1_1User_a6ae1d735cc350461e3a3ce700038a1dd}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!enable\-\_\-frustum\-\_\-culling@{enable\-\_\-frustum\-\_\-culling}}
+\index{enable\-\_\-frustum\-\_\-culling@{enable\-\_\-frustum\-\_\-culling}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{enable\-\_\-frustum\-\_\-culling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::enable\-\_\-frustum\-\_\-culling} = \-False\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a6ae1d735cc350461e3a3ce700038a1dd}
+
+
+\-Boolean variable to enable frustum culling on all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a24f3431fbd7ec6be6d4358854cf9ba8c}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!enable\-\_\-fxaa@{enable\-\_\-fxaa}}
+\index{enable\-\_\-fxaa@{enable\-\_\-fxaa}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{enable\-\_\-fxaa}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::enable\-\_\-fxaa} = \-False\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a24f3431fbd7ec6be6d4358854cf9ba8c}
+
+
+\-Boolean variable to enable \-F\-X\-A\-A on all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a5a5a10220b495e9b86d62699819222c4}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!enable\-\_\-ssao@{enable\-\_\-ssao}}
+\index{enable\-\_\-ssao@{enable\-\_\-ssao}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{enable\-\_\-ssao}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::enable\-\_\-ssao} = \-True\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a5a5a10220b495e9b86d62699819222c4}
+
+
+\-Boolean variable to enable \-Ssao on all pipelines. 
+
+\-Boolean variable to enable \-F\-P\-S display on all pipelines.\hypertarget{classlib_1_1User_1_1User_afef9ed6223dcef7768e39b7f134c94f6}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!far\-\_\-clip@{far\-\_\-clip}}
+\index{far\-\_\-clip@{far\-\_\-clip}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{far\-\_\-clip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::far\-\_\-clip} = 800.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_afef9ed6223dcef7768e39b7f134c94f6}
+
+
+\-Distance of the far clipping plane for all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_abb967cb1e2b1c53747d3fc658b146e85}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!fog\-\_\-end@{fog\-\_\-end}}
+\index{fog\-\_\-end@{fog\-\_\-end}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{fog\-\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::fog\-\_\-end} = 400.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_abb967cb1e2b1c53747d3fc658b146e85}
+
+
+\-Fog ending distance for all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a023761a05fa8e4fb2d760ba778e14207}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!fog\-\_\-start@{fog\-\_\-start}}
+\index{fog\-\_\-start@{fog\-\_\-start}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{fog\-\_\-start}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::fog\-\_\-start} = 300.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a023761a05fa8e4fb2d760ba778e14207}
+
+
+\-Fog starting distance for all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a83a122dc9723a70d15bcc6562f051501}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!head\-\_\-avatar@{head\-\_\-avatar}}
+\index{head\-\_\-avatar@{head\-\_\-avatar}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{head\-\_\-avatar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::head\-\_\-avatar}}}\label{classlib_1_1User_1_1User_a83a122dc9723a70d15bcc6562f051501}
+
+
+\-Scenegraph node representing the geometry and transformation of the basic avatar's head. 
+
+\hypertarget{classlib_1_1User_1_1User_af1d08431c58ab9f2662c26305d102996}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!material\-\_\-used@{material\-\_\-used}}
+\index{material\-\_\-used@{material\-\_\-used}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{material\-\_\-used}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::material\-\_\-used}\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_af1d08431c58ab9f2662c26305d102996}
+{\bfseries \-Initial value\-:}
+\begin{DoxyCode}
+[False, False, False, False,
+                   False, False, False, False]
+\end{DoxyCode}
+
+
+\-List of booleans to indicate if a material in avatar\-\_\-materials was already used. 
+
+\hypertarget{classlib_1_1User_1_1User_af909d4906b92076798e62e6db9d1174c}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!node\-\_\-pretext@{node\-\_\-pretext}}
+\index{node\-\_\-pretext@{node\-\_\-pretext}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{node\-\_\-pretext}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::node\-\_\-pretext}}}\label{classlib_1_1User_1_1User_af909d4906b92076798e62e6db9d1174c}
+
+
+\-Prefix of the scenegraph nodes this user creates. 
+
+\hypertarget{classlib_1_1User_1_1User_a633650301e37ff69cba4e51c2ed4f7a5}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!sf\-\_\-abs\-\_\-head\-\_\-mat@{sf\-\_\-abs\-\_\-head\-\_\-mat}}
+\index{sf\-\_\-abs\-\_\-head\-\_\-mat@{sf\-\_\-abs\-\_\-head\-\_\-mat}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{sf\-\_\-abs\-\_\-head\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}tuple {\bf lib\-::\-User.\-User\-::sf\-\_\-abs\-\_\-head\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a633650301e37ff69cba4e51c2ed4f7a5}
+
+
+\-Position and rotation of the user's head with respect to the platform. 
+
+\hypertarget{classlib_1_1User_1_1User_a71b7508fdf83ab837f009c32cd45652e}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!ssao\-\_\-intensity@{ssao\-\_\-intensity}}
+\index{ssao\-\_\-intensity@{ssao\-\_\-intensity}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{ssao\-\_\-intensity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::ssao\-\_\-intensity} = 2.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a71b7508fdf83ab837f009c32cd45652e}
+
+
+\-Ssao intensity value for all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a08dc9a8a092cc9e8223a2ce1e4d68766}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!ssao\-\_\-radius@{ssao\-\_\-radius}}
+\index{ssao\-\_\-radius@{ssao\-\_\-radius}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{ssao\-\_\-radius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::ssao\-\_\-radius} = 2.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1User_1_1User_a08dc9a8a092cc9e8223a2ce1e4d68766}
+
+
+\-Ssao radius value for all pipelines. 
+
+\hypertarget{classlib_1_1User_1_1User_a6b26285528c0979839c12dc0794300c3}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!table\-\_\-avatar@{table\-\_\-avatar}}
+\index{table\-\_\-avatar@{table\-\_\-avatar}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{table\-\_\-avatar}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::table\-\_\-avatar}}}\label{classlib_1_1User_1_1User_a6b26285528c0979839c12dc0794300c3}
+
+
+\-Scenegraph node representing the geometry and transformation of the desktop user's table. 
+
+\hypertarget{classlib_1_1User_1_1User_a227267a7e99f6ed9babb200558d580a8}{\index{lib\-::\-User\-::\-User@{lib\-::\-User\-::\-User}!table\-\_\-transform@{table\-\_\-transform}}
+\index{table\-\_\-transform@{table\-\_\-transform}!lib::User::User@{lib\-::\-User\-::\-User}}
+\subsubsection[{table\-\_\-transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-User.\-User\-::table\-\_\-transform}}}\label{classlib_1_1User_1_1User_a227267a7e99f6ed9babb200558d580a8}
+
+
+\-Scenegraph transform node for the dekstop user's table. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{User_8py}{\-User.\-py}\end{DoxyCompactItemize}

@@ -1,0 +1,173 @@
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice}{\section{lib.\-Device.\-Multi\-Dof\-Device \-Class \-Reference}
+\label{classlib_1_1Device_1_1MultiDofDevice}\index{lib.\-Device.\-Multi\-Dof\-Device@{lib.\-Device.\-Multi\-Dof\-Device}}
+}
+
+
+\-Base class for the representation of an input device.  
+
+
+\-Inheritance diagram for lib.\-Device.\-Multi\-Dof\-Device\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.308411cm]{classlib_1_1Device_1_1MultiDofDevice}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1Device_1_1MultiDofDevice_a0e2a46c6f1137180f78d257629c60d79}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Default constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Device_1_1MultiDofDevice_afc9f3ca31bfc426a12d0128b44ecac81}{init\-\_\-station\-\_\-tracking}
+\begin{DoxyCompactList}\small\item\em \-Initializes a tracking reader for the device's position and rotation. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Device_1_1MultiDofDevice_ae957a7f95a7c8a15be9eac3ee45f30ea}{filter\-\_\-channel}
+\begin{DoxyCompactList}\small\item\em \-Map an input value to a certain interval. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1Device_1_1MultiDofDevice_a707b8d75550724801392ad592e1204d9}{tracking\-\_\-reader}
+\begin{DoxyCompactList}\small\item\em \-Tracking \-Reader to process the tracking input of the device. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Static \-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classlib_1_1Device_1_1MultiDofDevice_a7fb0542d82d1826e96f65c209a43f2df}{mf\-\_\-dof} = avango.\-M\-F\-Float()
+\begin{DoxyCompactList}\small\item\em \-The input values of the input device. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1Device_1_1MultiDofDevice_a87336be0a2a14f20056c52b7d748d130}{mf\-\_\-buttons} = avango.\-M\-F\-Bool()
+\begin{DoxyCompactList}\small\item\em \-The button values of the input device. \end{DoxyCompactList}\item 
+tuple \hyperlink{classlib_1_1Device_1_1MultiDofDevice_ab59451f95bf8bf7b806aad6eda1147ba}{sf\-\_\-station\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()
+\begin{DoxyCompactList}\small\item\em \-Tracking position and rotation. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1Device_1_1MultiDofDevice_a92b1c30e0edb14afd629c053d6719594}{translation\-\_\-factor} = 1.\-0
+\begin{DoxyCompactList}\small\item\em \-Factor to modify the device's translation input. \end{DoxyCompactList}\item 
+float \hyperlink{classlib_1_1Device_1_1MultiDofDevice_a04b79f1c36851426cd8845111d3d7e5f}{rotation\-\_\-factor} = 1.\-0
+\begin{DoxyCompactList}\small\item\em \-Factor to modify the device's rotation input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Base class for the representation of an input device. 
+
+\-This class should not be instantiated, but concrete device reading classed will inherit from this one. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice_a0e2a46c6f1137180f78d257629c60d79}{\index{lib\-::\-Device\-::\-Multi\-Dof\-Device@{lib\-::\-Device\-::\-Multi\-Dof\-Device}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::Device::MultiDofDevice@{lib\-::\-Device\-::\-Multi\-Dof\-Device}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Device.\-Multi\-Dof\-Device.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Device_1_1MultiDofDevice_a0e2a46c6f1137180f78d257629c60d79}
+
+
+\-Default constructor. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice_ae957a7f95a7c8a15be9eac3ee45f30ea}{\index{lib\-::\-Device\-::\-Multi\-Dof\-Device@{lib\-::\-Device\-::\-Multi\-Dof\-Device}!filter\-\_\-channel@{filter\-\_\-channel}}
+\index{filter\-\_\-channel@{filter\-\_\-channel}!lib::Device::MultiDofDevice@{lib\-::\-Device\-::\-Multi\-Dof\-Device}}
+\subsubsection[{filter\-\_\-channel}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Device.\-Multi\-Dof\-Device.\-filter\-\_\-channel} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-V\-A\-L\-U\-E, }
+\item[{}]{\-O\-F\-F\-S\-E\-T, }
+\item[{}]{\-M\-I\-N, }
+\item[{}]{\-M\-A\-X, }
+\item[{}]{\-N\-E\-G\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D, }
+\item[{}]{\-P\-O\-S\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Device_1_1MultiDofDevice_ae957a7f95a7c8a15be9eac3ee45f30ea}
+
+
+\-Map an input value to a certain interval. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-V\-A\-L\-U\-E} & \-The value to be mapped. \\
+\hline
+{\em \-O\-F\-F\-S\-E\-T} & \-The offset to be applied to \-V\-A\-L\-U\-E, \-M\-I\-N and \-M\-A\-X \\
+\hline
+{\em \-M\-I\-N} & \-The minimum value of the new interval. \\
+\hline
+{\em \-M\-A\-X} & \-The maximum value of the old interval. \\
+\hline
+{\em \-N\-E\-G\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D} & \-The negative threshold to be used. \\
+\hline
+{\em \-P\-O\-S\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D} & \-The positive threshold to be used. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice_afc9f3ca31bfc426a12d0128b44ecac81}{\index{lib\-::\-Device\-::\-Multi\-Dof\-Device@{lib\-::\-Device\-::\-Multi\-Dof\-Device}!init\-\_\-station\-\_\-tracking@{init\-\_\-station\-\_\-tracking}}
+\index{init\-\_\-station\-\_\-tracking@{init\-\_\-station\-\_\-tracking}!lib::Device::MultiDofDevice@{lib\-::\-Device\-::\-Multi\-Dof\-Device}}
+\subsubsection[{init\-\_\-station\-\_\-tracking}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Device.\-Multi\-Dof\-Device.\-init\-\_\-station\-\_\-tracking} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Device_1_1MultiDofDevice_afc9f3ca31bfc426a12d0128b44ecac81}
+
+
+\-Initializes a tracking reader for the device's position and rotation. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-The tracking name as chosen in daemon, \-None if no tracking is available. \\
+\hline
+{\em \-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T} & \-Tracking matrix to be used if no tracking is available. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice_a87336be0a2a14f20056c52b7d748d130}{\index{lib\-::\-Device\-::\-Multi\-Dof\-Device@{lib\-::\-Device\-::\-Multi\-Dof\-Device}!mf\-\_\-buttons@{mf\-\_\-buttons}}
+\index{mf\-\_\-buttons@{mf\-\_\-buttons}!lib::Device::MultiDofDevice@{lib\-::\-Device\-::\-Multi\-Dof\-Device}}
+\subsubsection[{mf\-\_\-buttons}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Multi\-Dof\-Device\-::mf\-\_\-buttons} = avango.\-M\-F\-Bool()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Device_1_1MultiDofDevice_a87336be0a2a14f20056c52b7d748d130}
+
+
+\-The button values of the input device. 
+
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice_a7fb0542d82d1826e96f65c209a43f2df}{\index{lib\-::\-Device\-::\-Multi\-Dof\-Device@{lib\-::\-Device\-::\-Multi\-Dof\-Device}!mf\-\_\-dof@{mf\-\_\-dof}}
+\index{mf\-\_\-dof@{mf\-\_\-dof}!lib::Device::MultiDofDevice@{lib\-::\-Device\-::\-Multi\-Dof\-Device}}
+\subsubsection[{mf\-\_\-dof}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Multi\-Dof\-Device\-::mf\-\_\-dof} = avango.\-M\-F\-Float()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Device_1_1MultiDofDevice_a7fb0542d82d1826e96f65c209a43f2df}
+
+
+\-The input values of the input device. 
+
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice_a04b79f1c36851426cd8845111d3d7e5f}{\index{lib\-::\-Device\-::\-Multi\-Dof\-Device@{lib\-::\-Device\-::\-Multi\-Dof\-Device}!rotation\-\_\-factor@{rotation\-\_\-factor}}
+\index{rotation\-\_\-factor@{rotation\-\_\-factor}!lib::Device::MultiDofDevice@{lib\-::\-Device\-::\-Multi\-Dof\-Device}}
+\subsubsection[{rotation\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Multi\-Dof\-Device\-::rotation\-\_\-factor} = 1.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Device_1_1MultiDofDevice_a04b79f1c36851426cd8845111d3d7e5f}
+
+
+\-Factor to modify the device's rotation input. 
+
+
+
+\-Reimplemented in \hyperlink{classlib_1_1Device_1_1OldSpheronDevice_a76924c896cd3b56a82d6089b89eb406d}{lib.\-Device.\-Old\-Spheron\-Device}, \hyperlink{classlib_1_1Device_1_1XBoxDevice_a44db7cf83243a611c6881b0835baee28}{lib.\-Device.\-X\-Box\-Device}, \hyperlink{classlib_1_1Device_1_1KeyboardMouseDevice_a1587b95d293ad632c16f7e065f879f12}{lib.\-Device.\-Keyboard\-Mouse\-Device}, and \hyperlink{classlib_1_1Device_1_1SpacemouseDevice_a416e3d261d1db018dc24f15707f14c8f}{lib.\-Device.\-Spacemouse\-Device}.
+
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice_ab59451f95bf8bf7b806aad6eda1147ba}{\index{lib\-::\-Device\-::\-Multi\-Dof\-Device@{lib\-::\-Device\-::\-Multi\-Dof\-Device}!sf\-\_\-station\-\_\-mat@{sf\-\_\-station\-\_\-mat}}
+\index{sf\-\_\-station\-\_\-mat@{sf\-\_\-station\-\_\-mat}!lib::Device::MultiDofDevice@{lib\-::\-Device\-::\-Multi\-Dof\-Device}}
+\subsubsection[{sf\-\_\-station\-\_\-mat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Multi\-Dof\-Device\-::sf\-\_\-station\-\_\-mat} = avango.\-gua.\-S\-F\-Matrix4()\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Device_1_1MultiDofDevice_ab59451f95bf8bf7b806aad6eda1147ba}
+
+
+\-Tracking position and rotation. 
+
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice_a707b8d75550724801392ad592e1204d9}{\index{lib\-::\-Device\-::\-Multi\-Dof\-Device@{lib\-::\-Device\-::\-Multi\-Dof\-Device}!tracking\-\_\-reader@{tracking\-\_\-reader}}
+\index{tracking\-\_\-reader@{tracking\-\_\-reader}!lib::Device::MultiDofDevice@{lib\-::\-Device\-::\-Multi\-Dof\-Device}}
+\subsubsection[{tracking\-\_\-reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Multi\-Dof\-Device\-::tracking\-\_\-reader}}}\label{classlib_1_1Device_1_1MultiDofDevice_a707b8d75550724801392ad592e1204d9}
+
+
+\-Tracking \-Reader to process the tracking input of the device. 
+
+\hypertarget{classlib_1_1Device_1_1MultiDofDevice_a92b1c30e0edb14afd629c053d6719594}{\index{lib\-::\-Device\-::\-Multi\-Dof\-Device@{lib\-::\-Device\-::\-Multi\-Dof\-Device}!translation\-\_\-factor@{translation\-\_\-factor}}
+\index{translation\-\_\-factor@{translation\-\_\-factor}!lib::Device::MultiDofDevice@{lib\-::\-Device\-::\-Multi\-Dof\-Device}}
+\subsubsection[{translation\-\_\-factor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Device.\-Multi\-Dof\-Device\-::translation\-\_\-factor} = 1.\-0\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}\label{classlib_1_1Device_1_1MultiDofDevice_a92b1c30e0edb14afd629c053d6719594}
+
+
+\-Factor to modify the device's translation input. 
+
+
+
+\-Reimplemented in \hyperlink{classlib_1_1Device_1_1OldSpheronDevice_a9cfb9fb037b8aaa46875766b80cdc6a6}{lib.\-Device.\-Old\-Spheron\-Device}, \hyperlink{classlib_1_1Device_1_1XBoxDevice_a3f49c1e0a121515d887ab15e258ca0c8}{lib.\-Device.\-X\-Box\-Device}, \hyperlink{classlib_1_1Device_1_1KeyboardMouseDevice_aaf8a0ccdb6ab57e3e7b6710b137af971}{lib.\-Device.\-Keyboard\-Mouse\-Device}, and \hyperlink{classlib_1_1Device_1_1SpacemouseDevice_a5626eab9cd79cdae239f50012fbfca59}{lib.\-Device.\-Spacemouse\-Device}.
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{Device_8py}{\-Device.\-py}\end{DoxyCompactItemize}

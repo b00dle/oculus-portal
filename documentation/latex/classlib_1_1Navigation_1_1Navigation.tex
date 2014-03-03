@@ -1,0 +1,472 @@
+\hypertarget{classlib_1_1Navigation_1_1Navigation}{\section{lib.\-Navigation.\-Navigation \-Class \-Reference}
+\label{classlib_1_1Navigation_1_1Navigation}\index{lib.\-Navigation.\-Navigation@{lib.\-Navigation.\-Navigation}}
+}
+
+
+\-Wrapper class to create an input \hyperlink{namespacelib_1_1Device}{\-Device}, a \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance, an \hyperlink{namespacelib_1_1InputMapping}{\-Input\-Mapping} and a \hyperlink{namespacelib_1_1Platform}{\-Platform}.  
+
+
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_a64ca778d811fce03565e72a950db1333}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Default constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_af33463f7323af7fe77596d5764c0e026}{my\-\_\-constructor}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_a0bb07589d747489b07c098e22a1b9fa4}{reset}
+\begin{DoxyCompactList}\small\item\em \-Resets the platform's matrix to the initial value. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_aca5510d34f58c06a4009b871e9c0c024}{activate\-\_\-realistic\-\_\-mode}
+\begin{DoxyCompactList}\small\item\em \-Activates 3-\/\-D\-O\-F (realistic) navigation mode. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_a7a7f120eeb6f66fe9fe5cbba78d3714a}{animate\-\_\-dofchange}
+\begin{DoxyCompactList}\small\item\em \-Animates the removal of pitch and roll angles when switching from 6-\/\-D\-O\-F (unrealistic) to 3-\/\-D\-O\-F (realistic) navigation mode. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_a7053f5eb9d3415973efe213ecfd79074}{deactivate\-\_\-realistic\-\_\-mode}
+\begin{DoxyCompactList}\small\item\em \-Activates 6-\/\-D\-O\-F (unrealistic) navigation mode. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_ac860e4179d72e5a0f262bc470031ba67}{couple\-\_\-navigation}
+\begin{DoxyCompactList}\small\item\em \-Bidirectional coupling of this and another navigation. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_a0f91413f294ba555d736ca3cb08b170a}{decouple\-\_\-navigation}
+\begin{DoxyCompactList}\small\item\em \-Bidirectional decoupling of this and another navigation. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_a11c019d2607e24d1a7c181c1f6bc4258}{trigger\-\_\-coupling}
+\begin{DoxyCompactList}\small\item\em \-Triggers the coupling mechanism. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_ab7cf17ddb952e15c828362180a838cdf}{set\-\_\-coupling\-\_\-animation\-\_\-settings}
+\begin{DoxyCompactList}\small\item\em \-Sets all the necessary attributes to perform a lerp and slerp animation to another navigation. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_a875c52ef55ee284954fcd3c7649b3f02}{animate\-\_\-coupling}
+\begin{DoxyCompactList}\small\item\em \-Animates the movement to another platform during the coupling process. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_ad08d0d4e9ea8dc994135b564d7c56873}{clear\-\_\-couplings}
+\begin{DoxyCompactList}\small\item\em \-Decouples this \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation} from all coupled \-Navigations. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_a11eb44407e80e971fceda4ab637b755c}{trigger\-\_\-dofchange}
+\begin{DoxyCompactList}\small\item\em \-Switches from realistic to unrealistic or from unrealistic to realistic mode on this and all other coupled instances. \end{DoxyCompactList}\item 
+def \hyperlink{classlib_1_1Navigation_1_1Navigation_a5eefc6600f0289531b61a488056ab687}{evaluate}
+\begin{DoxyCompactList}\small\item\em \-Evaluated every frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a570f08be79fd7828531009a4c8697ea2}{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}
+\begin{DoxyCompactList}\small\item\em \-Reference to the scenegraph. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_aef564d64ca927ab79ea482745bc47ced}{coupled\-\_\-navigations}
+\begin{DoxyCompactList}\small\item\em \-List of coupled \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation} instances to which this \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation}'s changes are forwarded to. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_ae079b6aaf8ce61ce5648dbe9824c7865}{input\-\_\-sensor\-\_\-type}
+\begin{DoxyCompactList}\small\item\em \-String indicating the type of input device to be created, e.\-g. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_aec6160651da60e489723179c8f243867}{start\-\_\-matrix}
+\begin{DoxyCompactList}\small\item\em \-Initial position matrix of the platform. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a479f92284f2843ba032ad5996b096f4a}{device}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacelib_1_1Device}{\-Device} instance handling relative inputs of physical device. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_ae205315b78f246befc2c842f618c76be}{groundfollowing}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance to correct the absolute matrices with respect to gravity. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a753651f998070a71fb557af66ea28a5f}{inputmapping}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacelib_1_1InputMapping}{\-Input\-Mapping} instance to process and map relative device inputs to an absolute matrix. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a98559fc1371f6d5de6e193e48e3b6c9b}{platform}
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespacelib_1_1Platform}{\-Platform} instance that is controlled by the \hyperlink{namespacelib_1_1Device}{\-Device}. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a1cb488485919adab7e0fcecedcbef1e0}{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N\-\_\-\-L\-I\-S\-T}
+\begin{DoxyCompactList}\small\item\em \-Reference to a list containing all \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation} instances in the setup. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_aa883a59a839271d7e18e06c1517abad9}{in\-\_\-dofchange\-\_\-animation}
+\begin{DoxyCompactList}\small\item\em \-Boolean variable to indicate if a movement animation for a \-D\-O\-F change (realistic/unrealistic) is in progress. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_ad482cc59770a6af24c5f1387d4da052e}{frames\-\_\-since\-\_\-last\-\_\-dofchange}
+\begin{DoxyCompactList}\small\item\em \-Framecount to make realistic/unrealistic switch on one button. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_ab6d25d73b9860f66602f5a0d1d709e5d}{frames\-\_\-since\-\_\-last\-\_\-coupling}
+\begin{DoxyCompactList}\small\item\em \-Framecount since the last coupling / decoupling operation was done. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_ae354c4f9412c29849e814e21a91a5591}{in\-\_\-coupling\-\_\-animation}
+\begin{DoxyCompactList}\small\item\em \-Boolean variable to indicate if a movement animation for coupling is in progress. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a67d4e57b17c3abd41aefa0a1861a0891}{timer}
+\begin{DoxyCompactList}\small\item\em \-Instance of \-Time\-Sensor to handle the duration of animations. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a5c3fbda73c36d7dd544712c2d4298033}{\-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G}
+\begin{DoxyCompactList}\small\item\em \-Boolean indicating if an animation should be done when a coupling of navigations is initiated. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a95095397df146e371899a47701f544ff}{movement\-\_\-traces}
+\begin{DoxyCompactList}\small\item\em \-Boolean indicating if the movement traces should be visualized by line segments. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a88dc76b6afbdcc89d772e45cb2e16196}{trace}
+\begin{DoxyCompactList}\small\item\em \-The trace class that handles the line segment updating. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a516572669ba2af5be532e1d9b5a121fc}{start\-\_\-rot}
+\begin{DoxyCompactList}\small\item\em \-Quaternion representing the start rotation of the animation. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a1d6a3cee52e37dc1975ff09e1843da99}{target\-\_\-rot}
+\begin{DoxyCompactList}\small\item\em \-Quaternion representing the target rotation of the animation. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_adcd00436504ee619f25a8c738cc22baa}{animation\-\_\-time}
+\begin{DoxyCompactList}\small\item\em \-Time of the rotation animation in relation to the rotation distance. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a0402444ad79196cdafa412e0bcc5b22d}{start\-\_\-trans}
+\begin{DoxyCompactList}\small\item\em \-Starting translation vector of the animation. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_a531229392acfce64e0bfb196d586c496}{animation\-\_\-start\-\_\-time}
+\begin{DoxyCompactList}\small\item\em \-Point in time where the animation started. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1Navigation_1_1Navigation_abddb6bde6f446f0a1a3711620d926dd9}{target\-\_\-trans}
+\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Wrapper class to create an input \hyperlink{namespacelib_1_1Device}{\-Device}, a \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance, an \hyperlink{namespacelib_1_1InputMapping}{\-Input\-Mapping} and a \hyperlink{namespacelib_1_1Platform}{\-Platform}. 
+
+\-Furthermore, this class reacts on the device's button inputs and toggles the 3-\/\-D\-O\-F (realistic) / 6-\/\-D\-O\-F (unrealistic) navigation mode. \-When switching from unrealistic to realistic mode, an animation is triggered in which the platform is rotated back in an upright position (removal of pitch and roll angle). 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a64ca778d811fce03565e72a950db1333}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_a64ca778d811fce03565e72a950db1333}
+
+
+\-Default constructor. 
+
+
+
+\subsection{\-Member \-Function \-Documentation}
+\hypertarget{classlib_1_1Navigation_1_1Navigation_aca5510d34f58c06a4009b871e9c0c024}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!activate\-\_\-realistic\-\_\-mode@{activate\-\_\-realistic\-\_\-mode}}
+\index{activate\-\_\-realistic\-\_\-mode@{activate\-\_\-realistic\-\_\-mode}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{activate\-\_\-realistic\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-activate\-\_\-realistic\-\_\-mode} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_aca5510d34f58c06a4009b871e9c0c024}
+
+
+\-Activates 3-\/\-D\-O\-F (realistic) navigation mode. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a875c52ef55ee284954fcd3c7649b3f02}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!animate\-\_\-coupling@{animate\-\_\-coupling}}
+\index{animate\-\_\-coupling@{animate\-\_\-coupling}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{animate\-\_\-coupling}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-animate\-\_\-coupling} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_a875c52ef55ee284954fcd3c7649b3f02}
+
+
+\-Animates the movement to another platform during the coupling process. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a7a7f120eeb6f66fe9fe5cbba78d3714a}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!animate\-\_\-dofchange@{animate\-\_\-dofchange}}
+\index{animate\-\_\-dofchange@{animate\-\_\-dofchange}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{animate\-\_\-dofchange}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-animate\-\_\-dofchange} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_a7a7f120eeb6f66fe9fe5cbba78d3714a}
+
+
+\-Animates the removal of pitch and roll angles when switching from 6-\/\-D\-O\-F (unrealistic) to 3-\/\-D\-O\-F (realistic) navigation mode. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_ad08d0d4e9ea8dc994135b564d7c56873}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!clear\-\_\-couplings@{clear\-\_\-couplings}}
+\index{clear\-\_\-couplings@{clear\-\_\-couplings}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{clear\-\_\-couplings}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-clear\-\_\-couplings} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_ad08d0d4e9ea8dc994135b564d7c56873}
+
+
+\-Decouples this \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation} from all coupled \-Navigations. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_ac860e4179d72e5a0f262bc470031ba67}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!couple\-\_\-navigation@{couple\-\_\-navigation}}
+\index{couple\-\_\-navigation@{couple\-\_\-navigation}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{couple\-\_\-navigation}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-couple\-\_\-navigation} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_ac860e4179d72e5a0f262bc470031ba67}
+
+
+\-Bidirectional coupling of this and another navigation. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-N\-A\-V\-I\-G\-A\-T\-I\-O\-N} & \-The \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation} to be coupled. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a7053f5eb9d3415973efe213ecfd79074}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!deactivate\-\_\-realistic\-\_\-mode@{deactivate\-\_\-realistic\-\_\-mode}}
+\index{deactivate\-\_\-realistic\-\_\-mode@{deactivate\-\_\-realistic\-\_\-mode}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{deactivate\-\_\-realistic\-\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-deactivate\-\_\-realistic\-\_\-mode} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_a7053f5eb9d3415973efe213ecfd79074}
+
+
+\-Activates 6-\/\-D\-O\-F (unrealistic) navigation mode. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a0f91413f294ba555d736ca3cb08b170a}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!decouple\-\_\-navigation@{decouple\-\_\-navigation}}
+\index{decouple\-\_\-navigation@{decouple\-\_\-navigation}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{decouple\-\_\-navigation}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-decouple\-\_\-navigation} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_a0f91413f294ba555d736ca3cb08b170a}
+
+
+\-Bidirectional decoupling of this and another navigation. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-N\-A\-V\-I\-G\-A\-T\-I\-O\-N} & \-The \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation} to be decoupled. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a5eefc6600f0289531b61a488056ab687}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{evaluate}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-evaluate} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_a5eefc6600f0289531b61a488056ab687}
+
+
+\-Evaluated every frame. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_af33463f7323af7fe77596d5764c0e026}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!my\-\_\-constructor@{my\-\_\-constructor}}
+\index{my\-\_\-constructor@{my\-\_\-constructor}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{my\-\_\-constructor}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-my\-\_\-constructor} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H, }
+\item[{}]{\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-S\-I\-Z\-E, }
+\item[{}]{\-S\-T\-A\-R\-T\-I\-N\-G\-\_\-\-M\-A\-T\-R\-I\-X, }
+\item[{}]{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N\-\_\-\-L\-I\-S\-T, }
+\item[{}]{\-I\-N\-P\-U\-T\-\_\-\-S\-E\-N\-S\-O\-R\-\_\-\-T\-Y\-P\-E, }
+\item[{}]{\-I\-N\-P\-U\-T\-\_\-\-S\-E\-N\-S\-O\-R\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T, }
+\item[{}]{\-G\-F\-\_\-\-S\-E\-T\-T\-I\-N\-G\-S, }
+\item[{}]{\-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G, }
+\item[{}]{\-M\-O\-V\-E\-M\-E\-N\-T\-\_\-\-T\-R\-A\-C\-E\-S, }
+\item[{}]{\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E = {\ttfamily \-None}}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_af33463f7323af7fe77596d5764c0e026}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-S\-C\-E\-N\-E\-G\-R\-A\-P\-H} & \-Reference to the scenegraph in which the navigation should take place. \\
+\hline
+{\em \-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-S\-I\-Z\-E} & \-Physical size of the platform in meters. \-Passed in an two-\/element list\-: \mbox{[}width, depth\mbox{]} \\
+\hline
+{\em \-S\-T\-A\-R\-T\-I\-N\-G\-\_\-\-M\-A\-T\-R\-I\-X} & \-Initial position matrix of the platform to be created. \\
+\hline
+{\em \-N\-A\-V\-I\-G\-A\-T\-I\-O\-N\-\_\-\-L\-I\-S\-T} & \-List of all navigations in the setup. \\
+\hline
+{\em \-I\-N\-P\-U\-T\-\_\-\-S\-E\-N\-S\-O\-R\-\_\-\-T\-Y\-P\-E} & \-String indicating the type of input device to be created, e.\-g. \char`\"{}\-X\-Box\-Controller\char`\"{} or \char`\"{}\-Spheron\char`\"{} \\
+\hline
+{\em \-I\-N\-P\-U\-T\-\_\-\-S\-E\-N\-S\-O\-R\-\_\-\-N\-A\-M\-E} & \-Name of the input device sensor as chosen in daemon. \\
+\hline
+{\em \-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T} & \-Matrix which should be applied if no tracking is available. \\
+\hline
+{\em \-G\-F\-\_\-\-S\-E\-T\-T\-I\-N\-G\-S} & \-Setting list for the \hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance\-: \mbox{[}activated, ray\-\_\-start\-\_\-height\mbox{]} \\
+\hline
+{\em \-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G} & \-Boolean indicating if an animation should be done when a coupling of navigations is initiated. \\
+\hline
+{\em \-M\-O\-V\-E\-M\-E\-N\-T\-\_\-\-T\-R\-A\-C\-E\-S} & \-Boolean indicating if the device should leave traces behind. \\
+\hline
+{\em \-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-Name of the device's tracking target name as chosen in daemon. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a0bb07589d747489b07c098e22a1b9fa4}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!reset@{reset}}
+\index{reset@{reset}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{reset}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-reset} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_a0bb07589d747489b07c098e22a1b9fa4}
+
+
+\-Resets the platform's matrix to the initial value. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_ab7cf17ddb952e15c828362180a838cdf}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!set\-\_\-coupling\-\_\-animation\-\_\-settings@{set\-\_\-coupling\-\_\-animation\-\_\-settings}}
+\index{set\-\_\-coupling\-\_\-animation\-\_\-settings@{set\-\_\-coupling\-\_\-animation\-\_\-settings}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{set\-\_\-coupling\-\_\-animation\-\_\-settings}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-set\-\_\-coupling\-\_\-animation\-\_\-settings} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_ab7cf17ddb952e15c828362180a838cdf}
+
+
+\-Sets all the necessary attributes to perform a lerp and slerp animation to another navigation. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N} & \-The \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation} instance to animate to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a11c019d2607e24d1a7c181c1f6bc4258}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!trigger\-\_\-coupling@{trigger\-\_\-coupling}}
+\index{trigger\-\_\-coupling@{trigger\-\_\-coupling}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{trigger\-\_\-coupling}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-trigger\-\_\-coupling} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_a11c019d2607e24d1a7c181c1f6bc4258}
+
+
+\-Triggers the coupling mechanism. 
+
+\-When other platforms are close enough, they are coupled to each other. \hypertarget{classlib_1_1Navigation_1_1Navigation_a11eb44407e80e971fceda4ab637b755c}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!trigger\-\_\-dofchange@{trigger\-\_\-dofchange}}
+\index{trigger\-\_\-dofchange@{trigger\-\_\-dofchange}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{trigger\-\_\-dofchange}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Navigation.\-Navigation.\-trigger\-\_\-dofchange} (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1Navigation_1_1Navigation_a11eb44407e80e971fceda4ab637b755c}
+
+
+\-Switches from realistic to unrealistic or from unrealistic to realistic mode on this and all other coupled instances. 
+
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a5c3fbda73c36d7dd544712c2d4298033}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!\-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G@{\-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G}}
+\index{\-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G@{\-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{\-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::\-A\-N\-I\-M\-A\-T\-E\-\_\-\-C\-O\-U\-P\-L\-I\-N\-G}}}\label{classlib_1_1Navigation_1_1Navigation_a5c3fbda73c36d7dd544712c2d4298033}
+
+
+\-Boolean indicating if an animation should be done when a coupling of navigations is initiated. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a531229392acfce64e0bfb196d586c496}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!animation\-\_\-start\-\_\-time@{animation\-\_\-start\-\_\-time}}
+\index{animation\-\_\-start\-\_\-time@{animation\-\_\-start\-\_\-time}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{animation\-\_\-start\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::animation\-\_\-start\-\_\-time}}}\label{classlib_1_1Navigation_1_1Navigation_a531229392acfce64e0bfb196d586c496}
+
+
+\-Point in time where the animation started. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_adcd00436504ee619f25a8c738cc22baa}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!animation\-\_\-time@{animation\-\_\-time}}
+\index{animation\-\_\-time@{animation\-\_\-time}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{animation\-\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::animation\-\_\-time}}}\label{classlib_1_1Navigation_1_1Navigation_adcd00436504ee619f25a8c738cc22baa}
+
+
+\-Time of the rotation animation in relation to the rotation distance. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_aef564d64ca927ab79ea482745bc47ced}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!coupled\-\_\-navigations@{coupled\-\_\-navigations}}
+\index{coupled\-\_\-navigations@{coupled\-\_\-navigations}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{coupled\-\_\-navigations}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::coupled\-\_\-navigations}}}\label{classlib_1_1Navigation_1_1Navigation_aef564d64ca927ab79ea482745bc47ced}
+
+
+\-List of coupled \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation} instances to which this \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation}'s changes are forwarded to. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a479f92284f2843ba032ad5996b096f4a}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!device@{device}}
+\index{device@{device}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{device}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::device}}}\label{classlib_1_1Navigation_1_1Navigation_a479f92284f2843ba032ad5996b096f4a}
+
+
+\hyperlink{namespacelib_1_1Device}{\-Device} instance handling relative inputs of physical device. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_ab6d25d73b9860f66602f5a0d1d709e5d}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!frames\-\_\-since\-\_\-last\-\_\-coupling@{frames\-\_\-since\-\_\-last\-\_\-coupling}}
+\index{frames\-\_\-since\-\_\-last\-\_\-coupling@{frames\-\_\-since\-\_\-last\-\_\-coupling}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{frames\-\_\-since\-\_\-last\-\_\-coupling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::frames\-\_\-since\-\_\-last\-\_\-coupling}}}\label{classlib_1_1Navigation_1_1Navigation_ab6d25d73b9860f66602f5a0d1d709e5d}
+
+
+\-Framecount since the last coupling / decoupling operation was done. 
+
+\-Used to make functionality on one button. \hypertarget{classlib_1_1Navigation_1_1Navigation_ad482cc59770a6af24c5f1387d4da052e}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!frames\-\_\-since\-\_\-last\-\_\-dofchange@{frames\-\_\-since\-\_\-last\-\_\-dofchange}}
+\index{frames\-\_\-since\-\_\-last\-\_\-dofchange@{frames\-\_\-since\-\_\-last\-\_\-dofchange}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{frames\-\_\-since\-\_\-last\-\_\-dofchange}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::frames\-\_\-since\-\_\-last\-\_\-dofchange}}}\label{classlib_1_1Navigation_1_1Navigation_ad482cc59770a6af24c5f1387d4da052e}
+
+
+\-Framecount to make realistic/unrealistic switch on one button. 
+
+\-Switching again is possible after x frames. \hypertarget{classlib_1_1Navigation_1_1Navigation_ae205315b78f246befc2c842f618c76be}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!groundfollowing@{groundfollowing}}
+\index{groundfollowing@{groundfollowing}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{groundfollowing}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::groundfollowing}}}\label{classlib_1_1Navigation_1_1Navigation_ae205315b78f246befc2c842f618c76be}
+
+
+\hyperlink{namespacelib_1_1GroundFollowing}{\-Ground\-Following} instance to correct the absolute matrices with respect to gravity. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_ae354c4f9412c29849e814e21a91a5591}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!in\-\_\-coupling\-\_\-animation@{in\-\_\-coupling\-\_\-animation}}
+\index{in\-\_\-coupling\-\_\-animation@{in\-\_\-coupling\-\_\-animation}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{in\-\_\-coupling\-\_\-animation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::in\-\_\-coupling\-\_\-animation}}}\label{classlib_1_1Navigation_1_1Navigation_ae354c4f9412c29849e814e21a91a5591}
+
+
+\-Boolean variable to indicate if a movement animation for coupling is in progress. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_aa883a59a839271d7e18e06c1517abad9}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!in\-\_\-dofchange\-\_\-animation@{in\-\_\-dofchange\-\_\-animation}}
+\index{in\-\_\-dofchange\-\_\-animation@{in\-\_\-dofchange\-\_\-animation}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{in\-\_\-dofchange\-\_\-animation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::in\-\_\-dofchange\-\_\-animation}}}\label{classlib_1_1Navigation_1_1Navigation_aa883a59a839271d7e18e06c1517abad9}
+
+
+\-Boolean variable to indicate if a movement animation for a \-D\-O\-F change (realistic/unrealistic) is in progress. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_ae079b6aaf8ce61ce5648dbe9824c7865}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!input\-\_\-sensor\-\_\-type@{input\-\_\-sensor\-\_\-type}}
+\index{input\-\_\-sensor\-\_\-type@{input\-\_\-sensor\-\_\-type}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{input\-\_\-sensor\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::input\-\_\-sensor\-\_\-type}}}\label{classlib_1_1Navigation_1_1Navigation_ae079b6aaf8ce61ce5648dbe9824c7865}
+
+
+\-String indicating the type of input device to be created, e.\-g. 
+
+\char`\"{}\-X\-Box\-Controller\char`\"{} or \char`\"{}\-Spheron\char`\"{} \hypertarget{classlib_1_1Navigation_1_1Navigation_a753651f998070a71fb557af66ea28a5f}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!inputmapping@{inputmapping}}
+\index{inputmapping@{inputmapping}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{inputmapping}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::inputmapping}}}\label{classlib_1_1Navigation_1_1Navigation_a753651f998070a71fb557af66ea28a5f}
+
+
+\hyperlink{namespacelib_1_1InputMapping}{\-Input\-Mapping} instance to process and map relative device inputs to an absolute matrix. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a95095397df146e371899a47701f544ff}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!movement\-\_\-traces@{movement\-\_\-traces}}
+\index{movement\-\_\-traces@{movement\-\_\-traces}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{movement\-\_\-traces}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::movement\-\_\-traces}}}\label{classlib_1_1Navigation_1_1Navigation_a95095397df146e371899a47701f544ff}
+
+
+\-Boolean indicating if the movement traces should be visualized by line segments. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a1cb488485919adab7e0fcecedcbef1e0}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N\-\_\-\-L\-I\-S\-T@{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N\-\_\-\-L\-I\-S\-T}}
+\index{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N\-\_\-\-L\-I\-S\-T@{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N\-\_\-\-L\-I\-S\-T}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N\-\_\-\-L\-I\-S\-T}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::\-N\-A\-V\-I\-G\-A\-T\-I\-O\-N\-\_\-\-L\-I\-S\-T}}}\label{classlib_1_1Navigation_1_1Navigation_a1cb488485919adab7e0fcecedcbef1e0}
+
+
+\-Reference to a list containing all \hyperlink{classlib_1_1Navigation_1_1Navigation}{\-Navigation} instances in the setup. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a98559fc1371f6d5de6e193e48e3b6c9b}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!platform@{platform}}
+\index{platform@{platform}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{platform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::platform}}}\label{classlib_1_1Navigation_1_1Navigation_a98559fc1371f6d5de6e193e48e3b6c9b}
+
+
+\hyperlink{namespacelib_1_1Platform}{\-Platform} instance that is controlled by the \hyperlink{namespacelib_1_1Device}{\-Device}. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a570f08be79fd7828531009a4c8697ea2}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H@{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}}
+\index{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H@{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::\-S\-C\-E\-N\-E\-G\-R\-A\-P\-H}}}\label{classlib_1_1Navigation_1_1Navigation_a570f08be79fd7828531009a4c8697ea2}
+
+
+\-Reference to the scenegraph. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_aec6160651da60e489723179c8f243867}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!start\-\_\-matrix@{start\-\_\-matrix}}
+\index{start\-\_\-matrix@{start\-\_\-matrix}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{start\-\_\-matrix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::start\-\_\-matrix}}}\label{classlib_1_1Navigation_1_1Navigation_aec6160651da60e489723179c8f243867}
+
+
+\-Initial position matrix of the platform. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a516572669ba2af5be532e1d9b5a121fc}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!start\-\_\-rot@{start\-\_\-rot}}
+\index{start\-\_\-rot@{start\-\_\-rot}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{start\-\_\-rot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::start\-\_\-rot}}}\label{classlib_1_1Navigation_1_1Navigation_a516572669ba2af5be532e1d9b5a121fc}
+
+
+\-Quaternion representing the start rotation of the animation. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a0402444ad79196cdafa412e0bcc5b22d}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!start\-\_\-trans@{start\-\_\-trans}}
+\index{start\-\_\-trans@{start\-\_\-trans}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{start\-\_\-trans}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::start\-\_\-trans}}}\label{classlib_1_1Navigation_1_1Navigation_a0402444ad79196cdafa412e0bcc5b22d}
+
+
+\-Starting translation vector of the animation. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a1d6a3cee52e37dc1975ff09e1843da99}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!target\-\_\-rot@{target\-\_\-rot}}
+\index{target\-\_\-rot@{target\-\_\-rot}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{target\-\_\-rot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::target\-\_\-rot}}}\label{classlib_1_1Navigation_1_1Navigation_a1d6a3cee52e37dc1975ff09e1843da99}
+
+
+\-Quaternion representing the target rotation of the animation. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_abddb6bde6f446f0a1a3711620d926dd9}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!target\-\_\-trans@{target\-\_\-trans}}
+\index{target\-\_\-trans@{target\-\_\-trans}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{target\-\_\-trans}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::target\-\_\-trans}}}\label{classlib_1_1Navigation_1_1Navigation_abddb6bde6f446f0a1a3711620d926dd9}
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a67d4e57b17c3abd41aefa0a1861a0891}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!timer@{timer}}
+\index{timer@{timer}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{timer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::timer}}}\label{classlib_1_1Navigation_1_1Navigation_a67d4e57b17c3abd41aefa0a1861a0891}
+
+
+\-Instance of \-Time\-Sensor to handle the duration of animations. 
+
+\hypertarget{classlib_1_1Navigation_1_1Navigation_a88dc76b6afbdcc89d772e45cb2e16196}{\index{lib\-::\-Navigation\-::\-Navigation@{lib\-::\-Navigation\-::\-Navigation}!trace@{trace}}
+\index{trace@{trace}!lib::Navigation::Navigation@{lib\-::\-Navigation\-::\-Navigation}}
+\subsubsection[{trace}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Navigation.\-Navigation\-::trace}}}\label{classlib_1_1Navigation_1_1Navigation_a88dc76b6afbdcc89d772e45cb2e16196}
+
+
+\-The trace class that handles the line segment updating. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{Navigation_8py}{\-Navigation.\-py}\end{DoxyCompactItemize}

@@ -1,0 +1,214 @@
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser}{\section{lib.\-Power\-Wall\-User.\-Power\-Wall\-User \-Class \-Reference}
+\label{classlib_1_1PowerWallUser_1_1PowerWallUser}\index{lib.\-Power\-Wall\-User.\-Power\-Wall\-User@{lib.\-Power\-Wall\-User.\-Power\-Wall\-User}}
+}
+
+
+\-Internal representation of a \-Powerwall user.  
+
+
+\-Inheritance diagram for lib.\-Power\-Wall\-User.\-Power\-Wall\-User\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classlib_1_1PowerWallUser_1_1PowerWallUser}
+\end{center}
+\end{figure}
+\subsection*{\-Public \-Member \-Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_aec29e4f909ca5c75619b4fe6a1ff61ef}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em \-Custom constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{\-Public \-Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a5912e221e61c03533ce5367a27f2538b}{id}
+\begin{DoxyCompactList}\small\item\em \-Identification number of the \hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser}{\-Power\-Wall\-User}, starting from 0. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a7ec3f6ee592c4f69a459248a2bb93c87}{left\-\_\-eye\-\_\-resolution}
+\begin{DoxyCompactList}\small\item\em \-The user's left eye resolution in pixels. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a9f0eb47b7e3e5d3d060a425bc225a8a5}{right\-\_\-eye\-\_\-resolution}
+\begin{DoxyCompactList}\small\item\em \-The user's right eye resolution in pixels. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_acff959d7d5fc0e43505d2682e653f957}{window\-\_\-size}
+\begin{DoxyCompactList}\small\item\em \-The resolution in pixels to be applied on the window. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_aae55047b897b3daa9e76d97f08caf355}{warp\-\_\-matrices\-\_\-path}
+\begin{DoxyCompactList}\small\item\em \-Path of the warp matrices to be applied on the rendered image. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a5f060b477ca50cadeddc36e75225acdc}{screen\-\_\-size}
+\begin{DoxyCompactList}\small\item\em \-Physical screen size of the \-Powerwall in meters. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a7fed1f9708767b5e394c48c09e526b14}{screen\-\_\-transform}
+\begin{DoxyCompactList}\small\item\em \-Physical transformation of the screen in meters. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a55cca8a9685923c2c3b29671fa34fcb7}{transmitter\-\_\-offset}
+\begin{DoxyCompactList}\small\item\em \-The transmitter offset to be applied. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a95bf9d86c8dc5d35af9686f88b6fe9a3}{head\-\_\-transform}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the head position of the user with respect to platform. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a61277bfdf2299b5f2421fea86be93fc4}{headtracking\-\_\-reader}
+\begin{DoxyCompactList}\small\item\em \-Instance of a child class of \hyperlink{namespacelib_1_1TrackingReader}{\-Tracking\-Reader} to supply translation input. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a7c08b9d36b32814fa14719e2d7494dfd}{left\-\_\-eye}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the user's left eye. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_aaaf579efdbc2f052745c40cef0741a0a}{right\-\_\-eye}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the user's right eye. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a3a3aab9cb49cbc130b88626db04b8866}{screen}
+\begin{DoxyCompactList}\small\item\em \-Scenegraph node representing the user's screen. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a66815b6ee53b6efee2bc599320e0e15d}{camera}
+\begin{DoxyCompactList}\small\item\em \-Camera to represent the user's viewport to be rendered. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_abe6b7da901a398446c6bba0d075fec75}{window}
+\begin{DoxyCompactList}\small\item\em \-Window to display the rendered image to. \end{DoxyCompactList}\item 
+\hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser_a9e8d3ed299af3a3e67727e066063acf0}{pipeline}
+\begin{DoxyCompactList}\small\item\em \-Pipeline for rendering purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Internal representation of a \-Powerwall user. 
+
+\-Upon construction, this class appends the necessary nodes to the scenegraph, creates screens, eyes, camera, pipeline and initializes the headtracking. 
+
+\subsection{\-Constructor \& \-Destructor \-Documentation}
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_aec29e4f909ca5c75619b4fe6a1ff61ef}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def {\bf lib.\-Power\-Wall\-User.\-Power\-Wall\-User.\-\_\-\-\_\-init\-\_\-\-\_\-} (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{\-V\-I\-E\-W\-I\-N\-G\-\_\-\-M\-A\-N\-A\-G\-E\-R, }
+\item[{}]{\-H\-E\-A\-D\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E, }
+\item[{}]{\-W\-A\-L\-L\-\_\-\-U\-S\-E\-R\-\_\-\-I\-D, }
+\item[{}]{\-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D, }
+\item[{}]{\-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T, }
+\item[{}]{\-T\-R\-A\-N\-S\-M\-I\-T\-T\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T}
+\end{DoxyParamCaption}
+)}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_aec29e4f909ca5c75619b4fe6a1ff61ef}
+
+
+\-Custom constructor. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em \-V\-I\-E\-W\-I\-N\-G\-\_\-\-M\-A\-N\-A\-G\-E\-R} & \-Reference to the \hyperlink{namespacelib_1_1ViewingManager}{\-Viewing\-Manager} instance from which the user is created. \\
+\hline
+{\em \-H\-E\-A\-D\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-T\-A\-R\-G\-E\-T\-\_\-\-N\-A\-M\-E} & \-Name of the glasses' tracking target as chosen in daemon. \\
+\hline
+{\em \-W\-A\-L\-L\-\_\-\-U\-S\-E\-R\-\_\-\-I\-D} & \-Identification number of the \hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser}{\-Power\-Wall\-User} to be created, starting from 0. \\
+\hline
+{\em \-I\-N\-I\-T\-I\-A\-L\-\_\-\-P\-L\-A\-T\-F\-O\-R\-M\-\_\-\-I\-D} & \hyperlink{namespacelib_1_1Platform}{\-Platform} to append the constructed \hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser}{\-Power\-Wall\-User} to. \\
+\hline
+{\em \-N\-O\-\_\-\-T\-R\-A\-C\-K\-I\-N\-G\-\_\-\-M\-A\-T} & \-Matrix to be applied if no headtracking of the glasses is available. \\
+\hline
+{\em \-T\-R\-A\-N\-S\-M\-I\-T\-T\-E\-R\-\_\-\-O\-F\-F\-S\-E\-T} & \-The transmitter offset to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{\-Member \-Data \-Documentation}
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a66815b6ee53b6efee2bc599320e0e15d}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!camera@{camera}}
+\index{camera@{camera}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{camera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::camera}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a66815b6ee53b6efee2bc599320e0e15d}
+
+
+\-Camera to represent the user's viewport to be rendered. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a95bf9d86c8dc5d35af9686f88b6fe9a3}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!head\-\_\-transform@{head\-\_\-transform}}
+\index{head\-\_\-transform@{head\-\_\-transform}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{head\-\_\-transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::head\-\_\-transform}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a95bf9d86c8dc5d35af9686f88b6fe9a3}
+
+
+\-Scenegraph node representing the head position of the user with respect to platform. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a61277bfdf2299b5f2421fea86be93fc4}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!headtracking\-\_\-reader@{headtracking\-\_\-reader}}
+\index{headtracking\-\_\-reader@{headtracking\-\_\-reader}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{headtracking\-\_\-reader}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::headtracking\-\_\-reader}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a61277bfdf2299b5f2421fea86be93fc4}
+
+
+\-Instance of a child class of \hyperlink{namespacelib_1_1TrackingReader}{\-Tracking\-Reader} to supply translation input. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a5912e221e61c03533ce5367a27f2538b}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!id@{id}}
+\index{id@{id}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::id}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a5912e221e61c03533ce5367a27f2538b}
+
+
+\-Identification number of the \hyperlink{classlib_1_1PowerWallUser_1_1PowerWallUser}{\-Power\-Wall\-User}, starting from 0. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a7c08b9d36b32814fa14719e2d7494dfd}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!left\-\_\-eye@{left\-\_\-eye}}
+\index{left\-\_\-eye@{left\-\_\-eye}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{left\-\_\-eye}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::left\-\_\-eye}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a7c08b9d36b32814fa14719e2d7494dfd}
+
+
+\-Scenegraph node representing the user's left eye. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a7ec3f6ee592c4f69a459248a2bb93c87}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!left\-\_\-eye\-\_\-resolution@{left\-\_\-eye\-\_\-resolution}}
+\index{left\-\_\-eye\-\_\-resolution@{left\-\_\-eye\-\_\-resolution}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{left\-\_\-eye\-\_\-resolution}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::left\-\_\-eye\-\_\-resolution}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a7ec3f6ee592c4f69a459248a2bb93c87}
+
+
+\-The user's left eye resolution in pixels. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a9e8d3ed299af3a3e67727e066063acf0}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!pipeline@{pipeline}}
+\index{pipeline@{pipeline}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{pipeline}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::pipeline}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a9e8d3ed299af3a3e67727e066063acf0}
+
+
+\-Pipeline for rendering purposes. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_aaaf579efdbc2f052745c40cef0741a0a}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!right\-\_\-eye@{right\-\_\-eye}}
+\index{right\-\_\-eye@{right\-\_\-eye}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{right\-\_\-eye}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::right\-\_\-eye}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_aaaf579efdbc2f052745c40cef0741a0a}
+
+
+\-Scenegraph node representing the user's right eye. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a9f0eb47b7e3e5d3d060a425bc225a8a5}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!right\-\_\-eye\-\_\-resolution@{right\-\_\-eye\-\_\-resolution}}
+\index{right\-\_\-eye\-\_\-resolution@{right\-\_\-eye\-\_\-resolution}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{right\-\_\-eye\-\_\-resolution}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::right\-\_\-eye\-\_\-resolution}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a9f0eb47b7e3e5d3d060a425bc225a8a5}
+
+
+\-The user's right eye resolution in pixels. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a3a3aab9cb49cbc130b88626db04b8866}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!screen@{screen}}
+\index{screen@{screen}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{screen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::screen}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a3a3aab9cb49cbc130b88626db04b8866}
+
+
+\-Scenegraph node representing the user's screen. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a5f060b477ca50cadeddc36e75225acdc}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!screen\-\_\-size@{screen\-\_\-size}}
+\index{screen\-\_\-size@{screen\-\_\-size}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{screen\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::screen\-\_\-size}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a5f060b477ca50cadeddc36e75225acdc}
+
+
+\-Physical screen size of the \-Powerwall in meters. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a7fed1f9708767b5e394c48c09e526b14}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!screen\-\_\-transform@{screen\-\_\-transform}}
+\index{screen\-\_\-transform@{screen\-\_\-transform}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{screen\-\_\-transform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::screen\-\_\-transform}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a7fed1f9708767b5e394c48c09e526b14}
+
+
+\-Physical transformation of the screen in meters. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_a55cca8a9685923c2c3b29671fa34fcb7}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!transmitter\-\_\-offset@{transmitter\-\_\-offset}}
+\index{transmitter\-\_\-offset@{transmitter\-\_\-offset}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{transmitter\-\_\-offset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::transmitter\-\_\-offset}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_a55cca8a9685923c2c3b29671fa34fcb7}
+
+
+\-The transmitter offset to be applied. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_aae55047b897b3daa9e76d97f08caf355}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!warp\-\_\-matrices\-\_\-path@{warp\-\_\-matrices\-\_\-path}}
+\index{warp\-\_\-matrices\-\_\-path@{warp\-\_\-matrices\-\_\-path}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{warp\-\_\-matrices\-\_\-path}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::warp\-\_\-matrices\-\_\-path}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_aae55047b897b3daa9e76d97f08caf355}
+
+
+\-Path of the warp matrices to be applied on the rendered image. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_abe6b7da901a398446c6bba0d075fec75}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!window@{window}}
+\index{window@{window}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{window}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::window}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_abe6b7da901a398446c6bba0d075fec75}
+
+
+\-Window to display the rendered image to. 
+
+\hypertarget{classlib_1_1PowerWallUser_1_1PowerWallUser_acff959d7d5fc0e43505d2682e653f957}{\index{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}!window\-\_\-size@{window\-\_\-size}}
+\index{window\-\_\-size@{window\-\_\-size}!lib::PowerWallUser::PowerWallUser@{lib\-::\-Power\-Wall\-User\-::\-Power\-Wall\-User}}
+\subsubsection[{window\-\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lib\-::\-Power\-Wall\-User.\-Power\-Wall\-User\-::window\-\_\-size}}}\label{classlib_1_1PowerWallUser_1_1PowerWallUser_acff959d7d5fc0e43505d2682e653f957}
+
+
+\-The resolution in pixels to be applied on the window. 
+
+
+
+\-The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+lib/\hyperlink{PowerWallUser_8py}{\-Power\-Wall\-User.\-py}\end{DoxyCompactItemize}
