@@ -34,6 +34,9 @@ def init_lcd_wall_tracking():
   _dtrack.stations[4] = avango.daemon.Station('tracking-glasses-1')    # glasses powerwall user one
   _dtrack.stations[3] = avango.daemon.Station('tracking-glasses-2')    # glasses powerwall user two
 
+  _dtrack.stations[1] = avango.daemon.Station('tracking-pointer-blue')  # blue pointer
+  _dtrack.stations[13] = avango.daemon.Station('tracking-pointer-green') # green pointer
+
   _dtrack.stations[7] = avango.daemon.Station('tracking-old-spheron')      # old spheron device
 
   device_list.append(_dtrack)
@@ -51,6 +54,34 @@ def init_led_wall_tracking():
 
   device_list.append(_dtrack)
   print "ART Tracking started at LED WALL"
+
+
+## Initializes pointers
+def init_pointer():
+
+  _string = os.popen("./list-ev -s | grep \"MOUSE USB MOUSE\" | sed -e \'s/\"//g\'  | cut -d\" \" -f4").read()
+  
+  if len(_string) == 0:
+    _string = os.popen("./list-ev -s | grep \"MOSART Semi. Input Device\" | sed -e \'s/\"//g\'  | cut -d\" \" -f4").read() # search for other pointer
+
+  _string = _string.split()
+  if len(_string) > 0:
+
+    _string = _string[0]
+
+    _pointer = avango.daemon.HIDInput()
+    _pointer.station = avango.daemon.Station('device-pointer')
+    _pointer.device = _string
+
+    _pointer.buttons[0] = "EV_KEY::KEY_PAGEUP"
+    _pointer.buttons[1] = "EV_KEY::KEY_PAGEDOWN"
+    _pointer.buttons[2] = "EV_KEY::KEY_F5"
+
+    device_list.append(_pointer)
+    print "Pointer started at:", _string
+
+  else:
+    print "Pointer NOT found !"
 
 
 ## Initializes a spacemouse for navigation.
