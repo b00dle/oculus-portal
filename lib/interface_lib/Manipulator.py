@@ -17,10 +17,13 @@ class Manipulator(avango.script.Script):
     self.super(Manipulator).__init__()
     self.Keyboard = KeyboardMouseDevice()
     self.LeftPointer = PointerDevice()
+    self.LeftPointer.my_constructor("MOUSE USB MOUSE")
     #self.LeftPicker  = Picker()
-    #self.RightPointer = PointerDevice()
+    self.RightPointer = PointerDevice()
+    self.RightPointer.my_constructor("2.4G Presenter")
     #self.RightPicker  = Picker()
     self.LeftPointerPicked = False
+    self.RightPointerPicked = False
     self.always_evaluate(True)
 
   def evaluate(self):
@@ -30,6 +33,12 @@ class Manipulator(avango.script.Script):
     if self.LeftPointer.sf_key_pagedown.value and self.LeftPointerPicked == True:
       self.LeftPointerPicked = False
       print "byebye Mani"
+    if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == False:
+      self.RightPointerPicked = True
+      print "ON"
+    if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
+      self.RightPointerPicked = False
+      print "OFF"
 
 
 

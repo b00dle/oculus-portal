@@ -152,7 +152,7 @@ class User:
   # @param SCENEGRAPH Reference to the scenegraph.
   # @param PLATFORM_ID The id of the platform to append the avatar to.
   # @param SF_AVATAR_BODY_MATRIX Field containing the transformation matrix for the avatar's body on the platform.
-  def create_avatar_representation(self, SCENEGRAPH, PLATFORM_ID, SF_AVATAR_BODY_MATRIX):
+  def create_avatar_representation(self, SCENEGRAPH, PLATFORM_ID, SF_AVATAR_BODY_MATRIX, LEFTHAND_MAT, RIGHTHAND_MAT):
     _loader = avango.gua.nodes.GeometryLoader()
 
     # if every material has already been used, reset the pool
@@ -199,6 +199,32 @@ class User:
     SCENEGRAPH['/platform_' + str(PLATFORM_ID)].Children.value.append(self.body_avatar)
 
     self.body_avatar.Transform.connect_from(SF_AVATAR_BODY_MATRIX)
+
+
+
+
+    # create hands for the avatar
+    self.left_hand_avatar = _loader.create_geometry_from_file( self.node_pretext + '_left_hand_avatar_' + str(PLATFORM_ID),
+                                                          'data/objects/teapot.obj',
+                                                          _material,
+                                                          avango.gua.LoaderFlags.LOAD_MATERIALS)
+    
+    SCENEGRAPH['/platform_' + str(PLATFORM_ID)].Children.value.append(self.left_hand_avatar)
+
+    self.left_hand_avatar.Transform.connect_from(LEFTHAND_MAT)
+
+    self.right_hand_avatar = _loader.create_geometry_from_file( self.node_pretext + '_right_hand_avatar_' + str(PLATFORM_ID),
+                                                          'data/objects/teapot.obj',
+                                                          _material,
+                                                          avango.gua.LoaderFlags.LOAD_MATERIALS)
+    
+    SCENEGRAPH['/platform_' + str(PLATFORM_ID)].Children.value.append(self.right_hand_avatar)
+
+    self.right_hand_avatar.Transform.connect_from(RIGHTHAND_MAT.Transform.value)
+
+
+
+
 
     # create desktop user table
     if self.node_pretext == "desktop":

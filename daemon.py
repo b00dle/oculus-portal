@@ -57,12 +57,15 @@ def init_led_wall_tracking():
 
 
 ## Initializes pointers
-def init_pointer():
+def init_pointer(NAME):
 
-  _string = os.popen("./list-ev -s | grep \"MOUSE USB MOUSE\" | sed -e \'s/\"//g\'  | cut -d\" \" -f4").read()
+  _string = os.popen("./list-ev -s | grep \"" + NAME + "\"| sed -e \'s/\"//g\'  | cut -d\" \" -f4").read()
   
-  if len(_string) == 0:
-    _string = os.popen("./list-ev -s | grep \"MOSART Semi. Input Device\" | sed -e \'s/\"//g\'  | cut -d\" \" -f4").read() # search for other pointer
+  #if len(_string) == 0:
+  #  _string = os.popen("./list-ev -s | grep \"2.4G Presenter\" | sed -e \'s/\"//g\'  | cut -d\" \" -f4").read() # search for other pointer
+
+  #if len(_string) == 0:
+  #  _string = os.popen("./list-ev -s | grep \"MOSART Semi. Input Device\" | sed -e \'s/\"//g\'  | cut -d\" \" -f4").read() # search for other pointer
 
   _string = _string.split()
   if len(_string) > 0:
@@ -70,12 +73,14 @@ def init_pointer():
     _string = _string[0]
 
     _pointer = avango.daemon.HIDInput()
-    _pointer.station = avango.daemon.Station('device-pointer')
+    _pointer.station = avango.daemon.Station('device-pointer_' + NAME)
     _pointer.device = _string
 
     _pointer.buttons[0] = "EV_KEY::KEY_PAGEUP"
     _pointer.buttons[1] = "EV_KEY::KEY_PAGEDOWN"
     _pointer.buttons[2] = "EV_KEY::KEY_F5"
+    _pointer.buttons[3] = "EV_KEY::KEY_RIGHT"
+    _pointer.buttons[4] = "EV_KEY::KEY_LEFT"
 
     device_list.append(_pointer)
     print "Pointer started at:", _string
@@ -311,7 +316,8 @@ init_old_spheron()
 init_keyboard()
 init_mouse()
 init_spacemouse()
-init_pointer()
+init_pointer("MOUSE USB MOUSE")
+init_pointer("2.4G Presenter")
 
 '''
 init_pst_tracking()
