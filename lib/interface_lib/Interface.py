@@ -44,7 +44,7 @@ def get_rotation_between_vectors(VEC1, VEC2):
 
 class Switch(avango.script.Script):
 
-  sfObjectTransformOut = avango.SFFloat()
+  #sfObjectTransformOut = avango.SFBoolean()
   sfTransformInput = avango.gua.SFMatrix4()
 
   def __init__(self):
@@ -62,11 +62,12 @@ class Switch(avango.script.Script):
 
     self.switch_geometry = LOADER.create_geometry_from_file('switch_' + NAME, 'data/objects/sphere.obj',
                                                             'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    self.switch_geometry.Transform.value = avango.gua.make_scale_mat(0.2, 0.2, 0.2)
+    self.switch_geometry.Transform.value = avango.gua.make_trans_mat(-0.5, 0.0, 0.0) * avango.gua.make_scale_mat(0.2, 0.2, 0.2)
     self.switch_transform = avango.gua.nodes.TransformNode(Name = 'switch_trans_' + NAME)
     self.switch_transform.Transform.value = avango.gua.make_trans_mat(self.SWITCHPOS.get_translate())
     self.switch_transform.Children.value.append(self.switch_geometry)
     self.PARENT_NODE.Children.value.append(self.switch_transform)
+
 
     # Red Line
     line_begin1 = avango.gua.Vec3(self.switch_transform.Transform.value.get_translate().x - 1.0,
@@ -93,7 +94,7 @@ class Switch(avango.script.Script):
 
     create_line_visualization(LOADER, self.PARENT_NODE, line_begin2, line_end2, 'AvatarRed')
 
-
+'''
   @field_has_changed(sfTransformInput)
   def change_slider_transformation(self):
     slider_x = self.sfTransformInput.get_translate().x
@@ -109,8 +110,8 @@ class Switch(avango.script.Script):
                                             self.slider_transform.Transform.value.get_translate().y,
                                             self.slider_transform.Transform.value.get_translate().z)
 
-    self.sfObjectTransformOut.value = slider_x # TODO: Umrechnung von Pos auf Prozentwert
-
+    #self.sfObjectTransformOut.value = slider_x # TODO: Umrechnung von Pos auf Prozentwert
+'''
 
 class Slider(avango.script.Script):
 

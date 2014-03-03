@@ -40,13 +40,6 @@ class Manipulator(avango.script.Script):
 
 
 
-
-
-
-
-
-
-
 class ManipulatorPicker(avango.script.Script):
   SceneGraph = avango.gua.SFSceneGraph()
   Ray        = avango.gua.SFRayNode()
