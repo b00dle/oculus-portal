@@ -108,21 +108,29 @@ class DesktopUser(User):
     self.set_pipeline_values()
 
     # Setup User Hands
+    # Left Hand
+    self.left_hand_transform = avango.gua.nodes.TransformNode(Name = "ovr_left_hand_" + str(self.id))
+    self.append_to_platform(SCENEGRAPH, INITIAL_PLATFORM_ID, self.left_hand_transform)
+
     self.left_hand_trackingreader = TrackingTargetReader()
     self.left_hand_trackingreader.my_constructor("tracking-pointer-blue")
-    self.left_hand_transform = avango.gua.nodes.TransformNode(Name = "ovr_left_hand_" + str(self.id))
+
     self.left_hand_transform.Transform.connect_from(self.left_hand_trackingreader.sf_tracking_mat)
+
+    # Right Hand
+    self.right_hand_transform = avango.gua.nodes.TransformNode(Name = "ovr_right_hand_" + str(self.id))
+    self.append_to_platform(SCENEGRAPH, INITIAL_PLATFORM_ID, self.right_hand_transform)
 
     self.right_hand_trackingreader = TrackingTargetReader()
     self.right_hand_trackingreader.my_constructor("tracking-pointer-green")
-    self.right_hand_transform = avango.gua.nodes.TransformNode(Name = "ovr_right_hand_" + str(self.id))
+
     self.right_hand_transform.Transform.connect_from(self.right_hand_trackingreader.sf_tracking_mat)
 
-    self.append_to_platform(SCENEGRAPH, INITIAL_PLATFORM_ID, self.left_hand_transform)
-    self.append_to_platform(SCENEGRAPH, INITIAL_PLATFORM_ID, self.right_hand_transform)
+    
+    
 
     # create avatar representation
-    self.create_avatar_representation(SCENEGRAPH, INITIAL_PLATFORM_ID, self.headtracking_reader.sf_avatar_body_mat)
+    self.create_avatar_representation(SCENEGRAPH, INITIAL_PLATFORM_ID, self.headtracking_reader.sf_avatar_body_mat, self.left_hand_trackingreader.sf_tracking_mat, self.right_hand_trackingreader.sf_tracking_mat)
 
     # add newly created pipeline to the list of all pipelines in the viewer
     VIEWING_MANAGER.viewer.Pipelines.value.append(self.pipeline)

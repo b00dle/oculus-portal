@@ -208,6 +208,8 @@ class User:
                                                           'data/objects/teapot.obj',
                                                           _material,
                                                           avango.gua.LoaderFlags.LOAD_MATERIALS)
+
+    self.left_hand_avatar.Transform.value = avango.gua.make_scale_mat(0.1, 0.1, 0.1)
     
     SCENEGRAPH['/platform_' + str(PLATFORM_ID)].Children.value.append(self.left_hand_avatar)
 
@@ -217,10 +219,12 @@ class User:
                                                           'data/objects/teapot.obj',
                                                           _material,
                                                           avango.gua.LoaderFlags.LOAD_MATERIALS)
+
+    self.right_hand_avatar.Transform.value = avango.gua.make_scale_mat(0.1, 0.1, 0.1)
     
     SCENEGRAPH['/platform_' + str(PLATFORM_ID)].Children.value.append(self.right_hand_avatar)
 
-    self.right_hand_avatar.Transform.connect_from(RIGHTHAND_MAT.Transform.value)
+    self.right_hand_avatar.Transform.connect_from(RIGHTHAND_MAT)
 
 
 
