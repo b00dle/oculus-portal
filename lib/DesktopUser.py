@@ -132,5 +132,7 @@ class DesktopUser(User):
     # create avatar representation
     self.create_avatar_representation(SCENEGRAPH, INITIAL_PLATFORM_ID, self.headtracking_reader.sf_avatar_body_mat, self.left_hand_trackingreader.sf_tracking_mat, self.right_hand_trackingreader.sf_tracking_mat)
 
+    self.manipulator.my_constructor(SCENEGRAPH,self.left_hand_transform,self.right_hand_transform)
+
     # add newly created pipeline to the list of all pipelines in the viewer
     VIEWING_MANAGER.viewer.Pipelines.value.append(self.pipeline)

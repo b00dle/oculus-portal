@@ -20,43 +20,31 @@ class Manipulator(avango.script.Script):
 
     self.LeftPointer = PointerDevice()
     self.LeftPointer.my_constructor("MOUSE USB MOUSE")
-    self.LeftManiPicker = ManipulatorPicker()
+    self.LeftPicker = ManipulatorPicker()
 
     self.RightPointer = PointerDevice()
     self.RightPointer.my_constructor("2.4G Presenter")
+    self.RightPicker = ManipulatorPicker()
 
     self.LeftPointerPicked = False
     self.RightPointerPicked = False
 
-    # 2 pickers needed
+    self.left_picker_updater = MaterialUpdater()
+    self.right_picker_updater = MaterialUpdater()
 
     self.always_evaluate(True)
 
-  #def my_constructor(self, SCENEGRAPH):
-  #  self.SCENEGRAPH = SCENEGRAPH
-    #self.
-    # todo!
+  def my_constructor(self, SCENEGRAPH, LEFTHAND, RIGHTHAND):
+    self.SCENEGRAPH = SCENEGRAPH
+    self.LEFTHAND = LEFTHAND
+    self.RIGHTHAND = RIGHTHAND
 
-    # Picker and Updater:
-    self.MainResults = ManipulatorPicker()
-    self.pick_ray = avango.gua.nodes.RayNode(Name = "pick_ray")
-    self.pick_ray.Transform.value = avango.gua.make_trans_mat(0.0, -1.0, 0.0) * \
-                                     avango.gua.make_scale_mat(1.0, 1.0, 50.0)
-
-    self.picker = Picker()
-    self.picker.SceneGraph.value = SCENEGRAPH
-    self.picker.Ray.value = self.pick_ray
-
-    #USER
-    eye.Children.value = [screen, pick_ray]
+    self.initialize_left_picker()
+    self.initialize_right_picker()
 
 
-    material_updater = ManipulatorPickerResults()
-    material_updater.DefaultMaterial.value = "Stone"
-    material_updater.TargetMaterial.value = "Bright"
-    material_updater.PickedNodes.connect_from(picker.Results)
 
-
+  # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
     # Pointer-Buttons:
     if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False:
@@ -72,12 +60,48 @@ class Manipulator(avango.script.Script):
       self.RightPointerPicked = False
       print "OFF"
 
-    # PickResults:
 
+
+
+  def initialize_left_picker(self):
+    # create ray
+    pick_ray = avango.gua.nodes.RayNode(Name = "pick_ray_left")
+    pick_ray.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 500.0)
+    pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
+    pick_transform.Children.value.append(pick_ray)
+
+    # set picker values
+    self.LeftPicker.SceneGraph.value = self.SCENEGRAPH
+    self.LeftPicker.Ray.value = pick_ray
+    self.LeftPicker.Mask.value = "pickable"
+
+    self.LEFTHAND.Children.value.append(pick_transform)
+
+    self.left_picker_updater.DefaultMaterial.value = "Stone"
+    self.left_picker_updater.TargetMaterial.value = "Bright"
+    self.left_picker_updater.PickedNodes.connect_from(self.LeftPicker.Results)
+
+  def initialize_right_picker(self):
+    # create ray
+    pick_ray = avango.gua.nodes.RayNode(Name = "pick_ray_right")
+    pick_ray.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
+    pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
+    pick_transform.Children.value.append(pick_ray)
+
+    # set picker values
+    self.RightPicker.SceneGraph.value = self.SCENEGRAPH
+    self.RightPicker.Ray.value = pick_ray
+    self.RightPicker.Mask.value = "pickable"
+
+    self.RIGHTHAND.Children.value.append(pick_transform)
+
+    self.right_picker_updater.DefaultMaterial.value = "Stone"
+    self.right_picker_updater.TargetMaterial.value = "Bright"
+    self.right_picker_updater.PickedNodes.connect_from(self.RightPicker.Results)
 
 
 class ManipulatorPicker(avango.script.Script):
-
+  SceneGraph = avango.gua.SFSceneGraph()
   Ray        = avango.gua.SFRayNode()
   Options    = avango.SFInt()
   Mask       = avango.SFString()
@@ -87,29 +111,30 @@ class ManipulatorPicker(avango.script.Script):
     self.super(ManipulatorPicker).__init__()
     self.always_evaluate(True)
 
+    self.SceneGraph.value = avango.gua.nodes.SceneGraph()
     self.Ray.value  = avango.gua.nodes.RayNode()
     self.Options.value = avango.gua.PickingOptions.PICK_ONLY_FIRST_OBJECT \
+                         | avango.gua.PickingOptions.GET_TEXTURE_COORDS \
+                         | avango.gua.PickingOptions.GET_WORLD_NORMALS \
+                         | avango.gua.PickingOptions.INTERPOLATE_NORMALS \
                          | avango.gua.PickingOptions.PICK_ONLY_FIRST_FACE
-    self.Mask.value = ""
-
-  def my_constructor(self, SCENEGRAPH):
-    self.SCENEGRAPH = SCENEGRAPH
+    self.Mask.value = "pickable"
     
   def evaluate(self):
-    results = self.SCENEGRAPH.value.ray_test(self.Ray.value,
+    results = self.SceneGraph.value.ray_test(self.Ray.value,
                                              self.Options.value,
                                              self.Mask.value)
     self.Results.value = results.value
 
 
-class ManipulatorPickerResults(avango.script.Script):
+class MaterialUpdater(avango.script.Script):
   PickedNodes     = avango.gua.MFPickResult()
   OldNodes        = avango.gua.MFPickResult()
   DefaultMaterial = avango.SFString()
   TargetMaterial  = avango.SFString()
 
   @field_has_changed(PickedNodes)
-  def update(self):
+  def update_materials(self):
 
     for i in range(0, len(self.OldNodes.value)):
       if isinstance(self.OldNodes.value[i].Object.value, avango.gua.GeometryNode):
@@ -117,6 +142,7 @@ class ManipulatorPickerResults(avango.script.Script):
 
     for i in range(0, len(self.PickedNodes.value)):
       if isinstance(self.PickedNodes.value[i].Object.value, avango.gua.GeometryNode):
+        print "pick"
         self.PickedNodes.value[i].Object.value.Material.value = self.TargetMaterial.value
         avango.gua.set_material_uniform("Bright", "pointer_pos",
                                         self.PickedNodes.value[i].TextureCoords.value)

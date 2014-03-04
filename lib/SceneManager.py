@@ -62,6 +62,13 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(plane)
 
+    # Create Monkey
+    monkey = loader.create_geometry_from_file('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    monkey.Transform.value = avango.gua.make_trans_mat(1.0, 2.0, 7.0)
+    monkey.GroupNames.value = "pickable"
+    graph.Root.value.Children.value.append(monkey)
+
+
     # screen
     screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)
 
