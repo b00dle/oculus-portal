@@ -31,8 +31,8 @@ class Manipulator(avango.script.Script):
 
     self.always_evaluate(True)
 
-  def my_constructor(self, SCENEGRAPH):
-    self.SCENEGRAPH = SCENEGRAPH
+  #def my_constructor(self, SCENEGRAPH):
+  #  self.SCENEGRAPH = SCENEGRAPH
     #self.
     # todo!
 
