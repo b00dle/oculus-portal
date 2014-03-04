@@ -65,7 +65,7 @@ class SceneManager:
     # Create Monkey
     monkey = loader.create_geometry_from_file('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     monkey.Transform.value = avango.gua.make_trans_mat(1.0, 2.0, 7.0)
-    monkey.GroupNames.value = "pickable"
+    monkey.GroupNames.value = ["pickable"]
     graph.Root.value.Children.value.append(monkey)
 
 
