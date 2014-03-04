@@ -40,14 +40,23 @@ class UpdatePortalTransform(avango.script.Script):
   ViewTransformIn       = avango.gua.SFMatrix4()
   ScreenTransformIn     = avango.gua.SFMatrix4()
   ViewTransformOut      = avango.gua.SFMatrix4()
-  
+
+  def __init__(self):
+    self.super(UpdatePortalTransform).__init__()
+    self.NAME = ""
+
+  def my_constructor(self, NAME):
+    self.NAME = NAME
+
   def evaluate(self):
     self.ViewTransformOut.value = avango.gua.make_inverse_mat(self.PortalTransformIn.value) *\
-                                    self.ScreenTransformIn.value * self.ViewTransformIn.value
+                                    self.ScreenTransformIn.value * avango.gua.make_trans_mat(0.0,0.0,self.ViewTransformIn.value.get_translate().z)
     
 class PortalController(avango.script.Script):
-  PickedPortals  = avango.gua.MFPickResult()
-
+  PickedPortals     = avango.gua.MFPickResult()
+  sfUserHead        = avango.gua.SFMatrix4()
+  sfUserScreen      = avango.gua.SFMatrix4()
+  
   def __init__(self):
     self.super(PortalController).__init__()
     self.NAME           = ""
@@ -57,50 +66,60 @@ class PortalController(avango.script.Script):
     self.PORTALS        = []
     self.ACTIVEPORTALS  = []
     self.NAVIGATION     = Navigation()
-    self.USERHEAD       = avango.gua.nodes.TransformNode()
-    self.USERSCREEN     = avango.gua.nodes.ScreenNode()
     self.PORTALUPDATERS = []
     self.PLATFORM       = -1
+    self.stop_eval      = False
 
-  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, NAVIGATION, USERHEAD, USERSCREEN):
+  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, NAVIGATION, SF_USERHEAD, SF_USERSCREEN, USER):
     self.NAME             = NAME
     self.ACTIVESCENE      = ACTIVESCENE
     self.VIEWINGPIPELINES = VIEWINGPIPELINES
     self.PIPELINE         = PIPELINE
     self.PORTALS          = PORTALS
     
-    self.initialize_prepipes()
+    self.update_prepipes()
 
     self.ACTIVEPORTALS    = self.create_active_portals()      
     self.NAVIGATION       = NAVIGATION
-    self.USERHEAD         = USERHEAD
-    self.USERSCREEN       = USERSCREEN
-    self.PORTALUPDATERS   = self.create_portal_updaters()
+
+    self.USER             = USER
+
+    #self.sfUserHead.connect_from(SF_USERHEAD)
+    #self.sfUserScreen.connect_from(SF_USERSCREEN)     
+
+    #self.PORTALUPDATERS   = self.create_portal_updaters()
+    #self.create_portal_updaters()
     
     self.initialize_portal_group_names()
-    self.initialize_prepipes()
+    self.update_prepipes()
     self.update_portal_picker()
 
-  @field_has_changed(PickedPortals)
-  def evaluate_scene_change(self):
-    _platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
+  #@field_has_changed(PickedPortals)
+  #def evaluate_scene_change(self):
+    #_platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
 
-    _pos_p1 = _platform.Transform.value.get_translate()
+    #_pos_p1 = _platform.Transform.value.get_translate()
     
-    for i in range(0, len(self.PickedPortals.value)):
-      if(self.PickedPortals.value[i].Distance.value < 0.5):
-        portalName = self.PickedPortals.value[i].Object.value.Name.value
-        for p in self.ACTIVEPORTALS:
-          if(p.GEOMETRY.Name.value == portalName):
-            _pos_p2 = p.GEOMETRY.Transform.value.get_translate()
-            _distance_x = _pos_p1.x - _pos_p2.x
-            _distance_y = _pos_p1.y - _pos_p2.y
-            self.change_scene(p, _distance_x, _distance_y)
-            break
-      break
+    #for i in range(0, len(self.PickedPortals.value)):
+    #  if(self.PickedPortals.value[i].Distance.value < 0.5):
+    #    portalName = self.PickedPortals.value[i].Object.value.Name.value
+    #    for p in self.ACTIVEPORTALS:
+    #      if(p.GEOMETRY.Name.value == portalName):
+    #        _pos_p2 = p.GEOMETRY.Transform.value.get_translate()
+    #        _distance_x = _pos_p1.x - _pos_p2.x
+    #        _distance_y = _pos_p1.y - _pos_p2.y
+    #        self.change_scene(p, _distance_x, _distance_y)
+    #        break
+    #  break
 
-    self.adjust_nearplane()
+    #self.adjust_nearplane()
 
+  def evaluate(self):
+    if self.PLATFORM != -1:
+      self.sfUserScreen.connect_from(self.USER.screen.WorldTransform)
+      self.sfUserHead.connect_from(self.USER.head_transform.Transform)
+      self.adjust_nearplane()
+    
   def change_scene(self, PORTAL, DISTANCE_X, DISTANCE_Y):
     #_platform = self.NAVIGATION.platform
     _platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
@@ -156,7 +175,8 @@ class PortalController(avango.script.Script):
     self.update_pipe_render_mask()
 
     self.ACTIVEPORTALS  = self.create_active_portals()
-    self.PORTALUPDATERS = self.create_portal_updaters() 
+    #self.PORTALUPDATERS = self.create_portal_updaters() 
+    self.create_portal_updaters()
 
     # probably not useful!?!?!
     #for p in self.ACTIVEPORTALS:
@@ -166,33 +186,33 @@ class PortalController(avango.script.Script):
 
 
   def create_portal_updaters(self):
-    portalupdaters = []
+    self.PORTALUPDATERS = []
     
     for p in self.ACTIVEPORTALS:
-      updater = UpdatePortalTransform()
-      updater.PortalTransformIn.connect_from(p.sf_portal_pos)
+      self.PORTALUPDATERS.append(UpdatePortalTransform())
+      self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].my_constructor(p.NAME + "_updater")
+      self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].PortalTransformIn.connect_from(p.sf_portal_pos)
       #updater.ViewTransformIn.connect_from(self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen/head"].Transform)
       #updater.ScreenTransformIn.connect_from(self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen"].Transform)
-      updater.ViewTransformIn.connect_from(self.USERHEAD.Transform)
-      updater.ScreenTransformIn.connect_from(self.USERSCREEN.Transform)
-      p.EXITSCENE[p.HEAD].Transform.connect_from(updater.ViewTransformOut)
-      portalupdaters.append(updater)
-    return portalupdaters
-  
+      self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ViewTransformIn.connect_from(self.sfUserHead)
+      self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ScreenTransformIn.connect_from(self.sfUserScreen)
+      p.EXITSCENE[p.HEAD].Transform.connect_from(self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ViewTransformOut)
+    
   def create_active_portals(self):
     activeportals = []
     pre_pipes = []      
     for p in self.PORTALS:
-      if p.EXITSCENE.Name.value == self.ACTIVESCENE.Name.value:
+      if p.ENTRYSCENE.Name.value == self.ACTIVESCENE.Name.value:
         activeportals.append(p)
         pre_pipes.append(p.PRE_PIPE)
 
     self.PIPELINE.PreRenderPipelines.value = pre_pipes     
     return activeportals
       
-  def initialize_prepipes(self):
+  def update_prepipes(self):
     pre_pipes = []      
     for p in self.PORTALS:
+      #p.PRE_PIPE.Camera.value.RenderMask.value = self.PIPELINE.Camera.value.RenderMask.value
       pre_pipes.append(p.PRE_PIPE)
 
     self.PIPELINE.PreRenderPipelines.value = pre_pipes

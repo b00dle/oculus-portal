@@ -29,7 +29,7 @@ class OVRUser(User):
 
   ## @var screen_size
   # Physical screen size of the Oculus Rift in meters.
-  screen_size      = avango.gua.Vec2(0.16, 0.1) 
+  screen_size      = avango.gua.Vec2(0.16, 0.1)
 
   ## Custom constructor.
   # @param VIEWING_MANAGER Reference to the ViewingManager instance from which the user is created.

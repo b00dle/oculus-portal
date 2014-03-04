@@ -28,8 +28,8 @@ class Portal(avango.script.Script):
         self.HEAD           = ""
 
 
-    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, PORTALPOS, EXITPOS, WIDTH, HEIGHT):
-        self.sf_portal_pos.value    = PORTALPOS
+    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT):
+        self.sf_portal_pos.value    = ENTRYPOS
         self.NAME                   = NAME
         self.ENTRYSCENE             = ENTRYSCENE
         self.EXITSCENE              = EXITSCENE
@@ -37,12 +37,12 @@ class Portal(avango.script.Script):
         self.WIDTH                  = WIDTH
         self.HEIGHT                 = HEIGHT
         self.PRE_PIPE               = self.create_default_pipe()
-        self.GEOMETRY               = self.create_geometry(PORTALPOS)
+        self.GEOMETRY               = self.create_geometry(ENTRYPOS)
         self.HEAD                   = "/" + self.NAME + "Screen/head"
 
     def create_default_pipe(self):
         self.create_camera()
-        
+
         width   = 1920
         height  = int(width * 9.0 / 16.0)
         size    = avango.gua.Vec2ui(width, height)
@@ -52,6 +52,8 @@ class Portal(avango.script.Script):
                                         LeftScreen  = "/" + self.NAME + "Screen",
                                         RightScreen = "/" + self.NAME + "Screen",
                                         SceneGraph  = self.EXITSCENE.Name.value)
+
+        camera.RenderMask.value = "!portal"
 
         pre_pipe = avango.gua.nodes.Pipeline(Camera = camera,
                                             OutputTextureName = self.NAME + "Texture")
@@ -76,6 +78,8 @@ class Portal(avango.script.Script):
                                 avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
                                 avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
                                 avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
+                                
+        geometry.GroupNames.value.append("portal")
 
         avango.gua.set_material_uniform(  "Portal" + self.NAME,
                                           "portal_texture",
@@ -93,7 +97,7 @@ class Portal(avango.script.Script):
         screen.Transform.value = self.EXITPOS
 
         head = avango.gua.nodes.TransformNode(Name = "head")
-        head.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 1.7)
+        head.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 1227.0)
 
         mono_eye = avango.gua.nodes.TransformNode(Name = "mono_eye")
 

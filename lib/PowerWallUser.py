@@ -107,7 +107,7 @@ class PowerWallUser(User):
     self.screen.Transform.value = self.screen_transform
     self.append_to_platform(SCENEGRAPH, INITIAL_PLATFORM_ID, self.screen)
     SCENEGRAPH["/platform_" + str(INITIAL_PLATFORM_ID)].Children.value.append(self.screen)
-
+    
     # create the camera
     ## @var camera
     # Camera to represent the user's viewport to be rendered.

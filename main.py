@@ -20,7 +20,7 @@ import sys
 def start():
 
   ####### CREATE MATERIAL FILE FOR EACH PORTAL ########
-  portalNames = ["portal_0", "portal_1"]
+  portalNames = ["portal_0_DESK_0", "portal_0_DESK_1"]
   for name in portalNames:
     newGMD = open('data/materials/Portal' + name + '.gmd', 'w+')
     with open('data/materials/Portal.gmd', 'r') as content_file:
@@ -40,6 +40,8 @@ def start():
 
   # initialize portals
   portal_manager = PortalManager(viewing_manager)
+
+  viewing_manager.setup_portal_render_masks()
 
   # run application loop
   viewing_manager.run(locals(), globals())
