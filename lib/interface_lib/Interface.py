@@ -63,6 +63,7 @@ class Switch(avango.script.Script):
     self.switch_geometry = LOADER.create_geometry_from_file('switch_' + NAME, 'data/objects/sphere.obj',
                                                             'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.switch_geometry.Transform.value = avango.gua.make_trans_mat(-0.5, 0.0, 0.0) * avango.gua.make_scale_mat(0.2, 0.2, 0.2)
+    self.switch_geometry.GroupNames.value = ["interface_element"]
     self.switch_transform = avango.gua.nodes.TransformNode(Name = 'switch_trans_' + NAME)
     self.switch_transform.Transform.value = avango.gua.make_trans_mat(self.SWITCHPOS.get_translate())
     self.switch_transform.Children.value.append(self.switch_geometry)
@@ -125,6 +126,8 @@ class Slider(avango.script.Script):
     self.PARENT_NODE = avango.gua.nodes.TransformNode()
     self.slider_geometry = avango.gua.nodes.GeometryNode()
     self.slider_transform = avango.gua.nodes.TransformNode()
+    self.slider_min = -1
+    self.slider_max = 1
     #self.always_evaluate(True)
 
   def my_constructor(self, NAME, SLIDERPOS, PARENT_NODE, LOADER):
@@ -135,6 +138,7 @@ class Slider(avango.script.Script):
     self.slider_geometry = LOADER.create_geometry_from_file('slider_' + NAME, 'data/objects/sphere.obj',
                                                             'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.slider_geometry.Transform.value = avango.gua.make_scale_mat(0.2, 0.2, 0.2)
+    self.slider_geometry.GroupNames.value = ["interface_element"]
     self.slider_transform = avango.gua.nodes.TransformNode(Name = 'slider_trans_' + NAME)
     self.slider_transform.Transform.value = avango.gua.make_trans_mat(self.SLIDERPOS.get_translate())
     self.slider_transform.Children.value.append(self.slider_geometry)
@@ -152,7 +156,7 @@ class Slider(avango.script.Script):
 
   @field_has_changed(sfTransformInput)
   def change_slider_transformation(self):
-    slider_x = self.sfTransformInput.get_translate().x
+    slider_x = self.sfTransformInput.value.get_translate().x
 
     if slider_x < self.slider_min:
       slider_x = self.slider_min
@@ -166,3 +170,70 @@ class Slider(avango.script.Script):
                                             self.slider_transform.Transform.value.get_translate().z)
 
     self.sfObjectTransformOut.value = slider_x # TODO: Umrechnung von Pos auf Prozentwert
+
+
+
+'''    
+class Slider(avango.script.Script):
+
+  sfObjectTransformOut = avango.SFFloat()
+  sfTransformInput = avango.gua.SFMatrix4()
+  #sfFloatXInput = avango.SFFloat()
+
+  def __init__(self):
+    self.super(Slider).__init__()
+    self.always_evaluate(True)
+
+    self.NAME = ""
+    self.SLIDERPOS = avango.gua.Mat4()
+    self.PARENT_NODE = avango.gua.nodes.TransformNode()
+    self.slider_geometry = avango.gua.nodes.GeometryNode()
+    self.slider_transform = avango.gua.nodes.TransformNode()
+    self.slider_min = -1
+    self.slider_max = 1
+    #self.always_evaluate(True)
+
+  def my_constructor(self, NAME, SLIDERPOS, PARENT_NODE, LOADER):
+    self.NAME = NAME
+    self.SLIDERPOS = SLIDERPOS
+    self.PARENT_NODE = PARENT_NODE
+
+    self.slider_geometry = LOADER.create_geometry_from_file('slider_' + NAME, 'data/objects/sphere.obj',
+                                                            'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    self.slider_geometry.Transform.value = avango.gua.make_scale_mat(0.2, 0.2, 0.2)
+    self.slider_geometry.GroupNames.value = ["interface_element"]
+    self.slider_transform = avango.gua.nodes.TransformNode(Name = 'slider_trans_' + NAME)
+    self.slider_transform.Transform.value = avango.gua.make_trans_mat(self.SLIDERPOS.get_translate())
+    self.slider_transform.Children.value.append(self.slider_geometry)
+    self.PARENT_NODE.Children.value.append(self.slider_transform)
+
+    line_begin = avango.gua.Vec3(self.slider_transform.Transform.value.get_translate().x - 1.0,
+                                 self.slider_transform.Transform.value.get_translate().y,
+                                 self.slider_transform.Transform.value.get_translate().z)
+
+    line_end = avango.gua.Vec3(self.slider_transform.Transform.value.get_translate().x + 1.0,
+                                 self.slider_transform.Transform.value.get_translate().y,
+                                 self.slider_transform.Transform.value.get_translate().z)
+    create_line_visualization(LOADER, self.PARENT_NODE, line_begin, line_end, 'White')
+
+
+  #@field_has_changed(sfTransformInput)
+  #def change_slider_transformation(self):
+  def evaluate(self):
+    slider_x = self.sfTransformInput.value.get_translate().x
+    #print slider_x
+
+    #slider_x = self.sfFloatXInput.value
+
+    if slider_x < self.slider_min:
+      slider_x = self.slider_min
+
+    if slider_x > self.slider_max:
+      slider_x = self.slider_max
+
+    self.slider_geometry.Transform.value *= avango.gua.make_trans_mat(slider_x,
+                                                                      self.slider_transform.Transform.value.get_translate().y,
+                                                                      self.slider_transform.Transform.value.get_translate().z)
+
+    self.sfObjectTransformOut.value = slider_x # TODO: Umrechnung von Pos auf Prozentwert
+'''

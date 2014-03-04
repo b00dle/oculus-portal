@@ -52,21 +52,15 @@ def start():
   #### --- INTERFACE TESTS --- ####
 
   # add manipulator
-  manipulator = Manipulator()
+  #manipulator = Manipulator()
 
   # add display
-  display = avango.gua.nodes.TransformNode(Name = "display_node")
-  scene_manager.graphs[0].Root.value.Children.value.append(display)
-
-  # add slider to display
-  interface1 = Slider()
-  interface1.my_constructor("Nr1", avango.gua.make_trans_mat(0.0, 1.0, 2.0), display, loader)
-  interface2 = Slider()
-  interface2.my_constructor("Nr2", avango.gua.make_trans_mat(0.0, 1.4, 2.0), display, loader)
+  #display = avango.gua.nodes.TransformNode(Name = "display_node")
+  #scene_manager.graphs[0].Root.value.Children.value.append(display)
 
   # add switch
-  switch1 = Switch()
-  switch1.my_constructor("Switch1", avango.gua.make_trans_mat(5.0, 1.0, 2.0), display, loader)
+  #switch1 = Switch()
+  #switch1.my_constructor("Switch1", avango.gua.make_trans_mat(5.0, 1.0, 2.0), display, loader)
 
 
   # run application loop
