@@ -16,6 +16,7 @@ class Manipulator(avango.script.Script):
   def __init__(self):
     self.super(Manipulator).__init__()
 
+
     self.Keyboard = KeyboardMouseDevice()
 
     self.LeftPointer = PointerDevice()
@@ -64,11 +65,17 @@ class Manipulator(avango.script.Script):
 
 
   def initialize_left_picker(self):
+    print "init picker left"
     # create ray
+
+    loader = avango.gua.nodes.GeometryLoader()
     pick_ray = avango.gua.nodes.RayNode(Name = "pick_ray_left")
     pick_ray.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 500.0)
+    ray_left_avatar = loader.create_geometry_from_file('ray_left' , 'data/objects/cube.obj',
+                                                    'White', avango.gua.LoaderFlags.DEFAULTS)
+    ray_left_avatar.Transform.value = avango.gua.make_scale_mat(0.01, 0.01, 50)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
-    pick_transform.Children.value.append(pick_ray)
+    pick_transform.Children.value = [pick_ray, ray_left_avatar]
 
     # set picker values
     self.LeftPicker.SceneGraph.value = self.SCENEGRAPH
@@ -82,11 +89,17 @@ class Manipulator(avango.script.Script):
     self.left_picker_updater.PickedNodes.connect_from(self.LeftPicker.Results)
 
   def initialize_right_picker(self):
+    print "init picker right"
     # create ray
+
+    loader = avango.gua.nodes.GeometryLoader()
     pick_ray = avango.gua.nodes.RayNode(Name = "pick_ray_right")
     pick_ray.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
+    ray_right_avatar = loader.create_geometry_from_file('ray_right' , 'data/objects/cube.obj',
+                                                     'Bright', avango.gua.LoaderFlags.DEFAULTS)
+    ray_right_avatar.Transform.value = avango.gua.make_scale_mat(0.01, 0.01, 50)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
-    pick_transform.Children.value.append(pick_ray)
+    pick_transform.Children.value = [pick_ray, ray_right_avatar]
 
     # set picker values
     self.RightPicker.SceneGraph.value = self.SCENEGRAPH
@@ -114,11 +127,8 @@ class ManipulatorPicker(avango.script.Script):
     self.SceneGraph.value = avango.gua.nodes.SceneGraph()
     self.Ray.value  = avango.gua.nodes.RayNode()
     self.Options.value = avango.gua.PickingOptions.PICK_ONLY_FIRST_OBJECT \
-                         | avango.gua.PickingOptions.GET_TEXTURE_COORDS \
-                         | avango.gua.PickingOptions.GET_WORLD_NORMALS \
-                         | avango.gua.PickingOptions.INTERPOLATE_NORMALS \
                          | avango.gua.PickingOptions.PICK_ONLY_FIRST_FACE
-    self.Mask.value = "pickable"
+    self.Mask.value = ""
     
   def evaluate(self):
     results = self.SceneGraph.value.ray_test(self.Ray.value,
@@ -135,12 +145,16 @@ class MaterialUpdater(avango.script.Script):
 
   @field_has_changed(PickedNodes)
   def update_materials(self):
-
-    for i in range(0, len(self.OldNodes.value)):
-      if isinstance(self.OldNodes.value[i].Object.value, avango.gua.GeometryNode):
-        self.OldNodes.value[i].Object.value.Material.value = self.DefaultMaterial.value
-
+    print "field PickedNodes has changed"
+    print len(self.PickedNodes.value)
+    #for i in range(0, len(self.OldNodes.value)):
+    #  print "old"
+    #  if isinstance(self.OldNodes.value[i].Object.value, avango.gua.GeometryNode):
+    #    self.OldNodes.value[i].Object.value.Material.value = self.DefaultMaterial.value
+    print len(self.OldNodes.value)
     for i in range(0, len(self.PickedNodes.value)):
+      print "in"
+      print self.PickedNodes.value
       if isinstance(self.PickedNodes.value[i].Object.value, avango.gua.GeometryNode):
         print "pick"
         self.PickedNodes.value[i].Object.value.Material.value = self.TargetMaterial.value

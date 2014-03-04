@@ -142,7 +142,6 @@ class User:
     self.pipeline.SsaoRadius.value              = self.ssao_radius
     self.pipeline.SsaoIntensity.value           = self.ssao_intensity
     self.pipeline.EnableFPSDisplay.value        = self.enable_fps_display
-    self.pipeline.EnableRayDisplay.value        = True
     self.pipeline.FogTexture.value              = self.pipeline.BackgroundTexture.value
 
   ## Appends a node to the children of a platform in the scenegraph.
