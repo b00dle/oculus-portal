@@ -15,16 +15,27 @@ class Manipulator(avango.script.Script):
 
   def __init__(self):
     self.super(Manipulator).__init__()
+
     self.Keyboard = KeyboardMouseDevice()
+
     self.LeftPointer = PointerDevice()
     self.LeftPointer.my_constructor("MOUSE USB MOUSE")
-    #self.LeftPicker  = Picker()
+
     self.RightPointer = PointerDevice()
     self.RightPointer.my_constructor("2.4G Presenter")
-    #self.RightPicker  = Picker()
+
     self.LeftPointerPicked = False
     self.RightPointerPicked = False
+
+    # 2 pickers needed
+
     self.always_evaluate(True)
+
+  def my_constructor(self, SCENEGRAPH):
+    self.SCENEGRAPH = SCENEGRAPH
+    #self.
+    # todo!
+
 
   def evaluate(self):
     if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False:
