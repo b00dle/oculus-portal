@@ -107,9 +107,6 @@ class User:
   # controlls interaction with portals in the scene
   portal_controller = PortalController()
 
-  # 
-  manipulator = Manipulator()
-
   ## Custom constructor.
   # @param NODE_PRETEXT The prefix to be used when creating scenegraph nodes.
   def __init__(self, NODE_PRETEXT):
@@ -209,33 +206,46 @@ class User:
     # create hands for the avatar
     # left hand
     self.left_hand_avatar = _loader.create_geometry_from_file( self.node_pretext + '_left_hand_avatar_' + str(PLATFORM_ID),
-                                                          'data/objects/teapot.obj',
+                                                          'data/objects/hand.obj',
                                                           _material,
                                                           avango.gua.LoaderFlags.LOAD_MATERIALS)
-    self.left_hand_avatar.Transform.value = avango.gua.make_scale_mat(0.1, 0.1, 0.1)
+
     self.left_hand_transform = avango.gua.nodes.TransformNode(Name = self.node_pretext + '_left_hand_transform_' + str(PLATFORM_ID))
     self.left_hand_transform.Children.value.append(self.left_hand_avatar)
     SCENEGRAPH['/platform_' + str(PLATFORM_ID)].Children.value.append(self.left_hand_transform)
-    self.left_hand_transform.Transform.connect_from(LEFTHAND_MAT)
+
 
     # right hand
     self.right_hand_avatar = _loader.create_geometry_from_file( self.node_pretext + '_right_hand_avatar_' + str(PLATFORM_ID),
-                                                          'data/objects/teapot.obj',
+                                                          'data/objects/hand.obj',
                                                           _material,
                                                           avango.gua.LoaderFlags.LOAD_MATERIALS)
-    self.right_hand_avatar.Transform.value = avango.gua.make_scale_mat(0.1, 0.1, 0.1)
+
     self.right_hand_transform = avango.gua.nodes.TransformNode(Name = self.node_pretext + '_right_hand_transform_' + str(PLATFORM_ID))
     self.right_hand_transform.Children.value.append(self.right_hand_avatar)
     SCENEGRAPH['/platform_' + str(PLATFORM_ID)].Children.value.append(self.right_hand_transform)
 
-    self.right_hand_transform.Transform.connect_from(RIGHTHAND_MAT)
+
+    # OVR User and PowerwallUser get 'Pointer-Hands'
+    if self.node_pretext == "ovr" or self.node_pretext == "powerwall": # ! powerwall pretext richtig???
+      # Left Hand
+      self.left_hand_avatar.Transform.value = avango.gua.make_scale_mat(2.0, 2.0, 2.0)  
+      self.left_hand_transform.Transform.connect_from(LEFTHAND_MAT)
+
+      # Right Hand
+      self.right_hand_avatar.Transform.value = avango.gua.make_scale_mat(2.0, 2.0, 2.0)
+      self.right_hand_transform.Transform.connect_from(RIGHTHAND_MAT)
 
 
 
 
-
-    # create desktop user table
+    # create desktop user table and default hands
     if self.node_pretext == "desktop":
+      # Left Hand
+      self.left_hand_avatar.Transform.value = avango.gua.make_trans_mat(-0.2, 0.8, 1.3) * avango.gua.make_scale_mat(2.0, 2.0, 2.0)
+
+      # Right Hand
+      self.right_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.2, 0.8, 1.3) * avango.gua.make_scale_mat(2.0, 2.0, 2.0)
 
       ## @var table_transform
       # Scenegraph transform node for the dekstop user's table.

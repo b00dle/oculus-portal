@@ -155,6 +155,7 @@ class MaterialUpdater(avango.script.Script):
     for i in range(0, len(self.PickedNodes.value)):
       print "in"
       print self.PickedNodes.value
+
       if isinstance(self.PickedNodes.value[i].Object.value, avango.gua.GeometryNode):
         print "pick"
         self.PickedNodes.value[i].Object.value.Material.value = self.TargetMaterial.value

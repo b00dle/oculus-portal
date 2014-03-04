@@ -146,6 +146,7 @@ class OVRUser(User):
     # create avatar representation
     self.create_avatar_representation(SCENEGRAPH, INITIAL_PLATFORM_ID, self.tracking_rotation_combiner.get_sf_avatar_body_matrix(), self.left_hand_trackingreader.sf_tracking_mat, self.right_hand_trackingreader.sf_tracking_mat)
 
+    self.manipulator = Manipulator()
     self.manipulator.my_constructor(SCENEGRAPH,self.left_hand_transform,self.right_hand_transform)
 
     # add newly created pipeline to the list of all pipelines in the viewer
