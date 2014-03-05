@@ -167,7 +167,8 @@ class Slider(avango.script.Script):
     self.slider_geometry.Transform.value = avango.gua.make_trans_mat(
                                             slider_x,
                                             self.slider_transform.Transform.value.get_translate().y,
-                                            self.slider_transform.Transform.value.get_translate().z)
+                                            self.slider_transform.Transform.value.get_translate().z) *\
+                                            avango.gua.make_scale_mat(0.2,0.2,0.2)
 
     self.sfObjectTransformOut.value = slider_x # TODO: Umrechnung von Pos auf Prozentwert
 

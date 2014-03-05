@@ -14,7 +14,7 @@ from ..Device import *
 from Interface import *
 
 class Manipulator(avango.script.Script):
-  SFrighthand = avango.gua.SFMatrix4()
+  sf_righthand = avango.gua.SFMatrix4()
 
   def __init__(self):
     self.super(Manipulator).__init__()
@@ -58,12 +58,9 @@ class Manipulator(avango.script.Script):
     self.interface2 = Slider()
     self.interface2.my_constructor("Nr2", avango.gua.make_trans_mat(0.0, 0.4, 0.0), self.display, self.loader)
 
-
-
-
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
-    self.SFrighthand.value = self.RIGHTHAND.Transform.value
+    self.sf_righthand.connect_from(self.RIGHTHAND.Transform)
     # Pointer-Buttons:
 
     # pick button left hand
@@ -91,15 +88,14 @@ class Manipulator(avango.script.Script):
       print "Interact with ",self.RightPicker.Results.value[0].Object.value.Name.value
       self.RightPicker.Results.value[0].Object.value.Material.value = "AvatarRed"
 
-      
-      self.SFrighthand.value = self.RIGHTHAND.Transform.value
+      #self.sf_righthand.value = self.RIGHTHAND.Transform.value
       #sffloatx_ = avango.SFFloat()
       #sffloatx_.value = self.invisible_plane_intersect()
 
       if (self.RightPicker.Results.value[0].Object.value.Name.value == "slider_Nr1"):
-        self.interface1.sfTransformInput.connect_from(self.SFrighthand)
+        self.interface1.sfTransformInput.connect_from(self.sf_righthand)
       if (self.RightPicker.Results.value[0].Object.value.Name.value == "slider_Nr2"):
-        self.interface2.sfTransformInput.connect_from(self.SFrighthand)
+        self.interface2.sfTransformInput.connect_from(self.sf_righthand)
 
     if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
       self.RightPointerPicked = False

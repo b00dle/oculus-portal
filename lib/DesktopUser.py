@@ -107,7 +107,6 @@ class DesktopUser(User):
     self.pipeline.Camera.value = self.camera
     self.set_pipeline_values()  
     
-
     # create avatar representation
     self.create_avatar_representation(SCENEGRAPH, INITIAL_PLATFORM_ID, self.headtracking_reader.sf_avatar_body_mat, None, None)
 
