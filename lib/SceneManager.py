@@ -78,7 +78,7 @@ class SceneManager:
 
     # Create Monkey
     monkey = loader.create_geometry_from_file('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    monkey.Transform.value = avango.gua.make_trans_mat(1.0, 2.0, 7.0)
+    monkey.Transform.value = avango.gua.make_trans_mat(0.0, 3.0, -1.0) * avango.gua.make_scale_mat(2.0,2.0,2.0)
     
     monkey_object_handler = ObjectHandler()
     #monkey_object_handler.my_constructor(monkey)
