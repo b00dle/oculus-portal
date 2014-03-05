@@ -28,11 +28,14 @@ def init_lcd_wall_tracking():
   _dtrack = avango.daemon.DTrack()
   _dtrack.port = "5000" # ART port at LCD wall
   
-  _dtrack.stations[17] = avango.daemon.Station('tracking-oculus-front') # oculus rift tracking
-  _dtrack.stations[16] = avango.daemon.Station('tracking-oculus-stag')  # oculus rift tracking
+  _dtrack.stations[16] = avango.daemon.Station('tracking-oculus-front') # oculus rift tracking
+  _dtrack.stations[17] = avango.daemon.Station('tracking-oculus-stag')  # oculus rift tracking
 
   _dtrack.stations[4] = avango.daemon.Station('tracking-glasses-1')    # glasses powerwall user one
   _dtrack.stations[3] = avango.daemon.Station('tracking-glasses-2')    # glasses powerwall user two
+
+  _dtrack.stations[1] = avango.daemon.Station('tracking-pointer-blue')  # blue pointer
+  _dtrack.stations[13] = avango.daemon.Station('tracking-pointer-green') # green pointer
 
   _dtrack.stations[7] = avango.daemon.Station('tracking-old-spheron')      # old spheron device
 
@@ -51,6 +54,39 @@ def init_led_wall_tracking():
 
   device_list.append(_dtrack)
   print "ART Tracking started at LED WALL"
+
+
+## Initializes pointers
+def init_pointer(NAME):
+
+  _string = os.popen("./list-ev -s | grep \"" + NAME + "\"| sed -e \'s/\"//g\'  | cut -d\" \" -f4").read()
+  
+  #if len(_string) == 0:
+  #  _string = os.popen("./list-ev -s | grep \"2.4G Presenter\" | sed -e \'s/\"//g\'  | cut -d\" \" -f4").read() # search for other pointer
+
+  #if len(_string) == 0:
+  #  _string = os.popen("./list-ev -s | grep \"MOSART Semi. Input Device\" | sed -e \'s/\"//g\'  | cut -d\" \" -f4").read() # search for other pointer
+
+  _string = _string.split()
+  if len(_string) > 0:
+
+    _string = _string[0]
+
+    _pointer = avango.daemon.HIDInput()
+    _pointer.station = avango.daemon.Station('device-pointer_' + NAME)
+    _pointer.device = _string
+
+    _pointer.buttons[0] = "EV_KEY::KEY_PAGEUP"
+    _pointer.buttons[1] = "EV_KEY::KEY_PAGEDOWN"
+    _pointer.buttons[2] = "EV_KEY::KEY_F5"
+    _pointer.buttons[3] = "EV_KEY::KEY_RIGHT"
+    _pointer.buttons[4] = "EV_KEY::KEY_LEFT"
+
+    device_list.append(_pointer)
+    print "Pointer started at:", _string
+
+  else:
+    print "Pointer NOT found !"
 
 
 ## Initializes a spacemouse for navigation.
@@ -280,6 +316,8 @@ init_old_spheron()
 init_keyboard()
 init_mouse()
 init_spacemouse()
+init_pointer("MOUSE USB MOUSE")
+init_pointer("2.4G Presenter")
 
 '''
 init_pst_tracking()

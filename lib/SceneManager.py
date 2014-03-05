@@ -17,7 +17,21 @@ import Tools
 import math
 import time
 
+from interface_lib.InteractivGeometry import *
 
+
+class ObjectHandler(avango.script.Script):
+
+  def __init__(self):
+    self.super(ObjectHandler).__init__()
+
+  #def my_constructor(self, NODE):
+  #  self.NODE = NODE
+
+
+  def test_function(self):
+    #self.NODE.Material.value = 'AvatarBlue'
+    print "test"
 
 
 ## Class for building a scene and appending the necessary nodes to the scenegraph.
@@ -30,8 +44,8 @@ class SceneManager:
     self.graphs = []
     self.scene_names = []
     self.create_simplescene()
-    self.create_harbourscene()
-    self.create_weimarscene()
+    #self.create_harbourscene()
+    #self.create_weimarscene()
 
   def create_simplescene(self):
     self.scene_names.append("simplescene")
@@ -61,6 +75,28 @@ class SceneManager:
     plane.Transform.value = avango.gua.make_scale_mat(20,1,20)
 
     graph.Root.value.Children.value.append(plane)
+
+    # Create Monkey
+    #monkey = loader.create_geometry_from_file('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    #monkey.Transform.value = avango.gua.make_trans_mat(0.0, 3.0, -1.0) * avango.gua.make_scale_mat(2.0,2.0,2.0)
+    
+    #monkey_object_handler = ObjectHandler()
+    #monkey_object_handler.my_constructor(monkey)
+
+    #monkey.add_and_init_field(avango.SFFloat(), "Feld_test", 10.0)
+    #monkey.add_and_init_field(avango.script.SFObject(), "ObjectHandler", monkey_object_handler)
+    #monkey.add_and_init_field(avango.SFBool, "Resizeable", True)
+    #monkey.GroupNames.value = ["pickable"]
+    #graph.Root.value.Children.value.append(monkey)
+
+
+
+    interactiv_object = InteractivGeometry()
+    interactiv_object.my_constructor('monkey', 'data/objects/cube.obj', 'Stones', graph.Root.value, ["size", "red", "blue", "green"])
+    
+
+
+
 
     # screen
     screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)

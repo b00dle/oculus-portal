@@ -476,3 +476,38 @@ class OldSpheronDevice(MultiDofDevice):
      
      
     self.mf_dof.value = [_x, _y, _z, _rx, _ry, _rz, 0.0]
+
+
+
+class PointerDevice(avango.script.Script):
+
+  sf_key_pageup = avango.SFBool()
+  sf_key_pagedown = avango.SFBool()
+
+  def __init__(self):
+    self.super(PointerDevice).__init__()
+
+  def my_constructor(self,NAME):
+
+    self.device_sensor = avango.daemon.nodes.DeviceSensor(DeviceService = avango.daemon.DeviceService())
+    self.device_sensor.Station.value = "device-pointer_" + NAME
+
+    if (NAME =="MOUSE USB MOUSE"):
+      self.sf_key_pageup.connect_from(self.device_sensor.Button0)
+      self.sf_key_pagedown.connect_from(self.device_sensor.Button1)
+
+    if (NAME == "2.4G Presenter"):
+      self.sf_key_pageup.connect_from(self.device_sensor.Button3)
+      self.sf_key_pagedown.connect_from(self.device_sensor.Button4)
+
+'''
+  @field_has_changed(sf_key_pageup)
+  def sf_key_pageup_changed(self):
+
+    print "Up: " , self.sf_key_pageup.value
+
+  @field_has_changed(sf_key_pagedown)
+  def sf_key_pagedown_changed(self):
+
+    print "Down: " , self.sf_key_pagedown.value
+'''    
