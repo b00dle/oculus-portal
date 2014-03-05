@@ -118,6 +118,7 @@ class Slider(avango.script.Script):
 
   sfObjectTransformOut = avango.SFFloat()
   sfTransformInput = avango.gua.SFMatrix4()
+  sfPositionXInput = avango.SFFloat()
 
   def __init__(self):
     self.super(Slider).__init__()
@@ -127,9 +128,15 @@ class Slider(avango.script.Script):
     self.PARENT_NODE = avango.gua.nodes.TransformNode()
     self.slider_geometry = avango.gua.nodes.GeometryNode()
     self.slider_transform = avango.gua.nodes.TransformNode()
-    self.slider_min = -1
-    self.slider_max = 1
-    #self.always_evaluate(True)
+    self.slider_min = -0.5
+    self.slider_max = 0.5
+
+    self.slider_scale = avango.gua.make_scale_mat(0.2, 0.2, 0.2)
+    self.transformation_at_start = avango.gua.make_identity_mat()
+    self.object = avango.gua.nodes.GeometryNode()
+
+    self.inv_plane_scale_mat = avango.gua.make_identity_mat()
+
 
   def my_constructor(self, NAME, SLIDERPOS, PARENT_NODE, LOADER):
     self.NAME = NAME
@@ -138,42 +145,84 @@ class Slider(avango.script.Script):
 
     self.slider_geometry = LOADER.create_geometry_from_file('slider_' + NAME, 'data/objects/sphere.obj',
                                                             'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    self.slider_geometry.Transform.value = avango.gua.make_scale_mat(0.2, 0.2, 0.2)
+    self.slider_geometry.Transform.value = self.slider_scale
     self.slider_geometry.GroupNames.value = ["interface_element"]
     self.slider_transform = avango.gua.nodes.TransformNode(Name = 'slider_trans_' + NAME)
     self.slider_transform.Transform.value = avango.gua.make_trans_mat(self.SLIDERPOS.get_translate())
     self.slider_transform.Children.value.append(self.slider_geometry)
     self.PARENT_NODE.Children.value.append(self.slider_transform)
 
-    line_begin = avango.gua.Vec3(self.slider_transform.Transform.value.get_translate().x - 1.0,
+    line_begin = avango.gua.Vec3(self.slider_transform.Transform.value.get_translate().x - 0.5,
                                  self.slider_transform.Transform.value.get_translate().y,
                                  self.slider_transform.Transform.value.get_translate().z)
 
-    line_end = avango.gua.Vec3(self.slider_transform.Transform.value.get_translate().x + 1.0,
+    line_end = avango.gua.Vec3(self.slider_transform.Transform.value.get_translate().x + 0.5,
                                  self.slider_transform.Transform.value.get_translate().y,
                                  self.slider_transform.Transform.value.get_translate().z)
     create_line_visualization(LOADER, self.PARENT_NODE, line_begin, line_end, 'White')
 
 
-  #@field_has_changed(sfTransformInput)
-  #def change_slider_transformation(self):
-  def evaluate(self):
+
+  @field_has_changed(sfPositionXInput)
+  def change_slider_transformation(self):
+
+    self.slider_geometry.Transform.value = avango.gua.make_trans_mat(
+                                            self.sfPositionXInput.value,
+                                            self.slider_transform.Transform.value.get_translate().y,
+                                            self.slider_transform.Transform.value.get_translate().z) *\
+                                            self.slider_scale
+
+
+    value_x = (self.sfPositionXInput.value +0.5) #self.inv_plane_scale_mat.get_translate().x
+    scale_factor = 2
+
+    if value_x < self.slider_min:
+      value_x = self.slider_min
+
+    if value_x > self.slider_max:
+      value_x = self.slider_max
+
+    old_trans = self.object.Transform.value.get_translate()
+    old_rot = self.object.Transform.value.get_rotate()
+
+    self.object.Transform.value = avango.gua.make_trans_mat(old_trans) *\
+                  avango.gua.make_scale_mat(value_x * scale_factor, value_x * scale_factor, value_x * scale_factor) *\
+                  avango.gua.make_rot_mat(old_rot)
+
+
+
+# Ansatz mit Abstand zwischen den beiden Pointern
+    '''
     slider_x = self.sfTransformInput.value.get_translate().x
+
+    value_x = 2.0 * (slider_x - self.transformation_at_start.get_translate().x)
 
     if slider_x < self.slider_min:
       slider_x = self.slider_min
 
     if slider_x > self.slider_max:
       slider_x = self.slider_max
+    '''
 
+
+''' 
     self.slider_geometry.Transform.value = avango.gua.make_trans_mat(
-                                            slider_x,
+                                            value_x,
                                             self.slider_transform.Transform.value.get_translate().y,
                                             self.slider_transform.Transform.value.get_translate().z) *\
-                                            avango.gua.make_scale_mat(0.2,0.2,0.2)
+                                            self.slider_scale
 
-    self.sfObjectTransformOut.value = slider_x # TODO: Umrechnung von Pos auf Prozentwert
 
+    old_trans = self.object.Transform.value.get_translate()
+    old_rot = self.object.Transform.value.get_rotate()
+
+    value_x = (value_x + 1)
+    scale_factor = 2
+
+    self.object.Transform.value = avango.gua.make_trans_mat(old_trans) *\
+                  avango.gua.make_scale_mat(value_x * scale_factor, value_x * scale_factor, value_x * scale_factor) *\
+                  avango.gua.make_rot_mat(old_rot)
+'''
 
 
 '''    

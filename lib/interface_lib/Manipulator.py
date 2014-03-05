@@ -15,6 +15,7 @@ from Interface import *
 
 class Manipulator(avango.script.Script):
   sf_righthand = avango.gua.SFMatrix4()
+  sf_XOutput = avango.SFFloat()
 
   def __init__(self):
     self.super(Manipulator).__init__()
@@ -34,6 +35,8 @@ class Manipulator(avango.script.Script):
 
     self.LeftPointerPicked = False
     self.RightPointerPicked = False
+
+    self.PlaneModeFlag = False
 
     #self.left_picker_updater = MaterialUpdater()
     #self.right_picker_updater = MaterialUpdater()
@@ -60,9 +63,17 @@ class Manipulator(avango.script.Script):
     self.interface2 = Slider()
     self.interface2.my_constructor("Nr2", avango.gua.make_trans_mat(0.0, 0.4, 0.0), self.display, self.loader)
 
+    self.inv_plane = self.loader.create_geometry_from_file('inv_plane', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    self.inv_plane.GroupNames.value = ["inv_plane", "do_not_display_group"]
+    self.inv_plane.Transform.value = avango.gua.make_rot_mat(90, 1, 0, 0) * avango.gua.make_scale_mat(1,1,20)
+
+
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
-    # Pointer-Buttons:
+    # Change the slider
+    if self.PlaneModeFlag == True and (len(self.RightPicker.Results.value) > 0):
+      if self.RightPicker.Results.value[0].Object.value.Name.value == 'inv_plane':
+        self.sf_XOutput.value = self.RightPicker.Results.value[0].Position.value.x
 
     # pick button left hand
     if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False and\
@@ -94,36 +105,46 @@ class Manipulator(avango.script.Script):
       #sffloatx_.value = self.invisible_plane_intersect()
 
       if (self.RightPicker.Results.value[0].Object.value.Name.value == "slider_Nr1"):
+        self.interface1.transformation_at_start = self.sf_righthand.value
         self.interface1.sfTransformInput.connect_from(self.sf_righthand)
+
+        # Affen an Interface uebergeben
+        self.interface1.object = self.picked_object
+
       if (self.RightPicker.Results.value[0].Object.value.Name.value == "slider_Nr2"):
-        self.interface2.sfTransformInput.connect_from(self.sf_righthand)
+        # Invisible Plane Intersect        
+        self.display.Children.value.append(self.inv_plane)
+
+        self.PlaneModeFlag = True
+        self.interface2.sfPositionXInput.connect_from(self.sf_XOutput)
+        self.RightPicker.Mask.value = "inv_plane"
+        # Invertierte Scale-Mat:
+        inv_scale = self.inv_plane.Transform.value.get_scale()
+        inv_scale = avango.gua.make_scale_mat(inv_scale)
+        inv_scale = avango.gua.make_inverse_mat(inv_scale)
+
+        self.interface2.inv_plane_scale_mat = inv_scale
+        self.interface2.object = self.picked_object
+
+
+        #self.interface2.transformation_at_start = self.sf_righthand.value
+        #self.interface2.sfTransformInput.connect_from(self.sf_righthand)
+
+        # Affen an Interface uebergeben
+        
 
     if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
       self.RightPointerPicked = False
-
+      self.RightPicker.Mask.value = "interface_element"
       #!!! for all interfaces: ODER Flag fuer gepickten Schalter
       self.interface1.slider_geometry.Material.value = "Stone"
       self.interface2.slider_geometry.Material.value = "Stone"
 
       self.interface1.sfTransformInput.disconnect_from(self.sf_righthand)
-      self.interface2.sfTransformInput.disconnect_from(self.sf_righthand)
+      self.interface2.sfPositionXInput.disconnect_from(self.sf_XOutput)
 
       print "OFF"
-
-  '''
-  def invisible_plane_intersect(self):
-    loader = avango.gua.nodes.GeometryLoader()
-    plane = loader.create_geometry_from_file('floor', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    plane.Transform.value = avango.gua.make_rot_mat(90, 1, 0, 0) * avango.gua.make_scale_mat(20,1,20)
-
-    self.display.Children.value.append(plane)
-
-    if (len(self.RightPicker.Results.value) > 0):
-      _x = self.RightPicker.Results.value[0].Position.value.x
-      print _x
-
-    return _x
-    '''
+    
 
   def initialize_left_picker(self):
     print "init picker left"
@@ -190,7 +211,8 @@ class ManipulatorPicker(avango.script.Script):
     self.SceneGraph.value = avango.gua.nodes.SceneGraph()
     self.Ray.value  = avango.gua.nodes.RayNode()
     self.Options.value = avango.gua.PickingOptions.PICK_ONLY_FIRST_OBJECT \
-                         | avango.gua.PickingOptions.PICK_ONLY_FIRST_FACE
+                         | avango.gua.PickingOptions.PICK_ONLY_FIRST_FACE\
+                         | avango.gua.PickingOptions.GET_POSITIONS
     self.Mask.value = ""
     
   def evaluate(self):
