@@ -26,9 +26,11 @@ class Portal(avango.script.Script):
         self.PRE_PIPE       = avango.gua.nodes.Pipeline()
         self.GEOMETRY       = avango.gua.nodes.GeometryNode()
         self.HEAD           = ""
+        self.GROUPNAME      = ""
+        self.EXCLUDEGROUPS  = []
 
 
-    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT):
+    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS):
         self.sf_portal_pos.value    = ENTRYPOS
         self.NAME                   = NAME
         self.ENTRYSCENE             = ENTRYSCENE
@@ -36,6 +38,8 @@ class Portal(avango.script.Script):
         self.EXITPOS                = EXITPOS
         self.WIDTH                  = WIDTH
         self.HEIGHT                 = HEIGHT
+        self.GROUPNAME              = GROUPNAME
+        self.EXCLUDEGROUPS          = EXCLUDEGROUPS
         self.PRE_PIPE               = self.create_default_pipe()
         self.GEOMETRY               = self.create_geometry(ENTRYPOS)
         self.HEAD                   = "/" + self.NAME + "Screen/head"
@@ -53,10 +57,17 @@ class Portal(avango.script.Script):
                                         RightScreen = "/" + self.NAME + "Screen",
                                         SceneGraph  = self.EXITSCENE.Name.value)
 
-        camera.RenderMask.value = "!portal"
+        camera.RenderMask.value = "!portal_display_exclude && !portal"        
 
-        pre_pipe = avango.gua.nodes.Pipeline(Camera = camera,
+        for group in self.EXCLUDEGROUPS:
+            if group != self.GROUPNAME:
+                camera.RenderMask.value = camera.RenderMask.value + " && !" + group
+
+        pre_pipe = avango.gua.nodes.Pipeline(Name = self.NAME + "_pipe",
+                                            Camera = camera,
                                             OutputTextureName = self.NAME + "Texture")
+
+        #print("created texture: " + self.NAME + "Texture")
 
         pre_pipe.LeftResolution.value  = avango.gua.Vec2ui(width/2, height/2)
         pre_pipe.EnableStereo.value = False
@@ -79,6 +90,7 @@ class Portal(avango.script.Script):
                                 avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
                                 avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
                                 
+        geometry.GroupNames.value.append(self.GROUPNAME)
         geometry.GroupNames.value.append("portal")
 
         avango.gua.set_material_uniform(  "Portal" + self.NAME,

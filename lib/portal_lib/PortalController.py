@@ -24,6 +24,7 @@ class PortalPicker(avango.script.Script):
 
     self.SceneGraph.value = avango.gua.nodes.SceneGraph()
     self.Ray.value  = avango.gua.nodes.RayNode()
+    self.Ray.value.Transform.value = avango.gua.make_trans_mat(0.0,1.0,1.0)
     self.Options.value = avango.gua.PickingOptions.PICK_ONLY_FIRST_OBJECT \
                          | avango.gua.PickingOptions.PICK_ONLY_FIRST_FACE
     self.Mask.value = ""
@@ -68,34 +69,49 @@ class PortalController(avango.script.Script):
     self.NAVIGATION     = Navigation()
     self.PORTALUPDATERS = []
     self.PLATFORM       = -1
-    self.stop_eval      = False
-
-  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, NAVIGATION, SF_USERHEAD, SF_USERSCREEN, USER):
+    self.SF_USERHEAD    = avango.gua.SFMatrix4()
+    self.SF_USERSCREEN  = avango.gua.SFMatrix4()
+    
+  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, NAVIGATION, SF_USERHEAD, SF_USERSCREEN):
     self.NAME             = NAME
     self.ACTIVESCENE      = ACTIVESCENE
     self.VIEWINGPIPELINES = VIEWINGPIPELINES
     self.PIPELINE         = PIPELINE
     self.PORTALS          = PORTALS
     
-    self.update_prepipes()
+    #self.update_prepipes()
 
     self.ACTIVEPORTALS    = self.create_active_portals()      
     self.NAVIGATION       = NAVIGATION
 
-    self.USER             = USER
+    # references
+    self.SF_USERSCREEN    = SF_USERSCREEN
+    self.SF_USERHEAD      = SF_USERHEAD
+    self.create_portal_updaters()     
 
-    #self.sfUserHead.connect_from(SF_USERHEAD)
-    #self.sfUserScreen.connect_from(SF_USERSCREEN)     
-
-    #self.PORTALUPDATERS   = self.create_portal_updaters()
-    #self.create_portal_updaters()
-    
     self.initialize_portal_group_names()
     self.update_prepipes()
     self.update_portal_picker()
 
-  #@field_has_changed(PickedPortals)
-  #def evaluate_scene_change(self):
+    self.always_evaluate(True) # set class evaluation policy
+
+
+  @field_has_changed(PickedPortals)
+  def evaluate_scene_change(self):
+    _platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
+    _pos_p1 = _platform.Transform.value.get_translate()
+
+    for portal in self.PickedPortals.value:
+      if portal.Distance.value < 0.5:
+        for p in self.ACTIVEPORTALS:
+          if p.GEOMETRY.Name.value == portal.Object.value.Name.value:
+            _pos_p2 = p.GEOMETRY.Transform.value.get_translate()
+            _distance_x = _pos_p1.x - _pos_p2.x
+            _distance_y = _pos_p1.y - _pos_p2.y
+            self.change_scene(p, _distance_x, _distance_y)
+            break
+        break
+
     #_platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
 
     #_pos_p1 = _platform.Transform.value.get_translate()
@@ -115,32 +131,26 @@ class PortalController(avango.script.Script):
     #self.adjust_nearplane()
 
   def evaluate(self):
-    if self.PLATFORM != -1:
-      self.sfUserScreen.connect_from(self.USER.screen.WorldTransform)
-      self.sfUserHead.connect_from(self.USER.head_transform.Transform)
-      self.adjust_nearplane()
+    self.sfUserScreen.value = self.SF_USERSCREEN.value
+    self.sfUserHead.value = self.SF_USERHEAD.value
+    #self.adjust_nearplane()
     
   def change_scene(self, PORTAL, DISTANCE_X, DISTANCE_Y):
     #_platform = self.NAVIGATION.platform
     _platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
-
     _rotate_old_scene = _platform.Transform.value.get_rotate()
-    
-    # Disconnect old members
-    self.PORTALPICKER.Ray.value.Transform.disconnect_from(_platform.Transform)
 
-    for p in self.ACTIVEPORTALS:
-      p.EXITSCENE[p.HEAD].disconnect_all_fields()
-      p.EXITSCENE["/" + p.NAME + "Screen"].disconnect_all_fields()
-      p.GEOMETRY.disconnect_all_fields()
-    
-    for up in self.PORTALUPDATERS:
-      up.disconnect_all_fields()
-        
-    # Set new Members
+    PORTAL.EXITSCENE.Root.value.Children.value.append(_platform)
+
+    self.PIPELINE.Camera.value.SceneGraph.value = PORTAL.EXITSCENE.Name.value
+
+    for view_pipe in self.VIEWINGPIPELINES.value:
+      if view_pipe == self.PIPELINE:
+        view_pipe.Camera.value = self.PIPELINE.Camera.value
+
+    PORTAL.ENTRYSCENE.Root.value.Children.value.remove(_platform)
+
     self.ACTIVESCENE = PORTAL.EXITSCENE
-    
-    self.NAVIGATION.platform.change_scene(self.ACTIVESCENE)
 
     # Starting Position
     new_pos = avango.gua.make_trans_mat(PORTAL.EXITPOS.get_translate().x + DISTANCE_X, 
@@ -151,38 +161,74 @@ class PortalController(avango.script.Script):
     new_rot = avango.gua.make_rot_mat(_rotate_old_scene)
 
     self.NAVIGATION.set_to_pos(new_rot * new_pos)
-    #self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen"].Transform.value         = new_rot * new_pos
-    #self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen/head"].Transform.value    = avango.gua.make_trans_mat(0,0,1.7)
-
-    # Change Navigator
-    #self.USERHEAD = self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen"]
-    #self.NAVIGATOR.StartLocation.value = self.USERHEAD.Transform.value.get_translate()
-    #self.NAVIGATOR.OutTransform.connect_from(self.USERHEAD.Transform)
-    #self.USERHEAD.Transform.connect_from(self.NAVIGATOR.OutTransform)
-    #self.UserPositionIn.connect_from(self.USERHEAD.Transform)
-    
-    # Change Main Pipe
-    #camera_active_branch = avango.gua.nodes.Camera(LeftEye   = "/" + ACTIVEBRANCH.Name.value + "/screen/head" + "/mono_eye",
-    #                                            RightEye    = "/" + ACTIVEBRANCH.Name.value + "/screen/head" + "/mono_eye",
-    #                                            LeftScreen  = "/" + ACTIVEBRANCH.Name.value + "/screen",
-    #                                            RightScreen = "/" + ACTIVEBRANCH.Name.value + "/screen",
-    #                                            SceneGraph  = SCENEGRAPH.Name.value)
-
-
-    #self.PIPELINE.Camera.value                 = camera_active_branch
-    self.PIPELINE.BackgroundTexture.value      = PORTAL.PRE_PIPE.BackgroundTexture.value
-    self.PIPELINE.EnableBackfaceCulling.value  = PORTAL.PRE_PIPE.EnableBackfaceCulling.value
-    self.update_pipe_render_mask()
 
     self.ACTIVEPORTALS  = self.create_active_portals()
-    #self.PORTALUPDATERS = self.create_portal_updaters() 
     self.create_portal_updaters()
 
-    # probably not useful!?!?!
-    #for p in self.ACTIVEPORTALS:
-    #  self.ACTIVEBRANCH.Children.value.append(p.GEOMETRY)
-
     self.update_portal_picker()
+
+
+    # _rotate_old_scene = _platform.Transform.value.get_rotate()
+    
+    # # Disconnect old members
+    # self.PORTALPICKER.Ray.value.Transform.disconnect_from(_platform.Transform)
+
+    # for p in self.ACTIVEPORTALS:
+    #   p.EXITSCENE[p.HEAD].disconnect_all_fields()
+    #   p.EXITSCENE["/" + p.NAME + "Screen"].disconnect_all_fields()
+    #   p.GEOMETRY.disconnect_all_fields()
+    
+    # for up in self.PORTALUPDATERS:
+    #   up.disconnect_all_fields()
+        
+    # # Set new Members
+    # self.ACTIVESCENE = PORTAL.EXITSCENE
+    
+    # self.NAVIGATION.platform.change_scene(PORTAL.ENTRYSCENE, PORTAL.EXITSCENE, self.PIPELINE)
+
+    # #self.PIPELINE.Camera.value.SceneGraph.value = self.ACTIVESCENE.Name.value
+
+    # # Starting Position
+    # new_pos = avango.gua.make_trans_mat(PORTAL.EXITPOS.get_translate().x + DISTANCE_X, 
+    #                                     PORTAL.EXITPOS.get_translate().y + DISTANCE_Y,
+    #                                     PORTAL.EXITPOS.get_translate().z)
+
+    # # Starting Rotation
+    # new_rot = avango.gua.make_rot_mat(_rotate_old_scene)
+
+    # ##self.NAVIGATION.set_to_pos(new_rot * new_pos)
+    
+    # #self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen"].Transform.value         = new_rot * new_pos
+    # #self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen/head"].Transform.value    = avango.gua.make_trans_mat(0,0,1.7)
+
+    # # Change Navigator
+    # #self.USERHEAD = self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen"]
+    # #self.NAVIGATOR.StartLocation.value = self.USERHEAD.Transform.value.get_translate()
+    # #self.NAVIGATOR.OutTransform.connect_from(self.USERHEAD.Transform)
+    # #self.USERHEAD.Transform.connect_from(self.NAVIGATOR.OutTransform)
+    # #self.UserPositionIn.connect_from(self.USERHEAD.Transform)
+    
+    # # Change Main Pipe
+    # #camera_active_branch = avango.gua.nodes.Camera(LeftEye   = "/" + ACTIVEBRANCH.Name.value + "/screen/head" + "/mono_eye",
+    # #                                            RightEye    = "/" + ACTIVEBRANCH.Name.value + "/screen/head" + "/mono_eye",
+    # #                                            LeftScreen  = "/" + ACTIVEBRANCH.Name.value + "/screen",
+    # #                                            RightScreen = "/" + ACTIVEBRANCH.Name.value + "/screen",
+    # #                                            SceneGraph  = SCENEGRAPH.Name.value)
+
+
+    # #self.PIPELINE.Camera.value                 = camera_active_branch
+    # self.PIPELINE.BackgroundTexture.value      = PORTAL.PRE_PIPE.BackgroundTexture.value
+    # self.PIPELINE.EnableBackfaceCulling.value  = PORTAL.PRE_PIPE.EnableBackfaceCulling.value
+    
+    # self.ACTIVEPORTALS  = self.create_active_portals()
+    
+    # ##self.create_portal_updaters()
+
+    # # probably not useful!?!?!
+    # #for p in self.ACTIVEPORTALS:
+    # #  self.ACTIVEBRANCH.Children.value.append(p.GEOMETRY)
+
+    # ##self.update_portal_picker()
 
 
   def create_portal_updaters(self):
@@ -200,19 +246,18 @@ class PortalController(avango.script.Script):
     
   def create_active_portals(self):
     activeportals = []
-    pre_pipes = []      
+    #pre_pipes = []      
     for p in self.PORTALS:
       if p.ENTRYSCENE.Name.value == self.ACTIVESCENE.Name.value:
         activeportals.append(p)
-        pre_pipes.append(p.PRE_PIPE)
+    #    pre_pipes.append(p.PRE_PIPE)
 
-    self.PIPELINE.PreRenderPipelines.value = pre_pipes     
+    #self.PIPELINE.PreRenderPipelines.value = pre_pipes     
     return activeportals
       
   def update_prepipes(self):
     pre_pipes = []      
     for p in self.PORTALS:
-      #p.PRE_PIPE.Camera.value.RenderMask.value = self.PIPELINE.Camera.value.RenderMask.value
       pre_pipes.append(p.PRE_PIPE)
 
     self.PIPELINE.PreRenderPipelines.value = pre_pipes
@@ -230,8 +275,11 @@ class PortalController(avango.script.Script):
       #print _distance
   
   def update_portal_picker(self):
-    self.PORTALPICKER.Mask.value = self.NAME + "portals"
+    self.PORTALPICKER.Mask.value = self.PORTALS[0].GROUPNAME
     self.PORTALPICKER.SceneGraph.value = self.ACTIVESCENE
     self.ACTIVESCENE["/platform_" + str(self.PLATFORM)].Children.value.append(self.PORTALPICKER.Ray.value)
     self.PickedPortals.connect_from(self.PORTALPICKER.Results)
 
+  def delete_portal_group_name(self, GROUPNAME):
+    for p in self.PORTALS:
+      p.GEOMETRY.GroupNames.value.remove(GROUPNAME)

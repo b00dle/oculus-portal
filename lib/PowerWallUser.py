@@ -152,7 +152,8 @@ class PowerWallUser(User):
 
     ## @var pipeline
     # Pipeline for rendering purposes.
-    self.pipeline = avango.gua.nodes.Pipeline(Window = self.window, 
+    self.pipeline = avango.gua.nodes.Pipeline(Name = "PW_" + str(self.id) + "_pipe",
+                                              Window = self.window, 
                                               LeftResolution = self.window_size,
                                               RightResolution = self.window_size)
 

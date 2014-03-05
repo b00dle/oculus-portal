@@ -99,7 +99,7 @@ class DesktopUser(User):
     # create pipeline
     ## @var pipeline
     # Pipeline for rendering purposes.
-    self.pipeline = avango.gua.nodes.Pipeline()
+    self.pipeline = avango.gua.nodes.Pipeline(Name = "DESK_" + str(self.id) + "_pipe")
     self.pipeline.BackgroundTexture.value = VIEWING_MANAGER.background_texture
     self.pipeline.Window.value = self.window
     self.pipeline.LeftResolution.value = self.window.LeftResolution.value

@@ -120,7 +120,7 @@ class OVRUser(User):
     # create pipeline
     ## @var pipeline
     # Pipeline for rendering purposes.
-    self.pipeline = avango.gua.nodes.Pipeline()
+    self.pipeline = avango.gua.nodes.Pipeline(Name = "OVR_" + str(self.id) + "_pipe")
     self.pipeline.BackgroundTexture.value = VIEWING_MANAGER.background_texture
     self.pipeline.Window.value = self.oculus_window
     self.pipeline.LeftResolution.value = self.oculus_window.LeftResolution.value
