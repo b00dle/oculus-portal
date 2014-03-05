@@ -136,7 +136,7 @@ class Slider(avango.script.Script):
     self.SLIDERPOS = SLIDERPOS
     self.PARENT_NODE = PARENT_NODE
 
-    self.slider_geometry = LOADER.create_geometry_from_file('slider_' + NAME, 'data/objects/sphere.obj',
+    self.slider_geometry = LOADER.create_geometry_from_file(NAME + "_slider", 'data/objects/sphere.obj',
                                                             'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.slider_geometry.Transform.value = avango.gua.make_scale_mat(0.2, 0.2, 0.2)
     self.slider_geometry.GroupNames.value = ["interface_element"]

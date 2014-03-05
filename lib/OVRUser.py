@@ -135,7 +135,6 @@ class OVRUser(User):
     self.left_hand_transform = avango.gua.nodes.TransformNode(Name = "ovr_left_hand_" + str(self.id))
     self.left_hand_transform.Transform.connect_from(self.left_hand_trackingreader.sf_tracking_mat)
 
-
     self.right_hand_trackingreader = TrackingTargetReader()
     self.right_hand_trackingreader.my_constructor("tracking-pointer-green")
     self.right_hand_transform = avango.gua.nodes.TransformNode(Name = "ovr_right_hand_" + str(self.id))
@@ -147,7 +146,7 @@ class OVRUser(User):
     self.create_avatar_representation(SCENEGRAPH, INITIAL_PLATFORM_ID, self.tracking_rotation_combiner.get_sf_avatar_body_matrix(), self.left_hand_trackingreader.sf_tracking_mat, self.right_hand_trackingreader.sf_tracking_mat)
 
     self.manipulator = Manipulator()
-    self.manipulator.my_constructor(SCENEGRAPH,self.left_hand_transform,self.right_hand_transform)
+    self.manipulator.my_constructor(SCENEGRAPH, self.left_hand_transform, self.right_hand_transform)
 
     # add newly created pipeline to the list of all pipelines in the viewer
     VIEWING_MANAGER.viewer.Pipelines.value.append(self.pipeline)

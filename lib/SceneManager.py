@@ -17,6 +17,7 @@ import Tools
 import math
 import time
 
+from interface_lib.InteractivGeometry import *
 
 
 class ObjectHandler(avango.script.Script):
@@ -87,6 +88,14 @@ class SceneManager:
     #monkey.add_and_init_field(avango.SFBool, "Resizeable", True)
     monkey.GroupNames.value = ["pickable"]
     graph.Root.value.Children.value.append(monkey)
+
+
+
+
+    cube = loader.create_geometry_from_file('monkey', 'data/objects/cube.obj', 'Stones',
+                                             avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+
+    
 
 
 
