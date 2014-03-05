@@ -17,17 +17,20 @@ from InteractivGeometry import *
 class Manipulator(avango.script.Script):
   sf_righthand = avango.gua.SFMatrix4()
   sf_XOutput = avango.SFFloat()
+  sf_left_pointer_key1 = avango.SFBool()
 
   def __init__(self):
     self.super(Manipulator).__init__()
 
-    self.picked_object = avango.gua.nodes.GeometryNode()
+    self.left_picked_object = avango.gua.nodes.GeometryNode()
+    self.right_picked_object = avango.gua.nodes.GeometryNode()
     self.Keyboard = KeyboardMouseDevice()
 
     self.LeftPointer = PointerDevice()
     self.LeftPointer.my_constructor("2.4G Presenter")
     self.LeftPicker = ManipulatorPicker()
     self.LeftRay = avango.gua.nodes.RayNode(Name = "pick_ray_left")
+    self.sf_left_pointer_key1.connect_from(self.LeftPointer.sf_key_pageup)
 
     self.RightPointer = PointerDevice()
     self.RightPointer.my_constructor("MOUSE USB MOUSE")
@@ -37,10 +40,7 @@ class Manipulator(avango.script.Script):
     self.LeftPointerPicked = False
     self.RightPointerPicked = False
 
-    self.PlaneModeFlag = False
-
-    #self.left_picker_updater = MaterialUpdater()
-    #self.right_picker_updater = MaterialUpdater()
+    self.DragFlag = False
 
     self.always_evaluate(True)
 
@@ -55,76 +55,75 @@ class Manipulator(avango.script.Script):
     self.initialize_right_picker()
     self.loader = avango.gua.nodes.GeometryLoader()
 
-    self.display = avango.gua.nodes.TransformNode(Name = "display_node")
-    self.display.Transform.value = avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
-
-    # add slider to display
-    self.interface1 = Slider()
-    self.interface1.my_constructor("Nr1", avango.gua.make_trans_mat(0.0, 0.0, 0.0), self.display)
-    self.interface2 = Slider()
-    self.interface2.my_constructor("Nr2", avango.gua.make_trans_mat(0.0, 0.4, 0.0), self.display)
-
-    self.inv_plane = self.loader.create_geometry_from_file('inv_plane', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    self.inv_plane = self.loader.create_geometry_from_file('inv_plane', 'data/objects/plane.obj', 'Stones',
+                                    avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.inv_plane.GroupNames.value = ["inv_plane", "do_not_display_group"]
     self.inv_plane.Transform.value = avango.gua.make_rot_mat(90, 1, 0, 0) * avango.gua.make_scale_mat(1,1,20)
 
 
-  # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
-  def evaluate(self):
-    # Change the slider
-    
+  '''  def evaluate(self):
     # pick button left hand
     if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False and\
-                                                (len(self.LeftPicker.Results.value) > 0):
-      if self.LeftPicker.Results.value[0].has_field("InteractivGeometry"):
-        self.picked_object = self.LeftPicker.Results.value[0].Object.value
-        self.picked_object.InteractivGeometry.enable_menu(self.LEFTHAND)      
-      
+        (len(self.LeftPicker.Results.value) > 0):
+      if self.LeftPicker.Results.value[0].Object.value.has_field("InteractivGeometry"):
+        # enable the menu
+        self.left_picked_object = self.LeftPicker.Results.value[0].Object.value
+        self.left_picked_object.InteractivGeometry.value.enable_menu(self.LEFTHAND)  
+        self.LeftPointerPicked = True 
     # unpick button left hand
     if self.LeftPointer.sf_key_pagedown.value and self.LeftPointerPicked == True:
-     
-
+      # disable the menu
+      self.left_picked_object.InteractivGeometry.value.disable_menu(self.LEFTHAND)
+      self.LeftPointerPicked = False
     # pick button right hand
-    if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == False and\
-            self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0):
+  '''
+  def evaluate(self):
+    #print str(len(self.LeftPicker.Results.value))
+  #  print self.sf_left_pointer_key1.value
 
-     
+  @field_has_changed(sf_left_pointer_key1)
+  def left_pointer_pushed(self):
+    print self.sf_left_pointer_key1.value
+    if self.sf_left_pointer_key1.value and self.LeftPointerPicked == False and (len(self.LeftPicker.Results.value) > 0):
+      if self.LeftPicker.Results.value[0].Object.value.has_field("InteractivGeometry"):
+        # enable the menu
+        print "enable the menu"
+        self.left_picked_object = self.LeftPicker.Results.value[0].Object.value
+        self.left_picked_object.InteractivGeometry.value.enable_menu(self.LEFTHAND)  
+        self.LeftPointerPicked = True
+
+    elif self.sf_left_pointer_key1.value and self.LeftPointerPicked == True:
+      # disable the menu
+      print "disable the menu"
+      self.left_picked_object.InteractivGeometry.value.disable_menu(self.LEFTHAND)
+      self.LeftPointerPicked = False
+
+
+
+
         
-    # unpick button right hand 
-    if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
-      
     
 
   def initialize_left_picker(self):
     print "init picker left"
     # create ray
     loader = avango.gua.nodes.GeometryLoader()
-
-
     self.LeftRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
-
     ray_left_avatar = loader.create_geometry_from_file('ray_left' , 'data/objects/cube.obj',
                                                     'White', avango.gua.LoaderFlags.DEFAULTS)
     ray_left_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -20.0) *\
                                        avango.gua.make_scale_mat(0.008, 0.008, 20)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
-   
-
+    pick_transform.Children.value = [self.LeftPicker.Ray.value, ray_left_avatar]
     # set picker values
     self.LeftPicker.SceneGraph.value = self.SCENEGRAPH
     self.LeftPicker.Ray.value = self.LeftRay
     self.LeftPicker.Mask.value = "pickable"
-    pick_transform.Children.value = [self.LeftPicker.Ray.value, ray_left_avatar]
     self.LEFTHAND.Children.value.append(pick_transform)
-
-    #self.left_picker_updater.DefaultMaterial.value = "Stone"
-    #self.left_picker_updater.TargetMaterial.value = "Bright"
-    #self.left_picker_updater.PickedNodes.connect_from(self.LeftPicker.Results)
 
   def initialize_right_picker(self):
     print "init picker right"
     # create ray
-
     loader = avango.gua.nodes.GeometryLoader()
     self.RightRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
     ray_right_avatar = loader.create_geometry_from_file('ray_right' , 'data/objects/cube.obj',
@@ -138,12 +137,7 @@ class Manipulator(avango.script.Script):
     self.RightPicker.SceneGraph.value = self.SCENEGRAPH
     self.RightPicker.Ray.value = self.RightRay
     self.RightPicker.Mask.value = "interface_element"
-
     self.RIGHTHAND.Children.value.append(pick_transform)
-
-    #elf.right_picker_updater.DefaultMaterial.value = "Stone"
-    #self.right_picker_updater.TargetMaterial.value = "Bright"
-    #self.right_picker_updater.PickedNodes.connect_from(self.RightPicker.Results)
 
 
 class ManipulatorPicker(avango.script.Script):
@@ -169,7 +163,6 @@ class ManipulatorPicker(avango.script.Script):
                                              self.Options.value,
                                              self.Mask.value)
     self.Results.value = results.value
-    #print "Resutlslist:   " , len(results.value)
 
 
 
@@ -209,7 +202,7 @@ class ManipulatorPicker(avango.script.Script):
 
 
 
-
+    ###### OLD EVALUATE
     def evaluate(self):
     # Change the slider
     if self.PlaneModeFlag == True and (len(self.RightPicker.Results.value) > 0):
@@ -273,7 +266,6 @@ class ManipulatorPicker(avango.script.Script):
 
         # Affen an Interface uebergeben
         
-
     if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
       self.RightPointerPicked = False
       self.RightPicker.Mask.value = "interface_element"
@@ -285,4 +277,30 @@ class ManipulatorPicker(avango.script.Script):
       self.interface2.sfPositionXInput.disconnect_from(self.sf_XOutput)
 
       print "OFF"
+
+
+
+      #######DRAG AND DROP 
+    if self.RightPointer.sf_key_pageup.value and self.LeftPointerPicked == True and\
+                 (len(self.RightPicker.Results.value) > 0):
+      if (self.DragFlag == False):
+        self.right_picked_object = self.RightPicker.Results.value[0].Object.value#
+        self.right_picked_object.Material.value = "AvatarRed"
+      self.DragFlag = True
+      self.RightPointerPicked = True
+    # button pushed all the time
+    if self.DragFlag and self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == True:
+      # Change Color of Button
+      #movement
+      # Change Position of the Slider
+      _old_scale = self.right_picked_object.Transform.value.get_scale()
+      _old_rot = self.right_picked_object.Transform.value.get_rotate()
+      print "move move move"
+      #self.right_picked_object.Transform.value = 
+    # button not pushed anymore
+    if self.RightPointer.sf_key_pageup.value == False and self.RightPointerPicked == True:
+      print "not pressed anymore"
+      self.DragFlag = False
+      self.RightPointerPicked = False
+      self.right_picked_object.Material.value = "Stone"
 '''

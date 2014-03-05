@@ -77,17 +77,17 @@ class SceneManager:
     graph.Root.value.Children.value.append(plane)
 
     # Create Monkey
-    monkey = loader.create_geometry_from_file('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    monkey.Transform.value = avango.gua.make_trans_mat(0.0, 3.0, -1.0) * avango.gua.make_scale_mat(2.0,2.0,2.0)
+    #monkey = loader.create_geometry_from_file('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    #monkey.Transform.value = avango.gua.make_trans_mat(0.0, 3.0, -1.0) * avango.gua.make_scale_mat(2.0,2.0,2.0)
     
-    monkey_object_handler = ObjectHandler()
+    #monkey_object_handler = ObjectHandler()
     #monkey_object_handler.my_constructor(monkey)
 
     #monkey.add_and_init_field(avango.SFFloat(), "Feld_test", 10.0)
-    monkey.add_and_init_field(avango.script.SFObject(), "ObjectHandler", monkey_object_handler)
+    #monkey.add_and_init_field(avango.script.SFObject(), "ObjectHandler", monkey_object_handler)
     #monkey.add_and_init_field(avango.SFBool, "Resizeable", True)
-    monkey.GroupNames.value = ["pickable"]
-    graph.Root.value.Children.value.append(monkey)
+    #monkey.GroupNames.value = ["pickable"]
+    #graph.Root.value.Children.value.append(monkey)
 
 
 

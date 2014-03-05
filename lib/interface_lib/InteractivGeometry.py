@@ -31,7 +31,7 @@ class InteractivGeometry(avango.script.Script):
     loader = avango.gua.nodes.GeometryLoader()
     self.geometry = loader.create_geometry_from_file(NAME, PATH, MATERIAL,
                   avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    self.geometry.GroupNames.value  = ["interactiv"]
+    self.geometry.GroupNames.value  = ["pickable"]
     self.geometry.add_and_init_field(avango.script.SFObject(), "InteractivGeometry", self)
     PARENT_NODE.Children.value.append(self.geometry)
 
@@ -46,32 +46,32 @@ class InteractivGeometry(avango.script.Script):
       if(option == "size"):
         size_slider = Slider()
         size_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
-        size_slider.GroupNames.value = ["interface_element"]
-        sf_resize.connect_from(size_slider.sf_float_output)
+        size_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_resize.connect_from(size_slider.sf_float_output)
         element_counter += 1
         print option, "created"
       # Slider to change red color
       elif(option == "red"):
         red_slider = Slider()
         red_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
-        red_slider.GroupNames.value = ["interface_element"]
-        sf_color_red.connect_from(red_slider.sf_float_output)
+        red_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_color_red.connect_from(red_slider.sf_float_output)
         element_counter += 1
         print option, "created"
       # Slider to change green color
       elif(option == "green"):
         green_slider = Slider()
         green_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
-        green_slide.GroupNames.value = ["interface_element"]
-        sf_color_green.connect_from(green_slider.sf_float_output)
+        green_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_color_green.connect_from(green_slider.sf_float_output)
         element_counter += 1
         print option, "created"
       # Slider to change blue color
       elif(option == "blue"):
         blue_slider = Slider()
         blue_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
-        blue_slider.GroupNames.value = ["interface_element"]
-        sf_color_blue.connect_from(blue_slider.sf_float_output)
+        blue_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_color_blue.connect_from(blue_slider.sf_float_output)
         element_counter += 1
         print option, "created"
       # Switch to enable something
@@ -85,9 +85,10 @@ class InteractivGeometry(avango.script.Script):
         print "Wrong change option"
 
   def enable_menu(self, MENU_LOCATION):
-    self.menu_enabled = True
-    MENU_LOCATION.Children.value.append(self.menu_node)
-    #self.menu_node.GroupNames.value = ["interface_element"]
+    if self.menu_enabled == False:
+      self.menu_enabled = True
+      MENU_LOCATION.Children.value.append(self.menu_node)
+      #self.menu_node.GroupNames.value = ["interface_element"]
 
   def disable_menu(self, MENU_LOCATION):
     self.menu_enabled = False

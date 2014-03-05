@@ -119,6 +119,7 @@ class Slider(avango.script.Script):
   #sfObjectTransformOut = avango.SFFloat()
   #sfTransformInput = avango.gua.SFMatrix4()
   #sfPositionXInput = avango.SFFloat()
+  sf_float_output = avango.SFFloat()
 
   def __init__(self):
     self.super(Slider).__init__()
@@ -146,7 +147,7 @@ class Slider(avango.script.Script):
 
     loader = avango.gua.nodes.GeometryLoader()
     self.slider_geometry = loader.create_geometry_from_file(NAME + "_slider", 'data/objects/sphere.obj',
-                                                            'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+                                                            'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.slider_geometry.Transform.value = self.slider_scale
     self.slider_geometry.GroupNames.value = ["interface_element"]
     self.slider_transform = avango.gua.nodes.TransformNode(Name = 'slider_trans_' + NAME)
@@ -165,7 +166,7 @@ class Slider(avango.script.Script):
 
 
 
-  @field_has_changed(sfPositionXInput)
+  @field_has_changed(sf_float_output)
   def change_slider_transformation(self):
 
     self.slider_geometry.Transform.value = avango.gua.make_trans_mat(
