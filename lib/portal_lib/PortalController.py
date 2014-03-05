@@ -112,31 +112,12 @@ class PortalController(avango.script.Script):
             break
         break
 
-    #_platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
-
-    #_pos_p1 = _platform.Transform.value.get_translate()
-    
-    #for i in range(0, len(self.PickedPortals.value)):
-    #  if(self.PickedPortals.value[i].Distance.value < 0.5):
-    #    portalName = self.PickedPortals.value[i].Object.value.Name.value
-    #    for p in self.ACTIVEPORTALS:
-    #      if(p.GEOMETRY.Name.value == portalName):
-    #        _pos_p2 = p.GEOMETRY.Transform.value.get_translate()
-    #        _distance_x = _pos_p1.x - _pos_p2.x
-    #        _distance_y = _pos_p1.y - _pos_p2.y
-    #        self.change_scene(p, _distance_x, _distance_y)
-    #        break
-    #  break
-
-    #self.adjust_nearplane()
-
   def evaluate(self):
     self.sfUserScreen.value = self.SF_USERSCREEN.value
     self.sfUserHead.value = self.SF_USERHEAD.value
     #self.adjust_nearplane()
     
   def change_scene(self, PORTAL, DISTANCE_X, DISTANCE_Y):
-    #_platform = self.NAVIGATION.platform
     _platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
     _rotate_old_scene = _platform.Transform.value.get_rotate()
 
@@ -163,73 +144,9 @@ class PortalController(avango.script.Script):
     self.NAVIGATION.set_to_pos(new_rot * new_pos)
 
     self.ACTIVEPORTALS  = self.create_active_portals()
+
     self.create_portal_updaters()
-
     self.update_portal_picker()
-
-
-    # _rotate_old_scene = _platform.Transform.value.get_rotate()
-    
-    # # Disconnect old members
-    # self.PORTALPICKER.Ray.value.Transform.disconnect_from(_platform.Transform)
-
-    # for p in self.ACTIVEPORTALS:
-    #   p.EXITSCENE[p.HEAD].disconnect_all_fields()
-    #   p.EXITSCENE["/" + p.NAME + "Screen"].disconnect_all_fields()
-    #   p.GEOMETRY.disconnect_all_fields()
-    
-    # for up in self.PORTALUPDATERS:
-    #   up.disconnect_all_fields()
-        
-    # # Set new Members
-    # self.ACTIVESCENE = PORTAL.EXITSCENE
-    
-    # self.NAVIGATION.platform.change_scene(PORTAL.ENTRYSCENE, PORTAL.EXITSCENE, self.PIPELINE)
-
-    # #self.PIPELINE.Camera.value.SceneGraph.value = self.ACTIVESCENE.Name.value
-
-    # # Starting Position
-    # new_pos = avango.gua.make_trans_mat(PORTAL.EXITPOS.get_translate().x + DISTANCE_X, 
-    #                                     PORTAL.EXITPOS.get_translate().y + DISTANCE_Y,
-    #                                     PORTAL.EXITPOS.get_translate().z)
-
-    # # Starting Rotation
-    # new_rot = avango.gua.make_rot_mat(_rotate_old_scene)
-
-    # ##self.NAVIGATION.set_to_pos(new_rot * new_pos)
-    
-    # #self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen"].Transform.value         = new_rot * new_pos
-    # #self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen/head"].Transform.value    = avango.gua.make_trans_mat(0,0,1.7)
-
-    # # Change Navigator
-    # #self.USERHEAD = self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen"]
-    # #self.NAVIGATOR.StartLocation.value = self.USERHEAD.Transform.value.get_translate()
-    # #self.NAVIGATOR.OutTransform.connect_from(self.USERHEAD.Transform)
-    # #self.USERHEAD.Transform.connect_from(self.NAVIGATOR.OutTransform)
-    # #self.UserPositionIn.connect_from(self.USERHEAD.Transform)
-    
-    # # Change Main Pipe
-    # #camera_active_branch = avango.gua.nodes.Camera(LeftEye   = "/" + ACTIVEBRANCH.Name.value + "/screen/head" + "/mono_eye",
-    # #                                            RightEye    = "/" + ACTIVEBRANCH.Name.value + "/screen/head" + "/mono_eye",
-    # #                                            LeftScreen  = "/" + ACTIVEBRANCH.Name.value + "/screen",
-    # #                                            RightScreen = "/" + ACTIVEBRANCH.Name.value + "/screen",
-    # #                                            SceneGraph  = SCENEGRAPH.Name.value)
-
-
-    # #self.PIPELINE.Camera.value                 = camera_active_branch
-    # self.PIPELINE.BackgroundTexture.value      = PORTAL.PRE_PIPE.BackgroundTexture.value
-    # self.PIPELINE.EnableBackfaceCulling.value  = PORTAL.PRE_PIPE.EnableBackfaceCulling.value
-    
-    # self.ACTIVEPORTALS  = self.create_active_portals()
-    
-    # ##self.create_portal_updaters()
-
-    # # probably not useful!?!?!
-    # #for p in self.ACTIVEPORTALS:
-    # #  self.ACTIVEBRANCH.Children.value.append(p.GEOMETRY)
-
-    # ##self.update_portal_picker()
-
 
   def create_portal_updaters(self):
     self.PORTALUPDATERS = []
@@ -238,21 +155,15 @@ class PortalController(avango.script.Script):
       self.PORTALUPDATERS.append(UpdatePortalTransform())
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].my_constructor(p.NAME + "_updater")
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].PortalTransformIn.connect_from(p.sf_portal_pos)
-      #updater.ViewTransformIn.connect_from(self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen/head"].Transform)
-      #updater.ScreenTransformIn.connect_from(self.SCENEGRAPH["/" + self.ACTIVEBRANCH.Name.value + "/screen"].Transform)
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ViewTransformIn.connect_from(self.sfUserHead)
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ScreenTransformIn.connect_from(self.sfUserScreen)
       p.EXITSCENE[p.HEAD].Transform.connect_from(self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ViewTransformOut)
     
   def create_active_portals(self):
     activeportals = []
-    #pre_pipes = []      
     for p in self.PORTALS:
       if p.ENTRYSCENE.Name.value == self.ACTIVESCENE.Name.value:
         activeportals.append(p)
-    #    pre_pipes.append(p.PRE_PIPE)
-
-    #self.PIPELINE.PreRenderPipelines.value = pre_pipes     
     return activeportals
       
   def update_prepipes(self):
@@ -272,7 +183,6 @@ class PortalController(avango.script.Script):
       _pos_p2 = p.EXITSCENE["/" + p.NAME + "Screen/head"].Transform.value.get_translate().z
       _distance = abs (_pos_p1 - _pos_p2)
       p.PRE_PIPE.NearClip.value = _distance
-      #print _distance
   
   def update_portal_picker(self):
     self.PORTALPICKER.Mask.value = self.PORTALS[0].GROUPNAME

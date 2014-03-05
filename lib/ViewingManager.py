@@ -558,6 +558,7 @@ class ViewingManager():
 
     return _next_line
 
+  ## Sets RenderMask for hiding portals not owned by user
   def setup_portal_render_masks(self):
     # extend render mask for oculus users
     for OVR_user in self.ovr_user_list:
@@ -576,8 +577,7 @@ class ViewingManager():
                                           "portals"
       OVR_user.pipeline.Camera.value = OVR_user.camera
       OVR_user.portal_controller.PIPELINE = OVR_user.pipeline
-      #OVR_user.portal_controller.update_prepipes()
-
+      
     # extend render mask for oculus users
     for DESK_user in self.desktop_user_list:
       for other_DESK_user in self.desktop_user_list:
@@ -595,8 +595,7 @@ class ViewingManager():
                                           "portals"
       DESK_user.pipeline.Camera.value = DESK_user.camera
       DESK_user.portal_controller.PIPELINE = DESK_user.pipeline
-      #DESK_user.portal_controller.update_prepipes()
-
+      
     # extend render mask for oculus users
     for PW_user in self.powerwall_user_list:
       for other_PW_user in self.powerwall_user_list:
@@ -614,8 +613,7 @@ class ViewingManager():
                                           "portals" 
       PW_user.pipeline.Camera.value = PW_user.camera
       PW_user.portal_controller.PIPELINE = PW_user.pipeline
-      #PW_user.portal_controller.update_prepipes()       
-
+      
   ## Starts the shell and the viewer.
   # @param LOCALS Local variables.
   # @param GLOBALS Global variables.

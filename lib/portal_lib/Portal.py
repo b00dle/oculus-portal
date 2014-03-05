@@ -67,8 +67,6 @@ class Portal(avango.script.Script):
                                             Camera = camera,
                                             OutputTextureName = self.NAME + "Texture")
 
-        #print("created texture: " + self.NAME + "Texture")
-
         pre_pipe.LeftResolution.value  = avango.gua.Vec2ui(width/2, height/2)
         pre_pipe.EnableStereo.value = False
         pre_pipe.BackgroundTexture.value = "data/textures/sky.jpg"

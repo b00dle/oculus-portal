@@ -109,7 +109,7 @@ class User:
     self.node_pretext = NODE_PRETEXT
 
     ## @var portal_controller
-    # controlls interaction with portals in the scene
+    # coordinates interaction with portals in the scene
     self.portal_controller = PortalController()
 
 
