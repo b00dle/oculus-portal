@@ -91,10 +91,8 @@ class SceneManager:
 
 
 
-
-    cube = loader.create_geometry_from_file('monkey', 'data/objects/cube.obj', 'Stones',
-                                             avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-
+    interactiv_object = InteractivGeometry()
+    interactiv_object.my_constructor('monkey', 'data/objects/cube.obj', 'Stones', graph.Root.value, ["size", "red", "blue", "green"])
     
 
 

@@ -12,6 +12,7 @@ import math
 from ..Device import *
 
 from Interface import *
+from InteractivGeometry import *
 
 class Manipulator(avango.script.Script):
   sf_righthand = avango.gua.SFMatrix4()
@@ -59,9 +60,9 @@ class Manipulator(avango.script.Script):
 
     # add slider to display
     self.interface1 = Slider()
-    self.interface1.my_constructor("Nr1", avango.gua.make_trans_mat(0.0, 0.0, 0.0), self.display, self.loader)
+    self.interface1.my_constructor("Nr1", avango.gua.make_trans_mat(0.0, 0.0, 0.0), self.display)
     self.interface2 = Slider()
-    self.interface2.my_constructor("Nr2", avango.gua.make_trans_mat(0.0, 0.4, 0.0), self.display, self.loader)
+    self.interface2.my_constructor("Nr2", avango.gua.make_trans_mat(0.0, 0.4, 0.0), self.display)
 
     self.inv_plane = self.loader.create_geometry_from_file('inv_plane', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.inv_plane.GroupNames.value = ["inv_plane", "do_not_display_group"]
@@ -71,79 +72,27 @@ class Manipulator(avango.script.Script):
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
     # Change the slider
-    if self.PlaneModeFlag == True and (len(self.RightPicker.Results.value) > 0):
-      if self.RightPicker.Results.value[0].Object.value.Name.value == 'inv_plane':
-        self.sf_XOutput.value = self.RightPicker.Results.value[0].Position.value.x
-
+    
     # pick button left hand
     if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False and\
                                                 (len(self.LeftPicker.Results.value) > 0):
-      self.LeftPointerPicked = True
-      self.picked_object = self.LeftPicker.Results.value[0].Object.value
-      self.LEFTHAND.Children.value.append(self.display)
-      print "picked ",self.picked_object.Name.value
-  
-    if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False:
-      print "nothing picked - try to aim"
+      if self.LeftPicker.Results.value[0].has_field("InteractivGeometry"):
+        self.picked_object = self.LeftPicker.Results.value[0].Object.value
+        self.picked_object.InteractivGeometry.enable_menu(self.LEFTHAND)      
       
     # unpick button left hand
     if self.LeftPointer.sf_key_pagedown.value and self.LeftPointerPicked == True:
-      self.LeftPointerPicked = False
-      self.LEFTHAND.Children.value.remove(self.display)
-      print "closed display"
+     
 
     # pick button right hand
     if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == False and\
-       self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0):
+            self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0):
 
-      self.RightPointerPicked = True
-      print "Interact with ",self.RightPicker.Results.value[0].Object.value.Name.value
-      self.RightPicker.Results.value[0].Object.value.Material.value = "AvatarRed"
-
-      #self.sf_righthand.value = self.RIGHTHAND.Transform.value
-      #sffloatx_ = avango.SFFloat()
-      #sffloatx_.value = self.invisible_plane_intersect()
-
-      if (self.RightPicker.Results.value[0].Object.value.Name.value == "slider_Nr1"):
-        self.interface1.transformation_at_start = self.sf_righthand.value
-        self.interface1.sfTransformInput.connect_from(self.sf_righthand)
-
-        # Affen an Interface uebergeben
-        self.interface1.object = self.picked_object
-
-      if (self.RightPicker.Results.value[0].Object.value.Name.value == "slider_Nr2"):
-        # Invisible Plane Intersect        
-        self.display.Children.value.append(self.inv_plane)
-
-        self.PlaneModeFlag = True
-        self.interface2.sfPositionXInput.connect_from(self.sf_XOutput)
-        self.RightPicker.Mask.value = "inv_plane"
-        # Invertierte Scale-Mat:
-        inv_scale = self.inv_plane.Transform.value.get_scale()
-        inv_scale = avango.gua.make_scale_mat(inv_scale)
-        inv_scale = avango.gua.make_inverse_mat(inv_scale)
-
-        self.interface2.inv_plane_scale_mat = inv_scale
-        self.interface2.object = self.picked_object
-
-
-        #self.interface2.transformation_at_start = self.sf_righthand.value
-        #self.interface2.sfTransformInput.connect_from(self.sf_righthand)
-
-        # Affen an Interface uebergeben
+     
         
-
+    # unpick button right hand 
     if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
-      self.RightPointerPicked = False
-      self.RightPicker.Mask.value = "interface_element"
-      #!!! for all interfaces: ODER Flag fuer gepickten Schalter
-      self.interface1.slider_geometry.Material.value = "Stone"
-      self.interface2.slider_geometry.Material.value = "Stone"
-
-      self.interface1.sfTransformInput.disconnect_from(self.sf_righthand)
-      self.interface2.sfPositionXInput.disconnect_from(self.sf_XOutput)
-
-      print "OFF"
+      
     
 
   def initialize_left_picker(self):
@@ -256,4 +205,84 @@ class ManipulatorPicker(avango.script.Script):
           _object_handler.test_function()
 
     self.OldNodes.value = self.PickedNodes.value
+
+
+
+
+
+    def evaluate(self):
+    # Change the slider
+    if self.PlaneModeFlag == True and (len(self.RightPicker.Results.value) > 0):
+      if self.RightPicker.Results.value[0].Object.value.Name.value == 'inv_plane':
+        self.sf_XOutput.value = self.RightPicker.Results.value[0].Position.value.x
+
+    # pick button left hand
+    if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False and\
+                                                (len(self.LeftPicker.Results.value) > 0):
+      self.LeftPointerPicked = True
+      self.picked_object = self.LeftPicker.Results.value[0].Object.value
+      self.LEFTHAND.Children.value.append(self.display)
+      print "picked ",self.picked_object.Name.value
+  
+    if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False:
+      print "nothing picked - try to aim"
+      
+    # unpick button left hand
+    if self.LeftPointer.sf_key_pagedown.value and self.LeftPointerPicked == True:
+      self.LeftPointerPicked = False
+      self.LEFTHAND.Children.value.remove(self.display)
+      print "closed display"
+
+    # pick button right hand
+    if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == False and\
+       self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0):
+
+      self.RightPointerPicked = True
+      print "Interact with ",self.RightPicker.Results.value[0].Object.value.Name.value
+      self.RightPicker.Results.value[0].Object.value.Material.value = "AvatarRed"
+
+      #self.sf_righthand.value = self.RIGHTHAND.Transform.value
+      #sffloatx_ = avango.SFFloat()
+      #sffloatx_.value = self.invisible_plane_intersect()
+
+      if (self.RightPicker.Results.value[0].Object.value.Name.value == "slider_Nr1"):
+        self.interface1.transformation_at_start = self.sf_righthand.value
+        self.interface1.sfTransformInput.connect_from(self.sf_righthand)
+
+        # Affen an Interface uebergeben
+        self.interface1.object = self.picked_object
+
+      if (self.RightPicker.Results.value[0].Object.value.Name.value == "slider_Nr2"):
+        # Invisible Plane Intersect        
+        self.display.Children.value.append(self.inv_plane)
+
+        self.PlaneModeFlag = True
+        self.interface2.sfPositionXInput.connect_from(self.sf_XOutput)
+        self.RightPicker.Mask.value = "inv_plane"
+        # Invertierte Scale-Mat:
+        inv_scale = self.inv_plane.Transform.value.get_scale()
+        inv_scale = avango.gua.make_scale_mat(inv_scale)
+        inv_scale = avango.gua.make_inverse_mat(inv_scale)
+
+        self.interface2.inv_plane_scale_mat = inv_scale
+        self.interface2.object = self.picked_object
+
+
+        #self.interface2.transformation_at_start = self.sf_righthand.value
+        #self.interface2.sfTransformInput.connect_from(self.sf_righthand)
+
+        # Affen an Interface uebergeben
+        
+
+    if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
+      self.RightPointerPicked = False
+      self.RightPicker.Mask.value = "interface_element"
+      #!!! for all interfaces: ODER Flag fuer gepickten Schalter
+      self.interface1.slider_geometry.Material.value = "Stone"
+      self.interface2.slider_geometry.Material.value = "Stone"
+
+      self.interface1.sfTransformInput.disconnect_from(self.sf_righthand)
+      self.interface2.sfPositionXInput.disconnect_from(self.sf_XOutput)
+
+      print "OFF"
 '''
