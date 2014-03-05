@@ -121,6 +121,7 @@ class Slider(avango.script.Script):
 
   def __init__(self):
     self.super(Slider).__init__()
+    self.always_evaluate(True)
     self.NAME = ""
     self.SLIDERPOS = avango.gua.Mat4()
     self.PARENT_NODE = avango.gua.nodes.TransformNode()
@@ -154,8 +155,9 @@ class Slider(avango.script.Script):
     create_line_visualization(LOADER, self.PARENT_NODE, line_begin, line_end, 'White')
 
 
-  @field_has_changed(sfTransformInput)
-  def change_slider_transformation(self):
+  #@field_has_changed(sfTransformInput)
+  #def change_slider_transformation(self):
+  def evaluate(self):
     slider_x = self.sfTransformInput.value.get_translate().x
 
     if slider_x < self.slider_min:

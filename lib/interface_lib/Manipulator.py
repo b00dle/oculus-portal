@@ -45,6 +45,8 @@ class Manipulator(avango.script.Script):
     self.LEFTHAND = LEFTHAND
     self.RIGHTHAND = RIGHTHAND
 
+    self.sf_righthand.connect_from(self.RIGHTHAND.Transform)
+
     self.initialize_left_picker()
     self.initialize_right_picker()
     self.loader = avango.gua.nodes.GeometryLoader()
@@ -60,7 +62,6 @@ class Manipulator(avango.script.Script):
 
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
-    self.sf_righthand.connect_from(self.RIGHTHAND.Transform)
     # Pointer-Buttons:
 
     # pick button left hand
@@ -99,6 +100,14 @@ class Manipulator(avango.script.Script):
 
     if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
       self.RightPointerPicked = False
+
+      #!!! for all interfaces: ODER Flag fuer gepickten Schalter
+      self.interface1.slider_geometry.Material.value = "Stone"
+      self.interface2.slider_geometry.Material.value = "Stone"
+
+      self.interface1.sfTransformInput.disconnect_from(self.sf_righthand)
+      self.interface2.sfTransformInput.disconnect_from(self.sf_righthand)
+
       print "OFF"
 
   '''
