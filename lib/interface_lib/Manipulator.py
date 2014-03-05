@@ -34,8 +34,8 @@ class Manipulator(avango.script.Script):
 
     self.RightPointer = PointerDevice()
     self.RightPointer.my_constructor("MOUSE USB MOUSE")
-    self.RightPicker = ManipulatorPicker()
-    self.RightRay = avango.gua.nodes.RayNode(Name = "pick_ray_right")
+    #self.RightPicker = ManipulatorPicker()
+    #self.RightRay = avango.gua.nodes.RayNode(Name = "pick_ray_right")
 
     self.LeftPointerPicked = False
     self.RightPointerPicked = False
@@ -52,7 +52,7 @@ class Manipulator(avango.script.Script):
     self.sf_righthand.connect_from(self.RIGHTHAND.Transform)
 
     self.initialize_left_picker()
-    self.initialize_right_picker()
+    #self.initialize_right_picker()
     self.loader = avango.gua.nodes.GeometryLoader()
 
     self.inv_plane = self.loader.create_geometry_from_file('inv_plane', 'data/objects/plane.obj', 'Stones',
@@ -78,7 +78,7 @@ class Manipulator(avango.script.Script):
     # pick button right hand
   '''
   def evaluate(self):
-    #print str(len(self.LeftPicker.Results.value))
+    print "ev: ",str(len(self.LeftPicker.Results.value))
   #  print self.sf_left_pointer_key1.value
 
   @field_has_changed(sf_left_pointer_key1)
@@ -118,7 +118,7 @@ class Manipulator(avango.script.Script):
     # set picker values
     self.LeftPicker.SceneGraph.value = self.SCENEGRAPH
     self.LeftPicker.Ray.value = self.LeftRay
-    self.LeftPicker.Mask.value = "pickable"
+    self.LeftPicker.Mask.value = "interactiv"
     self.LEFTHAND.Children.value.append(pick_transform)
 
   def initialize_right_picker(self):
@@ -163,6 +163,7 @@ class ManipulatorPicker(avango.script.Script):
                                              self.Options.value,
                                              self.Mask.value)
     self.Results.value = results.value
+    print len(results.value)
 
 
 

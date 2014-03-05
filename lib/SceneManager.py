@@ -77,8 +77,8 @@ class SceneManager:
     graph.Root.value.Children.value.append(plane)
 
     # Create Monkey
-    #monkey = loader.create_geometry_from_file('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    #monkey.Transform.value = avango.gua.make_trans_mat(0.0, 3.0, -1.0) * avango.gua.make_scale_mat(2.0,2.0,2.0)
+    monkey = loader.create_geometry_from_file('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    monkey.Transform.value = avango.gua.make_trans_mat(0.0, 3.0, -1.0) * avango.gua.make_scale_mat(2.0,2.0,2.0)
     
     #monkey_object_handler = ObjectHandler()
     #monkey_object_handler.my_constructor(monkey)
@@ -86,13 +86,15 @@ class SceneManager:
     #monkey.add_and_init_field(avango.SFFloat(), "Feld_test", 10.0)
     #monkey.add_and_init_field(avango.script.SFObject(), "ObjectHandler", monkey_object_handler)
     #monkey.add_and_init_field(avango.SFBool, "Resizeable", True)
-    #monkey.GroupNames.value = ["pickable"]
-    #graph.Root.value.Children.value.append(monkey)
+    monkey.GroupNames.value = ["interactiv"]
+    graph.Root.value.Children.value.append(monkey)
 
-
+    object_transform_node = avango.gua.nodes.TransformNode(Name = "transform_node")
+    graph.Root.value.Children.value.append(object_transform_node)
+    object_transform_node.Transform.value = avango.gua.make_trans_mat(-3.0, 1.5, 2.0)
 
     interactiv_object = InteractivGeometry()
-    interactiv_object.my_constructor('monkey', 'data/objects/cube.obj', 'Stones', graph.Root.value, ["size", "red", "blue", "green"])
+    interactiv_object.my_constructor('monkey', 'data/objects/cube.obj', 'Stones', object_transform_node, ["size", "red", "blue", "green"])
     
 
 
