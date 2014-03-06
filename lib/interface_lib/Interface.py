@@ -119,6 +119,7 @@ class Slider(avango.script.Script):
   sfObjectTransformOut = avango.SFFloat()
   sfTransformInput = avango.gua.SFMatrix4()
   sfPositionXInput = avango.SFFloat()
+  sf_float_output = avango.SFFloat()
 
   def __init__(self):
     self.super(Slider).__init__()
@@ -138,12 +139,13 @@ class Slider(avango.script.Script):
     self.inv_plane_scale_mat = avango.gua.make_identity_mat()
 
 
-  def my_constructor(self, NAME, SLIDERPOS, PARENT_NODE, LOADER):
+  def my_constructor(self, NAME, SLIDERPOS, PARENT_NODE):
     self.NAME = NAME
     self.SLIDERPOS = SLIDERPOS
     self.PARENT_NODE = PARENT_NODE
+    self.LOADER = avango.gua.nodes.GeometryLoader()
 
-    self.slider_geometry = LOADER.create_geometry_from_file('slider_' + NAME, 'data/objects/sphere.obj',
+    self.slider_geometry = self.LOADER.create_geometry_from_file('slider_' + NAME, 'data/objects/sphere.obj',
                                                             'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.slider_geometry.Transform.value = self.slider_scale
     self.slider_geometry.GroupNames.value = ["interface_element"]
@@ -159,7 +161,7 @@ class Slider(avango.script.Script):
     line_end = avango.gua.Vec3(self.slider_transform.Transform.value.get_translate().x + 0.5,
                                  self.slider_transform.Transform.value.get_translate().y,
                                  self.slider_transform.Transform.value.get_translate().z)
-    create_line_visualization(LOADER, self.PARENT_NODE, line_begin, line_end, 'White')
+    create_line_visualization(self.LOADER, self.PARENT_NODE, line_begin, line_end, 'White')
 
 
 
@@ -188,6 +190,8 @@ class Slider(avango.script.Script):
     self.object.Transform.value = avango.gua.make_trans_mat(old_trans) *\
                   avango.gua.make_scale_mat(value_x * scale_factor, value_x * scale_factor, value_x * scale_factor) *\
                   avango.gua.make_rot_mat(old_rot)
+
+    self.sf_float_output.value = value_x
 
 
 
