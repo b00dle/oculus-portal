@@ -77,9 +77,9 @@ class Manipulator(avango.script.Script):
       self.LeftPointerPicked = False
     # pick button right hand
   '''
-  def evaluate(self):
+  #def evaluate(self):
     #print str(len(self.LeftPicker.Results.value))
-  #  print self.sf_left_pointer_key1.value
+    #print self.sf_left_pointer_key1.value
 
   @field_has_changed(sf_left_pointer_key1)
   def left_pointer_pushed(self):
