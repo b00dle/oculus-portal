@@ -40,9 +40,6 @@ class Manipulator(avango.script.Script):
 
     self.PlaneModeFlag = False
 
-    #self.left_picker_updater = MaterialUpdater()
-    #self.right_picker_updater = MaterialUpdater()
-
     self.always_evaluate(True)
 
   def my_constructor(self, SCENEGRAPH, LEFTHAND, RIGHTHAND):
@@ -74,7 +71,6 @@ class Manipulator(avango.script.Script):
 
       self.left_picked_object = self.LeftPicker.Results.value[0].Object.value
       self.left_picked_object.InteractivGeometry.value.enable_menu(self.LEFTHAND)
-      #self.LEFTHAND.Children.value.append(self.display)
       
       print "picked ",self.left_picked_object.Name.value
   
@@ -86,7 +82,6 @@ class Manipulator(avango.script.Script):
       
       print "closed display"
 
-###############
 
     # Change the slider
     if self.PlaneModeFlag == True and (len(self.RightPicker.Results.value) > 0):
@@ -107,12 +102,27 @@ class Manipulator(avango.script.Script):
       self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.append(self.inv_plane)
       self.PlaneModeFlag = True
 
-      self.left_picked_object.InteractivGeometry.value.size_slider.object = self.left_picked_object
-
-      self.left_picked_object.InteractivGeometry.value.size_slider.sfPositionXInput.connect_from(self.sf_XOutput)
-
 
       self.RightPicker.Mask.value = "inv_plane"
+
+      # Listen Test
+      for element in self.left_picked_object.InteractivGeometry.value.interface_elements:
+        
+        if element.NAME == "size" and self.right_picked_object.Name.value == "slider_size":          
+          element.object = self.left_picked_object
+          element.sfPositionXInput.connect_from(self.sf_XOutput)
+
+        elif element.NAME == "y_pos" and self.right_picked_object.Name.value == "slider_y_pos":
+          element.object = self.left_picked_object
+          element.sfPositionXInput.connect_from(self.sf_XOutput)
+
+        elif element.NAME == "red" and self.right_picked_object.Name.value == "slider_red":
+          element.object = self.left_picked_object
+          element.sfPositionXInput.connect_from(self.sf_XOutput)
+
+        elif element.NAME == "green" and self.right_picked_object.Name.value == "slider_green":
+          element.object = self.left_picked_object
+          element.sfPositionXInput.connect_from(self.sf_XOutput)
 
 
       '''
@@ -130,6 +140,19 @@ class Manipulator(avango.script.Script):
       self.RightPointerPicked = False
       self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.remove(self.inv_plane)
       self.RightPicker.Mask.value = "interface_element"
+
+      for element in self.left_picked_object.InteractivGeometry.value.interface_elements:
+        if element.NAME == "size" and self.right_picked_object.Name.value == "slider_size":
+          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+
+        elif element.NAME == "y_pos" and self.right_picked_object.Name.value == "slider_y_pos":
+          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+
+        elif element.NAME == "red" and self.right_picked_object.Name.value == "slider_red":
+          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+
+        elif element.NAME == "green" and self.right_picked_object.Name.value == "slider_green":
+          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
 
       self.right_picked_object.Material.value = "Stone"
 
@@ -158,9 +181,6 @@ class Manipulator(avango.script.Script):
     pick_transform.Children.value = [self.LeftPicker.Ray.value, ray_left_avatar]
     self.LEFTHAND.Children.value.append(pick_transform)
 
-    #self.left_picker_updater.DefaultMaterial.value = "Stone"
-    #self.left_picker_updater.TargetMaterial.value = "Bright"
-    #self.left_picker_updater.PickedNodes.connect_from(self.LeftPicker.Results)
 
   def initialize_right_picker(self):
     print "init picker right"
@@ -181,10 +201,6 @@ class Manipulator(avango.script.Script):
     self.RightPicker.Mask.value = "interface_element"
 
     self.RIGHTHAND.Children.value.append(pick_transform)
-
-    #elf.right_picker_updater.DefaultMaterial.value = "Stone"
-    #self.right_picker_updater.TargetMaterial.value = "Bright"
-    #self.right_picker_updater.PickedNodes.connect_from(self.RightPicker.Results)
 
 
 class ManipulatorPicker(avango.script.Script):
@@ -210,40 +226,3 @@ class ManipulatorPicker(avango.script.Script):
                                              self.Options.value,
                                              self.Mask.value)
     self.Results.value = results.value
-    #print "Resutlslist:   " , len(results.value)
-
-
-
-
-    ##############################################
-''' # INFO ZU ADD AND INIT FIELD
-  @field_has_changed(PickedNodes)
-  def update_materials(self):
-    #print "field PickedNodes has changed"
-    print len(self.PickedNodes.value)
-    #for i in range(0, len(self.OldNodes.value)):
-    #  print "old"
-    #  if isinstance(self.OldNodes.value[i].Object.value, avango.gua.GeometryNode):
-    #    self.OldNodes.value[i].Object.value.Material.value = self.DefaultMaterial.value
-    print len(self.OldNodes.value)
-    for i in range(0, len(self.PickedNodes.value)):
-      if isinstance(self.PickedNodes.value[i].Object.value, avango.gua.GeometryNode):
-        self.PickedNodes.value[i].Object.value.Material.value = self.TargetMaterial.value
-
-        test_object = self.PickedNodes.value[i].Object.value
-        #if test_object.has_field("Feld_test"):
-        #  print "test object has field", test_object.Feld_test.value
-
-        # Material Change
-        print self.LeftPointer.sf_key_pageup.value
-        if self.LeftPointer.sf_key_pageup.value:
-          test_object.Material.value = 'AvatarBlue'
-          #pass
-
-        if test_object.has_field("ObjectHandler"):
-          _object_handler = test_object.ObjectHandler.value
-
-          _object_handler.test_function()
-
-    self.OldNodes.value = self.PickedNodes.value
-'''

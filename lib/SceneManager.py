@@ -64,7 +64,7 @@ class SceneManager:
 
     # Create Monkey
     monkey_interface = InteractivGeometry()
-    monkey_interface.my_constructor('monkey', 'data/objects/monkey.obj', 'Stones', graph.Root.value, ["size"])
+    monkey_interface.my_constructor('monkey', 'data/objects/monkey.obj', 'Stones', graph.Root.value, ["size", "green", "red"])
 
 
 

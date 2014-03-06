@@ -25,9 +25,10 @@ class InteractivGeometry(avango.script.Script):
     self.geometry             = avango.gua.nodes.GeometryNode()
     self.menu_enabled         = False
     self.menu_node            = avango.gua.nodes.TransformNode(Name = "menu_node")
+    self.interface_elements   = []
 
     # test slider
-    self.size_slider = Slider()
+    #self.size_slider = Slider()
 
   def my_constructor(self, NAME, PATH, MATERIAL, PARENT_NODE, CHANGE_OPTIONS):
     # init interactiv geometry
@@ -35,6 +36,7 @@ class InteractivGeometry(avango.script.Script):
     self.geometry = loader.create_geometry_from_file(NAME, PATH, MATERIAL,
                   avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.geometry.GroupNames.value  = ["interactiv"]
+    self.geometry.Transform.value = avango.gua.make_trans_mat(0.0, 2.0, 0.0)
     self.geometry.add_and_init_field(avango.script.SFObject(), "InteractivGeometry", self)
     PARENT_NODE.Children.value.append(self.geometry)
 
@@ -47,11 +49,23 @@ class InteractivGeometry(avango.script.Script):
     for option in CHANGE_OPTIONS:
       # Slider to change size
       if(option == "size"):
-        #size_slider = Slider()
-        self.size_slider.my_constructor("this is the slider", avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
-        self.size_slider.slider_geometry.GroupNames.value = ["interface_element"]
-        self.sf_resize.connect_from(self.size_slider.sf_float_output)
+        size_slider = Slider()
+        size_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
+        size_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_resize.connect_from(size_slider.sf_float_output)
         element_counter += 1
+
+        self.interface_elements.append(size_slider)
+        print option, "created"
+      # Slider to change size
+      if(option == "y_pos"):
+        y_pos_slider = Slider()
+        y_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
+        y_pos_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_resize.connect_from(y_pos_slider.sf_float_output)
+        element_counter += 1
+
+        self.interface_elements.append(y_pos_slider)
         print option, "created"
       # Slider to change red color
       elif(option == "red"):
@@ -60,6 +74,8 @@ class InteractivGeometry(avango.script.Script):
         red_slider.slider_geometry.GroupNames.value = ["interface_element"]
         self.sf_color_red.connect_from(red_slider.sf_float_output)
         element_counter += 1
+
+        self.interface_elements.append(red_slider)
         print option, "created"
       # Slider to change green color
       elif(option == "green"):

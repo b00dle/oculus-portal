@@ -146,7 +146,7 @@ class Slider(avango.script.Script):
     self.LOADER = avango.gua.nodes.GeometryLoader()
 
     self.slider_geometry = self.LOADER.create_geometry_from_file('slider_' + NAME, 'data/objects/sphere.obj',
-                                                            'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+                                                            'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.slider_geometry.Transform.value = self.slider_scale
     self.slider_geometry.GroupNames.value = ["interface_element"]
     self.slider_transform = avango.gua.nodes.TransformNode(Name = 'slider_trans_' + NAME)
@@ -175,8 +175,8 @@ class Slider(avango.script.Script):
                                             self.slider_scale
 
 
-    value_x = (self.sfPositionXInput.value +0.5) #self.inv_plane_scale_mat.get_translate().x
-    scale_factor = 2
+    value_x = (self.sfPositionXInput.value + 0.5) #self.inv_plane_scale_mat.get_translate().x
+
 
     if value_x < self.slider_min:
       value_x = self.slider_min
@@ -184,12 +184,25 @@ class Slider(avango.script.Script):
     if value_x > self.slider_max:
       value_x = self.slider_max
 
-    old_trans = self.object.Transform.value.get_translate()
-    old_rot = self.object.Transform.value.get_rotate()
+    old_trans  = self.object.Transform.value.get_translate()
+    old_rot    = self.object.Transform.value.get_rotate()
+    old_scale  = self.object.Transform.value.get_scale()
 
-    self.object.Transform.value = avango.gua.make_trans_mat(old_trans) *\
-                  avango.gua.make_scale_mat(value_x * scale_factor, value_x * scale_factor, value_x * scale_factor) *\
-                  avango.gua.make_rot_mat(old_rot)
+    scale_factor = 2
+
+    if self.NAME == "size":
+      self.object.Transform.value = avango.gua.make_trans_mat(old_trans) *\
+                    avango.gua.make_scale_mat(value_x * scale_factor, value_x * scale_factor, value_x * scale_factor) *\
+                    avango.gua.make_rot_mat(old_rot)
+
+    if self.NAME == "y_pos":
+      self.object.Transform.value = avango.gua.make_trans_mat(old_trans.x, old_trans.y + (value_x * 1), old_trans.z) *\
+                                    avango.gua.make_scale_mat(old_scale) *\
+                                    avango.gua.make_rot_mat(old_rot)
+
+
+    if self.NAME == "red":
+      pass # change red color
 
     self.sf_float_output.value = value_x
 
