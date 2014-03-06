@@ -24,7 +24,6 @@ class PortalPicker(avango.script.Script):
 
     self.SceneGraph.value = avango.gua.nodes.SceneGraph()
     self.Ray.value  = avango.gua.nodes.RayNode()
-    self.Ray.value.Transform.value = avango.gua.make_trans_mat(0.0,1.0,1.0)
     self.Options.value = avango.gua.PickingOptions.PICK_ONLY_FIRST_OBJECT \
                          | avango.gua.PickingOptions.PICK_ONLY_FIRST_FACE
     self.Mask.value = ""
@@ -69,10 +68,10 @@ class PortalController(avango.script.Script):
     self.NAVIGATION     = Navigation()
     self.PORTALUPDATERS = []
     self.PLATFORM       = -1
-    self.SF_USERHEAD    = avango.gua.SFMatrix4()
+    self.USERHEAD       = avango.gua.nodes.TransformNode()
     self.SF_USERSCREEN  = avango.gua.SFMatrix4()
     
-  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, NAVIGATION, SF_USERHEAD, SF_USERSCREEN):
+  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, NAVIGATION, USERHEAD, SF_USERSCREEN):
     self.NAME             = NAME
     self.ACTIVESCENE      = ACTIVESCENE
     self.VIEWINGPIPELINES = VIEWINGPIPELINES
@@ -85,8 +84,8 @@ class PortalController(avango.script.Script):
     self.NAVIGATION       = NAVIGATION
 
     # references
+    self.USERHEAD         = USERHEAD
     self.SF_USERSCREEN    = SF_USERSCREEN
-    self.SF_USERHEAD      = SF_USERHEAD
     self.create_portal_updaters()     
 
     self.initialize_portal_group_names()
@@ -114,7 +113,7 @@ class PortalController(avango.script.Script):
 
   def evaluate(self):
     self.sfUserScreen.value = self.SF_USERSCREEN.value
-    self.sfUserHead.value = self.SF_USERHEAD.value
+    self.sfUserHead.value = self.USERHEAD.Transform.value
     #self.adjust_nearplane()
     
   def change_scene(self, PORTAL, DISTANCE_X, DISTANCE_Y):
@@ -141,7 +140,7 @@ class PortalController(avango.script.Script):
     # Starting Rotation
     new_rot = avango.gua.make_rot_mat(_rotate_old_scene)
 
-    self.NAVIGATION.set_to_pos(new_rot * new_pos)
+    self.NAVIGATION.set_to_pos(new_pos * new_rot)
 
     self.ACTIVEPORTALS  = self.create_active_portals()
 
@@ -187,7 +186,11 @@ class PortalController(avango.script.Script):
   def update_portal_picker(self):
     self.PORTALPICKER.Mask.value = self.PORTALS[0].GROUPNAME
     self.PORTALPICKER.SceneGraph.value = self.ACTIVESCENE
-    self.ACTIVESCENE["/platform_" + str(self.PLATFORM)].Children.value.append(self.PORTALPICKER.Ray.value)
+    if "OVR" in self.NAME:
+      self.USERHEAD.Children.value.append(self.PORTALPICKER.Ray.value)
+    else:
+      self.PORTALPICKER.Ray.value.Transform.value = avango.gua.make_trans_mat(0.0,1.0,1.0)
+      self.ACTIVESCENE["/platform_" + str(self.PLATFORM)].Children.value.append(self.PORTALPICKER.Ray.value)
     self.PickedPortals.connect_from(self.PORTALPICKER.Results)
 
   def delete_portal_group_name(self, GROUPNAME):

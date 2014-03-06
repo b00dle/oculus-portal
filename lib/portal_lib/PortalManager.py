@@ -78,7 +78,7 @@ class PortalManager():
                                          PW_user.pipeline,
                                          self.PW_user_portals[PW_user.id],
                                          VIEWINGMANAGER.navigation_list[PW_user.portal_controller.PLATFORM],
-                                         PW_user.head_transform.Transform,
+                                         PW_user.head_transform,
                                          PW_user.screen.WorldTransform
                                          )
 
@@ -133,7 +133,7 @@ class PortalManager():
                                          OVR_user.pipeline,
                                          self.OVR_user_portals[OVR_user.id],
                                          VIEWINGMANAGER.navigation_list[OVR_user.portal_controller.PLATFORM],
-                                         OVR_user.head_transform.Transform,
+                                         OVR_user.head_transform,
                                          OVR_user.left_screen.WorldTransform
                                          )
 
@@ -188,6 +188,6 @@ class PortalManager():
                                          DESK_user.pipeline,
                                          self.DESK_user_portals[DESK_user.id],
                                          VIEWINGMANAGER.navigation_list[DESK_user.portal_controller.PLATFORM],
-                                         DESK_user.head_transform.Transform,
+                                         DESK_user.head_transform,
                                          DESK_user.screen.WorldTransform
                                          )
