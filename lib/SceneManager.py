@@ -72,7 +72,7 @@ class SceneManager:
 
     # create floor
     plane = loader.create_geometry_from_file('floor', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS)
-    plane.Transform.value = avango.gua.make_scale_mat(20,1,20)
+    plane.Transform.value = avango.gua.make_scale_mat(50,1,50)
 
     graph.Root.value.Children.value.append(plane)
 
@@ -93,10 +93,6 @@ class SceneManager:
 
     interactiv_object = InteractivGeometry()
     interactiv_object.my_constructor('monkey', 'data/objects/cube.obj', 'Stones', graph.Root.value, ["size", "red", "blue", "green"])
-    
-
-
-
 
     # screen
     screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)

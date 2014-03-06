@@ -13,25 +13,27 @@ from examples_common.GuaVE import GuaVE
 class Portal(avango.script.Script):
 
     # init fields
-    sf_portal_pos = avango.gua.SFMatrix4()
+    sf_portal_pos   = avango.gua.SFMatrix4()
+    sf_portal_zoom  = avango.SFFloat()
 
     def __init__(self):
         self.super(Portal).__init__()
-        self.NAME           = ""
-        self.ENTRYSCENE     = avango.gua.nodes.SceneGraph()
-        self.EXITSCENE      = avango.gua.nodes.SceneGraph()
-        self.EXITPOS        = avango.gua.Mat4()
-        self.WIDTH          = 0
-        self.HEIGHT         = 0
-        self.PRE_PIPE       = avango.gua.nodes.Pipeline()
-        self.GEOMETRY       = avango.gua.nodes.GeometryNode()
-        self.HEAD           = ""
-        self.GROUPNAME      = ""
-        self.EXCLUDEGROUPS  = []
+        self.sf_portal_zoom.value = 1.0
+        self.NAME             = ""
+        self.ENTRYSCENE       = avango.gua.nodes.SceneGraph()
+        self.EXITSCENE        = avango.gua.nodes.SceneGraph()
+        self.EXITPOS          = avango.gua.Mat4()
+        self.WIDTH            = 0
+        self.HEIGHT           = 0
+        self.PRE_PIPE         = avango.gua.nodes.Pipeline()
+        self.GEOMETRY         = avango.gua.nodes.GeometryNode()
+        self.default_geometry = True
+        self.HEAD             = ""
+        self.GROUPNAME        = ""
+        self.EXCLUDEGROUPS    = []
 
 
-    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS):
-        self.sf_portal_pos.value    = ENTRYPOS
+    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS, GEOMETRY = None):
         self.NAME                   = NAME
         self.ENTRYSCENE             = ENTRYSCENE
         self.EXITSCENE              = EXITSCENE
@@ -41,7 +43,7 @@ class Portal(avango.script.Script):
         self.GROUPNAME              = GROUPNAME
         self.EXCLUDEGROUPS          = EXCLUDEGROUPS
         self.PRE_PIPE               = self.create_default_pipe()
-        self.GEOMETRY               = self.create_geometry(ENTRYPOS)
+        self.GEOMETRY               = self.create_geometry(ENTRYPOS, GEOMETRY)
         self.HEAD                   = "/" + self.NAME + "Screen/head"
 
     def create_default_pipe(self):
@@ -74,20 +76,33 @@ class Portal(avango.script.Script):
 
         return pre_pipe
 
-    def create_geometry(self, PORTALPOS):
+    def create_geometry(self, PORTALPOS, GEOMETRY):
         loader = avango.gua.nodes.GeometryLoader()
         
+        if(GEOMETRY == None):
+            geometry = loader.create_geometry_from_file(self.NAME + "Node",
+                                                    "data/objects/plane.obj",
+                                                    "Portal" + self.NAME,
+                                                    avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
 
-        geometry = loader.create_geometry_from_file(self.NAME + "Node",
-                                                "data/objects/plane.obj",
-                                                "Portal" + self.NAME,
-                                                avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+            geometry.Transform.value = PORTALPOS *\
+                                    avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
+                                    avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
+                                    avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
+            
+            self.sf_portal_pos.value = PORTALPOS
 
-        geometry.Transform.value = PORTALPOS *\
-                                avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
-                                avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
-                                avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
-                                
+        else:
+            geometry                = GEOMETRY
+            geometry.Name.value     = self.NAME + "Node"
+            geometry.Material.value = "Portal" + self.NAME
+            geometry.Transform.value = PORTALPOS *\
+                                    GEOMETRY.Transform.value *\
+                                    avango.gua.make_scale_mat(self.WIDTH, self.HEIGHT, 1.0)
+            
+            self.sf_portal_pos.value = PORTALPOS * GEOMETRY.Transform.value           
+            self.default_geometry   = False
+
         geometry.GroupNames.value.append(self.GROUPNAME)
         geometry.GroupNames.value.append("portal")
 
@@ -107,7 +122,7 @@ class Portal(avango.script.Script):
         screen.Transform.value = self.EXITPOS
 
         head = avango.gua.nodes.TransformNode(Name = "head")
-        head.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 1227.0)
+        head.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 1.7)
 
         mono_eye = avango.gua.nodes.TransformNode(Name = "mono_eye")
 
@@ -123,17 +138,46 @@ class Portal(avango.script.Script):
         screen.Children.value.append(head)
         self.EXITSCENE.Root.value.Children.value.append(screen)
 
-    def resize_portal(self, WIDTH, HEIGHT):
+    def change_geometry(self, GEOMETRY):
+        self.GEOMETRY.Geometry.value  = GEOMETRY.Geometry.value
+        self.GEOMETRY.Transform.value = PORTALPOS *\
+                                        avango.gua.make_rot_mat(GEOMETRY.Transform.value.get_rotate()) *\
+                                        avango.gua.make_scale_mat(self.WIDTH, self.HEIGHT, 1.0)
+
+    def resize(self, WIDTH, HEIGHT):
+        if self.default_geometry == True:
+            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(1/self.WIDTH, 1.0, 1/self.HEIGHT)
+        else:
+            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(1/self.WIDTH, 1/self.HEIGHT, 1.0)
+        
         self.WIDTH  = WIDTH
         self.HEIGHT = HEIGHT
-        self.ENTRYSCENE["/" + self.NAME + "Screen"].Width.value  = self.WIDTH
-        self.ENTRYSCENE["/" + self.NAME + "Screen"].Height.value = self.HEIGHT
-        self.GEOMETRY.Transform.value = self.sf_portal_pos.value *\
-                                avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
-                                avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
-                                avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
+        self.EXITSCENE["/" + self.NAME + "Screen"].Width.value  = self.WIDTH
+        self.EXITSCENE["/" + self.NAME + "Screen"].Height.value = self.HEIGHT
+        
+        if self.default_geometry == True:
+            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
+        else:
+            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(self.WIDTH, self.HEIGHT, 1.0)
+            
+        #self.GEOMETRY.Transform.value = self.sf_portal_pos.value *\
+        #                        avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
+        #                        avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
+        #                        avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
 
-    def translate_portal(self, X, Y, Z):
+    def translate(self, X, Y, Z):
         self.GEOMETRY.Transform.value  = self.GEOMETRY.Transform.value * avango.gua.make_trans_mat(X, Y, Z)
+        self.sf_portal_pos.value = self.sf_portal_pos.value * avango.gua.make_trans_mat(X, Y, Z)
         self.EXITPOS = self.EXITPOS * avango.gua.make_trans_mat(X, Y, Z)
+
+    def zoom(self, FACTOR):
+        #self.EXITSCENE["/" + self.NAME + "Screen"].Width.value  = self.WIDTH * FACTOR
+        #self.EXITSCENE["/" + self.NAME + "Screen"].Height.value = self.HEIGHT * FACTOR
+        self.sf_portal_zoom.value = FACTOR
+
+    def append_node(self, NODE):
+        NODE.Transform.value =  avango.gua.make_inverse_mat(self.GEOMETRY.Transform.value) * \
+                                avango.gua.make_trans_mat(self.GEOMETRY.Transform.value.get_translate())  * \
+                                NODE.Transform.value
+        self.GEOMETRY.Children.value.append(NODE)
 

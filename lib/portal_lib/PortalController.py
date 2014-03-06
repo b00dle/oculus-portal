@@ -39,23 +39,26 @@ class UpdatePortalTransform(avango.script.Script):
   PortalTransformIn     = avango.gua.SFMatrix4()
   ViewTransformIn       = avango.gua.SFMatrix4()
   ScreenTransformIn     = avango.gua.SFMatrix4()
+  PortalZoomIn          = avango.SFFloat()
   ViewTransformOut      = avango.gua.SFMatrix4()
 
   def __init__(self):
     self.super(UpdatePortalTransform).__init__()
     self.NAME = ""
+    self.PortalZoomIn.value = 1.0
 
   def my_constructor(self, NAME):
     self.NAME = NAME
 
   def evaluate(self):
     self.ViewTransformOut.value = avango.gua.make_inverse_mat(self.PortalTransformIn.value) *\
-                                    self.ScreenTransformIn.value * avango.gua.make_trans_mat(0.0,0.0,self.ViewTransformIn.value.get_translate().z)
+                                    self.ScreenTransformIn.value * avango.gua.make_trans_mat(0.0,0.0,self.ViewTransformIn.value.get_translate().z * self.PortalZoomIn.value)
     
 class PortalController(avango.script.Script):
   PickedPortals     = avango.gua.MFPickResult()
   sfUserHead        = avango.gua.SFMatrix4()
   sfUserScreen      = avango.gua.SFMatrix4()
+  sfUserZoom        = avango.SFFloat()
   
   def __init__(self):
     self.super(PortalController).__init__()
@@ -86,6 +89,9 @@ class PortalController(avango.script.Script):
     # references
     self.USERHEAD         = USERHEAD
     self.SF_USERSCREEN    = SF_USERSCREEN
+
+    self.sfUserZoom.value = 1.0
+
     self.create_portal_updaters()     
 
     self.initialize_portal_group_names()
@@ -110,6 +116,10 @@ class PortalController(avango.script.Script):
             self.change_scene(p, _distance_x, _distance_y)
             break
         break
+
+  @field_has_changed(sfUserZoom)
+  def update_pick_ray_length(self):
+    self.PORTALPICKER.Ray.value.Transform.value = avango.gua.make_scale_mat(1.0,1.0,1.0/self.sfUserZoom.value)
 
   def evaluate(self):
     self.sfUserScreen.value = self.SF_USERSCREEN.value
@@ -142,6 +152,13 @@ class PortalController(avango.script.Script):
 
     self.NAVIGATION.set_to_pos(new_pos * new_rot)
 
+    head_trans = self.USERHEAD.Transform.value.get_translate()
+    self.sfUserZoom.value *= PORTAL.sf_portal_zoom.value
+    #print(self.sfUserZoom.value)
+    self.USERHEAD.Transform.value = avango.gua.make_trans_mat(head_trans.x,
+                                                            head_trans.y,
+                                                            head_trans.z * PORTAL.sf_portal_zoom.value)
+
     self.ACTIVEPORTALS  = self.create_active_portals()
 
     self.create_portal_updaters()
@@ -156,6 +173,7 @@ class PortalController(avango.script.Script):
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].PortalTransformIn.connect_from(p.sf_portal_pos)
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ViewTransformIn.connect_from(self.sfUserHead)
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ScreenTransformIn.connect_from(self.sfUserScreen)
+      self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].PortalZoomIn.connect_from(p.sf_portal_zoom)
       p.EXITSCENE[p.HEAD].Transform.connect_from(self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ViewTransformOut)
     
   def create_active_portals(self):
@@ -186,11 +204,11 @@ class PortalController(avango.script.Script):
   def update_portal_picker(self):
     self.PORTALPICKER.Mask.value = self.PORTALS[0].GROUPNAME
     self.PORTALPICKER.SceneGraph.value = self.ACTIVESCENE
-    if "OVR" in self.NAME:
-      self.USERHEAD.Children.value.append(self.PORTALPICKER.Ray.value)
-    else:
-      self.PORTALPICKER.Ray.value.Transform.value = avango.gua.make_trans_mat(0.0,1.0,1.0)
-      self.ACTIVESCENE["/platform_" + str(self.PLATFORM)].Children.value.append(self.PORTALPICKER.Ray.value)
+    #if "OVR" in self.NAME:
+    self.USERHEAD.Children.value.append(self.PORTALPICKER.Ray.value)
+    #else:
+    #  self.PORTALPICKER.Ray.value.Transform.value = avango.gua.make_trans_mat(0.0,1.0,1.0)
+    #  self.ACTIVESCENE["/platform_" + str(self.PLATFORM)].Children.value.append(self.PORTALPICKER.Ray.value)
     self.PickedPortals.connect_from(self.PORTALPICKER.Results)
 
   def delete_portal_group_name(self, GROUPNAME):

@@ -144,12 +144,31 @@ class PortalManager():
 
       
       # position of portal in the active world 
-      entry_pos = avango.gua.make_trans_mat(0,1.70,-6)
+      #entry_pos = avango.gua.make_trans_mat(0,2.5,0.0)
+      entry_pos = avango.gua.make_trans_mat(0,1.50,-6)
       # position of portal in the world we are looking into
       exit_pos = avango.gua.make_trans_mat(2.0,1.70,0.0) * avango.gua.make_trans_mat(0.0, 5.0, 40.0)
       
 
       #############PORTAL 1##############
+      loader = avango.gua.nodes.GeometryLoader()
+      frame = loader.create_geometry_from_file('frame',
+                                                'data/objects/cube.obj',
+                                                'Stones',
+                                                avango.gua.LoaderFlags.DEFAULTS | \
+                                                avango.gua.LoaderFlags.MAKE_PICKABLE)
+      frame.Transform.value = avango.gua.make_trans_mat(0.0,0.0,-0.51) * \
+                              avango.gua.make_scale_mat(1.5,2.5,0.5)
+
+      monkey = loader.create_geometry_from_file('monkey',
+                                                'data/objects/monkey.obj',
+                                                'Stones',
+                                                avango.gua.LoaderFlags.DEFAULTS | \
+                                                avango.gua.LoaderFlags.MAKE_PICKABLE)
+      monkey.Transform.value = avango.gua.make_trans_mat(0.0,2.3,0.35 ) * \
+                              avango.gua.make_rot_mat(20.0,1.0,0.0,0.0)
+
+
       self.DESK_user_portals[DESK_user.id].append(Portal())
       self.DESK_user_portals[DESK_user.id][0].my_constructor("portal_0_DESK_" + str(DESK_user.id),
                                             VIEWINGMANAGER.viewer.SceneGraphs.value[0], #simplescene
@@ -161,6 +180,9 @@ class PortalManager():
                                             "DESK_" + str(DESK_user.id) + "_portals",
                                             self.group_names
                                             )
+      self.DESK_user_portals[DESK_user.id][0].append_node(frame)
+      self.DESK_user_portals[DESK_user.id][0].append_node(monkey)
+
       # Change Pipeline Settings
       self.DESK_user_portals[DESK_user.id][0].PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
       self.DESK_user_portals[DESK_user.id][0].PRE_PIPE.EnableBackfaceCulling.value = False
