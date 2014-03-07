@@ -196,14 +196,13 @@ class Slider(avango.script.Script):
                     avango.gua.make_rot_mat(old_rot)
 
     if self.NAME == "y_pos":
-      self.object.Transform.value = avango.gua.make_trans_mat(old_trans.x, (value_x * scale_factor), old_trans.z) *\
+      self.object.Transform.value = avango.gua.make_trans_mat(old_trans.x, old_trans.y + (value_x * 1), old_trans.z) *\
                                     avango.gua.make_scale_mat(old_scale) *\
                                     avango.gua.make_rot_mat(old_rot)
 
 
     if self.NAME == "red":
-      pass
-      #avango.gua.set_material_uniform("White", "Shadeless", self.PickedNodes.value[i].WorldNormal.value)
+      pass # change red color
 
     self.sf_float_output.value = value_x
 

@@ -30,13 +30,13 @@ class InteractivGeometry(avango.script.Script):
     # test slider
     #self.size_slider = Slider()
 
-  def my_constructor(self, NAME, PATH, MATERIAL, PARENT_NODE, CHANGE_OPTIONS):
+  def my_constructor(self, NAME, PATH, MATERIAL, TRANSFORMATION, PARENT_NODE, CHANGE_OPTIONS):
     # init interactiv geometry
     loader = avango.gua.nodes.GeometryLoader()
     self.geometry = loader.create_geometry_from_file(NAME, PATH, MATERIAL,
                   avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.geometry.GroupNames.value  = ["interactiv"]
-    self.geometry.Transform.value = avango.gua.make_trans_mat(0.0, 2.0, 0.0)
+    self.geometry.Transform.value = TRANSFORMATION
     self.geometry.add_and_init_field(avango.script.SFObject(), "InteractivGeometry", self)
     PARENT_NODE.Children.value.append(self.geometry)
 
