@@ -188,6 +188,7 @@ class Slider(avango.script.Script):
     scale_factor = 2
 
     if self.NAME == "size":
+      value_x = value_x + 1
       self.object.Transform.value = avango.gua.make_trans_mat(old_trans) *\
                     avango.gua.make_scale_mat(value_x * scale_factor, value_x * scale_factor, value_x * scale_factor) *\
                     avango.gua.make_rot_mat(old_rot)
@@ -197,13 +198,5 @@ class Slider(avango.script.Script):
                                     avango.gua.make_scale_mat(old_scale) *\
                                     avango.gua.make_rot_mat(old_rot)
 
-    if self.NAME == "red":
-      pass
-
-    if self.NAME == "green":
-      pass
-
-    if self.NAME == "blue":
-      pass
 
     self.sf_float_output.value = value_x
