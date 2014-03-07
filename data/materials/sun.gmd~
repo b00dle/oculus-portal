@@ -5,6 +5,6 @@
 	{
 		"atmo_color" : "(0.500  0.500  1.000)",
 		"diffuse_map" : "data/textures/planets/Sun.jpg",
-		"shinyness" : "10"
+		"shinyness" : "100"
 	}
 }

@@ -147,6 +147,6 @@ class InteractivGeometry(avango.script.Script):
   @field_has_changed(sf_switch_enable)
   def change_switch_enable(self):
     if self.sf_switch_enable.value:
-      self.geometry.Material.value = "AvatarYellow"
+      avango.gua.set_material_uniform("sun", "shinyness", "100")
     elif self.sf_switch_enable.value == False:
-      self.geometry.Material.value = "Stone"
+      avango.gua.set_material_uniform("sun", "shinyness", "10")

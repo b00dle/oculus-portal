@@ -63,6 +63,9 @@ class SceneManager:
     graph.Root.value.Children.value.append(plane)
 
     # Create Planets
+    sun = InteractivGeometry()
+    sun.my_constructor('sphere', 'data/objects/sphere.obj', 'sun', avango.gua.make_trans_mat(0.0,20.0,-40.0) * avango.gua.make_scale_mat(10.0,10.0,10.0), graph.Root.value, ["enable"])
+
     earth = InteractivGeometry()
     earth.my_constructor('sphere', 'data/objects/sphere.obj', 'earth', avango.gua.make_trans_mat(-10.0,15.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph.Root.value, ["size"])
 
