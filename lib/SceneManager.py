@@ -67,7 +67,10 @@ class SceneManager:
     monkey_interface.my_constructor('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.make_trans_mat(2.0,3.0,2.0), graph.Root.value, ["enable"])
 
     box_interface = InteractivGeometry()
-    box_interface.my_constructor('box', 'data/objects/cube.obj', 'slider_mat_1', avango.gua.make_trans_mat(-3.0,3.0,2.0), graph.Root.value, ["green","red", "blue"])
+    box_interface.my_constructor('box', 'data/objects/cube.obj', 'slider_mat_1', avango.gua.make_trans_mat(-3.0,3.0,2.0), graph.Root.value, ["green","red","blue"])
+
+    sphere_interface = InteractivGeometry()
+    sphere_interface.my_constructor('sphere', 'data/objects/sphere.obj', 'slider_mat_2', avango.gua.make_trans_mat(-2.0,5.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph.Root.value, ["size","green","red","blue"])
 
 
     # screen

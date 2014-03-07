@@ -28,8 +28,8 @@ def init_lcd_wall_tracking():
   _dtrack = avango.daemon.DTrack()
   _dtrack.port = "5000" # ART port at LCD wall
   
-  _dtrack.stations[16] = avango.daemon.Station('tracking-oculus-front') # oculus rift tracking
-  _dtrack.stations[17] = avango.daemon.Station('tracking-oculus-stag')  # oculus rift tracking
+  _dtrack.stations[17] = avango.daemon.Station('tracking-oculus-front') # oculus rift tracking
+  _dtrack.stations[16] = avango.daemon.Station('tracking-oculus-stag')  # oculus rift tracking
 
   _dtrack.stations[4] = avango.daemon.Station('tracking-glasses-1')    # glasses powerwall user one
   _dtrack.stations[3] = avango.daemon.Station('tracking-glasses-2')    # glasses powerwall user two

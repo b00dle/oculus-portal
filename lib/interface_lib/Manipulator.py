@@ -18,6 +18,9 @@ class Manipulator(avango.script.Script):
   sf_righthand = avango.gua.SFMatrix4()
   sf_XOutput = avango.SFFloat()
 
+  sf_key_right_pointer = avango.SFBool()
+  sf_key_left_pointer  = avango.SFBool()
+
   def __init__(self):
     self.super(Manipulator).__init__()
 
@@ -40,6 +43,13 @@ class Manipulator(avango.script.Script):
 
     self.PlaneModeFlag = False
 
+    # Handler fuer rechten Pointer Button
+    self.right_pointer_pressed = False
+    self.sf_key_right_pointer.connect_from(self.RightPointer.sf_key_pageup)
+
+    self.left_pointer_pressed = False
+    self.sf_key_left_pointer.connect_from(self.LeftPointer.sf_key_pageup)
+
     self.always_evaluate(True)
 
   def my_constructor(self, SCENEGRAPH, LEFTHAND, RIGHTHAND):
@@ -61,13 +71,25 @@ class Manipulator(avango.script.Script):
     self.inv_plane.Transform.value = avango.gua.make_rot_mat(90, 1, 0, 0) * avango.gua.make_scale_mat(1,1,20)
 
 
+  @field_has_changed(sf_key_left_pointer)
+  def key_left_handler(self):
+    if self.sf_key_left_pointer.value == False:
+      self.left_pointer_pressed = True
+
+  @field_has_changed(sf_key_right_pointer)
+  def key_right_handler(self):
+    if self.sf_key_right_pointer.value == False:
+      self.right_pointer_pressed = True
+
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
 
     # pick button left hand
     if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False and\
-                                                (len(self.LeftPicker.Results.value) > 0):
+       self.left_pointer_pressed == True and (len(self.LeftPicker.Results.value) > 0):
+      
       self.LeftPointerPicked = True
+      self.left_pointer_pressed = False
 
       self.left_picked_object = self.LeftPicker.Results.value[0].Object.value
       self.left_picked_object.InteractivGeometry.value.enable_menu(self.LEFTHAND)
@@ -75,8 +97,11 @@ class Manipulator(avango.script.Script):
       print "picked ",self.left_picked_object.Name.value
   
     # unpick button left hand
-    if self.LeftPointer.sf_key_pagedown.value and self.LeftPointerPicked == True:
+    if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == True and\
+       self.left_pointer_pressed == True:
+      
       self.LeftPointerPicked = False
+      self.left_pointer_pressed = False
       
       self.left_picked_object.InteractivGeometry.value.disable_menu(self.LEFTHAND)
       
@@ -88,9 +113,12 @@ class Manipulator(avango.script.Script):
       if self.RightPicker.Results.value[0].Object.value.Name.value == 'inv_plane':
         self.sf_XOutput.value = self.RightPicker.Results.value[0].Position.value.x
 
+
     # pick button right hand
     if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == False and\
-        self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0):
+        self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0) and self.right_pointer_pressed:
+
+      self.right_pointer_pressed = False
       self.RightPointerPicked = True
       
       print "Interact with ",self.RightPicker.Results.value[0].Object.value.Name.value
@@ -139,47 +167,55 @@ class Manipulator(avango.script.Script):
 
           self.left_picked_object.InteractivGeometry.value.sf_color_blue.connect_from(self.sf_XOutput)
 
-        # SWITCH
-        elif element.NAME == "enable" and self.right_picked_object.Name.value == "switch_enable":
-          if not element.switch_bool:
-            #element.switch_bool = True
+        elif element.NAME == "enable" and self.right_picked_object.Name.value == "switch_enable":        
+          if element.sf_bool_switch.value == False:
             element.switch_geometry.Transform.value = element.switch_pos_on
+            element.sf_bool_switch.value = True
+            element.switch_geometry.Material.value = "AvatarBlue"
 
-          if element.switch_bool:
-            #element.switch_bool = False
-            element.switch_geometry.Transform.value = element.switch_pos_off
+            self.left_picked_object.InteractivGeometry.value.sf_switch_enable.connect_from(element.sf_bool_switch)
 
 
-        
     # unpick button
-    if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
+    if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == True and self.right_pointer_pressed:
       self.RightPointerPicked = False
+      self.right_pointer_pressed = False
+
       self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.remove(self.inv_plane)
       self.RightPicker.Mask.value = "interface_element"
 
       for element in self.left_picked_object.InteractivGeometry.value.interface_elements:
         if element.NAME == "size" and self.right_picked_object.Name.value == "slider_size":
           element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "Stone"
 
         elif element.NAME == "y_pos" and self.right_picked_object.Name.value == "slider_y_pos":
           element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "Stone"
 
         elif element.NAME == "red" and self.right_picked_object.Name.value == "slider_red":
           element.sfPositionXInput.disconnect_from(self.sf_XOutput)
           self.left_picked_object.InteractivGeometry.value.sf_color_red.disconnect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "Stone"
 
         elif element.NAME == "green" and self.right_picked_object.Name.value == "slider_green":
           element.sfPositionXInput.disconnect_from(self.sf_XOutput)
           self.left_picked_object.InteractivGeometry.value.sf_color_green.disconnect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "Stone"
 
         elif element.NAME == "blue" and self.right_picked_object.Name.value == "slider_blue":
           element.sfPositionXInput.disconnect_from(self.sf_XOutput)
           self.left_picked_object.InteractivGeometry.value.sf_color_blue.disconnect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "Stone"
 
-      self.right_picked_object.Material.value = "Stone"
+        elif element.NAME == "enable" and self.right_picked_object.Name.value == "switch_enable":
+          if element.sf_bool_switch.value:
+            element.switch_geometry.Transform.value = element.switch_pos_off
+            element.sf_bool_switch.value = False
+            element.switch_geometry.Material.value = "AvatarRed"
 
       print "OFF"
-    
+  
 
   def initialize_left_picker(self):
     print "init picker left"
