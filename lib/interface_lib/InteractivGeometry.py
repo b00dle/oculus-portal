@@ -27,6 +27,11 @@ class InteractivGeometry(avango.script.Script):
     self.menu_node            = avango.gua.nodes.TransformNode(Name = "menu_node")
     self.interface_elements   = []
 
+    self.material_color       = avango.gua.Vec3()
+    self.sf_color_red.value        = 0
+    self.sf_color_green.value      = 0
+    self.sf_color_blue.value       = 0
+
     # test slider
     #self.size_slider = Slider()
 
@@ -84,6 +89,8 @@ class InteractivGeometry(avango.script.Script):
         green_slider.slider_geometry.GroupNames.value = ["interface_element"]
         self.sf_color_green.connect_from(green_slider.sf_float_output)
         element_counter += 1
+
+        self.interface_elements.append(green_slider)
         print option, "created"
       # Slider to change blue color
       elif(option == "blue"):
@@ -92,14 +99,18 @@ class InteractivGeometry(avango.script.Script):
         blue_slider.slider_geometry.GroupNames.value = ["interface_element"]
         self.sf_color_blue.connect_from(blue_slider.sf_float_output)
         element_counter += 1
+
+        self.interface_elements.append(blue_slider)
         print option, "created"
+
       # Switch to enable something
-      #elif(option == "enable"):
-      #  switch = Switch()
-      #  slider.my_constructor(option, avango.gua.make_trans_mat(0.0, 0.0, 0.0), self.menu_node)
-      #
-      #  element_counter += 1
-      #  print option, "created"
+      elif(option == "enable"):
+        switch = Switch()
+        switch.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
+        element_counter += 1
+
+        self.interface_elements.append(switch)
+        print option, "created"
       else:
         print "Wrong change option"
 
@@ -112,6 +123,22 @@ class InteractivGeometry(avango.script.Script):
   def disable_menu(self, MENU_LOCATION):
     self.menu_enabled = False
     MENU_LOCATION.Children.value.remove(self.menu_node)
+
+  @field_has_changed(sf_color_red)
+  def change_color_r(self):
+    _new_color = avango.gua.Vec3(self.sf_color_red.value, self.sf_color_green.value, self.sf_color_blue.value)
+    avango.gua.set_material_uniform("slider_mat_1", "diffuse_color", _new_color)
+
+  @field_has_changed(sf_color_green)
+  def change_color_g(self):
+    _new_color = avango.gua.Vec3(self.sf_color_red.value, self.sf_color_green.value, self.sf_color_blue.value)
+    avango.gua.set_material_uniform("slider_mat_1", "diffuse_color", _new_color)
+
+  @field_has_changed(sf_color_blue)
+  def change_color_b(self):
+    _new_color = avango.gua.Vec3(self.sf_color_red.value, self.sf_color_green.value, self.sf_color_blue.value)
+    avango.gua.set_material_uniform("slider_mat_1", "diffuse_color", _new_color)
+
 
 
 

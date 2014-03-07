@@ -64,10 +64,10 @@ class SceneManager:
 
     # Create Monkey
     monkey_interface = InteractivGeometry()
-    monkey_interface.my_constructor('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.make_trans_mat(2.0,3.0,2.0), graph.Root.value, ["size", "green", "red"])
+    monkey_interface.my_constructor('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.make_trans_mat(2.0,3.0,2.0), graph.Root.value, ["enable"])
 
     box_interface = InteractivGeometry()
-    box_interface.my_constructor('box', 'data/objects/cube.obj', 'Tiles', avango.gua.make_trans_mat(-3.0,3.0,2.0), graph.Root.value, ["size", "y_pos", "red"])
+    box_interface.my_constructor('box', 'data/objects/cube.obj', 'slider_mat_1', avango.gua.make_trans_mat(-3.0,3.0,2.0), graph.Root.value, ["green","red", "blue"])
 
 
     # screen

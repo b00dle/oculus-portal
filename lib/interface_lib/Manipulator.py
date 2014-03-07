@@ -96,7 +96,6 @@ class Manipulator(avango.script.Script):
       print "Interact with ",self.RightPicker.Results.value[0].Object.value.Name.value
 
       self.right_picked_object = self.RightPicker.Results.value[0].Object.value
-      self.right_picked_object.Material.value = "AvatarRed"
 
       # Invisible Plane Intersect
       self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.append(self.inv_plane)
@@ -111,29 +110,46 @@ class Manipulator(avango.script.Script):
         if element.NAME == "size" and self.right_picked_object.Name.value == "slider_size":          
           element.object = self.left_picked_object
           element.sfPositionXInput.connect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "AvatarWhite"
 
         elif element.NAME == "y_pos" and self.right_picked_object.Name.value == "slider_y_pos":
           element.object = self.left_picked_object
           element.sfPositionXInput.connect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "AvatarWhite"
 
         elif element.NAME == "red" and self.right_picked_object.Name.value == "slider_red":
           element.object = self.left_picked_object
           element.sfPositionXInput.connect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "AvatarRed"
+
+          # Color float to interface:
+          self.left_picked_object.InteractivGeometry.value.sf_color_red.connect_from(self.sf_XOutput)
 
         elif element.NAME == "green" and self.right_picked_object.Name.value == "slider_green":
           element.object = self.left_picked_object
           element.sfPositionXInput.connect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "AvatarGreen"
+
+          self.left_picked_object.InteractivGeometry.value.sf_color_green.connect_from(self.sf_XOutput)
+
+        elif element.NAME == "blue" and self.right_picked_object.Name.value == "slider_blue":
+          element.object = self.left_picked_object
+          element.sfPositionXInput.connect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "AvatarBlue"
+
+          self.left_picked_object.InteractivGeometry.value.sf_color_blue.connect_from(self.sf_XOutput)
+
+        # SWITCH
+        elif element.NAME == "enable" and self.right_picked_object.Name.value == "switch_enable":
+          if not element.switch_bool:
+            #element.switch_bool = True
+            element.switch_geometry.Transform.value = element.switch_pos_on
+
+          if element.switch_bool:
+            #element.switch_bool = False
+            element.switch_geometry.Transform.value = element.switch_pos_off
 
 
-      '''
-      # Invertierte Scale-Mat:
-      inv_scale = self.inv_plane.Transform.value.get_scale()
-      inv_scale = avango.gua.make_scale_mat(inv_scale)
-      inv_scale = avango.gua.make_inverse_mat(inv_scale)
-
-      self.interface2.inv_plane_scale_mat = inv_scale
-      self.interface2.object = self.picked_object
-      '''
         
     # unpick button
     if self.RightPointer.sf_key_pagedown.value and self.RightPointerPicked == True:
@@ -150,9 +166,15 @@ class Manipulator(avango.script.Script):
 
         elif element.NAME == "red" and self.right_picked_object.Name.value == "slider_red":
           element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+          self.left_picked_object.InteractivGeometry.value.sf_color_red.disconnect_from(self.sf_XOutput)
 
         elif element.NAME == "green" and self.right_picked_object.Name.value == "slider_green":
           element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+          self.left_picked_object.InteractivGeometry.value.sf_color_green.disconnect_from(self.sf_XOutput)
+
+        elif element.NAME == "blue" and self.right_picked_object.Name.value == "slider_blue":
+          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+          self.left_picked_object.InteractivGeometry.value.sf_color_blue.disconnect_from(self.sf_XOutput)
 
       self.right_picked_object.Material.value = "Stone"
 

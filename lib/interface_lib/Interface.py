@@ -44,34 +44,38 @@ def get_rotation_between_vectors(VEC1, VEC2):
 
 class Switch(avango.script.Script):
 
-  #sfObjectTransformOut = avango.SFBoolean()
-  sfTransformInput = avango.gua.SFMatrix4()
-
   def __init__(self):
     self.super(Switch).__init__()
+    #self.always_evaluate(True)
     self.NAME = ""
     self.SWITCHPOS = avango.gua.Mat4()
     self.PARENT_NODE = avango.gua.nodes.TransformNode()
     self.switch_geometry = avango.gua.nodes.GeometryNode()
     self.switch_transform = avango.gua.nodes.TransformNode()
 
-  def my_constructor(self, NAME, SWITCHPOS, PARENT_NODE, LOADER):
+    self.switch_bool = False
+
+  def my_constructor(self, NAME, SWITCHPOS, PARENT_NODE):
     self.NAME = NAME
     self.SWITCHPOS = SWITCHPOS
     self.PARENT_NODE = PARENT_NODE
 
-    self.switch_geometry = LOADER.create_geometry_from_file('switch_' + NAME, 'data/objects/sphere.obj',
+    self.LOADER = avango.gua.nodes.GeometryLoader()
+
+    self.switch_scale = avango.gua.make_scale_mat(0.2, 0.2, 0.2)
+
+    self.switch_geometry = self.LOADER.create_geometry_from_file('switch_' + NAME, 'data/objects/sphere.obj',
                                                             'Tiles', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    self.switch_geometry.Transform.value = avango.gua.make_trans_mat(-0.5, 0.0, 0.0) * avango.gua.make_scale_mat(0.2, 0.2, 0.2)
+    self.switch_geometry.Transform.value = avango.gua.make_trans_mat(-0.5, 0.0, 0.0) * self.switch_scale
     self.switch_geometry.GroupNames.value = ["interface_element"]
-    self.switch_transform = avango.gua.nodes.TransformNode(Name = 'switch_trans_' + NAME)
+    self.switch_transform = avango.gua.nodes.TransformNode(Name = 'switch_' + NAME)
     self.switch_transform.Transform.value = avango.gua.make_trans_mat(self.SWITCHPOS.get_translate())
     self.switch_transform.Children.value.append(self.switch_geometry)
     self.PARENT_NODE.Children.value.append(self.switch_transform)
 
 
     # Red Line
-    line_begin1 = avango.gua.Vec3(self.switch_transform.Transform.value.get_translate().x - 1.0,
+    line_begin1 = avango.gua.Vec3(self.switch_transform.Transform.value.get_translate().x - 0.5,
                                  self.switch_transform.Transform.value.get_translate().y,
                                  self.switch_transform.Transform.value.get_translate().z)
 
@@ -80,7 +84,7 @@ class Switch(avango.script.Script):
                                  self.switch_transform.Transform.value.get_translate().z)
 
 
-    create_line_visualization(LOADER, self.PARENT_NODE, line_begin1, line_end1, 'AvatarBlue')
+    create_line_visualization(self.LOADER, self.PARENT_NODE, line_begin1, line_end1, 'AvatarBlue')
 
 
     # Blue Line
@@ -88,30 +92,33 @@ class Switch(avango.script.Script):
                                  self.switch_transform.Transform.value.get_translate().y,
                                  self.switch_transform.Transform.value.get_translate().z)
 
-    line_end2 = avango.gua.Vec3(self.switch_transform.Transform.value.get_translate().x + 1.0,
+    line_end2 = avango.gua.Vec3(self.switch_transform.Transform.value.get_translate().x + 0.5,
                                  self.switch_transform.Transform.value.get_translate().y,
                                  self.switch_transform.Transform.value.get_translate().z)
 
 
-    create_line_visualization(LOADER, self.PARENT_NODE, line_begin2, line_end2, 'AvatarRed')
+    create_line_visualization(self.LOADER, self.PARENT_NODE, line_begin2, line_end2, 'AvatarRed')
 
+    self.switch_pos_on = avango.gua.make_trans_mat(
+                              self.switch_geometry.Transform.value.get_translate().x + 0.25,
+                              self.switch_geometry.Transform.value.get_translate().y,
+                              self.switch_geometry.Transform.value.get_translate().z) *\
+                              self.switch_scale
+
+    self.switch_pos_off = avango.gua.make_trans_mat(
+                              self.switch_geometry.Transform.value.get_translate().x - 0.25,
+                              self.switch_geometry.Transform.value.get_translate().y,
+                              self.switch_geometry.Transform.value.get_translate().z) *\
+                              self.switch_scale
 '''
-  @field_has_changed(sfTransformInput)
-  def change_slider_transformation(self):
-    slider_x = self.sfTransformInput.get_translate().x
+  def evaluate(self):
+    if self.switch_bool:
+      print "on"
+      self.switch_geometry.Transform.value = self.switch_pos_on
 
-    if slider_x < self.switch_transform.Transform.value.get_translate().x:
-      slider_x = self.slider_min
-
-    if slider_x > self.switch_transform.Transform.value.get_translate().x:
-      slider_x = self.slider_max
-
-    self.slider_geometry.Transform.value = avango.gua.make_trans_mat(
-                                            slider_x,
-                                            self.slider_transform.Transform.value.get_translate().y,
-                                            self.slider_transform.Transform.value.get_translate().z)
-
-    #self.sfObjectTransformOut.value = slider_x # TODO: Umrechnung von Pos auf Prozentwert
+    if not self.switch_bool:
+      print "off"
+      self.switch_geometry.Transform.value = self.switch_pos_off
 '''
 
 class Slider(avango.script.Script):
@@ -137,6 +144,11 @@ class Slider(avango.script.Script):
     self.object = avango.gua.nodes.GeometryNode()
 
     self.inv_plane_scale_mat = avango.gua.make_identity_mat()
+
+    # RGB
+    self.value_r = 0
+    self.value_g = 0
+    self.value_b = 0
 
 
   def my_constructor(self, NAME, SLIDERPOS, PARENT_NODE):
@@ -170,19 +182,19 @@ class Slider(avango.script.Script):
 
     self.slider_geometry.Transform.value = avango.gua.make_trans_mat(
                                             self.sfPositionXInput.value,
-                                            self.slider_transform.Transform.value.get_translate().y,
-                                            self.slider_transform.Transform.value.get_translate().z) *\
+                                            self.slider_geometry.Transform.value.get_translate().y,
+                                            self.slider_geometry.Transform.value.get_translate().z) *\
                                             self.slider_scale
 
-
-    value_x = (self.sfPositionXInput.value + 0.5) #self.inv_plane_scale_mat.get_translate().x
-
+    value_x = self.sfPositionXInput.value
 
     if value_x < self.slider_min:
       value_x = self.slider_min
 
     if value_x > self.slider_max:
       value_x = self.slider_max
+
+    value_x = (self.sfPositionXInput.value + 0.5)
 
     old_trans  = self.object.Transform.value.get_translate()
     old_rot    = self.object.Transform.value.get_rotate()
@@ -200,10 +212,23 @@ class Slider(avango.script.Script):
                                     avango.gua.make_scale_mat(old_scale) *\
                                     avango.gua.make_rot_mat(old_rot)
 
-
     if self.NAME == "red":
       pass
-      #avango.gua.set_material_uniform("White", "Shadeless", self.PickedNodes.value[i].WorldNormal.value)
+      #self.value_r = value_x
+      #_new_color = avango.gua.Vec3(self.value_r, self.value_g, self.value_b)
+      #avango.gua.set_material_uniform("Bright", "diffuse_color", _new_color)
+
+    if self.NAME == "green":
+      pass
+      #self.value_g = value_x
+      #_new_color = avango.gua.Vec3(self.value_r, self.value_g, self.value_b)
+      #avango.gua.set_material_uniform("Bright", "diffuse_color", _new_color)
+
+    if self.NAME == "blue":
+      pass
+      #self.value_b = value_x
+      #_new_color = avango.gua.Vec3(self.value_r, self.value_g, self.value_b)
+      #avango.gua.set_material_uniform("Bright", "diffuse_color", _new_color)
 
     self.sf_float_output.value = value_x
 
