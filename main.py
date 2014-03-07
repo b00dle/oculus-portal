@@ -46,23 +46,6 @@ def start():
   # initialize portals
   portal_manager = PortalManager(viewing_manager)
 
-
-
-
-  #### --- INTERFACE TESTS --- ####
-
-  # add manipulator
-  #manipulator = Manipulator()
-
-  # add display
-  #display = avango.gua.nodes.TransformNode(Name = "display_node")
-  #scene_manager.graphs[0].Root.value.Children.value.append(display)
-
-  # add switch
-  #switch1 = Switch()
-  #switch1.my_constructor("Switch1", avango.gua.make_trans_mat(5.0, 1.0, 2.0), display, loader)
-
-
   # run application loop
   viewing_manager.run(locals(), globals())
 
