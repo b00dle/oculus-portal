@@ -227,8 +227,8 @@ class Manipulator(avango.script.Script):
 
     ray_left_avatar = loader.create_geometry_from_file('ray_left' , 'data/objects/cube.obj',
                                                     'White', avango.gua.LoaderFlags.DEFAULTS)
-    ray_left_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -20.0) *\
-                                       avango.gua.make_scale_mat(0.008, 0.008, 20)
+    ray_left_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -100.0) *\
+                                       avango.gua.make_scale_mat(0.008, 0.008, 100)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
    
 

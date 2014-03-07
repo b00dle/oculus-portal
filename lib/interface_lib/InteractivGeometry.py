@@ -37,7 +37,7 @@ class InteractivGeometry(avango.script.Script):
     # test slider
     #self.size_slider = Slider()
 
-  def my_constructor(self, NAME, PATH, MATERIAL, TRANSFORMATION, PARENT_NODE, CHANGE_OPTIONS):
+  def my_constructor(self, NAME, PATH, MATERIAL, TRANSFORMATION, GRAPH, CHANGE_OPTIONS):
     # init interactiv geometry
     loader = avango.gua.nodes.GeometryLoader()
     self.geometry = loader.create_geometry_from_file(NAME, PATH, MATERIAL,
@@ -45,7 +45,9 @@ class InteractivGeometry(avango.script.Script):
     self.geometry.GroupNames.value  = ["interactiv"]
     self.geometry.Transform.value = TRANSFORMATION
     self.geometry.add_and_init_field(avango.script.SFObject(), "InteractivGeometry", self)
-    PARENT_NODE.Children.value.append(self.geometry)
+
+    self.GRAPH = GRAPH
+    self.GRAPH.Root.value.Children.value.append(self.geometry)
 
     self.material = MATERIAL
 
@@ -147,6 +149,17 @@ class InteractivGeometry(avango.script.Script):
   @field_has_changed(sf_switch_enable)
   def change_switch_enable(self):
     if self.sf_switch_enable.value:
-      avango.gua.set_material_uniform("sun", "shinyness", "100")
+      _new_atmocolor = avango.gua.Vec3(1.0, 1.0, 1.0)
+      avango.gua.set_material_uniform("sun", "atmo_color", _new_atmocolor)
+
+      self.GRAPH["/sun"].Transform.value = avango.gua.make_trans_mat(0.0, 40.0, 40.0) * \
+                          avango.gua.make_rot_mat(-45.0, 1.0, 0.0, 0.0) * \
+                          avango.gua.make_scale_mat(100.0, 100.0, 160.0)
+      #graph.Root.value
     elif self.sf_switch_enable.value == False:
-      avango.gua.set_material_uniform("sun", "shinyness", "10")
+      _new_atmocolor = avango.gua.Vec3(0.1, 0.1, 0.1)
+      avango.gua.set_material_uniform("sun", "atmo_color", _new_atmocolor)
+
+      self.GRAPH["/sun"].Transform.value = avango.gua.make_trans_mat(0.0, 40.0, 40.0) * \
+                          avango.gua.make_rot_mat(-45.0, 1.0, 0.0, 0.0) * \
+                          avango.gua.make_scale_mat(10.0, 10.0, 20.0)

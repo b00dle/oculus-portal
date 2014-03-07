@@ -194,7 +194,7 @@ class Slider(avango.script.Script):
                     avango.gua.make_rot_mat(old_rot)
 
     if self.NAME == "y_pos":
-      self.object.Transform.value = avango.gua.make_trans_mat(old_trans.x, (value_x * scale_factor), old_trans.z) *\
+      self.object.Transform.value = avango.gua.make_trans_mat((value_x * scale_factor), old_trans.y ,old_trans.z) *\
                                     avango.gua.make_scale_mat(old_scale) *\
                                     avango.gua.make_rot_mat(old_rot)
 

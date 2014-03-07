@@ -52,7 +52,7 @@ class SceneManager:
 
     spot.Transform.value = avango.gua.make_trans_mat(0.0, 40.0, 40.0) * \
                           avango.gua.make_rot_mat(-45.0, 1.0, 0.0, 0.0) * \
-                          avango.gua.make_scale_mat(100.0, 100.0, 160.0)
+                          avango.gua.make_scale_mat(10.0, 10.0, 20.0)
 
     graph.Root.value.Children.value.append(spot)
 
@@ -64,10 +64,13 @@ class SceneManager:
 
     # Create Planets
     sun = InteractivGeometry()
-    sun.my_constructor('sphere', 'data/objects/sphere.obj', 'sun', avango.gua.make_trans_mat(0.0,20.0,-40.0) * avango.gua.make_scale_mat(10.0,10.0,10.0), graph.Root.value, ["enable"])
+    sun.my_constructor('sphere', 'data/objects/sphere.obj', 'sun', avango.gua.make_trans_mat(0.0,20.0,-40.0) * avango.gua.make_scale_mat(10.0,10.0,10.0), graph, ["enable"])
 
     earth = InteractivGeometry()
-    earth.my_constructor('sphere', 'data/objects/sphere.obj', 'earth', avango.gua.make_trans_mat(-10.0,15.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph.Root.value, ["size"])
+    earth.my_constructor('sphere', 'data/objects/sphere.obj', 'earth', avango.gua.make_trans_mat(-10.0,15.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph, ["size"])
+
+    venus = InteractivGeometry()
+    venus.my_constructor('sphere', 'data/objects/sphere.obj', 'venus', avango.gua.make_trans_mat(10.0,15.0,-10.0) * avango.gua.make_scale_mat(4.0,4.0,4.0), graph, ["y_pos"])
 
     #monkey_interface = InteractivGeometry()
     #monkey_interface.my_constructor('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.make_trans_mat(2.0,3.0,2.0), graph.Root.value, ["enable"])
