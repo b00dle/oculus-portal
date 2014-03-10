@@ -10,6 +10,8 @@ import math
 import examples_common.navigator
 from examples_common.GuaVE import GuaVE
 
+from ..interface_lib.InteractivGeometry import *
+
 class Portal(avango.script.Script):
 
     # init fields
@@ -94,6 +96,11 @@ class Portal(avango.script.Script):
         avango.gua.set_material_uniform(  "Portal" + self.NAME,
                                           "portal_texture",
                                           self.NAME + "Texture")
+
+        # make interactive:
+        geometry.GroupNames.value.append("interactiv")
+        interactiv_geometry = InteractivGeometry()
+        interactiv_geometry.portal_constructor("TestPortal", geometry, ["y_pos", "z_pos"], self)
 
         self.ENTRYSCENE.Root.value.Children.value.append(geometry)
         

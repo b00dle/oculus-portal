@@ -185,7 +185,7 @@ class Slider(avango.script.Script):
     old_rot    = self.object.Transform.value.get_rotate()
     old_scale  = self.object.Transform.value.get_scale()
 
-    scale_factor = 2
+    scale_factor = 1.0 #2
 
     if self.NAME == "size":
       value_x = value_x + 1
@@ -193,10 +193,12 @@ class Slider(avango.script.Script):
                     avango.gua.make_scale_mat(value_x * scale_factor, value_x * scale_factor, value_x * scale_factor) *\
                     avango.gua.make_rot_mat(old_rot)
 
-    if self.NAME == "y_pos":
-      self.object.Transform.value = avango.gua.make_trans_mat(old_trans.x, (value_x * scale_factor), old_trans.z) *\
+    #if self.NAME == "y_pos":
+      '''
+      self.object.Transform.value = avango.gua.make_trans_mat((value_x * scale_factor), old_trans.y, old_trans.z) *\
                                     avango.gua.make_scale_mat(old_scale) *\
                                     avango.gua.make_rot_mat(old_rot)
+      '''
 
 
     self.sf_float_output.value = value_x

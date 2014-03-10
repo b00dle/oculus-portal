@@ -52,6 +52,14 @@ class InteractivGeometry(avango.script.Script):
     # init menu
     self.initalize_menu(CHANGE_OPTIONS)
 
+  def portal_constructor(self, NAME, GEOMETRY, CHANGE_OPTIONS, PORTAL):
+    self.NAME = NAME
+    self.geometry = GEOMETRY
+    self.geometry.add_and_init_field(avango.script.SFObject(), "InteractivGeometry", self)
+    self.PORTAL = PORTAL
+
+    self.initalize_menu(CHANGE_OPTIONS)
+
   def initalize_menu(self, CHANGE_OPTIONS):
     element_counter = 0
     self.menu_node.Transform.value = avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
@@ -66,7 +74,7 @@ class InteractivGeometry(avango.script.Script):
 
         self.interface_elements.append(size_slider)
         print option, "created"
-      # Slider to change size
+      # Slider to change y Position
       if(option == "y_pos"):
         y_pos_slider = Slider()
         y_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
@@ -75,6 +83,16 @@ class InteractivGeometry(avango.script.Script):
         element_counter += 1
 
         self.interface_elements.append(y_pos_slider)
+        print option, "created"
+      # Slider to change z Position
+      if(option == "z_pos"):
+        z_pos_slider = Slider()
+        z_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
+        z_pos_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_resize.connect_from(z_pos_slider.sf_float_output)
+        element_counter += 1
+
+        self.interface_elements.append(z_pos_slider)
         print option, "created"
       # Slider to change red color
       elif(option == "red"):
