@@ -8,10 +8,10 @@ from Portal import *
 from PortalController import *
 
 class PortalManager():
-  def __init__(self, VIEWINGMANAGER, BRANCHNAMES):
-    self.create_portals(VIEWINGMANAGER, BRANCHNAMES)
+  def __init__(self, VIEWINGMANAGER):
+    self.create_portals(VIEWINGMANAGER)
 
-  def create_portals(self, VIEWINGMANAGER, BRANCHNAMES):
+  def create_portals(self, VIEWINGMANAGER):
     for u in VIEWINGMANAGER.powerwall_user_list:
       # collection of !!ALL!! portals
       portals = []
@@ -30,13 +30,13 @@ class PortalManager():
       
       portal = Portal()
       portal.my_constructor(portal_name,
-                            VIEWINGMANAGER.SCENEGRAPH,
-                            VIEWINGMANAGER.SCENEGRAPH["/simplescene"],
-                            VIEWINGMANAGER.SCENEGRAPH["/harbourscene"],
+                            self.viewer.SceneGraphs.value[0], #simplescene
+                            self.viewer.SceneGraphs.value[0],
                             entry_pos,
                             exit_pos,
                             portal_width,
-                            portal_height)
+                            portal_height
+                            )
       
       # Change Pipeline Settings
       portal.PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
@@ -48,17 +48,17 @@ class PortalManager():
       u.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,
                                          "controller_" + str(u.id),
                                          VIEWINGMANAGER.viewer.Pipelines,
-                                         BRANCHNAMES,
                                          u.pipeline,
-                                         u.render_mask,
                                          portals,
                                          VIEWINGMANAGER.navigation_list[u.portal_controller.PLATFORM],
-                                         u.head_transform
+                                         u.head_transform,
+                                         u.screen
                                          )
 
     for u in VIEWINGMANAGER.ovr_user_list:
       # collection of !!ALL!! portals
       portals = []
+
       # Size for every Portal:
       portal_width = 2.0
       portal_height = 3.0
@@ -73,13 +73,13 @@ class PortalManager():
       
       portal = Portal()
       portal.my_constructor(portal_name,
-                            VIEWINGMANAGER.SCENEGRAPH,
-                            VIEWINGMANAGER.SCENEGRAPH["/simplescene"],
-                            VIEWINGMANAGER.SCENEGRAPH["/harbourscene"],
+                            VIEWINGMANAGER.viewer.SceneGraphs.value[0], #simplescene
+                            VIEWINGMANAGER.viewer.SceneGraphs.value[0],
                             entry_pos,
                             exit_pos,
                             portal_width,
-                            portal_height)
+                            portal_height
+                            )
       
       # Change Pipeline Settings
       portal.PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
@@ -91,9 +91,7 @@ class PortalManager():
       u.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,
                                          "controller_" + str(u.id),
                                          VIEWINGMANAGER.viewer.Pipelines,
-                                         BRANCHNAMES,
                                          u.pipeline,
-                                         u.render_mask,
                                          portals,
                                          VIEWINGMANAGER.navigation_list[u.portal_controller.PLATFORM],
                                          u.head_transform,
@@ -103,6 +101,7 @@ class PortalManager():
     for u in VIEWINGMANAGER.desktop_user_list:
       # collection of !!ALL!! portals
       portals = []
+
       # Size for every Portal:
       portal_width = 2.0
       portal_height = 3.0
@@ -117,13 +116,13 @@ class PortalManager():
       
       portal = Portal()
       portal.my_constructor(portal_name,
-                            VIEWINGMANAGER.SCENEGRAPH,
-                            VIEWINGMANAGER.SCENEGRAPH["/simplescene"],
-                            VIEWINGMANAGER.SCENEGRAPH["/harbourscene"],
+                            VIEWINGMANAGER.viewer.SceneGraphs.value[0], #simplescene
+                            VIEWINGMANAGER.viewer.SceneGraphs.value[0],
                             entry_pos,
                             exit_pos,
                             portal_width,
-                            portal_height)
+                            portal_height
+                            )
       
       # Change Pipeline Settings
       portal.PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
@@ -135,9 +134,7 @@ class PortalManager():
       u.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,
                                          "controller_" + str(u.id),
                                          VIEWINGMANAGER.viewer.Pipelines,
-                                         BRANCHNAMES,
                                          u.pipeline,
-                                         u.render_mask,
                                          portals,
                                          VIEWINGMANAGER.navigation_list[u.portal_controller.PLATFORM],
                                          u.head_transform,

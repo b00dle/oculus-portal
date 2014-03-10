@@ -1,3 +1,6 @@
+*.py~
+lib/portal_lib/*.pc~
 lib/*.pyc
 lib/portal_lib/*.pyc
+lib/interface_lib/*.pyc
 data/objects/*

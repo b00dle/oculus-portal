@@ -29,14 +29,14 @@ class PortalManager():
       portal_name = "portal_" + str(u.id)
       
       portal = Portal()
-      portal.my_constructor(portal_name,
-                            self.viewer.SceneGraphs.value[0], #simplescene
-                            self.viewer.SceneGraphs.value[0],
-                            entry_pos,
-                            exit_pos,
-                            portal_width,
-                            portal_height
-                            )
+      #portal.my_constructor(portal_name,
+      #                      self.viewer.SceneGraphs.value[0], #simplescene
+      #                      self.viewer.SceneGraphs.value[0],
+      #                      entry_pos,
+      #                      exit_pos,
+      #                      portal_width,
+      #                      portal_height
+      #                      )
       
       # Change Pipeline Settings
       portal.PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
