@@ -44,6 +44,10 @@ class Manipulator(avango.script.Script):
     self.PlaneModeFlag = False
 
     self.PortalMode = 0
+    self.NewScene = avango.gua.nodes.SceneGraph()
+    self.Portal = None
+    self.PortalPicked = False
+
 
     # Handler fuer rechten Pointer Button
     self.right_pointer_pressed = False
@@ -87,9 +91,29 @@ class Manipulator(avango.script.Script):
   def evaluate(self):
 
     if self.PortalMode == 1:
-      self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(self.sf_XOutput.value * 0.5, 0.0, 0.0)
+      self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(self.sf_XOutput.value * 0.3, 0.0, 0.0)
     if self.PortalMode == 2:
-      self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(0.0, self.sf_XOutput.value * 0.5, 0.0)
+      self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(0.0, self.sf_XOutput.value * 0.3, 0.0)
+
+    if self.PortalPicked:
+      if self.Portal.scene_changed:
+        self.RightPicker.SceneGraph.value = self.Portal.EXITSCENE
+        self.LeftPicker.SceneGraph.value = self.Portal.EXITSCENE
+        self.Portal.scene_changed = False
+        self.PortalPicked = False
+
+        # disable menu if open
+        if self.RightPointerPicked == True:
+          self.RightPointerPicked = False
+          self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.remove(self.inv_plane)
+          self.RightPicker.Mask.value = "interface_element"
+
+          self.disconnect_interface_fields()
+
+        if self.LeftPointerPicked == True:
+          self.LeftPointerPicked = False
+          self.left_picked_object.InteractivGeometry.value.disable_menu(self.LEFTHAND)
+
 
 
     # pick button left hand
@@ -98,6 +122,11 @@ class Manipulator(avango.script.Script):
 
       self.left_picked_object = self.LeftPicker.Results.value[0].Object.value
       self.left_picked_object.InteractivGeometry.value.enable_menu(self.LEFTHAND)
+
+      if "portal" in self.left_picked_object.Name.value:
+        self.PortalPicked = True
+        self.Portal = self.left_picked_object.InteractivGeometry.value.PORTAL
+        self.NewScene = self.left_picked_object.InteractivGeometry.value.PORTAL.EXITSCENE
       
       self.LeftPointerPicked = True
       self.left_pointer_pressed = False
@@ -201,44 +230,48 @@ class Manipulator(avango.script.Script):
       self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.remove(self.inv_plane)
       self.RightPicker.Mask.value = "interface_element"
 
-      for element in self.left_picked_object.InteractivGeometry.value.interface_elements:
-        if element.NAME == "size" and self.right_picked_object.Name.value == "slider_size":
-          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
-          self.right_picked_object.Material.value = "Stone"
-
-        elif element.NAME == "y_pos" and self.right_picked_object.Name.value == "slider_y_pos":
-          self.PortalMode = 0
-          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
-          self.right_picked_object.Material.value = "Stone"
-
-        elif element.NAME == "z_pos" and self.right_picked_object.Name.value == "slider_z_pos":
-          self.PortalMode = 0
-          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
-          self.right_picked_object.Material.value = "Stone"
-
-        elif element.NAME == "red" and self.right_picked_object.Name.value == "slider_red":
-          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
-          self.left_picked_object.InteractivGeometry.value.sf_color_red.disconnect_from(self.sf_XOutput)
-          self.right_picked_object.Material.value = "Stone"
-
-        elif element.NAME == "green" and self.right_picked_object.Name.value == "slider_green":
-          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
-          self.left_picked_object.InteractivGeometry.value.sf_color_green.disconnect_from(self.sf_XOutput)
-          self.right_picked_object.Material.value = "Stone"
-
-        elif element.NAME == "blue" and self.right_picked_object.Name.value == "slider_blue":
-          element.sfPositionXInput.disconnect_from(self.sf_XOutput)
-          self.left_picked_object.InteractivGeometry.value.sf_color_blue.disconnect_from(self.sf_XOutput)
-          self.right_picked_object.Material.value = "Stone"
-
-        elif element.NAME == "enable" and self.right_picked_object.Name.value == "switch_enable":
-          if element.sf_bool_switch.value:
-            element.switch_geometry.Transform.value = element.switch_pos_off
-            element.sf_bool_switch.value = False
-            element.switch_geometry.Material.value = "AvatarRed"
+      self.disconnect_interface_fields()
 
       print "OFF"
-  
+
+
+  def disconnect_interface_fields(self):
+    for element in self.left_picked_object.InteractivGeometry.value.interface_elements:
+      if element.NAME == "size" and self.right_picked_object.Name.value == "slider_size":
+        element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+        self.right_picked_object.Material.value = "Stone"
+
+      elif element.NAME == "y_pos" and self.right_picked_object.Name.value == "slider_y_pos":
+        self.PortalMode = 0
+        element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+        self.right_picked_object.Material.value = "Stone"
+
+      elif element.NAME == "z_pos" and self.right_picked_object.Name.value == "slider_z_pos":
+        self.PortalMode = 0
+        element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+        self.right_picked_object.Material.value = "Stone"
+
+      elif element.NAME == "red" and self.right_picked_object.Name.value == "slider_red":
+        element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+        self.left_picked_object.InteractivGeometry.value.sf_color_red.disconnect_from(self.sf_XOutput)
+        self.right_picked_object.Material.value = "Stone"
+
+      elif element.NAME == "green" and self.right_picked_object.Name.value == "slider_green":
+        element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+        self.left_picked_object.InteractivGeometry.value.sf_color_green.disconnect_from(self.sf_XOutput)
+        self.right_picked_object.Material.value = "Stone"
+
+      elif element.NAME == "blue" and self.right_picked_object.Name.value == "slider_blue":
+        element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+        self.left_picked_object.InteractivGeometry.value.sf_color_blue.disconnect_from(self.sf_XOutput)
+        self.right_picked_object.Material.value = "Stone"
+
+      elif element.NAME == "enable" and self.right_picked_object.Name.value == "switch_enable":
+        if element.sf_bool_switch.value:
+          element.switch_geometry.Transform.value = element.switch_pos_off
+          element.sf_bool_switch.value = False
+          element.switch_geometry.Material.value = "AvatarRed"    
+
 
   def initialize_left_picker(self):
     print "init picker left"

@@ -52,11 +52,11 @@ class PortalManager():
                                             self.group_names
                                             )
       # Change Pipeline Settings
-      self.PW_user_portals[PW_user.id][0].PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
+      self.PW_user_portals[PW_user.id][0].PRE_PIPE.BackgroundTexture.value = "data/textures/Sunset_01.jpg"
       self.PW_user_portals[PW_user.id][0].PRE_PIPE.EnableBackfaceCulling.value = False
 
       #############PORTAL 2##############
-      entry_pos = avango.gua.make_trans_mat(-1.4,10.50,-5.1)
+      entry_pos = avango.gua.make_trans_mat(-1.4,50.50,-5.1)
       exit_pos  = avango.gua.make_trans_mat(2.0,1.70,0.0)
 
       self.PW_user_portals[PW_user.id].append(Portal())
@@ -111,7 +111,7 @@ class PortalManager():
       self.OVR_user_portals[OVR_user.id][0].PRE_PIPE.EnableBackfaceCulling.value = False
 
       #############PORTAL 2##############
-      entry_pos = avango.gua.make_trans_mat(-1.4,1.50,-5.1)
+      entry_pos = avango.gua.make_trans_mat(-5.4,18.50,30.1)
       exit_pos  = avango.gua.make_trans_mat(2.0,1.70,0.0)
 
       self.OVR_user_portals[OVR_user.id].append(Portal())

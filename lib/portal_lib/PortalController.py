@@ -115,9 +115,12 @@ class PortalController(avango.script.Script):
   def evaluate(self):
     self.sfUserScreen.value = self.SF_USERSCREEN.value
     self.sfUserHead.value = self.SF_USERHEAD.value
+
     #self.adjust_nearplane()
     
   def change_scene(self, PORTAL, DISTANCE_X, DISTANCE_Y):
+    PORTAL.scene_changed = True
+    
     _platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
     _rotate_old_scene = _platform.Transform.value.get_rotate()
 

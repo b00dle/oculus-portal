@@ -46,6 +46,8 @@ class Portal(avango.script.Script):
         self.GEOMETRY               = self.create_geometry(ENTRYPOS)
         self.HEAD                   = "/" + self.NAME + "Screen/head"
 
+        self.scene_changed          = False
+
     def create_default_pipe(self):
         self.create_camera()
 
