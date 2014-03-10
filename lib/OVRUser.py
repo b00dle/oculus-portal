@@ -29,7 +29,7 @@ class OVRUser(User):
 
   ## @var screen_size
   # Physical screen size of the Oculus Rift in meters.
-  screen_size      = avango.gua.Vec2(0.16, 0.1) 
+  screen_size      = avango.gua.Vec2(0.16, 0.1)
 
   ## Custom constructor.
   # @param VIEWING_MANAGER Reference to the ViewingManager instance from which the user is created.
@@ -120,7 +120,7 @@ class OVRUser(User):
     # create pipeline
     ## @var pipeline
     # Pipeline for rendering purposes.
-    self.pipeline = avango.gua.nodes.Pipeline()
+    self.pipeline = avango.gua.nodes.Pipeline(Name = "OVR_" + str(self.id) + "_pipe")
     self.pipeline.BackgroundTexture.value = VIEWING_MANAGER.background_texture
     self.pipeline.Window.value = self.oculus_window
     self.pipeline.LeftResolution.value = self.oculus_window.LeftResolution.value
@@ -135,7 +135,6 @@ class OVRUser(User):
     self.left_hand_transform = avango.gua.nodes.TransformNode(Name = "ovr_left_hand_" + str(self.id))
     self.left_hand_transform.Transform.connect_from(self.left_hand_trackingreader.sf_tracking_mat)
 
-
     self.right_hand_trackingreader = TrackingTargetReader()
     self.right_hand_trackingreader.my_constructor("tracking-pointer-green")
     self.right_hand_transform = avango.gua.nodes.TransformNode(Name = "ovr_right_hand_" + str(self.id))
@@ -147,7 +146,7 @@ class OVRUser(User):
     self.create_avatar_representation(SCENEGRAPH, INITIAL_PLATFORM_ID, self.tracking_rotation_combiner.get_sf_avatar_body_matrix(), self.left_hand_trackingreader.sf_tracking_mat, self.right_hand_trackingreader.sf_tracking_mat)
 
     self.manipulator = Manipulator()
-    self.manipulator.my_constructor(SCENEGRAPH,self.left_hand_transform,self.right_hand_transform)
+    self.manipulator.my_constructor(SCENEGRAPH, self.left_hand_transform, self.right_hand_transform)
 
     # add newly created pipeline to the list of all pipelines in the viewer
     VIEWING_MANAGER.viewer.Pipelines.value.append(self.pipeline)

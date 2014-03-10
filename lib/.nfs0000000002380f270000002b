@@ -94,8 +94,8 @@ class ViewingManager():
     # load configuration file
     self.parse_config_file(CONFIG_FILE)
 
-    for i in range(0, len(SCENEGRAPHS)):
-      self.viewer.SceneGraphs.value.append(SCENEGRAPHS[i])
+    for sg in SCENEGRAPHS:
+      self.viewer.SceneGraphs.value.append(sg)
 
   ## Creates a Navigation instance and adds it to the list of navigations.
   # @param INPUT_DEVICE_TYPE Type of the input device to be associated (e.g. XBoxController" or "Spheron")
@@ -558,62 +558,6 @@ class ViewingManager():
 
     return _next_line
 
-  ## Sets RenderMask for hiding portals not owned by user
-  def setup_portal_render_masks(self):
-    # extend render mask for oculus users
-    for OVR_user in self.ovr_user_list:
-      for other_OVR_user in self.ovr_user_list:
-        if other_OVR_user.id != OVR_user.id:
-          OVR_user.camera.RenderMask.value = OVR_user.camera.RenderMask.value + \
-                                          " && !" + other_OVR_user.portal_controller.NAME + \
-                                          "portals"
-      for DESK_user in self.desktop_user_list:
-        OVR_user.camera.RenderMask.value = OVR_user.camera.RenderMask.value + \
-                                          " && !" + DESK_user.portal_controller.NAME + \
-                                          "portals"
-      for PW_user in self.powerwall_user_list:
-        OVR_user.camera.RenderMask.value = OVR_user.camera.RenderMask.value + \
-                                          " && !" + PW_user.portal_controller.NAME + \
-                                          "portals"
-      OVR_user.pipeline.Camera.value = OVR_user.camera
-      OVR_user.portal_controller.PIPELINE = OVR_user.pipeline
-      
-    # extend render mask for oculus users
-    for DESK_user in self.desktop_user_list:
-      for other_DESK_user in self.desktop_user_list:
-        if other_DESK_user.id != DESK_user.id:
-          DESK_user.camera.RenderMask.value = DESK_user.camera.RenderMask.value + \
-                                          " && !" + other_DESK_user.portal_controller.NAME + \
-                                          "portals"
-      for OVR_user in self.ovr_user_list:
-        DESK_user.camera.RenderMask.value = DESK_user.camera.RenderMask.value + \
-                                          " && !" + OVR_user.portal_controller.NAME + \
-                                          "portals"
-      for PW_user in self.powerwall_user_list:
-        DESK_user.camera.RenderMask.value = DESK_user.camera.RenderMask.value + \
-                                          " && !" + PW_user.portal_controller.NAME + \
-                                          "portals"
-      DESK_user.pipeline.Camera.value = DESK_user.camera
-      DESK_user.portal_controller.PIPELINE = DESK_user.pipeline
-      
-    # extend render mask for oculus users
-    for PW_user in self.powerwall_user_list:
-      for other_PW_user in self.powerwall_user_list:
-        if other_PW_user.id != PW_user.id:
-          PW_user.camera.RenderMask.value = PW_user.camera.RenderMask.value + \
-                                          " && !" + other_PW_user.portal_controller.NAME + \
-                                          "portals"
-      for DESK_user in self.desktop_user_list:
-        PW_user.camera.RenderMask.value = PW_user.camera.RenderMask.value + \
-                                          " && !" + DESK_user.portal_controller.NAME + \
-                                          "portals"
-      for OVR_user in self.ovr_user_list:
-        PW_user.camera.RenderMask.value = PW_user.camera.RenderMask.value + \
-                                          " && !" + OVR_user.portal_controller.NAME + \
-                                          "portals" 
-      PW_user.pipeline.Camera.value = PW_user.camera
-      PW_user.portal_controller.PIPELINE = PW_user.pipeline
-      
   ## Starts the shell and the viewer.
   # @param LOCALS Local variables.
   # @param GLOBALS Global variables.

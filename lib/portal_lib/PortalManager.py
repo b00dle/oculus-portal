@@ -9,138 +9,185 @@ from PortalController import *
 
 class PortalManager():
   def __init__(self, VIEWINGMANAGER):
+    #lists of all portals for each user
+    self.PW_user_portals    = [ [] for i in range( len(VIEWINGMANAGER.powerwall_user_list) )]
+    self.OVR_user_portals   = [ [] for i in range( len(VIEWINGMANAGER.ovr_user_list)       )]
+    self.DESK_user_portals  = [ [] for i in range( len(VIEWINGMANAGER.desktop_user_list)   )]
+    self.group_names        = []
+
+    self.create_group_names(VIEWINGMANAGER)
     self.create_portals(VIEWINGMANAGER)
 
+  def create_group_names(self, VIEWINGMANAGER):
+    for PW_user in VIEWINGMANAGER.powerwall_user_list:
+      self.group_names.append("PW_" + str(PW_user.id) + "_portals")
+    for OVR_user in VIEWINGMANAGER.ovr_user_list:
+      self.group_names.append("OVR_" + str(OVR_user.id) + "_portals")
+    for DESK_user in VIEWINGMANAGER.desktop_user_list:
+      self.group_names.append("DESK_" + str(DESK_user.id) + "_portals") 
+
   def create_portals(self, VIEWINGMANAGER):
-    for u in VIEWINGMANAGER.powerwall_user_list:
-      # collection of !!ALL!! portals
-      portals = []
-
+    for PW_user in VIEWINGMANAGER.powerwall_user_list:
       # Size for every Portal:
       portal_width = 2.0
       portal_height = 3.0
 
-      ###### portal 1
+      
       # position of portal in the active world 
-      entry_pos = avango.gua.make_trans_mat(0,1.95,-6)
+      entry_pos = avango.gua.make_trans_mat(0,1.70,-6)
       # position of portal in the world we are looking into
-      exit_pos = avango.gua.make_trans_mat(2.0,1.95,0.0)
+      exit_pos = avango.gua.make_trans_mat(2.0,1.70,0.0) * avango.gua.make_trans_mat(0.0, 5.0, 40.0)
+      
 
-      portal_name = "portal_" + str(u.id)
-      
-      portal = Portal()
-      portal.my_constructor(portal_name,
-                            self.viewer.SceneGraphs.value[0], #simplescene
-                            self.viewer.SceneGraphs.value[0],
-                            entry_pos,
-                            exit_pos,
-                            portal_width,
-                            portal_height
-                            )
-      
+      #############PORTAL 1##############
+      self.PW_user_portals[PW_user.id].append(Portal())
+      self.PW_user_portals[PW_user.id][0].my_constructor("portal_0_PW_" + str(PW_user.id),
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[0], #simplescene
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[1],
+                                            entry_pos,
+                                            exit_pos,
+                                            portal_width,
+                                            portal_height,
+                                            "PW_" + str(PW_user.id) + "_portals",
+                                            self.group_names
+                                            )
       # Change Pipeline Settings
-      portal.PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
-      portal.PRE_PIPE.EnableBackfaceCulling.value = False
+      self.PW_user_portals[PW_user.id][0].PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
+      self.PW_user_portals[PW_user.id][0].PRE_PIPE.EnableBackfaceCulling.value = False
 
-      portals.append(portal)
+      #############PORTAL 2##############
+      entry_pos = avango.gua.make_trans_mat(-1.4,1.50,-5.1)
+      exit_pos  = avango.gua.make_trans_mat(2.0,1.70,0.0)
 
-      #TODO NAV_NODE, NAVIGATOR (platform of user)
-      u.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,
-                                         "controller_" + str(u.id),
+      self.PW_user_portals[PW_user.id].append(Portal())
+      self.PW_user_portals[PW_user.id][1].my_constructor("portal_1_PW_" + str(PW_user.id),
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[1], #simplescene
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[0],
+                                            entry_pos,
+                                            exit_pos,
+                                            portal_width,
+                                            portal_height,
+                                            "PW_" + str(PW_user.id) + "_portals",
+                                            self.group_names
+                                            )
+
+      ########PORTALCONTROLLER########
+      PW_user.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,
+                                         "controller_PW_" + str(PW_user.id),
                                          VIEWINGMANAGER.viewer.Pipelines,
-                                         u.pipeline,
-                                         portals,
-                                         VIEWINGMANAGER.navigation_list[u.portal_controller.PLATFORM],
-                                         u.head_transform,
-                                         u.screen
+                                         PW_user.pipeline,
+                                         self.PW_user_portals[PW_user.id],
+                                         VIEWINGMANAGER.navigation_list[PW_user.portal_controller.PLATFORM],
+                                         PW_user.head_transform.Transform,
+                                         PW_user.screen.WorldTransform
                                          )
 
-    for u in VIEWINGMANAGER.ovr_user_list:
-      # collection of !!ALL!! portals
-      portals = []
-
+    for OVR_user in VIEWINGMANAGER.ovr_user_list:
       # Size for every Portal:
       portal_width = 2.0
       portal_height = 3.0
 
-      ###### portal 1
+      
       # position of portal in the active world 
-      entry_pos = avango.gua.make_trans_mat(0,1.95,-6)
+      entry_pos = avango.gua.make_trans_mat(0,1.70,-6)
       # position of portal in the world we are looking into
-      exit_pos = avango.gua.make_trans_mat(2.0,1.95,0.0)
+      exit_pos = avango.gua.make_trans_mat(2.0,1.70,0.0) * avango.gua.make_trans_mat(0.0, 5.0, 40.0)
+      
 
-      portal_name = "portal_" + str(u.id)
-      
-      portal = Portal()
-      portal.my_constructor(portal_name,
-                            VIEWINGMANAGER.viewer.SceneGraphs.value[0], #simplescene
-                            VIEWINGMANAGER.viewer.SceneGraphs.value[0],
-                            entry_pos,
-                            exit_pos,
-                            portal_width,
-                            portal_height
-                            )
-      
+      #############PORTAL 1##############
+      self.OVR_user_portals[OVR_user.id].append(Portal())
+      self.OVR_user_portals[OVR_user.id][0].my_constructor("portal_0_OVR_" + str(OVR_user.id),
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[0], #simplescene
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[1],
+                                            entry_pos,
+                                            exit_pos,
+                                            portal_width,
+                                            portal_height,
+                                            "OVR_" + str(OVR_user.id) + "_portals",
+                                            self.group_names
+                                            )
       # Change Pipeline Settings
-      portal.PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
-      portal.PRE_PIPE.EnableBackfaceCulling.value = False
+      self.OVR_user_portals[OVR_user.id][0].PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
+      self.OVR_user_portals[OVR_user.id][0].PRE_PIPE.EnableBackfaceCulling.value = False
 
-      portals.append(portal)
+      #############PORTAL 2##############
+      entry_pos = avango.gua.make_trans_mat(-1.4,1.50,-5.1)
+      exit_pos  = avango.gua.make_trans_mat(2.0,1.70,0.0)
 
-      #TODO NAV_NODE, NAVIGATOR (platform of user)
-      u.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,
-                                         "controller_" + str(u.id),
+      self.OVR_user_portals[OVR_user.id].append(Portal())
+      self.OVR_user_portals[OVR_user.id][1].my_constructor("portal_1_OVR_" + str(OVR_user.id),
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[1], #simplescene
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[0],
+                                            entry_pos,
+                                            exit_pos,
+                                            portal_width,
+                                            portal_height,
+                                            "OVR_" + str(OVR_user.id) + "_portals",
+                                            self.group_names
+                                            )
+
+      ########PORTALCONTROLLER########
+      OVR_user.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,
+                                         "controller_OVR_" + str(OVR_user.id),
                                          VIEWINGMANAGER.viewer.Pipelines,
-                                         u.pipeline,
-                                         portals,
-                                         VIEWINGMANAGER.navigation_list[u.portal_controller.PLATFORM],
-                                         u.head_transform,
-                                         u.left_screen
+                                         OVR_user.pipeline,
+                                         self.OVR_user_portals[OVR_user.id],
+                                         VIEWINGMANAGER.navigation_list[OVR_user.portal_controller.PLATFORM],
+                                         OVR_user.head_transform.Transform,
+                                         OVR_user.left_screen.WorldTransform
                                          )
 
-    for u in VIEWINGMANAGER.desktop_user_list:
-      # collection of !!ALL!! portals
-      portals = []
-
+    for DESK_user in VIEWINGMANAGER.desktop_user_list:
       # Size for every Portal:
       portal_width = 2.0
       portal_height = 3.0
 
-      ###### portal 1
+      
       # position of portal in the active world 
-      entry_pos = avango.gua.make_trans_mat(0,1.95,-6)
+      entry_pos = avango.gua.make_trans_mat(0,1.70,-6)
       # position of portal in the world we are looking into
-      exit_pos = avango.gua.make_trans_mat(2.0,1.95,0.0)
+      exit_pos = avango.gua.make_trans_mat(2.0,1.70,0.0) * avango.gua.make_trans_mat(0.0, 5.0, 40.0)
+      
 
-      portal_name = "portal_" + str(u.id)
-      
-      portal = Portal()
-      portal.my_constructor(portal_name,
-                            VIEWINGMANAGER.viewer.SceneGraphs.value[0], #simplescene
-                            VIEWINGMANAGER.viewer.SceneGraphs.value[0],
-                            entry_pos,
-                            exit_pos,
-                            portal_width,
-                            portal_height
-                            )
-      
+      #############PORTAL 1##############
+      self.DESK_user_portals[DESK_user.id].append(Portal())
+      self.DESK_user_portals[DESK_user.id][0].my_constructor("portal_0_DESK_" + str(DESK_user.id),
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[0], #simplescene
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[1],
+                                            entry_pos,
+                                            exit_pos,
+                                            portal_width,
+                                            portal_height,
+                                            "DESK_" + str(DESK_user.id) + "_portals",
+                                            self.group_names
+                                            )
       # Change Pipeline Settings
-      portal.PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
-      portal.PRE_PIPE.EnableBackfaceCulling.value = False
+      self.DESK_user_portals[DESK_user.id][0].PRE_PIPE.BackgroundTexture.value = "data/textures/painted_ships.jpg"
+      self.DESK_user_portals[DESK_user.id][0].PRE_PIPE.EnableBackfaceCulling.value = False
 
-      portals.append(portal)
+      #############PORTAL 2##############
+      entry_pos = avango.gua.make_trans_mat(-1.4,1.50,-5.1)
+      exit_pos  = avango.gua.make_trans_mat(2.0,1.70,0.0)
 
-      #TODO NAV_NODE, NAVIGATOR (platform of user)
-      u.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,
-                                         "controller_" + str(u.id),
+      self.DESK_user_portals[DESK_user.id].append(Portal())
+      self.DESK_user_portals[DESK_user.id][1].my_constructor("portal_1_DESK_" + str(DESK_user.id),
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[1], #simplescene
+                                            VIEWINGMANAGER.viewer.SceneGraphs.value[0],
+                                            entry_pos,
+                                            exit_pos,
+                                            portal_width,
+                                            portal_height,
+                                            "DESK_" + str(DESK_user.id) + "_portals",
+                                            self.group_names
+                                            )
+
+      ########PORTALCONTROLLER########
+      DESK_user.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,
+                                         "controller_DESK_" + str(DESK_user.id),
                                          VIEWINGMANAGER.viewer.Pipelines,
-                                         u.pipeline,
-                                         portals,
-                                         VIEWINGMANAGER.navigation_list[u.portal_controller.PLATFORM],
-                                         u.head_transform,
-                                         u.screen
+                                         DESK_user.pipeline,
+                                         self.DESK_user_portals[DESK_user.id],
+                                         VIEWINGMANAGER.navigation_list[DESK_user.portal_controller.PLATFORM],
+                                         DESK_user.head_transform.Transform,
+                                         DESK_user.screen.WorldTransform
                                          )
-
-
-
-

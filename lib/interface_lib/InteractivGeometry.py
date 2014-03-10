@@ -28,6 +28,7 @@ class InteractivGeometry(avango.script.Script):
     self.geometry             = avango.gua.nodes.GeometryNode()
     self.menu_enabled         = False
     self.menu_node            = avango.gua.nodes.TransformNode(Name = "menu_node")
+
     self.interface_elements   = []
 
     self.sf_color_red.value        = 0.5
@@ -38,10 +39,12 @@ class InteractivGeometry(avango.script.Script):
     #self.size_slider = Slider()
 
   def my_constructor(self, NAME, PATH, MATERIAL, TRANSFORMATION, PARENT_NODE, CHANGE_OPTIONS):
+
     # init interactiv geometry
     loader = avango.gua.nodes.GeometryLoader()
     self.geometry = loader.create_geometry_from_file(NAME, PATH, MATERIAL,
                   avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+
     self.geometry.GroupNames.value  = ["interactiv"]
     self.geometry.Transform.value = TRANSFORMATION
     self.geometry.add_and_init_field(avango.script.SFObject(), "InteractivGeometry", self)
@@ -55,6 +58,7 @@ class InteractivGeometry(avango.script.Script):
   def initalize_menu(self, CHANGE_OPTIONS):
     element_counter = 0
     self.menu_node.Transform.value = avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
+
     for option in CHANGE_OPTIONS:
       # Slider to change size
       if(option == "size"):
@@ -75,6 +79,7 @@ class InteractivGeometry(avango.script.Script):
         element_counter += 1
 
         self.interface_elements.append(y_pos_slider)
+
         print option, "created"
       # Slider to change red color
       elif(option == "red"):
@@ -85,6 +90,7 @@ class InteractivGeometry(avango.script.Script):
         element_counter += 1
 
         self.interface_elements.append(red_slider)
+
         print option, "created"
       # Slider to change green color
       elif(option == "green"):
@@ -95,6 +101,7 @@ class InteractivGeometry(avango.script.Script):
         element_counter += 1
 
         self.interface_elements.append(green_slider)
+
         print option, "created"
       # Slider to change blue color
       elif(option == "blue"):
@@ -129,6 +136,7 @@ class InteractivGeometry(avango.script.Script):
     self.menu_enabled = False
     MENU_LOCATION.Children.value.remove(self.menu_node)
 
+
   @field_has_changed(sf_color_red)
   def change_color_r(self):
     _new_color = avango.gua.Vec3(self.sf_color_red.value, self.sf_color_green.value, self.sf_color_blue.value)
@@ -150,3 +158,4 @@ class InteractivGeometry(avango.script.Script):
       self.geometry.Material.value = "AvatarYellow"
     elif self.sf_switch_enable.value == False:
       self.geometry.Material.value = "Stone"
+

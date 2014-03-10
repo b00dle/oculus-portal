@@ -107,7 +107,7 @@ class PowerWallUser(User):
     self.screen.Transform.value = self.screen_transform
     self.append_to_platform(SCENEGRAPH, INITIAL_PLATFORM_ID, self.screen)
     SCENEGRAPH["/platform_" + str(INITIAL_PLATFORM_ID)].Children.value.append(self.screen)
-
+    
     # create the camera
     ## @var camera
     # Camera to represent the user's viewport to be rendered.
@@ -152,7 +152,8 @@ class PowerWallUser(User):
 
     ## @var pipeline
     # Pipeline for rendering purposes.
-    self.pipeline = avango.gua.nodes.Pipeline(Window = self.window, 
+    self.pipeline = avango.gua.nodes.Pipeline(Name = "PW_" + str(self.id) + "_pipe",
+                                              Window = self.window, 
                                               LeftResolution = self.window_size,
                                               RightResolution = self.window_size)
 

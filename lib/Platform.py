@@ -69,7 +69,7 @@ class Platform(avango.script.Script):
                                        avango.gua.make_rot_mat(90, 1, 0, 0) * \
                                        avango.gua.make_rot_mat(270, 0, 0, 1) * \
                                        avango.gua.make_scale_mat(self.depth, 1, 2)
-    self.left_border.GroupNames.value = ["do_not_display_group", "platform_group_" + str(PLATFORM_ID)]
+    self.left_border.GroupNames.value = ["do_not_display_group", "platform_group_" + str(PLATFORM_ID), "portal_display_exclude"]
     self.platform_transform_node.Children.value.append(self.left_border)
     
     ## @var right_border
@@ -82,7 +82,7 @@ class Platform(avango.script.Script):
                                         avango.gua.make_rot_mat(90, 1, 0, 0) * \
                                         avango.gua.make_rot_mat(90, 0, 0, 1) * \
                                         avango.gua.make_scale_mat(self.depth, 1, 2)
-    self.right_border.GroupNames.value = ["do_not_display_group", "platform_group_" + str(PLATFORM_ID)]
+    self.right_border.GroupNames.value = ["do_not_display_group", "platform_group_" + str(PLATFORM_ID), "portal_display_exclude"]
     self.platform_transform_node.Children.value.append(self.right_border)
 
     ## @var front_border
@@ -94,7 +94,7 @@ class Platform(avango.script.Script):
     self.front_border.Transform.value = avango.gua.make_trans_mat(0.0, 1.0, 0.0) * \
                                         avango.gua.make_rot_mat(90, 1, 0, 0) * \
                                         avango.gua.make_scale_mat(self.width, 1, 2)
-    self.front_border.GroupNames.value = ["do_not_display_group", "platform_group_" + str(PLATFORM_ID)]
+    self.front_border.GroupNames.value = ["do_not_display_group", "platform_group_" + str(PLATFORM_ID), "portal_display_exclude"]
     self.platform_transform_node.Children.value.append(self.front_border)
 
     ## @var back_border
@@ -107,17 +107,23 @@ class Platform(avango.script.Script):
                                         avango.gua.make_rot_mat(90, 1, 0, 0) * \
                                         avango.gua.make_rot_mat(180, 0, 0, 1) * \
                                         avango.gua.make_scale_mat(self.width, 1, 2)
-    self.back_border.GroupNames.value = ["do_not_display_group", "platform_group_" + str(PLATFORM_ID)]
+    self.back_border.GroupNames.value = ["do_not_display_group", "platform_group_" + str(PLATFORM_ID), "portal_display_exclude"]
     self.platform_transform_node.Children.value.append(self.back_border)
 
     ## @var platform_id
     # The id number of this platform, starting from 0.
     self.platform_id = PLATFORM_ID      
     
-  def change_branch(self, SCENEGRAPH):
-    SCENEGRAPH.Root.value.Children.value.remove(self.platform_transform_node)
-    self.SCENEGRAPH = SCENEGRAPH
-    self.SCENEGRAPH.Root.value.Children.value.append(self.platform_transform_node)
+  def change_scene(self, ORIGIN, DESTINATION, PIPELINE):
+    self.platform_transform_node.Transform.disconnect_from(self.INPUT_MAPPING_INSTANCE.sf_abs_mat)
+    self.sf_abs_mat.disconnect_from(self.INPUT_MAPPING_INSTANCE.sf_abs_mat)
+    ORIGIN.Root.value.Children.value.remove(self.platform_transform_node)
+    DESTINATION.Root.value.Children.value.append(self.platform_transform_node)
+    
+    PIPELINE.Camera.value.SceneGraph.value = DESTINATION.Name.value
+
+    self.sf_abs_mat.connect_from(self.INPUT_MAPPING_INSTANCE.sf_abs_mat)
+    self.platform_transform_node.Transform.connect_from(self.INPUT_MAPPING_INSTANCE.sf_abs_mat)
 
   ## Toggles visibility of left platform border.
   # @param VISIBLE A boolean value if the platform should be set visible or not.

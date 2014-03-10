@@ -30,8 +30,8 @@ class SceneManager:
     self.graphs = []
     self.scene_names = []
     self.create_simplescene()
-    #self.create_harbourscene()
-    #self.create_weimarscene()
+    self.create_harbourscene()
+    self.create_weimarscene()
 
   def create_simplescene(self):
     self.scene_names.append("simplescene")

@@ -17,6 +17,7 @@ from InteractivGeometry import *
 class Manipulator(avango.script.Script):
   sf_righthand = avango.gua.SFMatrix4()
   sf_XOutput = avango.SFFloat()
+  sf_left_pointer_key1 = avango.SFBool()
 
   sf_key_right_pointer = avango.SFBool()
   sf_key_left_pointer  = avango.SFBool()
@@ -32,6 +33,7 @@ class Manipulator(avango.script.Script):
     self.LeftPointer.my_constructor("2.4G Presenter")
     self.LeftPicker = ManipulatorPicker()
     self.LeftRay = avango.gua.nodes.RayNode(Name = "pick_ray_left")
+    self.sf_left_pointer_key1.connect_from(self.LeftPointer.sf_key_pageup)
 
     self.RightPointer = PointerDevice()
     self.RightPointer.my_constructor("MOUSE USB MOUSE")
@@ -50,6 +52,7 @@ class Manipulator(avango.script.Script):
     self.left_pointer_pressed = False
     self.sf_key_left_pointer.connect_from(self.LeftPointer.sf_key_pageup)
 
+
     self.always_evaluate(True)
 
   def my_constructor(self, SCENEGRAPH, LEFTHAND, RIGHTHAND):
@@ -67,6 +70,7 @@ class Manipulator(avango.script.Script):
     self.display.Transform.value = avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
 
     self.inv_plane = self.loader.create_geometry_from_file('inv_plane', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+
     self.inv_plane.GroupNames.value = ["inv_plane", "do_not_display_group"]
     self.inv_plane.Transform.value = avango.gua.make_rot_mat(90, 1, 0, 0) * avango.gua.make_scale_mat(1,1,20)
 
@@ -150,8 +154,10 @@ class Manipulator(avango.script.Script):
           element.sfPositionXInput.connect_from(self.sf_XOutput)
           self.right_picked_object.Material.value = "AvatarRed"
 
+
           # Color float to interface:
           self.left_picked_object.InteractivGeometry.value.sf_color_red.connect_from(self.sf_XOutput)
+
 
         elif element.NAME == "green" and self.right_picked_object.Name.value == "slider_green":
           element.object = self.left_picked_object
@@ -217,24 +223,22 @@ class Manipulator(avango.script.Script):
       print "OFF"
   
 
+
   def initialize_left_picker(self):
     print "init picker left"
     # create ray
     loader = avango.gua.nodes.GeometryLoader()
-
-
     self.LeftRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
-
     ray_left_avatar = loader.create_geometry_from_file('ray_left' , 'data/objects/cube.obj',
                                                     'White', avango.gua.LoaderFlags.DEFAULTS)
     ray_left_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -20.0) *\
                                        avango.gua.make_scale_mat(0.008, 0.008, 20)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
-   
-
+    pick_transform.Children.value = [self.LeftPicker.Ray.value, ray_left_avatar]
     # set picker values
     self.LeftPicker.SceneGraph.value = self.SCENEGRAPH
     self.LeftPicker.Ray.value = self.LeftRay
+
     self.LeftPicker.Mask.value = "interactiv"
     pick_transform.Children.value = [self.LeftPicker.Ray.value, ray_left_avatar]
     self.LEFTHAND.Children.value.append(pick_transform)
@@ -243,7 +247,6 @@ class Manipulator(avango.script.Script):
   def initialize_right_picker(self):
     print "init picker right"
     # create ray
-
     loader = avango.gua.nodes.GeometryLoader()
     self.RightRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
     ray_right_avatar = loader.create_geometry_from_file('ray_right' , 'data/objects/cube.obj',
@@ -257,7 +260,6 @@ class Manipulator(avango.script.Script):
     self.RightPicker.SceneGraph.value = self.SCENEGRAPH
     self.RightPicker.Ray.value = self.RightRay
     self.RightPicker.Mask.value = "interface_element"
-
     self.RIGHTHAND.Children.value.append(pick_transform)
 
 
@@ -283,4 +285,6 @@ class ManipulatorPicker(avango.script.Script):
     results = self.SceneGraph.value.ray_test(self.Ray.value,
                                              self.Options.value,
                                              self.Mask.value)
+
     self.Results.value = results.value
+

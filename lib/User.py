@@ -103,10 +103,6 @@ class User:
   material_used = [False, False, False, False,
                    False, False, False, False]
 
-  ## @var portal_controller
-  # controlls interaction with portals in the scene
-  portal_controller = PortalController()
-
   ## Custom constructor.
   # @param NODE_PRETEXT The prefix to be used when creating scenegraph nodes.
   def __init__(self, NODE_PRETEXT):
@@ -114,6 +110,11 @@ class User:
     ## @var node_pretext
     # Prefix of the scenegraph nodes this user creates.
     self.node_pretext = NODE_PRETEXT
+
+    ## @var portal_controller
+    # coordinates interaction with portals in the scene
+    self.portal_controller = PortalController()
+
 
   ## Sets the transformation values of left and right eye.
   # @param VALUE The eye distance to be applied.
@@ -140,6 +141,7 @@ class User:
     self.pipeline.SsaoIntensity.value           = self.ssao_intensity
     self.pipeline.EnableFPSDisplay.value        = self.enable_fps_display
     self.pipeline.FogTexture.value              = self.pipeline.BackgroundTexture.value
+    self.pipeline.EnableRayDisplay.value        = True
 
   ## Appends a node to the children of a platform in the scenegraph.
   # @param SCENEGRAPH Reference to the scenegraph.

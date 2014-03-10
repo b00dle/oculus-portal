@@ -23,7 +23,7 @@ def create_line_visualization(LOADER, PARENT_NODE, START_POINT, END_POINT, MATER
 
   _line.Transform.value = avango.gua.make_trans_mat(_line_center_position) * \
                           _line_rotation_mat * \
-                          avango.gua.make_scale_mat(0.05, 0.05, _line_scale)
+                          avango.gua.make_scale_mat(0.02, 0.02, _line_scale)
 
   PARENT_NODE.Children.value.append(_line)
 
@@ -111,6 +111,7 @@ class Slider(avango.script.Script):
   sfObjectTransformOut = avango.SFFloat()
   sfTransformInput = avango.gua.SFMatrix4()
   sfPositionXInput = avango.SFFloat()
+
   sf_float_output = avango.SFFloat()
 
   def __init__(self):
@@ -137,6 +138,7 @@ class Slider(avango.script.Script):
 
 
   def my_constructor(self, NAME, SLIDERPOS, PARENT_NODE):
+
     self.NAME = NAME
     self.SLIDERPOS = SLIDERPOS
     self.PARENT_NODE = PARENT_NODE
@@ -158,11 +160,13 @@ class Slider(avango.script.Script):
     line_end = avango.gua.Vec3(self.slider_transform.Transform.value.get_translate().x + 0.5,
                                  self.slider_transform.Transform.value.get_translate().y,
                                  self.slider_transform.Transform.value.get_translate().z)
+
     create_line_visualization(self.LOADER, self.PARENT_NODE, line_begin, line_end, 'White')
 
 
 
-  @field_has_changed(sfPositionXInput)
+
+  @field_has_changed(sf_float_output)
   def change_slider_transformation(self):
 
     self.slider_geometry.Transform.value = avango.gua.make_trans_mat(

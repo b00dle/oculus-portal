@@ -26,23 +26,27 @@ class Portal(avango.script.Script):
         self.PRE_PIPE       = avango.gua.nodes.Pipeline()
         self.GEOMETRY       = avango.gua.nodes.GeometryNode()
         self.HEAD           = ""
+        self.GROUPNAME      = ""
+        self.EXCLUDEGROUPS  = []
 
 
-    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, PORTALPOS, EXITPOS, WIDTH, HEIGHT):
-        self.sf_portal_pos.value    = PORTALPOS
+    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS):
+        self.sf_portal_pos.value    = ENTRYPOS
         self.NAME                   = NAME
         self.ENTRYSCENE             = ENTRYSCENE
         self.EXITSCENE              = EXITSCENE
         self.EXITPOS                = EXITPOS
         self.WIDTH                  = WIDTH
         self.HEIGHT                 = HEIGHT
+        self.GROUPNAME              = GROUPNAME
+        self.EXCLUDEGROUPS          = EXCLUDEGROUPS
         self.PRE_PIPE               = self.create_default_pipe()
-        self.GEOMETRY               = self.create_geometry(PORTALPOS)
+        self.GEOMETRY               = self.create_geometry(ENTRYPOS)
         self.HEAD                   = "/" + self.NAME + "Screen/head"
 
     def create_default_pipe(self):
         self.create_camera()
-        
+
         width   = 1920
         height  = int(width * 9.0 / 16.0)
         size    = avango.gua.Vec2ui(width, height)
@@ -53,7 +57,14 @@ class Portal(avango.script.Script):
                                         RightScreen = "/" + self.NAME + "Screen",
                                         SceneGraph  = self.EXITSCENE.Name.value)
 
-        pre_pipe = avango.gua.nodes.Pipeline(Camera = camera,
+        camera.RenderMask.value = "!portal_display_exclude && !portal"        
+
+        for group in self.EXCLUDEGROUPS:
+            if group != self.GROUPNAME:
+                camera.RenderMask.value = camera.RenderMask.value + " && !" + group
+
+        pre_pipe = avango.gua.nodes.Pipeline(Name = self.NAME + "_pipe",
+                                            Camera = camera,
                                             OutputTextureName = self.NAME + "Texture")
 
         pre_pipe.LeftResolution.value  = avango.gua.Vec2ui(width/2, height/2)
@@ -76,6 +87,9 @@ class Portal(avango.script.Script):
                                 avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
                                 avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
                                 avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
+                                
+        geometry.GroupNames.value.append(self.GROUPNAME)
+        geometry.GroupNames.value.append("portal")
 
         avango.gua.set_material_uniform(  "Portal" + self.NAME,
                                           "portal_texture",
@@ -93,7 +107,7 @@ class Portal(avango.script.Script):
         screen.Transform.value = self.EXITPOS
 
         head = avango.gua.nodes.TransformNode(Name = "head")
-        head.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 1.7)
+        head.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 1227.0)
 
         mono_eye = avango.gua.nodes.TransformNode(Name = "mono_eye")
 

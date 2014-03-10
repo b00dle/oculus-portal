@@ -23,7 +23,7 @@ import sys
 def start():
 
   ####### CREATE MATERIAL FILE FOR EACH PORTAL ########
-  portalNames = ["portal_0", "portal_1"]
+  portalNames = ["portal_0_DESK_0", "portal_0_OVR_0", "portal_1_DESK_0", "portal_1_OVR_0"]
   for name in portalNames:
     newGMD = open('data/materials/Portal' + name + '.gmd', 'w+')
     with open('data/materials/Portal.gmd', 'r') as content_file:
@@ -41,13 +41,25 @@ def start():
   scene_manager = SceneManager()
 
   # initialize viewing setup
-  viewing_manager = ViewingManager(scene_manager.graphs, sys.argv[1])
+  #viewing_manager = ViewingManager(scene_manager.graphs, sys.argv[1])
+  viewing_manager = ViewingManager(scene_manager.graphs, "configs/desktop_ovr.xml")
 
   # initialize portals
   portal_manager = PortalManager(viewing_manager)
 
+  viewing_manager.setup_portal_render_masks()
 
+  # print("user 0 pipes:")
+  # print("pipe count:" + str(len(viewing_manager.viewer.Pipelines.value[0].PreRenderPipelines.value)))
+  # for pipe in viewing_manager.viewer.Pipelines.value[0].PreRenderPipelines.value:
+  #   print("pipe name: " + pipe.Name.value)
+  #   print("texture name: " + pipe.OutputTextureName.value)
 
+  # print("\nuser 1 pipes:")
+  # print("pipe count:" + str(len(viewing_manager.viewer.Pipelines.value[1].PreRenderPipelines.value)))
+  # for pipe in viewing_manager.viewer.Pipelines.value[1].PreRenderPipelines.value:
+  #   print("pipe name: " + pipe.Name.value)
+  #   print("texture name: " + pipe.OutputTextureName.value)
 
   #### --- INTERFACE TESTS --- ####
 
@@ -61,7 +73,6 @@ def start():
   # add switch
   #switch1 = Switch()
   #switch1.my_constructor("Switch1", avango.gua.make_trans_mat(5.0, 1.0, 2.0), display, loader)
-
 
   # run application loop
   viewing_manager.run(locals(), globals())
