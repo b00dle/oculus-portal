@@ -91,9 +91,9 @@ class Manipulator(avango.script.Script):
   def evaluate(self):
 
     if self.PortalMode == 1:
-      self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(self.sf_XOutput.value * 0.3, 0.0, 0.0)
+      self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(self.sf_XOutput.value * 0.1, 0.0, 0.0)
     if self.PortalMode == 2:
-      self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(0.0, self.sf_XOutput.value * 0.3, 0.0)
+      self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(0.0, self.sf_XOutput.value * 0.1, 0.0)
 
     if self.PortalPicked:
       if self.Portal.scene_changed:

@@ -18,7 +18,7 @@
     </notrackingposition>
 
     <groundfollowing>
-      <activated>True</activated>
+      <activated>False</activated>
       <raystartheight>0.75</raystartheight>
     </groundfollowing>
 

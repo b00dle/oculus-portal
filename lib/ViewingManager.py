@@ -81,7 +81,7 @@ class ViewingManager():
 
     ## @var ground_following_settings
     # Settings for the GroundFollowing instance to be read in from configuration file: [activated, ray_start_height]
-    self.ground_following_settings = [False, 0.75]
+    self.ground_following_settings = [True, 0.75]
 
     ## @var enable_coupling_animation
     # Boolean indicating if an animation should be done when a coupling of Navigations is initiated.

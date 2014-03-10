@@ -151,9 +151,9 @@ class OVRUser(User):
     # add newly created pipeline to the list of all pipelines in the viewer
     VIEWING_MANAGER.viewer.Pipelines.value.append(self.pipeline)
 
+
 ## Helper class to combine the rotation input from an Oculus Rift with the
 # translation input of a tracking system.
-
 class TrackingRotationCombiner(avango.script.Script):
 
   # output field

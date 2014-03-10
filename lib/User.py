@@ -111,6 +111,7 @@ class User:
     # Prefix of the scenegraph nodes this user creates.
     self.node_pretext = NODE_PRETEXT
 
+
     ## @var portal_controller
     # coordinates interaction with portals in the scene
     self.portal_controller = PortalController()
