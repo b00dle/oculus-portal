@@ -56,7 +56,7 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(spot)
 
-    # create floor
+    # create floorans_mat(-2.0,5.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph.Root.value, ["size","green","red","blue"])
     plane = loader.create_geometry_from_file('floor', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS)
     plane.Transform.value = avango.gua.make_scale_mat(20,1,20)
 
