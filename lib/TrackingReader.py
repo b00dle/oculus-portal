@@ -11,6 +11,12 @@ import avango.daemon
 
 from avango.script import field_has_changed
 
+# import framework libraries
+import Tools
+
+# import python libraries
+import math
+
 ## Base class for a reader of tracking values. Not to be instantiated.
 class TrackingReader(avango.script.Script):
 
@@ -63,8 +69,10 @@ class TrackingTargetReader(TrackingReader):
   def sf_tracking_mat_changed(self):
     self.sf_abs_mat.value = self.tracking_sensor.Matrix.value
     self.sf_abs_vec.value = self.sf_abs_mat.value.get_translate()
+    _yaw = Tools.get_yaw(self.sf_abs_mat.value)
     self.sf_avatar_body_mat.value = avango.gua.make_trans_mat(self.sf_abs_vec.value.x, self.sf_abs_vec.value.y / 2, self.sf_abs_vec.value.z) * \
-                                    avango.gua.make_scale_mat(0.2, self.sf_abs_vec.value.y / 2, 0.2)
+                                    avango.gua.make_rot_mat(math.degrees(_yaw) - 90, 0, 1, 0) * \
+                                    avango.gua.make_scale_mat(0.6, self.sf_abs_vec.value.y / 2, 0.6)
 
   ## Sets the transmitter offset for this tracking reader.
   # @param TRANSMITTER_OFFSET The transmitter offset to be set.
@@ -89,4 +97,5 @@ class TrackingDefaultReader(TrackingReader):
     self.sf_abs_mat.value = CONSTANT_MATRIX
     self.sf_abs_vec.value = self.sf_abs_mat.value.get_translate()
     self.sf_avatar_body_mat.value = avango.gua.make_trans_mat(self.sf_abs_vec.value.x, self.sf_abs_vec.value.y / 2, self.sf_abs_vec.value.z) * \
-                                    avango.gua.make_scale_mat(0.2, self.sf_abs_vec.value.y / 2, 0.2)
+                                    avango.gua.make_rot_mat(-90, 0, 1, 0) * \
+                                    avango.gua.make_scale_mat(0.6, self.sf_abs_vec.value.y / 2, 0.6)
