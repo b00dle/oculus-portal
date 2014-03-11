@@ -41,7 +41,7 @@ class ViewingManager():
     # parameters
     ## @var background_texture
     # The skymap to be used for all pipelines.
-    self.background_texture = "data/textures/sky.jpg"
+    self.background_texture = "data/textures/skybox.jpg"
     avango.gua.create_texture(self.background_texture)
 
     # references

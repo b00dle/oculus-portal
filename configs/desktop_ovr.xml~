@@ -18,7 +18,7 @@
     </notrackingposition>
 
     <groundfollowing>
-      <activated>False</activated>
+      <activated>True</activated>
       <raystartheight>0.75</raystartheight>
     </groundfollowing>
 
@@ -61,7 +61,7 @@
     <platformpos>
       <x>0.0</x>
       <y>0.0</y>
-      <z>14.0</z>
+      <z>0.0</z>
     </platformpos>
 
     <platformrot>

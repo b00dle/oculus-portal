@@ -16,7 +16,7 @@ class PortalManager():
     self.group_names        = []
 
     self.create_group_names(VIEWINGMANAGER)
-    self.create_portals(VIEWINGMANAGER)
+    #self.create_portals(VIEWINGMANAGER)
 
   def create_group_names(self, VIEWINGMANAGER):
     for PW_user in VIEWINGMANAGER.powerwall_user_list:
