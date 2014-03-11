@@ -1,0 +1,9 @@
+
+{
+	"shading_model" : "Portal",
+	"uniforms" : 
+	{
+		"portal_texture" : "data/textures/sunrise.jpg"
+	}
+}
+
