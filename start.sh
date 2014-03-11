@@ -30,7 +30,6 @@ export LD_LIBRARY_PATH="$LOCAL_GUACAMOLE/lib":$GUACAMOLE/lib:$LD_LIBRARY_PATH
 ./daemon.py > /dev/null &
 
 # run program
-
 cd "$DIR" && python ./main.py $1
 
 # kill daemon

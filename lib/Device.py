@@ -202,7 +202,7 @@ class KeyboardMouseDevice(MultiDofDevice):
     ## @var keyboard_device_sensor
     # Input sensor referencing the keyboard connected to the computer.
     self.keyboard_device_sensor = avango.daemon.nodes.DeviceSensor(DeviceService = avango.daemon.DeviceService())
-    self.keyboard_device_sensor.Station.value = "device-keyboard0"
+    self.keyboard_device_sensor.Station.value = "device-keyboard1"
 
     ## @var frame_trigger
     # Triggers framewise evaluation of frame_callback method
@@ -213,6 +213,7 @@ class KeyboardMouseDevice(MultiDofDevice):
 
   ## Callback: evaluated every frame
   def frame_callback(self):
+
     # get rotation values from mouse
     _rx = 0.0
     _ry = 0.0
@@ -258,6 +259,7 @@ class KeyboardMouseDevice(MultiDofDevice):
     _h    = self.keyboard_device_sensor.Button15.value
     _r    = self.keyboard_device_sensor.Button3.value
     _g    = self.keyboard_device_sensor.Button14.value
+
     
     self.mf_buttons.value = [_h, _r, _g, False, False, False, False]
 
