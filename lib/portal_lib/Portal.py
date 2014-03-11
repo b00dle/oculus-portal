@@ -102,7 +102,7 @@ class Portal(avango.script.Script):
         # make interactive:
         geometry.GroupNames.value.append("interactiv")
         interactiv_geometry = InteractivGeometry()
-        interactiv_geometry.portal_constructor("TestPortal", geometry, ["y_pos", "z_pos"], self)
+        interactiv_geometry.portal_constructor("TestPortal", geometry, ["x_pos", "y_pos", "z_pos"], self)
 
         self.ENTRYSCENE.Root.value.Children.value.append(geometry)
         

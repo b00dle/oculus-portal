@@ -75,6 +75,16 @@ class InteractivGeometry(avango.script.Script):
         self.interface_elements.append(size_slider)
         print option, "created"
       # Slider to change y Position
+      if(option == "x_pos"):
+        x_pos_slider = Slider()
+        x_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
+        x_pos_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_resize.connect_from(x_pos_slider.sf_float_output)
+        element_counter += 1
+
+        self.interface_elements.append(x_pos_slider)
+        print option, "created"
+      # Slider to change y Position
       if(option == "y_pos"):
         y_pos_slider = Slider()
         y_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
