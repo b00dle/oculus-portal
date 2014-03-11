@@ -44,7 +44,6 @@ class Manipulator(avango.script.Script):
     self.PlaneModeFlag = False
 
     self.PortalMode = 0
-    self.NewScene = avango.gua.nodes.SceneGraph()
     self.Portal = None
     self.PortalPicked = False
 
@@ -94,6 +93,8 @@ class Manipulator(avango.script.Script):
       self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(self.sf_XOutput.value * 0.1, 0.0, 0.0)
     if self.PortalMode == 2:
       self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(0.0, self.sf_XOutput.value * 0.1, 0.0)
+    if self.PortalMode == 3:
+      self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(0.0, 0.0, self.sf_XOutput.value * 0.1)
 
     if self.PortalPicked:
       if self.Portal.scene_changed:
@@ -126,7 +127,6 @@ class Manipulator(avango.script.Script):
       if "portal" in self.left_picked_object.Name.value:
         self.PortalPicked = True
         self.Portal = self.left_picked_object.InteractivGeometry.value.PORTAL
-        self.NewScene = self.left_picked_object.InteractivGeometry.value.PORTAL.EXITSCENE
       
       self.LeftPointerPicked = True
       self.left_pointer_pressed = False
@@ -177,9 +177,16 @@ class Manipulator(avango.script.Script):
           element.sfPositionXInput.connect_from(self.sf_XOutput)
           self.right_picked_object.Material.value = "AvatarWhite"
 
-        elif element.NAME == "y_pos" and self.right_picked_object.Name.value == "slider_y_pos":
+        elif element.NAME == "x_pos" and self.right_picked_object.Name.value == "slider_x_pos":
           #element.object = self.left_picked_object
           self.PortalMode = 1
+
+          element.sfPositionXInput.connect_from(self.sf_XOutput)
+          self.right_picked_object.Material.value = "AvatarWhite"
+
+        elif element.NAME == "y_pos" and self.right_picked_object.Name.value == "slider_y_pos":
+          #element.object = self.left_picked_object
+          self.PortalMode = 3
 
           element.sfPositionXInput.connect_from(self.sf_XOutput)
           self.right_picked_object.Material.value = "AvatarWhite"
@@ -238,6 +245,11 @@ class Manipulator(avango.script.Script):
   def disconnect_interface_fields(self):
     for element in self.left_picked_object.InteractivGeometry.value.interface_elements:
       if element.NAME == "size" and self.right_picked_object.Name.value == "slider_size":
+        element.sfPositionXInput.disconnect_from(self.sf_XOutput)
+        self.right_picked_object.Material.value = "Stone"
+
+      elif element.NAME == "x_pos" and self.right_picked_object.Name.value == "slider_x_pos":
+        self.PortalMode = 0
         element.sfPositionXInput.disconnect_from(self.sf_XOutput)
         self.right_picked_object.Material.value = "Stone"
 
