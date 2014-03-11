@@ -83,11 +83,24 @@ class Manipulator(avango.script.Script):
 
   @field_has_changed(sf_key_right_pointer)
   def key_right_handler(self):
-    if self.sf_key_right_pointer.value == False:
-      self.right_pointer_pressed = True
+    print self.sf_key_right_pointer.value
+    #if self.sf_key_right_pointer.value == False:
+    self.right_pointer_pressed = True
 
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
+    if (len(self.RightPicker.Results.value) > 0) and self.right_pointer_pressed and\
+        self.RightPointer.sf_key_pageup.value:
+
+      print "hey"
+
+      picked_object = self.RightPicker.Results.value[0].Object.value
+
+      if picked_object.has_field("Button"):
+        picked_object.Button.value.sf_bool_button.value = True
+        print "blablabla"
+
+      self.right_pointer_pressed = False
 
     if self.PortalMode == 1:
       self.left_picked_object.InteractivGeometry.value.PORTAL.translate_portal(self.sf_XOutput.value * 0.1, 0.0, 0.0)
@@ -324,7 +337,7 @@ class Manipulator(avango.script.Script):
     # set picker values
     self.RightPicker.SceneGraph.value = self.SCENEGRAPH
     self.RightPicker.Ray.value = self.RightRay
-    self.RightPicker.Mask.value = "interface_element"
+    self.RightPicker.Mask.value = "interface_element || console"
 
     self.RIGHTHAND.Children.value.append(pick_transform)
 

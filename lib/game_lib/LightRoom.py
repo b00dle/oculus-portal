@@ -4,6 +4,7 @@ import avango.gua
 import avango.script
 
 from ..line_creater import *
+from LightCube import *
 
 class LightRoom(avango.script.Script):
 
@@ -28,6 +29,9 @@ class LightRoom(avango.script.Script):
     plane.Transform.value = avango.gua.make_scale_mat(2.4,1,2)
     plane.GroupNames.value.append("do_not_display_group")
     room_transform.Children.value.append(plane)
+
+    self.lightcube = LightCube()
+    self.lightcube.my_constructor(self.NAME, room_transform, True, [1])
 
     right_upper_cornor  = avango.gua.Vec3( 1.2, 0, -1)
     right_bottom_cornor = avango.gua.Vec3( 1.2, 0, 1)
