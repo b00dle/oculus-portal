@@ -42,7 +42,6 @@ class Switch(avango.script.Script):
     self.switch_transform.Children.value.append(self.switch_geometry)
     self.PARENT_NODE.Children.value.append(self.switch_transform)
 
-
     # Red Line
     line_begin1 = avango.gua.Vec3(self.switch_transform.Transform.value.get_translate().x - 0.5,
                                  self.switch_transform.Transform.value.get_translate().y,
@@ -51,8 +50,6 @@ class Switch(avango.script.Script):
     line_end1 = avango.gua.Vec3(self.switch_transform.Transform.value.get_translate().x,
                                  self.switch_transform.Transform.value.get_translate().y,
                                  self.switch_transform.Transform.value.get_translate().z)
-
-
     create_line_visualization(self.LOADER, self.PARENT_NODE, line_begin1, line_end1, 'AvatarBlue')
 
 
@@ -64,13 +61,63 @@ class Switch(avango.script.Script):
     line_end2 = avango.gua.Vec3(self.switch_transform.Transform.value.get_translate().x + 0.5,
                                  self.switch_transform.Transform.value.get_translate().y,
                                  self.switch_transform.Transform.value.get_translate().z)
-
-
     create_line_visualization(self.LOADER, self.PARENT_NODE, line_begin2, line_end2, 'AvatarRed')
 
     self.switch_pos_on = avango.gua.make_trans_mat(0.3, 0.0, 0.0) * self.switch_scale
 
     self.switch_pos_off = avango.gua.make_trans_mat(-0.3, 0.0, 0.0) * self.switch_scale
+
+
+class Button(avango.script.Script):
+
+  sf_bool_button = avango.SFBool()
+
+  def __init__(self):
+    self.super(Button).__init__()
+    self.always_evaluate(True)
+
+    self.NAME = ""
+    self.BUTTONPOS = avango.gua.Mat4()
+    self.PARENT_NODE = avango.gua.nodes.TransformNode()
+    self.button_geometry = avango.gua.nodes.GeometryNode()
+    self.button_transform = avango.gua.nodes.TransformNode()
+
+    self.button_scale = avango.gua.make_scale_mat(0.2, 0.02, 0.07)
+
+    self.sf_bool_button.value = False
+    self.just_rotated = False
+
+  def my_constructor(self, NAME, BUTTONPOS, PARENT_NODE):
+    self.NAME = NAME
+    self.BUTTONPOS = BUTTONPOS
+    self.PARENT_NODE = PARENT_NODE
+
+    self.LOADER = avango.gua.nodes.GeometryLoader()
+
+    self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/cube.obj',
+                                                            'AvatarRed', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    self.button_geometry.Transform.value = self.button_scale
+    self.button_geometry.GroupNames.value = ["console"]
+    self.button_geometry.add_and_init_field(avango.script.SFObject(), "Button", self)
+
+    self.button_transform = avango.gua.nodes.TransformNode(Name = 'switch_' + NAME)
+    self.button_transform.Transform.value = self.BUTTONPOS
+    self.button_transform.Children.value.append(self.button_geometry)
+    self.PARENT_NODE.Children.value.append(self.button_transform)
+
+  def evaluate(self):
+
+    if self.sf_bool_button.value == True and self.just_rotated:
+      self.sf_bool_button.value = False
+      self.just_rotated = False
+    elif (self.sf_bool_button.value == True):
+      self.button_geometry.Transform.value = avango.gua.make_scale_mat(0.2, 0.01, 0.07)
+      self.button_geometry.Material.value = "Bright"
+      self.sf_bool_button.value = False
+    elif (self.sf_bool_button.value == False):
+      self.button_geometry.Transform.value = self.button_scale
+      self.button_geometry.Material.value = "AvatarRed"
+
 
 
 class Slider(avango.script.Script):
@@ -160,46 +207,6 @@ class Slider(avango.script.Script):
                     avango.gua.make_scale_mat(value_x * scale_factor, value_x * scale_factor, value_x * scale_factor) *\
                     avango.gua.make_rot_mat(old_rot)
 
-    #if self.NAME == "y_pos":
-      '''
-      self.object.Transform.value = avango.gua.make_trans_mat((value_x * scale_factor), old_trans.y, old_trans.z) *\
-                                    avango.gua.make_scale_mat(old_scale) *\
-                                    avango.gua.make_rot_mat(old_rot)
-      '''
-
-
     self.sf_float_output.value = value_x
 
-    '''
-def create_line_visualization(LOADER, PARENT_NODE, START_POINT, END_POINT, MATERIAL_NAME):
-  _line = LOADER.create_geometry_from_file('line_geometry',
-                                          'data/objects/cube.obj',
-                                          MATERIAL_NAME,
-                                          avango.gua.LoaderFlags.DEFAULTS)
 
-  _vector = avango.gua.Vec3(END_POINT.x - START_POINT.x, END_POINT.y - START_POINT.y, END_POINT.z - START_POINT.z)
-  _distance = _vector.length()
-
-  _line_center_position = START_POINT + avango.gua.Vec3(0.5 * _vector.x, 0.5 * _vector.y, 0.5 * _vector.z)
-  _line_scale = 0.5 * _distance
-  vec1 = avango.gua.Vec3(0, 0, -1)
-  _line_rotation_mat = get_rotation_between_vectors(vec1, _vector)
-
-  _line.Transform.value = avango.gua.make_trans_mat(_line_center_position) * \
-                          _line_rotation_mat * \
-                          avango.gua.make_scale_mat(0.05, 0.05, _line_scale)
-
-  PARENT_NODE.Children.value.append(_line)
-
-
-
-def get_rotation_between_vectors(VEC1, VEC2):
-
-  VEC1.normalize()
-  VEC2.normalize()
-
-  _angle = math.degrees(math.acos(VEC1.dot(VEC2)))
-  _axis = VEC1.cross(VEC2)
-
-  return avango.gua.make_rot_mat(_angle, _axis) 
-'''
