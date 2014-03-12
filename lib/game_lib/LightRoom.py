@@ -31,7 +31,7 @@ class LightRoom(avango.script.Script):
     room_transform.Children.value.append(plane)
 
     self.lightcube = LightCube()
-    self.lightcube.my_constructor(self.NAME, room_transform, True, [1])
+    self.lightcube.my_constructor(self.NAME, room_transform, True, [1,3,5])
 
     right_upper_cornor  = avango.gua.Vec3( 1.2, 0, -1)
     right_bottom_cornor = avango.gua.Vec3( 1.2, 0, 1)
