@@ -96,28 +96,62 @@ class LightCube(avango.script.Script):
     # Each Pick_Transform holds a Ray and a Visual representation
     self.picker_plus_x         = LightRayPicker()
     self.pick_transform_plus_x = avango.gua.nodes.TransformNode(Name = "pick_transform_plus_x")
-    self.pick_transform_plus_x.Transform.value = avango.gua.make_rot_mat(180, 1, 0, 0)
+    self.pick_transform_plus_x.Transform.value = avango.gua.make_rot_mat(90, 0, 1, 0)
     self.initialize_pick_transform(self.pick_transform_plus_x, self.picker_plus_x)
 
     self.picker_minus_x         = LightRayPicker()
     self.pick_transform_minus_x = avango.gua.nodes.TransformNode(Name = "pick_transform_minus_x")
+    self.pick_transform_minus_x.Transform.value = avango.gua.make_rot_mat(-90, 0, 1, 0)
     self.initialize_pick_transform(self.pick_transform_minus_x, self.picker_minus_x)
 
+
+    self.picker_plus_y         = LightRayPicker()
     self.pick_transform_plus_y = avango.gua.nodes.TransformNode(Name = "pick_transform_plus_y")
+    self.pick_transform_plus_y.Transform.value = avango.gua.make_rot_mat(90, 1, 0, 0)
+    self.initialize_pick_transform(self.pick_transform_plus_y, self.picker_plus_y)
+    
+    self.picker_minus_y         = LightRayPicker()
     self.pick_transform_minus_y = avango.gua.nodes.TransformNode(Name = "pick_transform_minus_y")
-    self.initialize_pick_transform(self.pick_transform_plus_y, self.picker_minus_x)
-    self.initialize_pick_transform(self.pick_transform_minus_y, self.picker_minus_x)
+    self.pick_transform_minus_y.Transform.value = avango.gua.make_rot_mat(-90, 1, 0, 0)
+    self.initialize_pick_transform(self.pick_transform_minus_y, self.picker_minus_y)
+    
 
+    self.picker_plus_z         = LightRayPicker()
     self.pick_transform_plus_z = avango.gua.nodes.TransformNode(Name = "pick_transform_plus_z")
-    self.pick_transform_minus_z = avango.gua.nodes.TransformNode(Name = "pick_transform_minus_z")
-    self.initialize_pick_transform(self.pick_transform_plus_z, self.picker_minus_x)
-    self.initialize_pick_transform(self.pick_transform_minus_z, self.picker_minus_x)
+    self.initialize_pick_transform(self.pick_transform_plus_z, self.picker_plus_z)
 
+    self.picker_minus_z         = LightRayPicker()
+    self.pick_transform_minus_z = avango.gua.nodes.TransformNode(Name = "pick_transform_minus_z")
+    self.pick_transform_minus_z.Transform.value = avango.gua.make_rot_mat(180, 1, 0, 0)
+    self.initialize_pick_transform(self.pick_transform_minus_z, self.picker_minus_z)
+
+    # Field Connections for the pick results
     self.mf_pick_results_plus_x.connect_from(self.picker_plus_x.Results)
     self.mf_pick_results_minus_x.connect_from(self.picker_minus_x.Results)
 
+    self.mf_pick_results_plus_y.connect_from(self.picker_plus_y.Results)
+    self.mf_pick_results_minus_y.connect_from(self.picker_minus_y.Results)
+
+    self.mf_pick_results_plus_z.connect_from(self.picker_plus_z.Results)
+    self.mf_pick_results_minus_z.connect_from(self.picker_minus_z.Results)
+
 
   def evaluate(self):
+    if (self.animation_flag == True ):
+      _current_time = self.timer.Time.value
+      _slerp_ratio = (_current_time - self.animation_start_time) / self.animation_time
+
+      if _slerp_ratio > 1:
+        _slerp_ratio = 1
+        self.animation_flag = False
+        self.cube_rotate.Transform.value = avango.gua.make_rot_mat(self.animation_end_pos)
+        return
+      
+      _transformed_quat = self.animation_start_pos.slerp_to(self.animation_end_pos, _slerp_ratio)
+      rotation_mat = avango.gua.make_rot_mat(_transformed_quat)
+      self.cube_rotate.Transform.value = rotation_mat
+
+
     # check if lightexits emmit light and append lights and rays
     if self.HAS_LIGHT and not self.pick_transforms_appended:
       for l in self.LIGHTEXITS:
@@ -140,10 +174,9 @@ class LightCube(avango.script.Script):
       for l in self.LIGHTEXITS:
         if (l == 1):
           if len(self.mf_pick_results_plus_x.value) > 0:
-            print self.mf_pick_results_plus_x.value[0].Object.value
+            #print self.mf_pick_results_plus_x.value[0].Object.value
             if self.mf_pick_results_plus_x.value[0].Object.value.has_field("LightCube"):
               self.mf_pick_results_plus_x.value[0].Object.value.LightCube.value.HAS_LIGHT = True
-
         elif (l == 2):
           pass
         elif (l == 3):
@@ -259,22 +292,6 @@ class LightCube(avango.script.Script):
       self.animation_start_pos = self.cube_rotate.Transform.value.get_rotate()
       self.animation_end_pos = (avango.gua.make_rot_mat(90.0, 0, 1, 0) * self.cube_rotate.Transform.value).get_rotate()
       self.rot_right_button.just_rotated = True
-
-  def evaluate(self):
-    if (self.animation_flag == True ):
-      _current_time = self.timer.Time.value
-      _slerp_ratio = (_current_time - self.animation_start_time) / self.animation_time
-
-      if _slerp_ratio > 1:
-        _slerp_ratio = 1
-        self.animation_flag = False
-        self.cube_rotate.Transform.value = avango.gua.make_rot_mat(self.animation_end_pos)
-        return
-      
-      _transformed_quat = self.animation_start_pos.slerp_to(self.animation_end_pos, _slerp_ratio)
-      rotation_mat = avango.gua.make_rot_mat(_transformed_quat)
-      self.cube_rotate.Transform.value = rotation_mat
-
 
 
 

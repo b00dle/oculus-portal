@@ -14,7 +14,7 @@ class LightRoom(avango.script.Script):
     self.SCENEGRAPH = avango.gua.nodes.SceneGraph()
     self.POSITION = avango.gua.nodes.TransformNode()
 
-  def my_constructor(self,NAME,SCENEGRAPH,POSITION):
+  def my_constructor(self,NAME,SCENEGRAPH,POSITION, EXITS, ACTIV):
     self.NAME = NAME
     self.SCENEGRAPH = SCENEGRAPH
     self.POSITION = POSITION
@@ -30,8 +30,8 @@ class LightRoom(avango.script.Script):
     plane.GroupNames.value.append("do_not_display_group")
     room_transform.Children.value.append(plane)
 
-    self.lightcube = LightCube()
-    self.lightcube.my_constructor(self.NAME, self.SCENEGRAPH, True, [1])
+    self.lightcube_spawn_room = LightCube()
+    self.lightcube_spawn_room.my_constructor(self.NAME, self.SCENEGRAPH, ACTIV, EXITS)
 
     right_upper_cornor  = avango.gua.Vec3( 1.2, 0, -1)
     right_bottom_cornor = avango.gua.Vec3( 1.2, 0, 1)
