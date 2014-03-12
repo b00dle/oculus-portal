@@ -21,7 +21,7 @@ class LightRoom(avango.script.Script):
 
     loader = avango.gua.nodes.GeometryLoader()
 
-    room_transform = avango.gua.nodes.TransformNode()
+    room_transform = avango.gua.nodes.TransformNode(Name = self.NAME + "_transform")
     room_transform.Transform.value = self.POSITION
     self.SCENEGRAPH.Root.value.Children.value.append(room_transform)
 
