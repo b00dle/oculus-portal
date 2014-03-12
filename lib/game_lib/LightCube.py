@@ -15,12 +15,15 @@ class LightCube(avango.script.Script):
   sf_switch_enable  = avango.SFBool()
 
   sf_rot_up         = avango.SFBool()
-  sf_rot_down		= avango.SFBool()
+  sf_rot_down   = avango.SFBool()
   sf_rot_left       = avango.SFBool()
-  sf_rot_right		= avango.SFBool()
+  sf_rot_right    = avango.SFBool()
 
   def __init__(self):
     self.super(LightCube).__init__()
+    self.always_evaluate(True)
+    self.timer = avango.nodes.TimeSensor()
+
     self.NAME = "default_cube"
     self.HAS_LIGHT = False
 
@@ -36,8 +39,14 @@ class LightCube(avango.script.Script):
     self.rot_left_button = Button()
     self.rot_right_button = Button()
 
+    self.animation_flag = False
+    self.animation_time = 0.5
+    #self.animation_start_pos = avango.g
+    #self.animation_end_pos
+
+
     self.Picker1 = LightRayPicker()
-    self.Ray1	 = avango.gua.nodes.RayNode(Name = "pick_ray_right")
+    self.Ray1  = avango.gua.nodes.RayNode(Name = "pick_ray_right")
 
   def my_constructor(self, NAME, PARENT_NODE, ACTIV, LIGHTEXITS):
     # init light cube
@@ -48,14 +57,18 @@ class LightCube(avango.script.Script):
     self.SCENEGRAPH = PARENT_NODE
 
     self.cube_transform = avango.gua.nodes.TransformNode()
-    self.cube_transform.Transform.value = avango.gua.make_trans_mat(0,1.5,0) * avango.gua.make_scale_mat(0.2, 0.2, 0.2)
-    
+    self.cube_transform.Transform.value = avango.gua.make_trans_mat(0,1.5,0)
+    self.cube_rotate = avango.gua.nodes.TransformNode()
+
     self.cube = self.loader.create_geometry_from_file( NAME + "_cube" , 'data/objects/cube.obj', "lightcube",
                   avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    self.cube.Transform.value = avango.gua.make_scale_mat(0.2, 0.2, 0.2)
     self.cube.GroupNames.value  = ["interactiv"]
     self.cube.add_and_init_field(avango.script.SFObject(), "LightCube", self)
+
     PARENT_NODE.Children.value.append(self.cube_transform)
-    self.cube_transform.Children.value.append(self.cube)
+    self.cube_transform.Children.value.append(self.cube_rotate)
+    self.cube_rotate.Children.value.append(self.cube)
 
     # init menu
     self.initalize_console()
@@ -120,29 +133,56 @@ class LightCube(avango.script.Script):
 
   @field_has_changed(sf_rot_up)
   def rotate_up(self):
-    if (self.sf_rot_up.value == True):
-      self.cube.Transform.value *= avango.gua.make_rot_mat(-90.0, 1, 0, 0)
-      print self.cube.Transform.value
+    if (self.sf_rot_up.value == True and self.animation_flag == False):
+      self.animation_flag = True
+      self.animation_start_time = self.timer.Time.value
+      self.animation_start_pos = self.cube_rotate.Transform.value.get_rotate()
+      self.animation_end_pos = (avango.gua.make_rot_mat(-90.0, 1, 0, 0) * self.cube_rotate.Transform.value).get_rotate()
       self.rot_up_button.just_rotated = True
 
   @field_has_changed(sf_rot_down)
   def rotate_down(self):
-    if (self.sf_rot_down.value == True):
-      self.cube.Transform.value *= avango.gua.make_rot_mat(90.0, 1, 0, 0)
-      print self.cube.Transform.value
+    if (self.sf_rot_down.value == True and self.animation_flag == False):
+      self.animation_flag = True
+      self.animation_start_time = self.timer.Time.value
+      self.animation_start_pos = self.cube_rotate.Transform.value.get_rotate()
+      self.animation_end_pos = (avango.gua.make_rot_mat(90.0, 1, 0, 0) * self.cube_rotate.Transform.value).get_rotate()
       self.rot_down_button.just_rotated = True
 
   @field_has_changed(sf_rot_left)
   def rotate_left(self):
-    if (self.sf_rot_left.value == True):
-      self.cube.Transform.value *= avango.gua.make_rot_mat(-90.0, 0, 1, 0)
+    if (self.sf_rot_left.value == True and self.animation_flag == False):
+      self.animation_flag = True
+      self.animation_start_time = self.timer.Time.value
+      self.animation_start_pos = self.cube_rotate.Transform.value.get_rotate()
+      self.animation_end_pos = (avango.gua.make_rot_mat(-90.0, 0, 1, 0) * self.cube_rotate.Transform.value).get_rotate()
       self.rot_left_button.just_rotated = True
 
   @field_has_changed(sf_rot_right)
   def rotate_right(self):
-    if (self.sf_rot_right.value == True):
-      self.cube.Transform.value *= avango.gua.make_rot_mat(90.0, 0, 1, 0)
+    if (self.sf_rot_right.value == True and self.animation_flag == False):
+      self.animation_flag = True
+      self.animation_start_time = self.timer.Time.value
+      self.animation_start_pos = self.cube_rotate.Transform.value.get_rotate()
+      self.animation_end_pos = (avango.gua.make_rot_mat(90.0, 0, 1, 0) * self.cube_rotate.Transform.value).get_rotate()
       self.rot_right_button.just_rotated = True
+
+  def evaluate(self):
+    if (self.animation_flag == True ):
+      _current_time = self.timer.Time.value
+      _slerp_ratio = (_current_time - self.animation_start_time) / self.animation_time
+
+      if _slerp_ratio > 1:
+        _slerp_ratio = 1
+        self.animation_flag = False
+        self.cube_rotate.Transform.value = avango.gua.make_rot_mat(self.animation_end_pos)
+        return
+      
+      _transformed_quat = self.animation_start_pos.slerp_to(self.animation_end_pos, _slerp_ratio)
+      rotation_mat = avango.gua.make_rot_mat(_transformed_quat)
+      self.cube_rotate.Transform.value = rotation_mat
+
+
 
 
   def initializeLightRayPicker(self):
@@ -189,7 +229,6 @@ class LightRayPicker(avango.script.Script):
   #                                           self.Options.value,
   #                                           self.Mask.value)
   #  self.Results.value = results.value
-
 
 '''
   @field_has_changed(sf_color_red)
