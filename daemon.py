@@ -34,8 +34,8 @@ def init_lcd_wall_tracking():
   _dtrack.stations[4] = avango.daemon.Station('tracking-glasses-1')    # glasses powerwall user one
   _dtrack.stations[3] = avango.daemon.Station('tracking-glasses-2')    # glasses powerwall user two
 
-  _dtrack.stations[15] = avango.daemon.Station('tracking-pointer-blue')  # blue pointer
-  _dtrack.stations[24] = avango.daemon.Station('tracking-pointer-green') # green pointer
+  _dtrack.stations[1] = avango.daemon.Station('tracking-pointer-blue')  # blue pointer   
+  _dtrack.stations[13] = avango.daemon.Station('tracking-pointer-green') # green pointer
 
   _dtrack.stations[7] = avango.daemon.Station('tracking-old-spheron')      # old spheron device
 
@@ -304,8 +304,8 @@ def xbox_controller(PLAYER_NUMBER):
 device_list = []
 
 
-#init_lcd_wall_tracking()
-init_led_wall_tracking()
+init_lcd_wall_tracking()
+#init_led_wall_tracking()
 
 xbox_controller(1)
 xbox_controller(2)
