@@ -10,6 +10,28 @@ import math
 import examples_common.navigator
 from examples_common.GuaVE import GuaVE
 
+## Helper class to update material values with respect to the current time.
+class TimedMaterialUniformUpdate(avango.script.Script):
+
+  ## @var TimeIn
+  # Field containing the current time in milliseconds.
+  TimeIn = avango.SFFloat()
+
+  ## @var MaterialName
+  # Field containing the name of the material to be updated
+  MaterialName = avango.SFString()
+
+  ## @var UniformName
+  # Field containing the name of the uniform value to be updated
+  UniformName = avango.SFString()
+
+  ## Called whenever TimeIn changes.
+  @field_has_changed(TimeIn)
+  def update(self):
+    avango.gua.set_material_uniform(self.MaterialName.value,
+                                    self.UniformName.value,
+                                    self.TimeIn.value)
+
 class Portal(avango.script.Script):
 
     # init fields
@@ -18,20 +40,22 @@ class Portal(avango.script.Script):
 
     def __init__(self):
         self.super(Portal).__init__()
-        self.sf_portal_zoom.value = 1.0
-        self.NAME             = ""
-        self.ENTRYSCENE       = avango.gua.nodes.SceneGraph()
-        self.EXITSCENE        = avango.gua.nodes.SceneGraph()
-        self.EXITPOS          = avango.gua.Mat4()
-        self.WIDTH            = 0
-        self.HEIGHT           = 0
-        self.DEPTH            = 1
-        self.PRE_PIPE         = avango.gua.nodes.Pipeline()
-        self.GEOMETRY         = avango.gua.nodes.GeometryNode()
-        self.default_geometry = True
-        self.HEAD             = ""
-        self.GROUPNAME        = ""
-        self.EXCLUDEGROUPS    = []
+        self.sf_portal_zoom.value   = 1.0
+        self.timer                  = avango.nodes.TimeSensor()
+        self.water_updater          = TimedMaterialUniformUpdate()
+        self.NAME                   = ""
+        self.ENTRYSCENE             = avango.gua.nodes.SceneGraph()
+        self.EXITSCENE              = avango.gua.nodes.SceneGraph()
+        self.EXITPOS                = avango.gua.Mat4()
+        self.WIDTH                  = 0
+        self.HEIGHT                 = 0
+        self.DEPTH                  = 1
+        self.PRE_PIPE               = avango.gua.nodes.Pipeline()
+        self.GEOMETRY               = avango.gua.nodes.GeometryNode()
+        self.default_geometry       = True
+        self.HEAD                   = ""
+        self.GROUPNAME              = ""
+        self.EXCLUDEGROUPS          = []
 
 
     def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS, GEOMETRY = None):
@@ -110,6 +134,10 @@ class Portal(avango.script.Script):
         avango.gua.set_material_uniform(  "Portal" + self.NAME,
                                           "portal_texture",
                                           self.NAME + "Texture")
+
+        self.water_updater.MaterialName.value = "Portal" + self.NAME
+        self.water_updater.UniformName.value = "time"
+        self.water_updater.TimeIn.connect_from(self.timer.Time)
 
         self.ENTRYSCENE.Root.value.Children.value.append(geometry)
         
