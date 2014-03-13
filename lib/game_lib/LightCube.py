@@ -186,8 +186,9 @@ class LightCube(avango.script.Script):
         
         if (l == 1):
           if len(self.mf_pick_results_plus_x.value) > 0:
-            self.picked_plus_x = self.mf_pick_results_plus_x.value[0].Object.value
+            pick = self.mf_pick_results_plus_x.value[0].Object.value
             if self.picked_plus_x.has_field("LightCube"):
+              self.picked_plus_x = pick
               self.picked_plus_x.LightCube.value.HAS_LIGHT = True
               break
           if len(self.mf_pick_results_plus_x.value) == 0:           
@@ -196,8 +197,9 @@ class LightCube(avango.script.Script):
 
         elif (l == 2):
           if len(self.mf_pick_results_minus_x.value) > 0:
-            self.picked_minus_x = self.mf_pick_results_minus_x.value[0].Object.value
+            pick = self.mf_pick_results_minus_x.value[0].Object.value
             if self.picked_minus_x.has_field("LightCube"):
+              self.picked_minus_x = pick
               self.picked_minus_x.LightCube.value.HAS_LIGHT = True
               break
           if len(self.mf_pick_results_minus_x.value) == 0:           
@@ -279,7 +281,7 @@ class LightCube(avango.script.Script):
       if (l == 1):
         exit_plus_x = self.loader.create_geometry_from_file('light_exit_plus_x', 'data/objects/cube.obj',
                                                         'AvatarGrey', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-        exit_plus_x.GroupNames.value = ["light_emitter"]
+        #exit_plus_x.GroupNames.value = ["light_emitter"]
         exit_plus_x.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         exit_plus_x.Transform.value = avango.gua.make_trans_mat(0.75,0,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         self.cube.Children.value.append(exit_plus_x)
@@ -287,7 +289,7 @@ class LightCube(avango.script.Script):
         exit_minus_x = self.loader.create_geometry_from_file('light_exit_minus_x', 'data/objects/cube.obj',
                                                         'AvatarGrey', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_minus_x.Transform.value = avango.gua.make_trans_mat(-0.75,0,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
-        exit_minus_x.GroupNames.value = ["light_emitter"]
+        #exit_minus_x.GroupNames.value = ["light_emitter"]
         exit_minus_x.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         self.cube.Children.value.append(exit_minus_x)
       elif (l == 3):
@@ -371,7 +373,7 @@ class LightCube(avango.script.Script):
     # set picker values
     PICKER.SceneGraph = self.SCENEGRAPH
     PICKER.Ray.value = _ray
-    PICKER.Mask.value = "light_emitter"
+    #PICKER.Mask.value = "light_emitter"
     pick_transform.Children.value = [_ray, _ray_visual]
 
 
