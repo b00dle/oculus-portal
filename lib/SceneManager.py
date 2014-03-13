@@ -71,7 +71,7 @@ class SceneManager:
     graph.Root.value.Children.value.append(box)
 
     box2 = loader.create_geometry_from_file('box2', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    box2.Transform.value = avango.gua.make_trans_mat(0,0,-9.0) * avango.gua.make_scale_mat(2,2,2)
+    box2.Transform.value = avango.gua.make_trans_mat(0,10.0,9.0) * avango.gua.make_scale_mat(2,2,2)
     box2.GroupNames.value = ["in_the_way"]
     graph.Root.value.Children.value.append(box2)
 
