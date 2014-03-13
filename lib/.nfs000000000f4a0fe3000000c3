@@ -60,30 +60,20 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(spot)
 
-    level1 = LightRoom()
-    level1.my_constructor("room1", graph, avango.gua.make_trans_mat(0,0,2), [1,4], True, "White")
-
+    testroom = LightRoom()
+    testroom.my_constructor("test_room",graph,avango.gua.make_trans_mat(0,0,2), [1,4], True)
 
     level2 = LightRoom()
-    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(10,0,2), [1,2], False, "Green")
-
-    level3 = LightRoom()
-    level3.my_constructor("room3",graph,avango.gua.make_trans_mat(20,0,2), [2,4], False, "Blue")
-
-    level4 = LightRoom()
-    #level4.my_constructor("room4",graph,avango.gua.make_trans_mat(10,10,2), [1,2,3,4,5,6], False, "Red")
-
-    level5 = LightRoom()
-    #level5.my_constructor("room5",graph,avango.gua.make_trans_mat(10,20,2), [2,4,6], False, "Purple")
+    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(10,0,2), [2,4], False)
 
     box = loader.create_geometry_from_file('box', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     box.Transform.value = avango.gua.make_trans_mat(-10,0,0) * avango.gua.make_scale_mat(2,2,2)
-    box.GroupNames.value = ["obsticale"]
+    box.GroupNames.value = ["in_the_way"]
     graph.Root.value.Children.value.append(box)
 
     box2 = loader.create_geometry_from_file('box2', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    box2.Transform.value = avango.gua.make_trans_mat(5,1.5,2) * avango.gua.make_scale_mat(0.5,0.5,0.5)
-    box2.GroupNames.value = ["obsticale"]
+    box2.Transform.value = avango.gua.make_trans_mat(0,0,-9) * avango.gua.make_scale_mat(2,2,2)
+    box2.GroupNames.value = ["in_the_way"]
     graph.Root.value.Children.value.append(box2)
 
 
