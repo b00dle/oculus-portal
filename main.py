@@ -31,8 +31,6 @@ def start():
     newGMD.close()
   #####################################################
 
-  loader = avango.gua.nodes.GeometryLoader()
-
   # initialize materials
   avango.gua.load_shading_models_from("data/materials")
   avango.gua.load_materials_from("data/materials")

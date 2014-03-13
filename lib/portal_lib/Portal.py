@@ -25,6 +25,7 @@ class Portal(avango.script.Script):
         self.EXITPOS          = avango.gua.Mat4()
         self.WIDTH            = 0
         self.HEIGHT           = 0
+        self.DEPTH            = 1
         self.PRE_PIPE         = avango.gua.nodes.Pipeline()
         self.GEOMETRY         = avango.gua.nodes.GeometryNode()
         self.default_geometry = True
@@ -88,7 +89,7 @@ class Portal(avango.script.Script):
             geometry.Transform.value = PORTALPOS *\
                                     avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
                                     avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
-                                    avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
+                                    avango.gua.make_scale_mat(self.WIDTH, self.DEPTH, self.HEIGHT)
             
             self.sf_portal_pos.value = PORTALPOS
 
@@ -98,9 +99,9 @@ class Portal(avango.script.Script):
             geometry.Material.value = "Portal" + self.NAME
             geometry.Transform.value = PORTALPOS *\
                                     GEOMETRY.Transform.value *\
-                                    avango.gua.make_scale_mat(self.WIDTH, self.HEIGHT, 1.0)
+                                    avango.gua.make_scale_mat(self.WIDTH, self.HEIGHT, self.DEPTH)
             
-            self.sf_portal_pos.value = PORTALPOS * GEOMETRY.Transform.value           
+            self.sf_portal_pos.value = PORTALPOS           
             self.default_geometry   = False
 
         geometry.GroupNames.value.append(self.GROUPNAME)
@@ -142,29 +143,25 @@ class Portal(avango.script.Script):
         self.GEOMETRY.Geometry.value  = GEOMETRY.Geometry.value
         self.GEOMETRY.Transform.value = PORTALPOS *\
                                         avango.gua.make_rot_mat(GEOMETRY.Transform.value.get_rotate()) *\
-                                        avango.gua.make_scale_mat(self.WIDTH, self.HEIGHT, 1.0)
+                                        avango.gua.make_scale_mat(self.WIDTH, self.HEIGHT, self.DEPTH)
 
-    def resize(self, WIDTH, HEIGHT):
+    def resize(self, WIDTH, HEIGHT, DEPTH):
         if self.default_geometry == True:
-            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(1/self.WIDTH, 1.0, 1/self.HEIGHT)
+            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(1/self.WIDTH, 1/self.DEPTH, 1/self.HEIGHT)
         else:
-            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(1/self.WIDTH, 1/self.HEIGHT, 1.0)
+            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(1/self.WIDTH, 1/self.HEIGHT, 1/self.DEPTH)
         
         self.WIDTH  = WIDTH
         self.HEIGHT = HEIGHT
+        self.DEPTH  = DEPTH
         self.EXITSCENE["/" + self.NAME + "Screen"].Width.value  = self.WIDTH
         self.EXITSCENE["/" + self.NAME + "Screen"].Height.value = self.HEIGHT
         
         if self.default_geometry == True:
-            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
+            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(self.WIDTH, self.DEPTH, self.HEIGHT)
         else:
-            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(self.WIDTH, self.HEIGHT, 1.0)
+            self.GEOMETRY.Transform.value = self.GEOMETRY.Transform.value * avango.gua.make_scale_mat(self.WIDTH, self.HEIGHT, self.DEPTH)
             
-        #self.GEOMETRY.Transform.value = self.sf_portal_pos.value *\
-        #                        avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
-        #                        avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
-        #                        avango.gua.make_scale_mat(self.WIDTH, 1.0, self.HEIGHT)
-
     def translate(self, X, Y, Z):
         self.GEOMETRY.Transform.value  = self.GEOMETRY.Transform.value * avango.gua.make_trans_mat(X, Y, Z)
         self.sf_portal_pos.value = self.sf_portal_pos.value * avango.gua.make_trans_mat(X, Y, Z)

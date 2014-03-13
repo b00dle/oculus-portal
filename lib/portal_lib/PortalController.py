@@ -45,14 +45,23 @@ class UpdatePortalTransform(avango.script.Script):
   def __init__(self):
     self.super(UpdatePortalTransform).__init__()
     self.NAME = ""
+    self.ISOVRUSER = False
     self.PortalZoomIn.value = 1.0
 
-  def my_constructor(self, NAME):
+  def my_constructor(self, NAME, ISOVRUSER):
     self.NAME = NAME
+    self.ISOVRUSER = ISOVRUSER
 
   def evaluate(self):
-    self.ViewTransformOut.value = avango.gua.make_inverse_mat(self.PortalTransformIn.value) *\
-                                    self.ScreenTransformIn.value * avango.gua.make_trans_mat(0.0,0.0,self.ViewTransformIn.value.get_translate().z * self.PortalZoomIn.value)
+    if self.ISOVRUSER == True:
+      inv_rotation = avango.gua.make_inverse_mat(avango.gua.make_rot_mat(self.ScreenTransformIn.value.get_rotate()))
+      self.ViewTransformOut.value = avango.gua.make_inverse_mat(self.PortalTransformIn.value) * \
+                                    self.ScreenTransformIn.value * inv_rotation * \
+                                    avango.gua.make_trans_mat(0.0,0.0,self.ViewTransformIn.value.get_translate().z * self.PortalZoomIn.value)
+    else:
+      self.ViewTransformOut.value = avango.gua.make_inverse_mat(self.PortalTransformIn.value) * \
+                                    self.ScreenTransformIn.value * \
+                                    avango.gua.make_trans_mat(0.0,0.0,self.ViewTransformIn.value.get_translate().z * self.PortalZoomIn.value)
     
 class PortalController(avango.script.Script):
   PickedPortals     = avango.gua.MFPickResult()
@@ -73,8 +82,9 @@ class PortalController(avango.script.Script):
     self.PLATFORM       = -1
     self.USERHEAD       = avango.gua.nodes.TransformNode()
     self.SF_USERSCREEN  = avango.gua.SFMatrix4()
+    self.ISOVRUSER       = False
     
-  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, NAVIGATION, USERHEAD, SF_USERSCREEN):
+  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, NAVIGATION, USERHEAD, SF_USERSCREEN, ISOVRUSER = False):
     self.NAME             = NAME
     self.ACTIVESCENE      = ACTIVESCENE
     self.VIEWINGPIPELINES = VIEWINGPIPELINES
@@ -89,6 +99,7 @@ class PortalController(avango.script.Script):
     # references
     self.USERHEAD         = USERHEAD
     self.SF_USERSCREEN    = SF_USERSCREEN
+    self.ISOVRUSER        = ISOVRUSER
 
     self.sfUserZoom.value = 1.0
 
@@ -169,7 +180,7 @@ class PortalController(avango.script.Script):
     
     for p in self.ACTIVEPORTALS:
       self.PORTALUPDATERS.append(UpdatePortalTransform())
-      self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].my_constructor(p.NAME + "_updater")
+      self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].my_constructor(p.NAME + "_updater", self.ISOVRUSER)
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].PortalTransformIn.connect_from(p.sf_portal_pos)
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ViewTransformIn.connect_from(self.sfUserHead)
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ScreenTransformIn.connect_from(self.sfUserScreen)
@@ -204,11 +215,7 @@ class PortalController(avango.script.Script):
   def update_portal_picker(self):
     self.PORTALPICKER.Mask.value = self.PORTALS[0].GROUPNAME
     self.PORTALPICKER.SceneGraph.value = self.ACTIVESCENE
-    #if "OVR" in self.NAME:
     self.USERHEAD.Children.value.append(self.PORTALPICKER.Ray.value)
-    #else:
-    #  self.PORTALPICKER.Ray.value.Transform.value = avango.gua.make_trans_mat(0.0,1.0,1.0)
-    #  self.ACTIVESCENE["/platform_" + str(self.PLATFORM)].Children.value.append(self.PORTALPICKER.Ray.value)
     self.PickedPortals.connect_from(self.PORTALPICKER.Results)
 
   def delete_portal_group_name(self, GROUPNAME):
