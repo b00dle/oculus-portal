@@ -100,7 +100,7 @@ class PortalManager():
                                          self.PW_user_portals[PW_user.id],
                                          VIEWINGMANAGER.navigation_list[PW_user.portal_controller.PLATFORM],
                                          PW_user.head_transform,
-                                         PW_user.screen.WorldTransform
+                                         PW_user.screen
                                          )
 
     for OVR_user in VIEWINGMANAGER.ovr_user_list:
@@ -175,7 +175,7 @@ class PortalManager():
                                          self.OVR_user_portals[OVR_user.id],
                                          VIEWINGMANAGER.navigation_list[OVR_user.portal_controller.PLATFORM],
                                          OVR_user.head_transform,
-                                         OVR_user.left_screen.WorldTransform,
+                                         OVR_user.left_screen,
                                          True #apply additional rule for portal_controller > UpdatePortalTransform
                                          )
 
@@ -250,5 +250,5 @@ class PortalManager():
                                          self.DESK_user_portals[DESK_user.id],
                                          VIEWINGMANAGER.navigation_list[DESK_user.portal_controller.PLATFORM],
                                          DESK_user.head_transform,
-                                         DESK_user.screen.WorldTransform
+                                         DESK_user.screen
                                          )

@@ -57,7 +57,6 @@ class Portal(avango.script.Script):
         self.GROUPNAME              = ""
         self.EXCLUDEGROUPS          = []
 
-
     def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS, GEOMETRY = None):
         self.NAME                   = NAME
         self.ENTRYSCENE             = ENTRYSCENE
