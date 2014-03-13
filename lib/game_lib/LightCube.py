@@ -105,7 +105,6 @@ class LightCube(avango.script.Script):
     self.pick_transform_minus_x.Transform.value = avango.gua.make_rot_mat(90, 0, 1, 0)
     self.initialize_pick_transform(self.pick_transform_minus_x, self.picker_minus_x)
 
-
     self.picker_plus_y         = LightRayPicker()
     self.pick_transform_plus_y = avango.gua.nodes.TransformNode(Name = "pick_transform_plus_y")
     self.pick_transform_plus_y.Transform.value = avango.gua.make_rot_mat(90, 1, 0, 0)
@@ -116,7 +115,6 @@ class LightCube(avango.script.Script):
     self.pick_transform_minus_y.Transform.value = avango.gua.make_rot_mat(-90, 1, 0, 0)
     self.initialize_pick_transform(self.pick_transform_minus_y, self.picker_minus_y)
     
-
     self.picker_plus_z         = LightRayPicker()
     self.pick_transform_plus_z = avango.gua.nodes.TransformNode(Name = "pick_transform_plus_z")
     self.initialize_pick_transform(self.pick_transform_plus_z, self.picker_plus_z)
@@ -294,8 +292,6 @@ class LightCube(avango.script.Script):
       self.animation_end_pos = (avango.gua.make_rot_mat(90.0, 0, 1, 0) * self.cube_rotate.Transform.value).get_rotate()
       self.rot_right_button.just_rotated = True
 
-
-
   def initialize_pick_transform(self, pick_transform, PICKER):
 
     _ray   = avango.gua.nodes.RayNode(Name = "pick_ray_right")
@@ -308,14 +304,11 @@ class LightCube(avango.script.Script):
     _ray_visual.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -20.0) *\
                                        avango.gua.make_scale_mat(0.008, 0.008, 20)
     
-   
     # set picker values
     PICKER.SceneGraph = self.SCENEGRAPH
     PICKER.Ray.value = _ray
     PICKER.Mask.value = "in_the_way"
     pick_transform.Children.value = [_ray, _ray_visual]
-
-
 
 class LightRayPicker(avango.script.Script):
   #SceneGraph = avango.gua.SFSceneGraph()
