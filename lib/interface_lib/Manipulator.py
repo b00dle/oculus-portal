@@ -29,7 +29,7 @@ class Manipulator(avango.script.Script):
     self.Keyboard = KeyboardMouseDevice()
 
     self.LeftPointer = PointerDevice()
-    self.LeftPointer.my_constructor("2.4G Presenter")
+    self.LeftPointer.my_constructor("2.4G Presenter")#
     self.LeftPicker = ManipulatorPicker()
     self.LeftRay = avango.gua.nodes.RayNode(Name = "pick_ray_left")
 
@@ -83,7 +83,6 @@ class Manipulator(avango.script.Script):
 
   @field_has_changed(sf_key_right_pointer)
   def key_right_handler(self):
-    print self.sf_key_right_pointer.value
     #if self.sf_key_right_pointer.value == False:
     self.right_pointer_pressed = True
 
@@ -92,13 +91,10 @@ class Manipulator(avango.script.Script):
     if (len(self.RightPicker.Results.value) > 0) and self.right_pointer_pressed and\
         self.RightPointer.sf_key_pageup.value:
 
-      print "hey"
-
       picked_object = self.RightPicker.Results.value[0].Object.value
 
       if picked_object.has_field("Button"):
         picked_object.Button.value.sf_bool_button.value = True
-        print "blablabla"
 
       self.right_pointer_pressed = False
 
@@ -127,7 +123,6 @@ class Manipulator(avango.script.Script):
         if self.LeftPointerPicked == True:
           self.LeftPointerPicked = False
           self.left_picked_object.InteractivGeometry.value.disable_menu(self.LEFTHAND)
-
 
 
     # pick button left hand

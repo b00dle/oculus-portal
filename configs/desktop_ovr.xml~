@@ -38,7 +38,7 @@
     <platformpos>
       <x>0.0</x>
       <y>0.0</y>
-      <z>6.0</z>
+      <z>0.0</z>
     </platformpos>
 
     <platformrot>
@@ -61,7 +61,7 @@
     <platformpos>
       <x>0.0</x>
       <y>0.0</y>
-      <z>0.0</z>
+      <z>0.7</z>
     </platformpos>
 
     <platformrot>

@@ -59,19 +59,20 @@ class SceneManager:
                           avango.gua.make_scale_mat(100.0, 100.0, 160.0)
 
     graph.Root.value.Children.value.append(spot)
+
     testroom = LightRoom()
-    testroom.my_constructor("test_room",graph,avango.gua.make_trans_mat(0,0,2), [1,2], True)
+    testroom.my_constructor("test_room",graph,avango.gua.make_trans_mat(0,0,2), [1,4], True)
 
     level2 = LightRoom()
-    level2.my_constructor("test_room",graph,avango.gua.make_trans_mat(0,0,2), [4], False)
+    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(10,0,2), [2,4], False)
 
     box = loader.create_geometry_from_file('box', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    box.Transform.value = avango.gua.make_trans_mat(0,0,9.0) * avango.gua.make_scale_mat(2,2,2)
+    box.Transform.value = avango.gua.make_trans_mat(-10,0,0) * avango.gua.make_scale_mat(2,2,2)
     box.GroupNames.value = ["in_the_way"]
     graph.Root.value.Children.value.append(box)
 
     box2 = loader.create_geometry_from_file('box2', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    box2.Transform.value = avango.gua.make_trans_mat(0,10.0,9.0) * avango.gua.make_scale_mat(2,2,2)
+    box2.Transform.value = avango.gua.make_trans_mat(0,0,-9) * avango.gua.make_scale_mat(2,2,2)
     box2.GroupNames.value = ["in_the_way"]
     graph.Root.value.Children.value.append(box2)
 

@@ -111,7 +111,7 @@ class Button(avango.script.Script):
       self.sf_bool_button.value = False
       self.just_rotated = False
     elif (self.sf_bool_button.value == True):
-      #self.button_geometry.Transform.value = avango.gua.make_scale_mat(0.1, 0.01, 0.07)
+      self.button_geometry.Transform.value = avango.gua.make_scale_mat(0.2, 0.01, 0.07)
       self.button_geometry.Material.value = "Bright"
       self.sf_bool_button.value = False
     elif (self.sf_bool_button.value == False):
