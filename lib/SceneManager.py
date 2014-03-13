@@ -60,7 +60,20 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(spot)
     testroom = LightRoom()
-    testroom.my_constructor("test_room",graph,avango.gua.make_trans_mat(0,0,2))
+    testroom.my_constructor("test_room",graph,avango.gua.make_trans_mat(0,0,2), [1, 3 ,4 ,5], True)
+
+    level2 = LightRoom()
+    level2.my_constructor("test_room2", graph,avango.gua.make_trans_mat(10,0,2), [4], False)
+
+    box = loader.create_geometry_from_file('box', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    box.Transform.value = avango.gua.make_trans_mat(0,0,9.0) * avango.gua.make_scale_mat(2,2,2)
+    box.GroupNames.value = ["in_the_way"]
+    graph.Root.value.Children.value.append(box)
+
+    box2 = loader.create_geometry_from_file('box2', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    box2.Transform.value = avango.gua.make_trans_mat(0,0,-9.0) * avango.gua.make_scale_mat(2,2,2)
+    box2.GroupNames.value = ["in_the_way"]
+    graph.Root.value.Children.value.append(box2)
 
 
     # screen
@@ -116,8 +129,8 @@ class SceneManager:
     # create floorans_mat(-2.0,5.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph.Root.value, ["size","green","red","blue"])
     #plane = loader.create_geometry_from_file('floor', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS)
     #plane.Transform.value = avango.gua.make_scale_mat(20,1,20)
-    testroom = LightRoom()
-    testroom.my_constructor("test_roon",graph,avango.gua.make_trans_mat(0,0,0))
+    #testroom = LightRoom()
+    #testroom.my_constructor("test_roon",graph,avango.gua.make_trans_mat(0,0,0))
     #graph.Root.value.Children.value.append(plane)
 
     # Create Monkey
