@@ -31,10 +31,10 @@ class SceneManager:
     self.graphs = []
     self.scene_names = []
     self.create_gamescene()
-    self.create_simplescene()
-    self.create_level_2()
-    self.create_harbourscene()
-    self.create_weimarscene()
+    #self.create_simplescene()
+    #self.create_level_2()
+    #self.create_harbourscene()
+    #self.create_weimarscene()
 
 
   def create_gamescene(self):
