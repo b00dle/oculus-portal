@@ -189,6 +189,7 @@ class LightCube(avango.script.Script):
             self.picked_plus_x = self.mf_pick_results_plus_x.value[0].Object.value
             if self.picked_plus_x.has_field("LightCube"):
               self.picked_plus_x.LightCube.value.HAS_LIGHT = True
+              break
           if len(self.mf_pick_results_plus_x.value) == 0:           
             if self.picked_plus_x.has_field("LightCube") and not self.picked_plus_x.LightCube.value.ALWAYS_LIGHT:
               self.picked_plus_x.LightCube.value.HAS_LIGHT = False
@@ -198,6 +199,7 @@ class LightCube(avango.script.Script):
             self.picked_minus_x = self.mf_pick_results_minus_x.value[0].Object.value
             if self.picked_minus_x.has_field("LightCube"):
               self.picked_minus_x.LightCube.value.HAS_LIGHT = True
+              break
           if len(self.mf_pick_results_minus_x.value) == 0:           
             if self.picked_minus_x.has_field("LightCube") and not self.picked_minus_x.LightCube.value.ALWAYS_LIGHT:
               self.picked_minus_x.LightCube.value.HAS_LIGHT = False
@@ -207,6 +209,7 @@ class LightCube(avango.script.Script):
             self.picked_plus_y = self.mf_pick_results_plus_y.value[0].Object.value
             if self.picked_plus_y.has_field("LightCube"):
               self.picked_plus_y.LightCube.value.HAS_LIGHT = True
+              break
           if len(self.mf_pick_results_plus_y.value) == 0:           
             if self.picked_plus_y.has_field("LightCube") and not self.picked_plus_y.LightCube.value.ALWAYS_LIGHT:
               self.picked_plus_y.LightCube.value.HAS_LIGHT = False
@@ -216,6 +219,7 @@ class LightCube(avango.script.Script):
             self.picked_minus_y = self.mf_pick_results_minus_y.value[0].Object.value
             if self.picked_minus_y.has_field("LightCube"):
               self.picked_minus_y.LightCube.value.HAS_LIGHT = True
+              break
           if len(self.mf_pick_results_minus_y.value) == 0:           
             if self.picked_minus_y.has_field("LightCube") and not self.picked_minus_y.LightCube.value.ALWAYS_LIGHT:
               self.picked_minus_y.LightCube.value.HAS_LIGHT = False
@@ -225,6 +229,7 @@ class LightCube(avango.script.Script):
             self.picked_plus_z = self.mf_pick_results_plus_z.value[0].Object.value
             if self.picked_plus_z.has_field("LightCube"):
               self.picked_plus_z.LightCube.value.HAS_LIGHT = True
+              break
           if len(self.mf_pick_results_plus_z.value) == 0:           
             if self.picked_plus_z.has_field("LightCube") and not self.picked_plus_z.LightCube.value.ALWAYS_LIGHT:
               self.picked_plus_z.LightCube.value.HAS_LIGHT = False
@@ -234,12 +239,13 @@ class LightCube(avango.script.Script):
             self.picked_minus_z = self.mf_pick_results_minus_z.value[0].Object.value
             if self.picked_minus_z.has_field("LightCube"):
               self.picked_minus_z.LightCube.value.HAS_LIGHT = True
+              break
           if len(self.mf_pick_results_minus_z.value) == 0:           
             if self.picked_minus_z.has_field("LightCube") and not self.picked_minus_z.LightCube.value.ALWAYS_LIGHT:
               self.picked_minus_z.LightCube.value.HAS_LIGHT = False
 
 
-    if not self.HAS_LIGHT and self.pick_transforms_appended:
+    if not self.HAS_LIGHT and self.pick_transforms_appended and not self.ALWAYS_LIGHT:
       for l in self.LIGHTEXITS:
         if (l == 1):
           self.cube.Children.value.remove(self.pick_transform_plus_x)

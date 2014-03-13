@@ -30,12 +30,12 @@ class Manipulator(avango.script.Script):
 
     self.LeftPointer = PointerDevice()
 
-    self.LeftPointer.my_constructor("MOUSE USB MOUSE")
+    self.LeftPointer.my_constructor("2.4G Presenter") #
     self.LeftPicker = ManipulatorPicker()
     self.LeftRay = avango.gua.nodes.RayNode(Name = "pick_ray_left")
 
     self.RightPointer = PointerDevice()
-    self.RightPointer.my_constructor("2.4G Presenter")
+    self.RightPointer.my_constructor("MOUSE USB MOUSE")
     self.RightPicker = ManipulatorPicker()
     self.RightRay = avango.gua.nodes.RayNode(Name = "pick_ray_right")
 

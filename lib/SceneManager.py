@@ -61,7 +61,7 @@ class SceneManager:
     graph.Root.value.Children.value.append(spot)
 
     testroom = LightRoom()
-    testroom.my_constructor("test_room",graph,avango.gua.make_trans_mat(0,0,2), [1,4], True)
+    testroom.my_constructor("test_room",graph,avango.gua.make_trans_mat(0,0,2), [1,2,3,4,5,6], True)
 
     level2 = LightRoom()
     level2.my_constructor("room2",graph,avango.gua.make_trans_mat(10,0,2), [2,4], False)
