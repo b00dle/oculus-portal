@@ -4,16 +4,100 @@
 		"selected_items":
 		[
 			[
+				"PORT",
+				"PORTALS"
+			],
+			[
+				"ACT",
+				"ACTIVEPORTALS"
+			],
+			[
+				"res",
+				"resolved_visibility"
+			],
+			[
+				"re",
+				"resolved_visibility"
+			],
+			[
+				"sf",
+				"sf_visibility"
+			],
+			[
+				"por",
+				"portal"
+			],
+			[
+				"Port",
+				"Portals"
+			],
+			[
+				"POR",
+				"PORTALCUBES"
+			],
+			[
+				"PO",
+				"PORTALS"
+			],
+			[
+				"visi",
+				"sf_visibility"
+			],
+			[
+				"port",
+				"portalCube"
+			],
+			[
+				"orign",
+				"origin_exit"
+			],
+			[
+				"USER",
+				"USERTYPE"
+			],
+			[
+				"EX",
+				"EXCLUDEGROUPS"
+			],
+			[
+				"U",
+				"USERID"
+			],
+			[
+				"EXI",
+				"EXITORIGIN"
+			],
+			[
+				"ENTRY",
+				"ENTRYORIGIN"
+			],
+			[
+				"EXIT",
+				"EXITSCENE"
+			],
+			[
+				"ori",
+				"origin"
+			],
+			[
+				"make",
+				"make_rot_mat"
+			],
+			[
+				"portl",
+				"portal_height"
+			],
+			[
+				"portal",
+				"portal_width"
+			],
+			[
 				"View",
 				"ViewTransformIn"
 			],
 			[
 				"Vie",
 				"ViewTransformIn"
-			],
-			[
-				"por",
-				"portalGeom"
 			],
 			[
 				"OVR",
@@ -24,24 +108,12 @@
 				"HEADTRANSFORM"
 			],
 			[
-				"make",
-				"make_trans_mat"
-			],
-			[
 				"USRE",
 				"USERSCREEN"
 			],
 			[
 				"sfUs",
 				"sfUserScreen"
-			],
-			[
-				"port",
-				"portalGeom"
-			],
-			[
-				"portal",
-				"portal_height"
 			],
 			[
 				"get",
@@ -64,15 +136,7 @@
 				"create_geometry_from_file"
 			],
 			[
-				"POR",
-				"PORTALPICKER"
-			],
-			[
 				"sfUser",
-				"sfUserZoom"
-			],
-			[
-				"sf",
 				"sfUserZoom"
 			],
 			[
@@ -192,26 +256,10 @@
 			}
 		},
 		{
-			"file": "lib/SceneManager.py",
+			"file": "lib/User.py",
 			"settings":
 			{
-				"buffer_size": 8927,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/portal_lib/Portal.py",
-			"settings":
-			{
-				"buffer_size": 9273,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/portal_lib/PortalController.py",
-			"settings":
-			{
-				"buffer_size": 8852,
+				"buffer_size": 11714,
 				"line_ending": "Unix"
 			}
 		},
@@ -224,42 +272,53 @@
 			}
 		},
 		{
-			"file": "lib/Navigation.py",
+			"file": "lib/SceneManager.py",
 			"settings":
 			{
-				"buffer_size": 19135,
+				"buffer_size": 8927,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "lib/InputMapping.py",
+			"contents": "#!/usr/bin/python\n\n# import guacamole libraries\nimport avango\nimport avango.script\nfrom avango.script import field_has_changed\nimport avango.gua\n\nfrom Portal import *\n\nclass PortalCube(avango.script.Script):\n  \n  sf_visibility = avango.SFBool()\n\n  def __init__(self):\n    self.super(PortalCube).__init__()\n\n    self.Portals              = []\n    \n    self.NAME                 = \"\"\n    self.ENTRYSCENE           = avango.gua.nodes.SceneGraph()\n    self.EXITSCENE            = avango.gua.nodes.SceneGraph()\n    self.ENTRYORIGIN          = avango.gua.Vec3()\n    self.EXITORIGIN           = avango.gua.Vec3()\n    self.SIZE                 = 1.0\n    self.EXCLUDEGROUPS        = []\n    self.FIRSTPORTALID        = 0\n    self.USERTYPE             = \"\"\n    self.USERID               = 0\n\n    self.sf_visibility.value  = True\n    self.visibility_updated  = False\n\n  def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYORIGIN, EXITORIGIN, SIZE, EXCLUDEGROUPS, FIRSTPORTALID, USERTYPE, USERID, VISIBLE = True):\n    self.NAME                 = NAME\n    self.ENTRYSCENE           = ENTRYSCENE\n    self.EXITSCENE            = EXITSCENE\n    self.ENTRYORIGIN          = ENTRYORIGIN\n    self.EXITORIGIN           = EXITORIGIN\n    self.SIZE                 = SIZE\n    self.EXCLUDEGROUPS        = EXCLUDEGROUPS\n    self.FIRSTPORTALID        = FIRSTPORTALID\n    self.USERTYPE             = USERTYPE\n    self.USERID               = USERID\n\n    self.sf_visibility.value  = VISIBLE\n    if VISIBLE == False:\n      self.visibility_updated = True\n\n    self.create_portals()\n\n  @field_has_changed(sf_visibility)\n  def resolve_visibility(self):\n    if self.sf_visibility == False:\n      for portal in self.Portals:\n        if \"do_not_display_group\" not in portal.GEOMETRY.GroupNames.value:\n          portal.GEOMETRY.GroupNames.value.append(\"do_not_display_group\")\n    else:\n      for portal in self.Portals:\n        if \"do_not_display_group\" in portal.GEOMETRY.GroupNames.value:\n          portal.GEOMETRY.GroupNames.value.remove(\"do_not_display_group\")\n\n    self.visibility_updated = True\n\n  def create_portals(self):\n    #############PORTAL 1##############\n    entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x,\n                                          self.ENTRYORIGIN.y,\n                                          self.ENTRYORIGIN.z + self.SIZE/2)\n      \n    exit_pos  = avango.gua.make_trans_mat(self.EXITORIGIN.x,\n                                          self.EXITORIGIN.y,\n                                          self.EXITORIGIN.z + self.SIZE/2)\n    \n    self.Portals.append(Portal())\n    self.Portals[0].my_constructor(\"portal_\" + str(self.FIRSTPORTALID) + \"_\" + self.USERTYPE + \"_\" + str(self.USERID),\n                                  self.ENTRYSCENE, #simplescene\n                                  self.EXITSCENE,\n                                  entry_pos,\n                                  exit_pos,\n                                  self.SIZE,\n                                  self.SIZE,\n                                  self.USERTYPE + \"_\" + str(self.USERID) + \"_portals\",\n                                  self.EXCLUDEGROUPS\n                                  )\n\n    #############PORTAL 1##############\n    entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x,\n                                          self.ENTRYORIGIN.y,\n                                          self.ENTRYORIGIN.z - self.SIZE/2) * \\\n                avango.gua.make_rot_mat(180, 0, 1, 0)\n\n    exit_pos  = avango.gua.make_trans_mat(self.EXITORIGIN.x,\n                                          self.EXITORIGIN.y,\n                                          self.EXITORIGIN.z - self.SIZE/2) * \\\n                avango.gua.make_rot_mat(180, 0, 1, 0)\n\n    self.Portals.append(Portal())\n    self.Portals[1].my_constructor(\"portal_\" + str(self.FIRSTPORTALID + 1) + \"_\" + self.USERTYPE + \"_\" + str(self.USERID),\n                                  self.ENTRYSCENE, #simplescene\n                                  self.EXITSCENE,\n                                  entry_pos,\n                                  exit_pos,\n                                  self.SIZE,\n                                  self.SIZE,\n                                  self.USERTYPE + \"_\" + str(self.USERID) + \"_portals\",\n                                  self.EXCLUDEGROUPS\n                                  )\n\n    #############PORTAL 2##############\n    entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x,\n                                          self.ENTRYORIGIN.y - self.SIZE/2,\n                                          self.ENTRYORIGIN.z) * \\\n                avango.gua.make_rot_mat(-90, 1, 0, 0) * \\\n                avango.gua.make_rot_mat(180, 0, 1, 0)\n\n    exit_pos  = avango.gua.make_trans_mat(self.EXITORIGIN.x,\n                                          self.EXITORIGIN.y - self.SIZE/2,\n                                          self.EXITORIGIN.z) * \\\n                avango.gua.make_rot_mat(-90, 1, 0, 0) * \\\n                avango.gua.make_rot_mat(180, 0, 1, 0)\n\n    self.Portals.append(Portal())\n    self.Portals[2].my_constructor(\"portal_\" + str(self.FIRSTPORTALID + 2) + \"_\" + self.USERTYPE + \"_\" + str(self.USERID),\n                                  self.ENTRYSCENE, #simplescene\n                                  self.EXITSCENE,\n                                  entry_pos,\n                                  exit_pos,\n                                  self.SIZE,\n                                  self.SIZE,\n                                  self.USERTYPE + \"_\" + str(self.USERID) + \"_portals\",\n                                  self.EXCLUDEGROUPS\n                                  )\n\n    #############PORTAL 3##############\n    entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x,\n                                          self.ENTRYORIGIN.y + self.SIZE/2,\n                                          self.ENTRYORIGIN.z) * \\\n                avango.gua.make_rot_mat(90, 1, 0, 0) * \\\n                avango.gua.make_rot_mat(180, 0, 1, 0)\n\n    exit_pos  = avango.gua.make_trans_mat(self.EXITORIGIN.x,\n                                          self.EXITORIGIN.y + self.SIZE/2,\n                                          self.EXITORIGIN.z) * \\\n                avango.gua.make_rot_mat(90, 1, 0, 0) * \\\n                avango.gua.make_rot_mat(180, 0, 1, 0)\n\n    self.Portals.append(Portal())\n    self.Portals[3].my_constructor(\"portal_\" + str(self.FIRSTPORTALID + 3) + \"_\"  + self.USERTYPE + \"_\" + str(self.USERID),\n                                  self.ENTRYSCENE, #simplescene\n                                  self.EXITSCENE,\n                                  entry_pos,\n                                  exit_pos,\n                                  self.SIZE,\n                                  self.SIZE,\n                                  self.USERTYPE + \"_\" + str(self.USERID) + \"_portals\",\n                                  self.EXCLUDEGROUPS\n                                  )\n\n    #############PORTAL 4##############\n    entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x - self.SIZE/2,\n                                          self.ENTRYORIGIN.y,\n                                          self.ENTRYORIGIN.z) * \\\n                avango.gua.make_rot_mat(-90, 0, 1, 0)\n\n    exit_pos  = avango.gua.make_trans_mat(self.EXITORIGIN.x - self.SIZE/2,\n                                          self.EXITORIGIN.y,\n                                          self.EXITORIGIN.z) * \\\n                avango.gua.make_rot_mat(-90, 0, 1, 0)\n\n    self.Portals.append(Portal())\n    self.Portals[4].my_constructor(\"portal_\" + str(self.FIRSTPORTALID + 4) + \"_\" + self.USERTYPE + \"_\" + str(self.USERID),\n                                  self.ENTRYSCENE, #simplescene\n                                  self.EXITSCENE,\n                                  entry_pos,\n                                  exit_pos,\n                                  self.SIZE,\n                                  self.SIZE,\n                                  self.USERTYPE + \"_\" + str(self.USERID) + \"_portals\",\n                                  self.EXCLUDEGROUPS\n                                  )\n\n    #############PORTAL 5##############\n    entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x + self.SIZE/2,\n                                          self.ENTRYORIGIN.y,\n                                          self.ENTRYORIGIN.z) * \\\n                avango.gua.make_rot_mat(90, 0, 1, 0)\n\n    exit_pos  = avango.gua.make_trans_mat(self.EXITORIGIN.x + self.SIZE/2,\n                                          self.EXITORIGIN.y,\n                                          self.EXITORIGIN.z) * \\\n                avango.gua.make_rot_mat(90, 0, 1, 0)\n\n    self.Portals.append(Portal())\n    self.Portals[5].my_constructor(\"portal_\" + str(self.FIRSTPORTALID + 5) + \"_\"  + self.USERTYPE + \"_\" + str(self.USERID),\n                                  self.ENTRYSCENE, #simplescene \n                                  self.EXITSCENE,\n                                  entry_pos,\n                                  exit_pos,\n                                  self.SIZE,\n                                  self.SIZE,\n                                  self.USERTYPE + \"_\" + str(self.USERID) + \"_portals\",\n                                  self.EXCLUDEGROUPS\n                                  )\n\n    if self.sf_visibility == False:\n      for portal in self.Portals:\n        if \"do_not_display_group\" not in portal.GEOMETRY.GroupNames.value:\n          portal.GEOMETRY.GroupNames.value.append(\"do_not_display_group\")\n\n",
+			"file": "lib/portal_lib/PortalCube.py",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 9534,
+				"buffer_size": 9531,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "lib/OVRUser.py",
+			"file": "lib/portal_lib/PortalController.py",
 			"settings":
 			{
-				"buffer_size": 9044,
+				"buffer_size": 8852,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "lib/ViewingManager.py",
+			"file": "lib/portal_lib/Portal.py",
 			"settings":
 			{
-				"buffer_size": 29335,
+				"buffer_size": 9273,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "lib/User.py",
+			"file": "daemon.py",
 			"settings":
 			{
-				"buffer_size": 11714,
+				"buffer_size": 10478,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/Device.py",
+			"settings":
+			{
+				"buffer_size": 16376,
 				"line_ending": "Unix"
 			}
 		},
@@ -299,23 +358,25 @@
 	},
 	"file_history":
 	[
-		"/home/buda8714/Documents/oculusRift/github/oculus-portal/configs/desktop_ovr.xml",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/Device.py",
-		"/home/buda8714/Documents/oculusRift/github/oculus-portal/daemon.py",
-		"/home/buda8714/Documents/oculusRift/github/oculus-portal/documentation/html/namespacelib_1_1PowerWallUser.html",
+		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/DesktopUser.py",
+		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/Navigation.py",
+		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/OVRUser.py",
+		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/User.py",
+		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/ViewingManager.py",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/InputMapping.py",
+		"/home/buda8714/Documents/oculusRift/github/oculus-portal/daemon.py",
+		"/home/buda8714/Documents/oculusRift/github/oculus-portal/documentation/html/EulerAngles_8py.html",
+		"/home/buda8714/Documents/oculusRift/github/oculus-portal/configs/desktop_ovr.xml",
+		"/home/buda8714/Documents/oculusRift/github/oculus-portal/documentation/html/namespacelib_1_1PowerWallUser.html",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/documentation/html/installdox",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/documentation/html/namespacemembers_vars.html",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/documentation/html/namespacelib_1_1EulerAngles.html",
-		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/Navigation.py",
 		"/home/buda8714/Documents/oculusRift/github/Oculus-Powerwall-Setup/lib/SceneManager.py",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/interface_lib/Manipulator.py",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/portal_lib/PortalController.py",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/TrackingReader.py",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/PowerWallUser.py",
-		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/DesktopUser.py",
-		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/OVRUser.py",
-		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/User.py",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/SceneManager.py",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/lib/interface_lib/Interface.py",
 		"/home/buda8714/Documents/oculusRift/github/oculus-portal/main.py",
@@ -424,9 +485,7 @@
 		"/home/senu8384/Desktop/guacamole/src/gua/renderer/LightingUberShader.cpp",
 		"/home/senu8384/Desktop/guacamole/src/gua/renderer/GBuffer.cpp",
 		"/home/senu8384/Desktop/guacamole/include/gua/renderer/GBuffer.hpp",
-		"/home/senu8384/Desktop/guacamole/resources/materials/gua_bounding_box.gmd",
-		"/home/senu8384/Desktop/guacamole/include/gua/utils.hpp",
-		"/home/senu8384/Desktop/guacamole/include/gua/utils/Profiler.hpp"
+		"/home/senu8384/Desktop/guacamole/resources/materials/gua_bounding_box.gmd"
 	],
 	"find":
 	{
@@ -445,6 +504,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"zoom",
+			"USERSCREEN",
+			"ISOVR",
+			"ISOVRUSER",
+			"resolved_visibility",
+			"cubeportals",
+			"GROUPNAME",
+			"camera",
+			"+ +",
+			"DESK_user_portals[self.USERID]",
+			" +",
+			"0_\"",
+			"DESK_\"",
+			"\"DESK_\"",
+			"DESK_user.id",
+			"self.group_names",
+			"portal_height",
+			"portal_width",
+			"VIEWINGMANAGER.viewer.SceneGraphs.value[1]",
+			"VIEWINGMANAGER.viewer.Scenegraphs.value[0]",
+			"origin_exit",
+			"box_size",
+			"origin_entry",
+			"0.5",
+			"origin",
+			"ovr",
+			"tracking-oculus-front",
 			"size",
 			"SF_USER",
 			"self.ovr_user_list",
@@ -484,6 +570,23 @@
 		"regex": false,
 		"replace_history":
 		[
+			"visibility_updated",
+			"portalcubes",
+			"+",
+			"Portals",
+			"\" + str(self.FIRSTPORTALID) + \"_\"",
+			"\" + self.USERTYPE + \"_\" +",
+			"self.USERTYPE + \"_\" +",
+			"self.USERID",
+			"self.EXCLUDEGROUPS",
+			"self.SIZE",
+			"self.EXITSCENE",
+			"self.ENTRYSCENE",
+			"self.EXITORIGIN",
+			"self.SIZE",
+			"self.ENTRYORIGIN",
+			"box_size/2",
+			"origin_entry"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -510,194 +613,8 @@
 						"selection":
 						[
 							[
-								8112,
-								8112
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1680.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "lib/SceneManager.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8927,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8091,
-								8091
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1530.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "lib/portal_lib/Portal.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9273,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2638,
-								2638
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 315.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 3,
-					"file": "lib/portal_lib/PortalController.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8852,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6024,
-								6024
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1807.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "lib/DesktopUser.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4951,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4062,
-								4062
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 720.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "lib/Navigation.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19135,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6040,
-								6040
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1560.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "lib/InputMapping.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9534,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
+								3359,
+								3359
 							]
 						],
 						"settings":
@@ -710,71 +627,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "lib/OVRUser.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9044,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1548,
-								1548
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 90.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "lib/ViewingManager.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 29335,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5012,
-								5012
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 1185.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
+					"buffer": 1,
 					"file": "lib/User.py",
 					"semi_transient": false,
 					"settings":
@@ -786,38 +643,8 @@
 						"selection":
 						[
 							[
-								5332,
-								5332
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1305.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "main.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2488,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								864,
-								864
+								67,
+								67
 							]
 						],
 						"settings":
@@ -830,7 +657,253 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "lib/DesktopUser.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4951,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3122,
+								3122
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "lib/SceneManager.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8927,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								988,
+								988
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 585.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "lib/portal_lib/PortalCube.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9531,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1528,
+								1528
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/portal_lib/PortalController.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8852,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1361,
+								1361
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "lib/portal_lib/Portal.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9273,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1128,
+								1128
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 270.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "daemon.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10478,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6866,
+								6866
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3150.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "lib/Device.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 16376,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6693,
+								6693
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 2025.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "main.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2488,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								709,
+								709
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 360.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -881,7 +954,7 @@
 	"project": "OculusKombiSetup.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -892,6 +965,26 @@
 			[
 				"desk",
 				"lib/DesktopUser.py"
+			],
+			[
+				"user",
+				"lib/User.py"
+			],
+			[
+				"dev",
+				"lib/Device.py"
+			],
+			[
+				"deamon",
+				"daemon.py"
+			],
+			[
+				"main",
+				"main.py"
+			],
+			[
+				"device",
+				"lib/Device.py"
 			],
 			[
 				"view",
@@ -908,10 +1001,6 @@
 			[
 				"nav",
 				"lib/Navigation.py"
-			],
-			[
-				"user",
-				"lib/User.py"
 			],
 			[
 				"header",
