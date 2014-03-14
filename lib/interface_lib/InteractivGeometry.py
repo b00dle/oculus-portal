@@ -42,7 +42,7 @@ class InteractivGeometry(avango.script.Script):
     loader = avango.gua.nodes.GeometryLoader()
     self.geometry = loader.create_geometry_from_file(NAME, PATH, MATERIAL,
                   avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    self.geometry.GroupNames.value  = ["interactiv"]
+    self.geometry.GroupNames.value  = ["interactiv", "obsticale"]
     self.geometry.Transform.value = TRANSFORMATION
     self.geometry.add_and_init_field(avango.script.SFObject(), "InteractivGeometry", self)
     PARENT_NODE.Children.value.append(self.geometry)
@@ -62,7 +62,7 @@ class InteractivGeometry(avango.script.Script):
 
   def initalize_menu(self, CHANGE_OPTIONS):
     element_counter = 0
-    self.menu_node.Transform.value = avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
+    self.menu_node.Transform.value = avango.gua.make_trans_mat(0, 0, -0.5) * avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
     for option in CHANGE_OPTIONS:
       # Slider to change size
       if(option == "size"):

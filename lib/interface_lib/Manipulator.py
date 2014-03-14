@@ -30,12 +30,12 @@ class Manipulator(avango.script.Script):
 
     self.LeftPointer = PointerDevice()
 
-    self.LeftPointer.my_constructor("MOUSE USB MOUSE")
+    self.LeftPointer.my_constructor("MOSART Semi. Input Device") #"2.4G Presenter"
     self.LeftPicker = ManipulatorPicker()
     self.LeftRay = avango.gua.nodes.RayNode(Name = "pick_ray_left")
 
     self.RightPointer = PointerDevice()
-    self.RightPointer.my_constructor("2.4G Presenter")
+    self.RightPointer.my_constructor("2.4G Presenter") #MOUSE USB MOUSE
     self.RightPicker = ManipulatorPicker()
     self.RightRay = avango.gua.nodes.RayNode(Name = "pick_ray_right")
 
@@ -51,6 +51,7 @@ class Manipulator(avango.script.Script):
 
     # Handler fuer rechten Pointer Button
     self.right_pointer_pressed = False
+    self.right_pointer_one_press = False
     self.sf_key_right_pointer.connect_from(self.RightPointer.sf_key_pageup)
 
     self.left_pointer_pressed = False
@@ -83,9 +84,14 @@ class Manipulator(avango.script.Script):
       self.left_pointer_pressed = True
 
   @field_has_changed(sf_key_right_pointer)
-  def key_right_handler(self):
+  def key_right_handler_buttons(self):
     #if self.sf_key_right_pointer.value == False:
     self.right_pointer_pressed = True
+
+  @field_has_changed(sf_key_right_pointer)
+  def key_right_handler(self):
+    if self.sf_key_right_pointer.value == False:
+      self.right_pointer_one_press = True
 
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
@@ -117,7 +123,7 @@ class Manipulator(avango.script.Script):
         if self.RightPointerPicked == True:
           self.RightPointerPicked = False
           self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.remove(self.inv_plane)
-          self.RightPicker.Mask.value = "interface_element"
+          self.RightPicker.Mask.value = "interface_element || console"
 
           self.disconnect_interface_fields()
 
@@ -129,6 +135,8 @@ class Manipulator(avango.script.Script):
     # pick button left hand
     if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False and\
        self.left_pointer_pressed == True and (len(self.LeftPicker.Results.value) > 0):
+
+      print self.left_picked_object.Name.value
 
       self.left_picked_object = self.LeftPicker.Results.value[0].Object.value
       self.left_picked_object.InteractivGeometry.value.enable_menu(self.LEFTHAND)
@@ -158,13 +166,13 @@ class Manipulator(avango.script.Script):
     if self.PlaneModeFlag == True and (len(self.RightPicker.Results.value) > 0):
       if self.RightPicker.Results.value[0].Object.value.Name.value == 'inv_plane':
         self.sf_XOutput.value = self.RightPicker.Results.value[0].Position.value.x
-
+    
 
     # pick button right hand
     if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == False and\
-        self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0) and self.right_pointer_pressed:
+        self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0) and self.right_pointer_one_press:
 
-      self.right_pointer_pressed = False
+      self.right_pointer_one_press = False
       self.RightPointerPicked = True
       
       print "Interact with ",self.RightPicker.Results.value[0].Object.value.Name.value
@@ -239,12 +247,12 @@ class Manipulator(avango.script.Script):
 
 
     # unpick button
-    if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == True and self.right_pointer_pressed:
+    if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == True and self.right_pointer_one_press:
       self.RightPointerPicked = False
-      self.right_pointer_pressed = False
+      self.right_pointer_one_press = False
 
       self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.remove(self.inv_plane)
-      self.RightPicker.Mask.value = "interface_element"
+      self.RightPicker.Mask.value = "interface_element || console"
 
       self.disconnect_interface_fields()
 

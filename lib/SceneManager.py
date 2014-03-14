@@ -60,21 +60,33 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(spot)
 
-    testroom = LightRoom()
-    testroom.my_constructor("test_room",graph,avango.gua.make_trans_mat(0,0,2), [1,4], True, "Red")
+    level1 = LightRoom()
+    level1.my_constructor("room1", graph, avango.gua.make_trans_mat(0,0,2), [1], True, "White")
 
     level2 = LightRoom()
-    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(10,0,2), [2,4], False, "Green")
+    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(0,0,-8), [3,4,5], False, "Green")
+
+    level3 = LightRoom()
+    level3.my_constructor("room3",graph,avango.gua.make_trans_mat(-10,0,-8), [1,6], False, "Blue")
+
+    box2 = InteractivGeometry()
+    box2.my_constructor('box2', 'data/objects/cube.obj', 'Stone', avango.gua.make_trans_mat(-10.6,1.5,-17) * avango.gua.make_scale_mat(0.9,0.9,0.9),
+      graph.Root.value, ["size"])
+
+    level4 = LightRoom()
+    level4.my_constructor("room4",graph,avango.gua.make_trans_mat(-10,0,-18), [2,5], False, "Red")
+
+    level5 = LightRoom()
+    level5.my_constructor("room5",graph,avango.gua.make_trans_mat(0,0,-18), [1,2], False, "Purple")
+
+    level6 = LightRoom()
+    level6.my_constructor("room6",graph,avango.gua.make_trans_mat(0,0,-28), [5], False, "White")
+
 
     box = loader.create_geometry_from_file('box', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     box.Transform.value = avango.gua.make_trans_mat(-10,0,0) * avango.gua.make_scale_mat(2,2,2)
-    box.GroupNames.value = ["in_the_way"]
+    box.GroupNames.value = ["obsticale", "interactiv"]
     graph.Root.value.Children.value.append(box)
-
-    box2 = loader.create_geometry_from_file('box2', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    box2.Transform.value = avango.gua.make_trans_mat(0,0,-9) * avango.gua.make_scale_mat(2,2,2)
-    box2.GroupNames.value = ["in_the_way"]
-    graph.Root.value.Children.value.append(box2)
 
 
     # screen

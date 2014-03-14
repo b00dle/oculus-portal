@@ -272,7 +272,7 @@ class Navigation(avango.script.Script):
         for i in range(len(_close_navs) - 1):
           _close_navs[i].set_coupling_animation_settings(_nav_animation_target)
 
-      #print "Coupling of platform " + str(self.platform.platform_id) + " successfully initiated."
+      print "Coupling of platform " + str(self.platform.platform_id) + " successfully initiated."
 
     else:
       #print "No platform in range for coupling."
@@ -386,12 +386,12 @@ class Navigation(avango.script.Script):
            self.trigger_dofchange()
 
       # middle mouse button (Spheron) or G-key (KeyboardMouse) triggers coupling
-      #if self.device.mf_buttons.value[2] == True:
-      #  if self.frames_since_last_coupling > 100:        # at least 100 frames must lie between two coupling actions
-      #    if len(self.coupled_navigations) == 0:
-      #      self.trigger_coupling()
-      #    else:
-      #      self.clear_couplings()               
+      if self.device.mf_buttons.value[2] == True:
+        if self.frames_since_last_coupling > 100:        # at least 100 frames must lie between two coupling actions
+          if len(self.coupled_navigations) == 0:
+            self.trigger_coupling()
+          else:
+            self.clear_couplings()               
     
 
     elif self.input_sensor_type == "XBoxController":
