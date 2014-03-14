@@ -95,7 +95,7 @@ class Button(avango.script.Script):
     self.LOADER = avango.gua.nodes.GeometryLoader()
 
     self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/cube.obj',
-                                                            'AvatarRed', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+                                                            'Dark_red', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.button_geometry.Transform.value = self.button_scale
     self.button_geometry.GroupNames.value = ["console"]
     self.button_geometry.add_and_init_field(avango.script.SFObject(), "Button", self)
@@ -111,12 +111,9 @@ class Button(avango.script.Script):
       self.sf_bool_button.value = False
       self.just_rotated = False
     elif (self.sf_bool_button.value == True):
-      #self.button_geometry.Transform.value = avango.gua.make_scale_mat(0.1, 0.01, 0.07)
-      self.button_geometry.Material.value = "Bright"
       self.sf_bool_button.value = False
     elif (self.sf_bool_button.value == False):
       self.button_geometry.Transform.value = self.button_scale
-      self.button_geometry.Material.value = "AvatarRed"
 
 
 
@@ -143,7 +140,7 @@ class Slider(avango.script.Script):
     self.object = avango.gua.nodes.GeometryNode()
 
     self.inv_plane_scale_mat = avango.gua.make_identity_mat()
-
+    self.sf_float_output.value = 1
     # RGB
     self.value_r = 0
     self.value_g = 0
@@ -200,13 +197,13 @@ class Slider(avango.script.Script):
     old_scale  = self.object.Transform.value.get_scale()
 
     scale_factor = 1.0 #2
-
+    '''
     if self.NAME == "size":
       value_x = value_x + 1
       self.object.Transform.value = avango.gua.make_trans_mat(old_trans) *\
                     avango.gua.make_scale_mat(value_x * scale_factor, value_x * scale_factor, value_x * scale_factor) *\
                     avango.gua.make_rot_mat(old_rot)
-
+    '''
     self.sf_float_output.value = value_x
 
 

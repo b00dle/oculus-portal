@@ -70,7 +70,7 @@ class SceneManager:
     level3.my_constructor("room3",graph,avango.gua.make_trans_mat(-10,0,-8), [1,6], False, "Blue")
 
     box2 = InteractivGeometry()
-    box2.my_constructor('box2', 'data/objects/cube.obj', 'Stone', avango.gua.make_trans_mat(-10.6,1.5,-17) * avango.gua.make_scale_mat(0.9,0.9,0.9),
+    box2.my_constructor('box2', 'data/objects/cube.obj', 'Stone', avango.gua.make_trans_mat(-10.6,1.5,-13) * avango.gua.make_scale_mat(0.8,0.8,0.8),
       graph.Root.value, ["size"])
 
     level4 = LightRoom()
@@ -86,7 +86,7 @@ class SceneManager:
     box = loader.create_geometry_from_file('box', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     box.Transform.value = avango.gua.make_trans_mat(-10,0,0) * avango.gua.make_scale_mat(2,2,2)
     box.GroupNames.value = ["obsticale", "interactiv"]
-    graph.Root.value.Children.value.append(box)
+    #graph.Root.value.Children.value.append(box)
 
 
     # screen

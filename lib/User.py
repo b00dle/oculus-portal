@@ -217,7 +217,7 @@ class User:
 
     # right hand
     self.right_hand_avatar = _loader.create_geometry_from_file( self.node_pretext + '_right_hand_avatar_' + str(PLATFORM_ID),
-                                                          'data/objects/hand.obj',
+                                                          'data/objects/Joseph/JosephHandRight.obj',
                                                           _material,
                                                           avango.gua.LoaderFlags.LOAD_MATERIALS)
 
@@ -229,11 +229,13 @@ class User:
     # OVR User and PowerwallUser get 'Pointer-Hands'
     if self.node_pretext == "ovr" or self.node_pretext == "powerwall": # ! powerwall pretext richtig???
       # Left Hand
-      self.left_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.15) * avango.gua.make_scale_mat(0.6, 0.6, 0.6) * avango.gua.make_rot_mat(90, 1, 0, 0)
+      self.left_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.0) * avango.gua.make_scale_mat(0.3, 0.3, 0.3) *\
+                                              avango.gua.make_rot_mat(90, 1, 0, 0) * avango.gua.make_rot_mat(180, 0, 1, 0)
       self.left_hand_transform.Transform.connect_from(LEFTHAND_MAT)
 
       # Right Hand
-      self.right_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.15) * avango.gua.make_scale_mat(2.0, 2.0, 2.0)
+      self.right_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.0) * avango.gua.make_scale_mat(0.3, 0.3, 0.3) *\
+                                              avango.gua.make_rot_mat(90, 1, 0, 0) #* avango.gua.make_rot_mat(-180, 0, 1, 0)
       self.right_hand_transform.Transform.connect_from(RIGHTHAND_MAT)
 
 

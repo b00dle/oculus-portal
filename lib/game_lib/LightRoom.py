@@ -60,6 +60,14 @@ class LightRoom(avango.script.Script):
     create_line_visualization2(loader, room_transform, left_bottom_cornor, top_left_bottom_cornor, self.COLOR, 0.01)
     create_line_visualization2(loader, room_transform, left_upper_cornor, top_left_upper_cornor, self.COLOR, 0.01)
 
+    create_line_visualization2(loader, room_transform, avango.gua.Vec3(0.0, 0.0, -0.20), avango.gua.Vec3(0.0, 0.8, -0.20), self.COLOR, 0.03)
+    self.console_box = loader.create_geometry_from_file('console_box', 'data/objects/cube.obj', "Black" , avango.gua.LoaderFlags.DEFAULTS)
+    self.console_box.Transform.value = avango.gua.make_trans_mat(0.0, 0.8, -0.20) *\
+                                       avango.gua.make_rot_mat(75, 1, 0, 0) *\
+                                       avango.gua.make_scale_mat(0.25, 0.008, 0.25) 
+                                       
+    room_transform.Children.value.append(self.console_box)
+
 
 
 

@@ -85,13 +85,11 @@ class Manipulator(avango.script.Script):
 
   @field_has_changed(sf_key_right_pointer)
   def key_right_handler_buttons(self):
-    #if self.sf_key_right_pointer.value == False:
     self.right_pointer_pressed = True
-
-  @field_has_changed(sf_key_right_pointer)
-  def key_right_handler(self):
     if self.sf_key_right_pointer.value == False:
       self.right_pointer_one_press = True
+
+
 
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
@@ -312,8 +310,8 @@ class Manipulator(avango.script.Script):
 
     ray_left_avatar = loader.create_geometry_from_file('ray_left' , 'data/objects/cube.obj',
                                                     'White', avango.gua.LoaderFlags.DEFAULTS)
-    ray_left_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -20.0) *\
-                                       avango.gua.make_scale_mat(0.008, 0.008, 20)
+    ray_left_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -2.0) *\
+                                       avango.gua.make_scale_mat(0.008, 0.008, 2)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
    
 
@@ -330,11 +328,11 @@ class Manipulator(avango.script.Script):
     # create ray
 
     loader = avango.gua.nodes.GeometryLoader()
-    self.RightRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
+    self.RightRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 5.0)
     ray_right_avatar = loader.create_geometry_from_file('ray_right' , 'data/objects/cube.obj',
                                                      'Bright', avango.gua.LoaderFlags.DEFAULTS)
-    ray_right_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -5.0) *\
-                                       avango.gua.make_scale_mat(0.003, 0.003, 5)
+    ray_right_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.5) *\
+                                       avango.gua.make_scale_mat(0.003, 0.003, 0.5)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
     pick_transform.Children.value = [self.RightRay, ray_right_avatar]
 
