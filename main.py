@@ -23,15 +23,19 @@ import sys
 def start():
 
   ####### CREATE MATERIAL FILE FOR EACH PORTAL ########
-  portalNames = ["portal_0_DESK_0", "portal_0_OVR_0", "portal_1_DESK_0", "portal_1_OVR_0"]
+  portalNames = ["portal_0_DESK_0",
+                 "portal_1_DESK_0",
+                 "portal_2_DESK_0",
+                 "portal_3_DESK_0",
+                 "portal_4_DESK_0",
+                 "portal_5_DESK_0"
+                 ]
   for name in portalNames:
     newGMD = open('data/materials/Portal' + name + '.gmd', 'w+')
     with open('data/materials/Portal.gmd', 'r') as content_file:
       newGMD.write(content_file.read() + '\n')
     newGMD.close()
   #####################################################
-
-  loader = avango.gua.nodes.GeometryLoader()
 
   # initialize materials
   avango.gua.load_shading_models_from("data/materials")
@@ -42,7 +46,7 @@ def start():
 
   # initialize viewing setup
   #viewing_manager = ViewingManager(scene_manager.graphs, sys.argv[1])
-  viewing_manager = ViewingManager(scene_manager.graphs, "configs/desktop_ovr.xml")
+  viewing_manager = ViewingManager(scene_manager.graphs, "configs/spacemouse_one_desktop.xml")
 
   # initialize portals
   portal_manager = PortalManager(viewing_manager)

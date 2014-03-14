@@ -29,6 +29,8 @@ class SceneManager:
   ## Custom constructor
   def __init__(self):
     self.graphs = []
+    #self.create_simplescene()
+    #self.create_harbourscene()
     self.scene_names = []
     self.create_gamescene()
     #self.create_simplescene()
@@ -117,7 +119,6 @@ class SceneManager:
     self.graphs.append(graph)
 
   def create_simplescene(self):
-    self.scene_names.append("simplescene")
     graph = avango.gua.nodes.SceneGraph(Name = "simplescene")
     loader = avango.gua.nodes.GeometryLoader()
     
@@ -139,12 +140,11 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(spot)
 
-    # create floorans_mat(-2.0,5.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph.Root.value, ["size","green","red","blue"])
-    #plane = loader.create_geometry_from_file('floor', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS)
-    #plane.Transform.value = avango.gua.make_scale_mat(20,1,20)
-    #testroom = LightRoom()
-    #testroom.my_constructor("test_roon",graph,avango.gua.make_trans_mat(0,0,0))
-    #graph.Root.value.Children.value.append(plane)
+    # create floor
+    plane = loader.create_geometry_from_file('floor', 'data/objects/plane.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    plane.Transform.value = avango.gua.make_scale_mat(50,1,50)
+
+    graph.Root.value.Children.value.append(plane)
 
     # Create Monkey
     monkey_interface = InteractivGeometry()
@@ -184,6 +184,8 @@ class SceneManager:
 
     self.graphs.append(graph)
 
+    interactiv_object = InteractivGeometry()
+    interactiv_object.my_constructor('monkey', 'data/objects/cube.obj', 'Stones', graph.Root.value, ["size", "red", "blue", "green"])
 
   def create_level_2(self):
     self.scene_names.append("level_2")
@@ -214,7 +216,6 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(plane)
 
-
     # screen
     screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)
 
@@ -244,16 +245,15 @@ class SceneManager:
 
 
   def create_harbourscene(self):
-    self.scene_names.append("harbourscene")
     graph = avango.gua.nodes.SceneGraph(Name = "harbourscene")
     loader = avango.gua.nodes.GeometryLoader()
    
-    weimar = loader.create_geometry_from_file("town",
+    town = loader.create_geometry_from_file("town",
                                               "data/objects/medieval_harbour/town.obj",
                                               "White",
-                                              avango.gua.LoaderFlags.LOAD_MATERIALS | avango.gua.LoaderFlags.DEFAULTS)
+                                              avango.gua.LoaderFlags.LOAD_MATERIALS | avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
 
-    weimar.Transform.value = avango.gua.make_scale_mat(7.5, 7.5, 7.5)
+    town.Transform.value = avango.gua.make_scale_mat(7.5, 7.5, 7.5)
 
     spot = avango.gua.nodes.SpotLightNode(Name = "sun",
                                           Color = avango.gua.Color(1.0, 1.0, 1.0),
@@ -290,19 +290,18 @@ class SceneManager:
 
     screen.Children.value.append(head)
 
-    graph.Root.value.Children.value = [weimar, screen, spot]
+    graph.Root.value.Children.value = [town, screen, spot]
 
     self.graphs.append(graph)
     
   def create_weimarscene(self):
-    self.scene_names.append("weimarscene")
     graph = avango.gua.nodes.SceneGraph(Name = "weimarscene")
     loader = avango.gua.nodes.GeometryLoader()
     
     weimar = loader.create_geometry_from_file("weimar",
                                             "/opt/3d_models/architecture/weimar_geometry/weimar_stadtmodell_latest_version/weimar_stadtmodell_final.obj",
                                             "White",
-                                             avango.gua.LoaderFlags.DEFAULTS)
+                                             avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
 
     weimar.Transform.value = avango.gua.make_scale_mat(0.1, 0.1, 0.1)
 

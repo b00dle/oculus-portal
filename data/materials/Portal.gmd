@@ -3,6 +3,8 @@
 	"shading_model" : "Portal",
 	"uniforms" : 
 	{
-		"portal_texture" : "data/textures/sunrise.jpg"
+		"liquid_texture" : "data/textures/white_wall1.jpg",
+		"portal_texture" : "data/textures/sunrise.jpg",
+		"time" : "0"
 	}
 }

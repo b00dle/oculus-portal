@@ -24,7 +24,6 @@ class PortalPicker(avango.script.Script):
 
     self.SceneGraph.value = avango.gua.nodes.SceneGraph()
     self.Ray.value  = avango.gua.nodes.RayNode()
-    self.Ray.value.Transform.value = avango.gua.make_trans_mat(0.0,1.0,1.0)
     self.Options.value = avango.gua.PickingOptions.PICK_ONLY_FIRST_OBJECT \
                          | avango.gua.PickingOptions.PICK_ONLY_FIRST_FACE
     self.Mask.value = ""
@@ -39,24 +38,22 @@ class UpdatePortalTransform(avango.script.Script):
 
   PortalTransformIn     = avango.gua.SFMatrix4()
   ViewTransformIn       = avango.gua.SFMatrix4()
-  ScreenTransformIn     = avango.gua.SFMatrix4()
   ViewTransformOut      = avango.gua.SFMatrix4()
 
   def __init__(self):
     self.super(UpdatePortalTransform).__init__()
     self.NAME = ""
-
+    
   def my_constructor(self, NAME):
     self.NAME = NAME
 
   def evaluate(self):
-    self.ViewTransformOut.value = avango.gua.make_inverse_mat(self.PortalTransformIn.value) *\
-                                    self.ScreenTransformIn.value * avango.gua.make_trans_mat(0.0,0.0,self.ViewTransformIn.value.get_translate().z)
-    
+    self.ViewTransformOut.value = avango.gua.make_inverse_mat(self.PortalTransformIn.value) * \
+                                    self.ViewTransformIn.value
+
 class PortalController(avango.script.Script):
   PickedPortals     = avango.gua.MFPickResult()
   sfUserHead        = avango.gua.SFMatrix4()
-  sfUserScreen      = avango.gua.SFMatrix4()
   
   def __init__(self):
     self.super(PortalController).__init__()
@@ -65,28 +62,31 @@ class PortalController(avango.script.Script):
     self.PORTALPICKER   = PortalPicker()
     self.PIPELINE       = avango.gua.nodes.Pipeline()
     self.PORTALS        = []
+    self.PORTALCUBES    = []
     self.ACTIVEPORTALS  = []
     self.NAVIGATION     = Navigation()
     self.PORTALUPDATERS = []
     self.PLATFORM       = -1
-    self.SF_USERHEAD    = avango.gua.SFMatrix4()
-    self.SF_USERSCREEN  = avango.gua.SFMatrix4()
+    self.USERHEAD       = avango.gua.nodes.TransformNode()
     
-  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, NAVIGATION, SF_USERHEAD, SF_USERSCREEN):
+  def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, PORTALCUBES, NAVIGATION, USERHEAD):
     self.NAME             = NAME
     self.ACTIVESCENE      = ACTIVESCENE
     self.VIEWINGPIPELINES = VIEWINGPIPELINES
     self.PIPELINE         = PIPELINE
     self.PORTALS          = PORTALS
-    
-    #self.update_prepipes()
+    self.PORTALCUBES      = PORTALCUBES
 
+    for p_cube in self.PORTALCUBES:
+      for portal in p_cube.Portals:
+        self.PORTALS.append(portal)
+    
     self.ACTIVEPORTALS    = self.create_active_portals()      
     self.NAVIGATION       = NAVIGATION
 
     # references
-    self.SF_USERSCREEN    = SF_USERSCREEN
-    self.SF_USERHEAD      = SF_USERHEAD
+    self.USERHEAD         = USERHEAD
+        
     self.create_portal_updaters()     
 
     self.initialize_portal_group_names()
@@ -115,8 +115,28 @@ class PortalController(avango.script.Script):
         break
 
   def evaluate(self):
-    self.sfUserScreen.value = self.SF_USERSCREEN.value
-    self.sfUserHead.value = self.SF_USERHEAD.value
+    self.sfUserHead.value = self.USERHEAD.WorldTransform.value
+
+    for p_cube in self.PORTALCUBES:
+      if p_cube.visibility_updated == True:
+        
+        if p_cube.sf_visibility.value == False:
+          for c_portal in p_cube.Portals:
+            portal = next((p for p in self.PORTALS if c_portal.NAME == p.NAME), None)
+            if "do_not_display_group" not in portal.GEOMETRY.GroupNames.value:
+              portal.GEOMETRY.GroupNames.value.append("do_not_display_group")
+            if portal in self.ACTIVEPORTALS:
+              self.ACTIVEPORTALS.remove(portal)
+
+        else: # p_cube.sf_visibility.value == True
+          for c_portal in p_cube.Portals:
+            portal = next((p for p in self.PORTALS if c_portal.NAME == p.NAME), None)
+            if "do_not_display_group" in portal.GEOMETRY.GroupNames.value:
+              portal.GEOMETRY.GroupNames.value.remove("do_not_display_group")
+            if portal not in self.ACTIVEPORTALS:
+              self.ACTIVEPORTALS.append(portal)
+
+        p_cube.visibility_updated = False
 
     #self.adjust_nearplane()
     
@@ -142,12 +162,14 @@ class PortalController(avango.script.Script):
     # Starting Position
     new_pos = avango.gua.make_trans_mat(PORTAL.EXITPOS.get_translate().x + DISTANCE_X, 
                                         PORTAL.EXITPOS.get_translate().y + DISTANCE_Y,
-                                        PORTAL.EXITPOS.get_translate().z)
-
+                                        PORTAL.EXITPOS.get_translate().z)   
     # Starting Rotation
     new_rot = avango.gua.make_rot_mat(_rotate_old_scene)
 
-    self.NAVIGATION.set_to_pos(new_rot * new_pos)
+    self.NAVIGATION.set_to_pos(new_pos * new_rot)
+
+    head_trans = self.USERHEAD.Transform.value.get_translate()
+    self.USERHEAD.Transform.value = avango.gua.make_trans_mat(head_trans.x, head_trans.y, head_trans.z)
 
     self.ACTIVEPORTALS  = self.create_active_portals()
 
@@ -162,14 +184,15 @@ class PortalController(avango.script.Script):
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].my_constructor(p.NAME + "_updater")
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].PortalTransformIn.connect_from(p.sf_portal_pos)
       self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ViewTransformIn.connect_from(self.sfUserHead)
-      self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ScreenTransformIn.connect_from(self.sfUserScreen)
       p.EXITSCENE[p.HEAD].Transform.connect_from(self.PORTALUPDATERS[len(self.PORTALUPDATERS) - 1].ViewTransformOut)
     
   def create_active_portals(self):
     activeportals = []
+    
     for p in self.PORTALS:
-      if p.ENTRYSCENE.Name.value == self.ACTIVESCENE.Name.value:
+      if p.ENTRYSCENE.Name.value == self.ACTIVESCENE.Name.value and "do_not_display_group" not in p.GEOMETRY.GroupNames.value:
         activeportals.append(p)
+        
     return activeportals
       
   def update_prepipes(self):
@@ -193,7 +216,7 @@ class PortalController(avango.script.Script):
   def update_portal_picker(self):
     self.PORTALPICKER.Mask.value = self.PORTALS[0].GROUPNAME
     self.PORTALPICKER.SceneGraph.value = self.ACTIVESCENE
-    self.ACTIVESCENE["/platform_" + str(self.PLATFORM)].Children.value.append(self.PORTALPICKER.Ray.value)
+    self.USERHEAD.Children.value.append(self.PORTALPICKER.Ray.value)
     self.PickedPortals.connect_from(self.PORTALPICKER.Results)
 
   def delete_portal_group_name(self, GROUPNAME):

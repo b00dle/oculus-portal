@@ -154,7 +154,6 @@ class Manipulator(avango.script.Script):
       
       self.LeftPointerPicked = False
       self.left_pointer_pressed = False
-
       self.left_picked_object.InteractivGeometry.value.disable_menu(self.LEFTHAND)
       
       print "closed display"
