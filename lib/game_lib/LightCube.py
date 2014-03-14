@@ -181,7 +181,6 @@ class LightCube(avango.script.Script):
     # check if ray hits object
     if self.HAS_LIGHT and self.pick_transforms_appended:
       for l in self.LIGHTEXITS:
-        
         if (l == 1):
           if len(self.mf_pick_results_plus_x.value) > 0:
             self.picked_plus_x = self.mf_pick_results_plus_x.value[0].Object.value
@@ -387,26 +386,19 @@ class LightRayPicker(avango.script.Script):
     self.Results.value = results.value
 
 
-'''
-  @field_has_changed(sf_color_red)
-  def change_color_r(self):
-    _new_color = avango.gua.Vec3(self.sf_color_red.value, self.sf_color_green.value, self.sf_color_blue.value)
-    avango.gua.set_material_uniform(self.material, "diffuse_color", _new_color)
+  # approch for lightemitter
+  '''
+    if (self.IS_EMITTER == True):
+          self.HAS_LIGHT == True
+    else:
+      for l in self.LIGHTEXITS: 
+        if (l == 1):
+          self.picked_plus_x = self.mf_pick_results_plus_x.value[0].Object.value
+            if self.picked_plus_x.has_field("LightCube"):
+              if self.picked_plus_x.LightCube.value.IS_EMITTER == True or\
+                 self.picked_plus_x.LightCube.value.HAS_LIGHT == True:
+                self.HAS_LIGHT == True
+    if HAS_LIGHT == True:
+      append STRAHL
 
-  @field_has_changed(sf_color_green)
-  def change_color_g(self):
-    _new_color = avango.gua.Vec3(self.sf_color_red.value, self.sf_color_green.value, self.sf_color_blue.value)
-    avango.gua.set_material_uniform(self.material, "diffuse_color", _new_color)
-
-  @field_has_changed(sf_color_blue)
-  def change_color_b(self):
-    _new_color = avango.gua.Vec3(self.sf_color_red.value, self.sf_color_green.value, self.sf_color_blue.value)
-    avango.gua.set_material_uniform(self.material, "diffuse_color", _new_color)
-
-  @field_has_changed(sf_switch_enable)
-  def change_switch_enable(self):
-    if self.sf_switch_enable.value:
-      self.geometry.Material.value = "AvatarYellow"
-    elif self.sf_switch_enable.value == False:
-      self.geometry.Material.value = "Stone"
-'''
+  '''
