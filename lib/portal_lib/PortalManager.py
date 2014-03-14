@@ -20,7 +20,7 @@ class PortalManager():
     self.group_names            = []
 
     self.create_group_names(VIEWINGMANAGER)
-    #self.create_portals(VIEWINGMANAGER)
+    self.create_portals(VIEWINGMANAGER)
 
   def create_group_names(self, VIEWINGMANAGER):
     for PW_user in VIEWINGMANAGER.powerwall_user_list:
@@ -37,18 +37,18 @@ class PortalManager():
       portal_width = 1.0
       portal_height = 1.0
 
-      origin_entry = avango.gua.Vec3(0.0, 2.0, 0.0)
-      origin_exit = avango.gua.Vec3(2.0, 6.7, 40.0)
-      box_size = 1.0
+      origin_entry = avango.gua.Vec3(0.0, 1.5, 2.0)
+      origin_exit = avango.gua.Vec3(0.0, 1.5, -8.0)
+      box_size = 0.5
 
       ######PORTALBOX#######
       self.PW_user_portalcubes[PW_user.id].append(PortalCube())
       self.PW_user_portalcubes[PW_user.id][0].my_constructor("portalCube",
                                                         VIEWINGMANAGER.viewer.SceneGraphs.value[0],
-                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[1],
+                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[0],
                                                         origin_entry,
                                                         origin_exit,
-                                                        1.0,
+                                                        box_size,
                                                         self.group_names,
                                                         0,
                                                         "PW",
@@ -72,18 +72,18 @@ class PortalManager():
       portal_width = 1.0
       portal_height = 1.0
 
-      origin_entry = avango.gua.Vec3(0.0, 2.0, 0.0)
-      origin_exit = avango.gua.Vec3(2.0, 6.7, 40.0)
-      box_size = 1.0
+      origin_entry = avango.gua.Vec3(0.0, 1.5, 2.0)
+      origin_exit = avango.gua.Vec3(0.0, 1.5, -8.0)
+      box_size = 0.5
 
       ######PORTALBOX#######
       self.OVR_user_portalcubes[OVR_user.id].append(PortalCube())
       self.OVR_user_portalcubes[OVR_user.id][0].my_constructor("portalCube",
                                                         VIEWINGMANAGER.viewer.SceneGraphs.value[0],
-                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[1],
+                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[0],
                                                         origin_entry,
                                                         origin_exit,
-                                                        1.0,
+                                                        box_size,
                                                         self.group_names,
                                                         0,
                                                         "OVR",
@@ -107,18 +107,18 @@ class PortalManager():
       portal_width = 1.0
       portal_height = 1.0
 
-      origin_entry = avango.gua.Vec3(0.0, 2.0, 0.0)
-      origin_exit = avango.gua.Vec3(2.0, 6.7, 40.0)
-      box_size = 1.0
+      origin_entry = avango.gua.Vec3(0.0, 1.5, 2.0)
+      origin_exit = avango.gua.Vec3(0.0, 1.5, -8.0)
+      box_size = 0.5
 
       ######PORTALBOX#######
       self.DESK_user_portalcubes[DESK_user.id].append(PortalCube())
       self.DESK_user_portalcubes[DESK_user.id][0].my_constructor("portalCube",
                                                         VIEWINGMANAGER.viewer.SceneGraphs.value[0],
-                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[1],
+                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[0],
                                                         origin_entry,
                                                         origin_exit,
-                                                        1.0,
+                                                        box_size,
                                                         self.group_names,
                                                         0,
                                                         "DESK",

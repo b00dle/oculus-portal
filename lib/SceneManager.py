@@ -146,17 +146,6 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(plane)
 
-    # Create Monkey
-    monkey_interface = InteractivGeometry()
-    monkey_interface.my_constructor('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.make_trans_mat(2.0,3.0,2.0), graph.Root.value, ["enable"])
-
-    box_interface = InteractivGeometry()
-    box_interface.my_constructor('box', 'data/objects/cube.obj', 'slider_mat_1', avango.gua.make_trans_mat(-3.0,3.0,2.0), graph.Root.value, ["green","red","blue"])
-
-    sphere_interface = InteractivGeometry()
-    sphere_interface.my_constructor('sphere', 'data/objects/sphere.obj', 'slider_mat_2', avango.gua.make_trans_mat(-2.0,5.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph.Root.value, ["size","green","red","blue"])
-
-
     # screen
     screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)
 
@@ -183,10 +172,6 @@ class SceneManager:
     graph.Root.value.Children.value.append(screen)
 
     self.graphs.append(graph)
-
-    interactiv_object = InteractivGeometry()
-    interactiv_object.my_constructor('monkey', 'data/objects/cube.obj', 'Stones', graph.Root.value, ["size", "red", "blue", "green"])
-
   def create_level_2(self):
     self.scene_names.append("level_2")
     graph = avango.gua.nodes.SceneGraph(Name = "level_2")

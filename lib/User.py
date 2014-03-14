@@ -244,23 +244,23 @@ class User:
     # create desktop user table and default hands
     if self.node_pretext == "desktop":
       # Left Hand
-      self.left_hand_avatar.Transform.value = avango.gua.make_trans_mat(-0.2, 0.8, 1.3) * avango.gua.make_scale_mat(2.0, 2.0, 2.0)
+      self.left_hand_avatar.Transform.value = avango.gua.make_trans_mat(-0.2, 0.8, 1.3) * avango.gua.make_scale_mat(0.3, 0.3, 0.3)
 
       # Right Hand
-      self.right_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.2, 0.8, 1.3) * avango.gua.make_scale_mat(2.0, 2.0, 2.0)
+      self.right_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.2, 0.8, 1.3) * avango.gua.make_scale_mat(0.3, 0.3, 0.3)
 
       ## @var table_transform
       # Scenegraph transform node for the dekstop user's table.
-      self.table_transform = avango.gua.nodes.TransformNode(Name = 'table_transform')
-      self.table_transform.Transform.value = avango.gua.make_trans_mat(0, -0.5, -3)
-      self.body_avatar.Children.value.append(self.table_transform)
+      #self.table_transform = avango.gua.nodes.TransformNode(Name = 'table_transform')
+      #self.table_transform.Transform.value = avango.gua.make_trans_mat(0, -0.5, -3)
+      #self.body_avatar.Children.value.append(self.table_transform)
 
       ## @var table_avatar
       # Scenegraph node representing the geometry and transformation of the desktop user's table.
-      self.table_avatar = _loader.create_geometry_from_file( self.node_pretext + '_desktop_avatar_' + str(PLATFORM_ID),
-                                                             'data/objects/cube.obj',
-                                                             _material,
-                                                             avango.gua.LoaderFlags.LOAD_MATERIALS)
-      self.table_avatar.Transform.value =  avango.gua.make_scale_mat(3.0, 0.5, 1.0)
-      self.table_transform.Children.value.append(self.table_avatar)
-      self.table_avatar.GroupNames.value = [self.node_pretext + '_avatar_group_' + str(PLATFORM_ID)]
+      #self.table_avatar = _loader.create_geometry_from_file( self.node_pretext + '_desktop_avatar_' + str(PLATFORM_ID),
+      #                                                       'data/objects/cube.obj',
+      #                                                       _material,
+      #                                                       avango.gua.LoaderFlags.LOAD_MATERIALS)
+      #self.table_avatar.Transform.value =  avango.gua.make_scale_mat(3.0, 0.5, 1.0)
+      #self.table_transform.Children.value.append(self.table_avatar)
+      #self.table_avatar.GroupNames.value = [self.node_pretext + '_avatar_group_' + str(PLATFORM_ID)]

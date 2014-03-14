@@ -84,7 +84,7 @@ class Portal(avango.script.Script):
                                         RightScreen = "/" + self.NAME + "Screen",
                                         SceneGraph  = self.EXITSCENE.Name.value)
 
-        camera.RenderMask.value = "!portal_display_exclude && !portal"        
+        camera.RenderMask.value = "!portal_display_exclude && !portal && !do_not_display_group"        
 
         for group in self.EXCLUDEGROUPS:
             if group != self.GROUPNAME:
@@ -96,7 +96,7 @@ class Portal(avango.script.Script):
 
         pre_pipe.LeftResolution.value  = avango.gua.Vec2ui(width/2, height/2)
         pre_pipe.EnableStereo.value = False
-        pre_pipe.BackgroundTexture.value = "data/textures/sky.jpg"
+        pre_pipe.BackgroundTexture.value = "data/textures/skybox.jpg"
         pre_pipe.EnableBackfaceCulling.value = True
 
         return pre_pipe
@@ -140,9 +140,9 @@ class Portal(avango.script.Script):
         self.water_updater.TimeIn.connect_from(self.timer.Time)
 
         # make interactive
-        geometry.GroupNames.value.append("interactiv")
-        interactiv_geometry = InteractivGeometry()
-        interactiv_geometry.portal_constructor("TestPortal", geometry, ["x_pos", "y_pos", "z_pos"], self)
+        #geometry.GroupNames.value.append("interactiv")
+        #interactiv_geometry = InteractivGeometry()
+        #interactiv_geometry.portal_constructor("TestPortal", geometry, ["x_pos", "y_pos", "z_pos"], self)
 
         self.ENTRYSCENE.Root.value.Children.value.append(geometry)
         

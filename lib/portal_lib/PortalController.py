@@ -91,7 +91,7 @@ class PortalController(avango.script.Script):
 
     self.initialize_portal_group_names()
     self.update_prepipes()
-    self.update_portal_picker()
+    self.initialize_portal_picker()
 
     self.did_change_scene = False
 
@@ -104,7 +104,7 @@ class PortalController(avango.script.Script):
     _pos_p1 = _platform.Transform.value.get_translate()
 
     for portal in self.PickedPortals.value:
-      if portal.Distance.value < 0.5:
+      if portal.Distance.value < 0.2:
         for p in self.ACTIVEPORTALS:
           if p.GEOMETRY.Name.value == portal.Object.value.Name.value:
             _pos_p2 = p.GEOMETRY.Transform.value.get_translate()
@@ -119,7 +119,6 @@ class PortalController(avango.script.Script):
 
     for p_cube in self.PORTALCUBES:
       if p_cube.visibility_updated == True:
-        
         if p_cube.sf_visibility.value == False:
           for c_portal in p_cube.Portals:
             portal = next((p for p in self.PORTALS if c_portal.NAME == p.NAME), None)
@@ -174,8 +173,9 @@ class PortalController(avango.script.Script):
     self.ACTIVEPORTALS  = self.create_active_portals()
 
     self.create_portal_updaters()
-    self.update_portal_picker()
 
+    self.PORTALPICKER.SceneGraph.value = self.ACTIVESCENE
+    
   def create_portal_updaters(self):
     self.PORTALUPDATERS = []
     
@@ -213,7 +213,7 @@ class PortalController(avango.script.Script):
       _distance = abs (_pos_p1 - _pos_p2)
       p.PRE_PIPE.NearClip.value = _distance
   
-  def update_portal_picker(self):
+  def initialize_portal_picker(self):
     self.PORTALPICKER.Mask.value = self.PORTALS[0].GROUPNAME
     self.PORTALPICKER.SceneGraph.value = self.ACTIVESCENE
     self.USERHEAD.Children.value.append(self.PORTALPICKER.Ray.value)
