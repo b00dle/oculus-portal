@@ -33,7 +33,7 @@
 
     <inputsensor>device-xbox-1</inputsensor>
 
-    <trackingstation>tracking-oculus-front</trackingstation>
+    <trackingstation>tracking-oculus-back</trackingstation>
 
     <platformpos>
       <x>0.0</x>

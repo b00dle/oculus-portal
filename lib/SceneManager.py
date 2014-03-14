@@ -44,7 +44,7 @@ class SceneManager:
     self.graphs = []
     self.create_simplescene()
     self.create_harbourscene()
-    self.create_weimarscene()
+    #self.create_weimarscene()
 
   def create_simplescene(self):
     graph = avango.gua.nodes.SceneGraph(Name = "simplescene")

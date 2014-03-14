@@ -49,7 +49,7 @@ def init_led_wall_tracking():
   _dtrack = avango.daemon.DTrack()
   _dtrack.port = "5002" # ART port at LED wall
   
-  _dtrack.stations[27] = avango.daemon.Station('tracking-oculus-back')
+  _dtrack.stations[27] = avango.daemon.Station('tracking-oculus-front') #tracking-oculus-back
 
 
   device_list.append(_dtrack)
@@ -303,7 +303,7 @@ def xbox_controller(PLAYER_NUMBER):
 device_list = []
 
 
-init_lcd_wall_tracking()
+#init_lcd_wall_tracking()
 init_led_wall_tracking()
 
 xbox_controller(1)

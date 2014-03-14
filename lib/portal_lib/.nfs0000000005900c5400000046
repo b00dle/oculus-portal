@@ -36,9 +36,11 @@ class Portal(avango.script.Script):
 
     # init fields
     sf_portal_pos   = avango.gua.SFMatrix4()
-    
+    sf_portal_zoom  = avango.SFFloat()
+
     def __init__(self):
         self.super(Portal).__init__()
+        self.sf_portal_zoom.value   = 1.0
         self.timer                  = avango.nodes.TimeSensor()
         self.water_updater          = TimedMaterialUniformUpdate()
         self.NAME                   = ""
@@ -191,6 +193,11 @@ class Portal(avango.script.Script):
         self.GEOMETRY.Transform.value  = self.GEOMETRY.Transform.value * avango.gua.make_trans_mat(X, Y, Z)
         self.sf_portal_pos.value = self.sf_portal_pos.value * avango.gua.make_trans_mat(X, Y, Z)
         self.EXITPOS = self.EXITPOS * avango.gua.make_trans_mat(X, Y, Z)
+
+    def zoom(self, FACTOR):
+        #self.EXITSCENE["/" + self.NAME + "Screen"].Width.value  = self.WIDTH * FACTOR
+        #self.EXITSCENE["/" + self.NAME + "Screen"].Height.value = self.HEIGHT * FACTOR
+        self.sf_portal_zoom.value = FACTOR
 
     def append_node(self, NODE):
         NODE.Transform.value =  avango.gua.make_inverse_mat(self.GEOMETRY.Transform.value) * \
