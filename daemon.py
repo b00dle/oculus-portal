@@ -28,13 +28,13 @@ def init_lcd_wall_tracking():
   _dtrack = avango.daemon.DTrack()
   _dtrack.port = "5000" # ART port at LCD wall
   
-  _dtrack.stations[16] = avango.daemon.Station('tracking-oculus-front') # oculus rift tracking
-  _dtrack.stations[17] = avango.daemon.Station('tracking-oculus-stag')  # oculus rift tracking
+  _dtrack.stations[17] = avango.daemon.Station('tracking-oculus-front') # oculus rift tracking
+  _dtrack.stations[16] = avango.daemon.Station('tracking-oculus-stag')  # oculus rift tracking
 
   _dtrack.stations[4] = avango.daemon.Station('tracking-glasses-1')    # glasses powerwall user one
   _dtrack.stations[3] = avango.daemon.Station('tracking-glasses-2')    # glasses powerwall user two
 
-  _dtrack.stations[1] = avango.daemon.Station('tracking-pointer-blue')  # blue pointer
+  _dtrack.stations[1] = avango.daemon.Station('tracking-pointer-blue')  # blue pointer   
   _dtrack.stations[13] = avango.daemon.Station('tracking-pointer-green') # green pointer
 
   _dtrack.stations[7] = avango.daemon.Station('tracking-old-spheron')      # old spheron device
@@ -49,8 +49,9 @@ def init_led_wall_tracking():
   _dtrack = avango.daemon.DTrack()
   _dtrack.port = "5002" # ART port at LED wall
   
-  _dtrack.stations[27] = avango.daemon.Station('tracking-oculus-front') #tracking-oculus-back
-
+  _dtrack.stations[27] = avango.daemon.Station('tracking-oculus-front') # tracking-oculus-back
+  _dtrack.stations[15] = avango.daemon.Station('tracking-pointer-blue')  # blue pointer
+  _dtrack.stations[16] = avango.daemon.Station('tracking-pointer-green') # green pointer
 
   device_list.append(_dtrack)
   print "ART Tracking started at LED WALL"
@@ -81,6 +82,7 @@ def init_pointer(NAME):
     _pointer.buttons[2] = "EV_KEY::KEY_F5"
     _pointer.buttons[3] = "EV_KEY::KEY_RIGHT"
     _pointer.buttons[4] = "EV_KEY::KEY_LEFT"
+    _pointer.buttons[5] = "EV_KEY::KEY_B"
 
     device_list.append(_pointer)
     print "Pointer started at:", _string
@@ -182,7 +184,7 @@ def init_mouse():
   mouse_name = mouse_name.split()
   if len(mouse_name) > 0:
 
-    mouse_name = mouse_name[0]
+    mouse_name = mouse_name[1]
 
     mouse = avango.daemon.HIDInput()
     mouse.station = avango.daemon.Station('device-mouse')
@@ -316,8 +318,9 @@ init_old_spheron()
 init_keyboard()
 init_mouse()
 init_spacemouse()
-init_pointer("MOUSE USB MOUSE")
+#init_pointer("MOUSE USB MOUSE")
 init_pointer("2.4G Presenter")
+init_pointer("MOSART Semi. Input Device")
 
 '''
 init_pst_tracking()

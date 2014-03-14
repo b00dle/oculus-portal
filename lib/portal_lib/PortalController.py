@@ -93,6 +93,8 @@ class PortalController(avango.script.Script):
     self.update_prepipes()
     self.update_portal_picker()
 
+    self.did_change_scene = False
+
     self.always_evaluate(True) # set class evaluation policy
 
 
@@ -135,10 +137,13 @@ class PortalController(avango.script.Script):
               self.ACTIVEPORTALS.append(portal)
 
         p_cube.visibility_updated = False
-        
+
     #self.adjust_nearplane()
     
   def change_scene(self, PORTAL, DISTANCE_X, DISTANCE_Y):
+    self.did_change_scene = True
+    PORTAL.scene_changed = True
+
     _platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
     _rotate_old_scene = _platform.Transform.value.get_rotate()
 

@@ -1,0 +1,12 @@
+
+{
+	"shading_model" : "ComplexTexture",
+	"uniforms" : 
+	{
+		"diffuse_map" : "data/textures/decoupling_plane_diffuse.jpg",
+		"emit" : "1.0",
+		"normal_map" : "data/textures/decoupling_plane_normal.jpg",
+		"shinyness" : "50",
+		"specular_map" : "data/textures/decoupling_plane_specular.jpg"
+	}
+}

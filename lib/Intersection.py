@@ -65,7 +65,7 @@ class Intersection(avango.script.Script):
     
     ## @var picking_mask
     # Picking mask of the intersection process.
-    self.picking_mask = "!interface_element"
+    self.picking_mask = "!inv_plane"
   
     # init field connections
     self.sf_pick_mat.connect_from(SF_MAT)

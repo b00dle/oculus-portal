@@ -20,7 +20,7 @@ class PortalManager():
     self.group_names            = []
 
     self.create_group_names(VIEWINGMANAGER)
-    self.create_portals(VIEWINGMANAGER)
+    #self.create_portals(VIEWINGMANAGER)
 
   def create_group_names(self, VIEWINGMANAGER):
     for PW_user in VIEWINGMANAGER.powerwall_user_list:
@@ -32,6 +32,7 @@ class PortalManager():
 
   def create_portals(self, VIEWINGMANAGER):
     for PW_user in VIEWINGMANAGER.powerwall_user_list:
+
       # Size for Portal:
       portal_width = 1.0
       portal_height = 1.0
@@ -66,6 +67,7 @@ class PortalManager():
                                          )
 
     for OVR_user in VIEWINGMANAGER.ovr_user_list:
+
       # Size for Portal:
       portal_width = 1.0
       portal_height = 1.0
@@ -87,6 +89,7 @@ class PortalManager():
                                                         "OVR",
                                                         str(OVR_user.id)
                                                         )
+
 
       ########PORTALCONTROLLER########
       OVR_user.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,

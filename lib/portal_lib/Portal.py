@@ -9,6 +9,7 @@ import math
 
 import examples_common.navigator
 from examples_common.GuaVE import GuaVE
+from ..interface_lib.InteractivGeometry import *
 
 ## Helper class to update material values with respect to the current time.
 class TimedMaterialUniformUpdate(avango.script.Script):
@@ -67,6 +68,8 @@ class Portal(avango.script.Script):
         self.PRE_PIPE               = self.create_default_pipe()
         self.GEOMETRY               = self.create_geometry(ENTRYPOS, GEOMETRY)
         self.HEAD                   = "/" + self.NAME + "Screen/head"
+
+        self.scene_changed          = False
 
     def create_default_pipe(self):
         self.create_camera()
@@ -135,6 +138,11 @@ class Portal(avango.script.Script):
         self.water_updater.MaterialName.value = "Portal" + self.NAME
         self.water_updater.UniformName.value = "time"
         self.water_updater.TimeIn.connect_from(self.timer.Time)
+
+        # make interactive
+        geometry.GroupNames.value.append("interactiv")
+        interactiv_geometry = InteractivGeometry()
+        interactiv_geometry.portal_constructor("TestPortal", geometry, ["x_pos", "y_pos", "z_pos"], self)
 
         self.ENTRYSCENE.Root.value.Children.value.append(geometry)
         

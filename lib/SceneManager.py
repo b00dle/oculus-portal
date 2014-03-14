@@ -18,20 +18,7 @@ import math
 import time
 
 from interface_lib.InteractivGeometry import *
-
-
-class ObjectHandler(avango.script.Script):
-
-  def __init__(self):
-    self.super(ObjectHandler).__init__()
-
-  #def my_constructor(self, NODE):
-  #  self.NODE = NODE
-
-
-  def test_function(self):
-    #self.NODE.Material.value = 'AvatarBlue'
-    print "test"
+from game_lib.LightRoom import *
 
 
 ## Class for building a scene and appending the necessary nodes to the scenegraph.
@@ -42,9 +29,94 @@ class SceneManager:
   ## Custom constructor
   def __init__(self):
     self.graphs = []
-    self.create_simplescene()
-    self.create_harbourscene()
+    #self.create_simplescene()
+    #self.create_harbourscene()
+    self.scene_names = []
+    self.create_gamescene()
+    #self.create_simplescene()
+    #self.create_level_2()
+    #self.create_harbourscene()
     #self.create_weimarscene()
+
+
+  def create_gamescene(self):
+    self.scene_names.append("gamescene")
+    graph = avango.gua.nodes.SceneGraph(Name = "gamescene")
+    loader = avango.gua.nodes.GeometryLoader()
+
+    # create light
+    spot = avango.gua.nodes.SpotLightNode(Name = "sun",
+                                          Color = avango.gua.Color(1.0, 1.0, 1.0),
+                                          Falloff = 0.009,
+                                          Softness = 0.003,
+                                          EnableShadows = True,
+                                          EnableGodrays = False,
+                                          EnableDiffuseShading = True,
+                                          EnableSpecularShading = True,
+                                          ShadowMapSize = 2048,
+                                          ShadowOffset = 0.001)
+
+    spot.Transform.value = avango.gua.make_trans_mat(0.0, 40.0, 40.0) * \
+                          avango.gua.make_rot_mat(-45.0, 1.0, 0.0, 0.0) * \
+                          avango.gua.make_scale_mat(100.0, 100.0, 160.0)
+
+    graph.Root.value.Children.value.append(spot)
+
+    level1 = LightRoom()
+    level1.my_constructor("room1", graph, avango.gua.make_trans_mat(0,0,2), [1], True, "White", [6])
+
+    level2 = LightRoom()
+    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(0,0,-8), [3,4,5], False, "Green", [6])
+
+    level3 = LightRoom()
+    level3.my_constructor("room3",graph,avango.gua.make_trans_mat(-10,0,-8), [1,6], False, "Blue", [6])
+
+    box2 = InteractivGeometry()
+    box2.my_constructor('box2', 'data/objects/cube.obj', 'Stone', avango.gua.make_trans_mat(-10.6,1.5,-13) * avango.gua.make_scale_mat(0.8,0.8,0.8),
+      graph.Root.value, ["size"])
+
+    level4 = LightRoom()
+    level4.my_constructor("room4",graph,avango.gua.make_trans_mat(-10,0,-18), [2,5], False, "Red", [6])
+
+    level5 = LightRoom()
+    level5.my_constructor("room5",graph,avango.gua.make_trans_mat(0,0,-18), [1,2], False, "Purple", [6])
+
+    level6 = LightRoom()
+    level6.my_constructor("room6",graph,avango.gua.make_trans_mat(0,0,-28), [5], False, "White", [6])
+
+
+    box = loader.create_geometry_from_file('box', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    box.Transform.value = avango.gua.make_trans_mat(-10,0,0) * avango.gua.make_scale_mat(2,2,2)
+    box.GroupNames.value = ["obsticale", "interactiv"]
+    #graph.Root.value.Children.value.append(box)
+
+
+    # screen
+    screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)
+
+    #screen.Transform.value = avango.gua.make_rot_mat(-90.0, 0, 1, 0) * \
+    #                                                   avango.gua.make_trans_mat(0, 1.5, 0)
+
+    # head, mono_eye, left und right eye
+    head = avango.gua.nodes.TransformNode(Name = "head")
+    head.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 1.7)
+
+    mono_eye = avango.gua.nodes.TransformNode(Name = "mono_eye")
+
+    left_eye = avango.gua.nodes.TransformNode(Name = "left_eye")
+    left_eye.Transform.value = avango.gua.make_trans_mat(-0.05, 0.0, 0.0)
+
+    right_eye = avango.gua.nodes.TransformNode(Name = "right_eye")
+    right_eye.Transform.value = avango.gua.make_trans_mat(0.05, 0.0, 0.0)
+
+    head.Children.value = [mono_eye, left_eye, right_eye]
+
+    # head an screen
+    screen.Children.value.append(head)
+    # screen an root
+    graph.Root.value.Children.value.append(screen)
+
+    self.graphs.append(graph)
 
   def create_simplescene(self):
     graph = avango.gua.nodes.SceneGraph(Name = "simplescene")
@@ -75,22 +147,74 @@ class SceneManager:
     graph.Root.value.Children.value.append(plane)
 
     # Create Monkey
-    #monkey = loader.create_geometry_from_file('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    #monkey.Transform.value = avango.gua.make_trans_mat(0.0, 3.0, -1.0) * avango.gua.make_scale_mat(2.0,2.0,2.0)
-    
-    #monkey_object_handler = ObjectHandler()
-    #monkey_object_handler.my_constructor(monkey)
+    monkey_interface = InteractivGeometry()
+    monkey_interface.my_constructor('monkey', 'data/objects/monkey.obj', 'Stones', avango.gua.make_trans_mat(2.0,3.0,2.0), graph.Root.value, ["enable"])
 
-    #monkey.add_and_init_field(avango.SFFloat(), "Feld_test", 10.0)
-    #monkey.add_and_init_field(avango.script.SFObject(), "ObjectHandler", monkey_object_handler)
-    #monkey.add_and_init_field(avango.SFBool, "Resizeable", True)
-    #monkey.GroupNames.value = ["pickable"]
-    #graph.Root.value.Children.value.append(monkey)
+    box_interface = InteractivGeometry()
+    box_interface.my_constructor('box', 'data/objects/cube.obj', 'slider_mat_1', avango.gua.make_trans_mat(-3.0,3.0,2.0), graph.Root.value, ["green","red","blue"])
+
+    sphere_interface = InteractivGeometry()
+    sphere_interface.my_constructor('sphere', 'data/objects/sphere.obj', 'slider_mat_2', avango.gua.make_trans_mat(-2.0,5.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph.Root.value, ["size","green","red","blue"])
 
 
+    # screen
+    screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)
+
+    #screen.Transform.value = avango.gua.make_rot_mat(-90.0, 0, 1, 0) * \
+    #                                                   avango.gua.make_trans_mat(0, 1.5, 0)
+
+    # head, mono_eye, left und right eye
+    head = avango.gua.nodes.TransformNode(Name = "head")
+    head.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 1.7)
+
+    mono_eye = avango.gua.nodes.TransformNode(Name = "mono_eye")
+
+    left_eye = avango.gua.nodes.TransformNode(Name = "left_eye")
+    left_eye.Transform.value = avango.gua.make_trans_mat(-0.05, 0.0, 0.0)
+
+    right_eye = avango.gua.nodes.TransformNode(Name = "right_eye")
+    right_eye.Transform.value = avango.gua.make_trans_mat(0.05, 0.0, 0.0)
+
+    head.Children.value = [mono_eye, left_eye, right_eye]
+
+    # head an screen
+    screen.Children.value.append(head)
+    # screen an root
+    graph.Root.value.Children.value.append(screen)
+
+    self.graphs.append(graph)
 
     interactiv_object = InteractivGeometry()
     interactiv_object.my_constructor('monkey', 'data/objects/cube.obj', 'Stones', graph.Root.value, ["size", "red", "blue", "green"])
+
+  def create_level_2(self):
+    self.scene_names.append("level_2")
+    graph = avango.gua.nodes.SceneGraph(Name = "level_2")
+    loader = avango.gua.nodes.GeometryLoader()
+    
+    # create light
+    spot = avango.gua.nodes.SpotLightNode(Name = "sun",
+                                          Color = avango.gua.Color(1.0, 1.0, 1.0),
+                                          Falloff = 0.009,
+                                          Softness = 0.003,
+                                          EnableShadows = True,
+                                          EnableGodrays = False,
+                                          EnableDiffuseShading = True,
+                                          EnableSpecularShading = True,
+                                          ShadowMapSize = 2048,
+                                          ShadowOffset = 0.001)
+
+    spot.Transform.value = avango.gua.make_trans_mat(0.0, 40.0, 40.0) * \
+                          avango.gua.make_rot_mat(-45.0, 1.0, 0.0, 0.0) * \
+                          avango.gua.make_scale_mat(100.0, 100.0, 160.0)
+
+    graph.Root.value.Children.value.append(spot)
+
+    # create floorans_mat(-2.0,5.0,1.0) * avango.gua.make_scale_mat(3.0,3.0,3.0), graph.Root.value, ["size","green","red","blue"])
+    plane = loader.create_geometry_from_file('floor', 'data/objects/plane.obj', 'Tiles', avango.gua.LoaderFlags.DEFAULTS)
+    plane.Transform.value = avango.gua.make_scale_mat(20,1,20)
+
+    graph.Root.value.Children.value.append(plane)
 
     # screen
     screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)

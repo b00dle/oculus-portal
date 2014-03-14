@@ -4,9 +4,9 @@
 	"uniforms" : 
 	{
 		"atmo_color" : "(1.000  0.500  0.200)",
-		"diffuse_map" : "data/textures/stones_diffuse.jpg",
-		"normal_map" : "data/textures/stones_normal.jpg",
-		"shinyness" : "50",
-		"specular_map" : "data/textures/stones_specular.jpg"
+		"diffuse_map" : "data/objects/Joseph/TextureMap.png",
+		"normal_map" : "data/objects/Joseph/NormalMap.png",
+		"shinyness" : "20",
+		"specular_map" : "data/objects/Joseph/SpecularMap.png"
 	}
 }

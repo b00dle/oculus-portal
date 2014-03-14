@@ -103,6 +103,10 @@ class User:
   material_used = [False, False, False, False,
                    False, False, False, False]
 
+  ## @var portal_controller
+  # controlls interaction with portals in the scene
+  portal_controller = PortalController()
+
   ## Custom constructor.
   # @param NODE_PRETEXT The prefix to be used when creating scenegraph nodes.
   def __init__(self, NODE_PRETEXT):
@@ -110,11 +114,6 @@ class User:
     ## @var node_pretext
     # Prefix of the scenegraph nodes this user creates.
     self.node_pretext = NODE_PRETEXT
-
-    ## @var portal_controller
-    # coordinates interaction with portals in the scene
-    self.portal_controller = PortalController()
-
 
   ## Sets the transformation values of left and right eye.
   # @param VALUE The eye distance to be applied.
@@ -141,7 +140,7 @@ class User:
     self.pipeline.SsaoIntensity.value           = self.ssao_intensity
     self.pipeline.EnableFPSDisplay.value        = self.enable_fps_display
     self.pipeline.FogTexture.value              = self.pipeline.BackgroundTexture.value
-   # self.pipeline.EnableRayDisplay.value        = True
+    # self.pipeline.EnableRayDisplay.value        = True
 
   ## Appends a node to the children of a platform in the scenegraph.
   # @param SCENEGRAPH Reference to the scenegraph.
@@ -186,10 +185,10 @@ class User:
     ## @var head_avatar
     # Scenegraph node representing the geometry and transformation of the basic avatar's head.
     self.head_avatar = _loader.create_geometry_from_file( self.node_pretext + '_head_avatar_' + str(PLATFORM_ID),
-                                                          'data/objects/default_avatar_head.obj',
+                                                          'data/objects/Joseph/JosephHead.obj',
                                                           _material,
                                                           avango.gua.LoaderFlags.LOAD_MATERIALS)
-    self.head_avatar.Transform.value = avango.gua.make_rot_mat(90, 0, 1, 0) * avango.gua.make_scale_mat(0.2, 0.2, 0.2)
+    self.head_avatar.Transform.value = avango.gua.make_rot_mat(-90, 0, 1, 0) * avango.gua.make_scale_mat(0.6, 0.6, 0.6)
     self.head_avatar.GroupNames.value = [self.node_pretext + '_avatar_group_' + str(PLATFORM_ID)]
     self.head_transform.Children.value.append(self.head_avatar)
 
@@ -197,7 +196,7 @@ class User:
     ## @var body_avatar
     # Scenegraph node representing the geometry and transformation of the basic avatar's body.
     self.body_avatar = _loader.create_geometry_from_file( self.node_pretext + '_body_avatar_' + str(PLATFORM_ID),
-                                                          'data/objects/default_avatar_body.obj',
+                                                          'data/objects/Joseph/JosephBody.obj',
                                                           _material,
                                                           avango.gua.LoaderFlags.LOAD_MATERIALS)
     self.body_avatar.GroupNames.value = [self.node_pretext + '_avatar_group_' + str(PLATFORM_ID)]
@@ -208,10 +207,9 @@ class User:
     # create hands for the avatar
     # left hand
     self.left_hand_avatar = _loader.create_geometry_from_file( self.node_pretext + '_left_hand_avatar_' + str(PLATFORM_ID),
-                                                          'data/objects/hand.obj',
+                                                          'data/objects/Joseph/JosephHandLeft.obj',
                                                           _material,
                                                           avango.gua.LoaderFlags.LOAD_MATERIALS)
-
     self.left_hand_transform = avango.gua.nodes.TransformNode(Name = self.node_pretext + '_left_hand_transform_' + str(PLATFORM_ID))
     self.left_hand_transform.Children.value.append(self.left_hand_avatar)
     SCENEGRAPH['/platform_' + str(PLATFORM_ID)].Children.value.append(self.left_hand_transform)
@@ -219,7 +217,7 @@ class User:
 
     # right hand
     self.right_hand_avatar = _loader.create_geometry_from_file( self.node_pretext + '_right_hand_avatar_' + str(PLATFORM_ID),
-                                                          'data/objects/hand.obj',
+                                                          'data/objects/Joseph/JosephHandRight.obj',
                                                           _material,
                                                           avango.gua.LoaderFlags.LOAD_MATERIALS)
 
@@ -231,11 +229,13 @@ class User:
     # OVR User and PowerwallUser get 'Pointer-Hands'
     if self.node_pretext == "ovr" or self.node_pretext == "powerwall": # ! powerwall pretext richtig???
       # Left Hand
-      self.left_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.15) * avango.gua.make_scale_mat(2.0, 2.0, 2.0)  
+      self.left_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.0) * avango.gua.make_scale_mat(0.3, 0.3, 0.3) *\
+                                              avango.gua.make_rot_mat(90, 1, 0, 0) * avango.gua.make_rot_mat(180, 0, 1, 0)
       self.left_hand_transform.Transform.connect_from(LEFTHAND_MAT)
 
       # Right Hand
-      self.right_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.15) * avango.gua.make_scale_mat(2.0, 2.0, 2.0)
+      self.right_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.0) * avango.gua.make_scale_mat(0.3, 0.3, 0.3) *\
+                                              avango.gua.make_rot_mat(90, 1, 0, 0) #* avango.gua.make_rot_mat(-180, 0, 1, 0)
       self.right_hand_transform.Transform.connect_from(RIGHTHAND_MAT)
 
 

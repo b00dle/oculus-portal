@@ -164,7 +164,9 @@ class Navigation(avango.script.Script):
 
     ## @var animation_time
     # Time of the rotation animation in relation to the rotation distance.
-    self.animation_time = 2 * math.sqrt(math.pow(self.start_rot.x - self.target_rot.x, 2) + math.pow(self.start_rot.y - self.target_rot.y, 2) + math.pow(self.start_rot.z - self.target_rot.z, 2) + math.pow(self.start_rot.w - self.target_rot.w, 2))
+    self.animation_time = 2 * math.sqrt(math.pow(self.start_rot.x - self.target_rot.x, 2) +\
+                           math.pow(self.start_rot.y - self.target_rot.y, 2) + math.pow(self.start_rot.z -\
+                           self.target_rot.z, 2) + math.pow(self.start_rot.w - self.target_rot.w, 2))
    
     # if no animation is needed, set animation time to a minimum value to avoid division by zero
     if self.animation_time == 0.0:
@@ -273,7 +275,7 @@ class Navigation(avango.script.Script):
       print "Coupling of platform " + str(self.platform.platform_id) + " successfully initiated."
 
     else:
-      print "No platform in range for coupling."
+      #print "No platform in range for coupling."
       self.frames_since_last_coupling = 0
   
   ## Sets all the necessary attributes to perform a lerp and slerp animation to another navigation.
