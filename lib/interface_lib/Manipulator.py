@@ -93,10 +93,13 @@ class Manipulator(avango.script.Script):
 
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
+    # ACTIVATE PORTAL_CUBE 
+
     if (len(self.RightPicker.Results.value) > 0) and self.right_pointer_pressed and\
         self.RightPointer.sf_key_pageup.value:
 
       picked_object = self.RightPicker.Results.value[0].Object.value
+      #print picked_object.Name.value, "picked"
 
       if picked_object.has_field("Button"):
         picked_object.Button.value.sf_bool_button.value = True

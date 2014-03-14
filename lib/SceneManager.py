@@ -29,6 +29,7 @@ class SceneManager:
   ## Custom constructor
   def __init__(self):
     self.graphs = []
+    self.light_rooms  = []
     #self.create_simplescene()
     #self.create_harbourscene()
     self.scene_names = []
@@ -84,6 +85,7 @@ class SceneManager:
     level6 = LightRoom()
     level6.my_constructor("room6",graph,avango.gua.make_trans_mat(0,0,-28), [5], False, "White", [6])
 
+    self.light_rooms = [level1, level2, level3, level4, level5, level6]
 
     box = loader.create_geometry_from_file('box', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     box.Transform.value = avango.gua.make_trans_mat(-10,0,0) * avango.gua.make_scale_mat(2,2,2)

@@ -51,15 +51,6 @@ class PortalCube(avango.script.Script):
 
   @field_has_changed(sf_visibility)
   def resolve_visibility(self):
-    if self.sf_visibility == False:
-      for portal in self.Portals:
-        if "do_not_display_group" not in portal.GEOMETRY.GroupNames.value:
-          portal.GEOMETRY.GroupNames.value.append("do_not_display_group")
-    else:
-      for portal in self.Portals:
-        if "do_not_display_group" in portal.GEOMETRY.GroupNames.value:
-          portal.GEOMETRY.GroupNames.value.remove("do_not_display_group")
-
     self.visibility_updated = True
 
   def create_portals(self):
@@ -81,7 +72,8 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
-                                  self.EXCLUDEGROUPS
+                                  self.EXCLUDEGROUPS,
+                                  True
                                   )
 
     #############PORTAL 1##############
@@ -104,7 +96,8 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
-                                  self.EXCLUDEGROUPS
+                                  self.EXCLUDEGROUPS,
+                                  False
                                   )
 
     #############PORTAL 2##############
@@ -129,7 +122,8 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
-                                  self.EXCLUDEGROUPS
+                                  self.EXCLUDEGROUPS,
+                                  False
                                   )
 
     #############PORTAL 3##############
@@ -154,7 +148,8 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
-                                  self.EXCLUDEGROUPS
+                                  self.EXCLUDEGROUPS,
+                                  False
                                   )
 
     #############PORTAL 4##############
@@ -177,7 +172,8 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
-                                  self.EXCLUDEGROUPS
+                                  self.EXCLUDEGROUPS,
+                                  False
                                   )
 
     #############PORTAL 5##############
@@ -200,7 +196,8 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
-                                  self.EXCLUDEGROUPS
+                                  self.EXCLUDEGROUPS,
+                                  False
                                   )
 
     if self.sf_visibility == False:

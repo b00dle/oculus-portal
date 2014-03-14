@@ -25,8 +25,8 @@ def start():
   ####### CREATE MATERIAL FILE FOR EACH PORTAL ########
   portalNames = []
 
-  for i in range(0, 7):
-    portalNames.append("portal_" + str(i) + "_DESK_0")
+  for i in range(0, 36):
+    #portalNames.append("portal_" + str(i) + "_DESK_0")
     #portalNames.append("portal_" + str(i) + "_DESK_1")
     portalNames.append("portal_" + str(i) + "_OVR_0")
     #portalNames.append("portal_" + str(i) + "_OVR_1")
@@ -52,7 +52,8 @@ def start():
   viewing_manager = ViewingManager(scene_manager.graphs, "configs/controller_one_ovr.xml")
 
   # initialize portals
-  portal_manager = PortalManager(viewing_manager)
+  portal_manager = PortalManager()
+  portal_manager.my_constructor(viewing_manager, scene_manager)
 
   viewing_manager.setup_portal_render_masks()
 

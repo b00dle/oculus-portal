@@ -24,7 +24,7 @@ class LightCube(avango.script.Script):
   sf_rot_left       = avango.SFBool()
   sf_rot_right      = avango.SFBool()
 
-  sf_portal         = avango.SFBool()
+  sf_portal_button         = avango.SFBool()
 
   mf_pick_results_plus_x  = avango.gua.MFPickResult()
   mf_pick_results_minus_x = avango.gua.MFPickResult()
@@ -47,6 +47,8 @@ class LightCube(avango.script.Script):
 
   portal_buttons = [0,0,0,0,0,0]
 
+  sf_visible = avango.SFBool()
+
   def __init__(self):
     self.super(LightCube).__init__()
     self.always_evaluate(True)
@@ -67,6 +69,8 @@ class LightCube(avango.script.Script):
     self.rot_down_button  = Button()
     self.rot_left_button  = Button()
     self.rot_right_button = Button()
+
+    self.portal_button    = Button()
 
     self.rays = []
 
@@ -124,10 +128,10 @@ class LightCube(avango.script.Script):
     self.init_pickers()
 
     # Portal the User:
-    self.PortalSphereNode = avango.gua.nodes.TransformNode(Name = "portal_sphere_node")
-    self.PortalSphere = Button()
-    self.PortalSphere.my_constructor("teleport_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, 0.0), self.PortalSphereNode)
-    self.sf_portal.connect_from(self.PortalSphere.sf_bool_button)
+    #self.PortalSphereNode = avango.gua.nodes.TransformNode(Name = "portal_sphere_node")
+    #self.PortalSphere = Button()
+    #self.PortalSphere.my_constructor("teleport_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, 0.0), self.PortalSphereNode)
+    #self.sf_portal.connect_from(self.PortalSphere.sf_bool_button)
 
 
   def evaluate(self):
@@ -338,6 +342,12 @@ class LightCube(avango.script.Script):
       self.animation_end_pos = (avango.gua.make_rot_mat(90.0, 0, 1, 0) * self.cube_rotate.Transform.value).get_rotate()
       self.rot_right_button.just_rotated = True
 
+  @field_has_changed(sf_portal_button)
+  def portal_switch(self):
+    if self.sf_portal_button.value:
+      self.sf_visible.value = not self.sf_visible.value
+
+
 
   @field_has_changed(sf_portal_plus_x)
   def create_portal_button_plus_x(self):
@@ -365,14 +375,18 @@ class LightCube(avango.script.Script):
 
 
   def initalize_console(self):
-    self.rot_up_button.my_constructor("rot_up_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, -0.3) * avango.gua.make_rot_mat(90, 0, 1, 0),self.CONSOLE_NODE)
+    self.rot_up_button.my_constructor("rot_up_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, -0.3) * avango.gua.make_rot_mat(90, 0, 1, 0),self.CONSOLE_NODE, "Dark_red")
     self.sf_rot_up.connect_from(self.rot_up_button.sf_bool_button)
-    self.rot_down_button.my_constructor("rot_down_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, 0.3) * avango.gua.make_rot_mat(90, 0, 1, 0),self.CONSOLE_NODE)
+    self.rot_down_button.my_constructor("rot_down_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, 0.3) * avango.gua.make_rot_mat(90, 0, 1, 0),self.CONSOLE_NODE, "Dark_red")
     self.sf_rot_down.connect_from(self.rot_down_button.sf_bool_button)
-    self.rot_left_button.my_constructor("rot_left_" + self.NAME, avango.gua.make_trans_mat(-0.3, 0.0, 0.0),self.CONSOLE_NODE)
+    self.rot_left_button.my_constructor("rot_left_" + self.NAME, avango.gua.make_trans_mat(-0.3, 0.0, 0.0),self.CONSOLE_NODE,"Dark_red")
     self.sf_rot_left.connect_from(self.rot_left_button.sf_bool_button)
-    self.rot_right_button.my_constructor("rot_right_" + self.NAME, avango.gua.make_trans_mat(0.3, 0.0, 0.0),self.CONSOLE_NODE)
+    self.rot_right_button.my_constructor("rot_right_" + self.NAME, avango.gua.make_trans_mat(0.3, 0.0, 0.0),self.CONSOLE_NODE, "Dark_red")
     self.sf_rot_right.connect_from(self.rot_right_button.sf_bool_button)
+
+    self.portal_button.my_constructor("portal_button" + self.NAME, avango.gua.make_scale_mat(0.05, 0.05, 0.05) *\
+                   avango.gua.make_inverse_mat(avango.gua.make_scale_mat(0.2, 0.02, 0.07)), self.CONSOLE_NODE, "Green")
+    self.sf_portal_button.connect_from(self.portal_button.sf_bool_button)
 
 
   def init_lightexits(self):
