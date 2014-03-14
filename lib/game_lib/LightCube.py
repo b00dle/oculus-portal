@@ -45,7 +45,7 @@ class LightCube(avango.script.Script):
   sf_portal_plus_z  = avango.SFBool()
   sf_portal_minus_z = avango.SFBool()
 
-  portal_buttons = [False,False,False,False,False,False]
+  portal_buttons = [0,0,0,0,0,0]
 
   def __init__(self):
     self.super(LightCube).__init__()
@@ -169,124 +169,102 @@ class LightCube(avango.script.Script):
       if (l == 1):
         if len(self.mf_pick_results_plus_x.value) > 0:
           self.picked_plus_x = self.mf_pick_results_plus_x.value[0].Object.value
+          if self.picked_plus_x.has_field("LightCube"):
+            self.portal_buttons[0] = 2
           if self.picked_plus_x.has_field("LightCube") and self.picked_plus_x.LightCube.value.activated == False:
             self.picked_plus_x.LightCube.value.activate_light()
       elif (l == 2):
         if len(self.mf_pick_results_minus_x.value) > 0:
           self.picked_minus_x = self.mf_pick_results_minus_x.value[0].Object.value
+          if self.picked_minus_x.has_field("LightCube"):
+            self.portal_buttons[1] = 2
           if self.picked_minus_x.has_field("LightCube") and self.picked_minus_x.LightCube.value.activated == False:
             self.picked_minus_x.LightCube.value.activate_light()
       elif (l == 3):
         if len(self.mf_pick_results_plus_y.value) > 0:
           self.picked_plus_y = self.mf_pick_results_plus_y.value[0].Object.value
+          if self.picked_plus_y.has_field("LightCube"):
+            self.portal_buttons[2] = 2          
           if self.picked_plus_y.has_field("LightCube") and self.picked_plus_y.LightCube.value.activated == False:
             self.picked_plus_y.LightCube.value.activate_light()
       elif (l == 4):
         if len(self.mf_pick_results_minus_y.value) > 0:
           self.picked_minus_y = self.mf_pick_results_minus_y.value[0].Object.value
+          if self.picked_minus_y.has_field("LightCube"):
+            self.portal_buttons[3] = 2          
           if self.picked_minus_y.has_field("LightCube") and self.picked_minus_y.LightCube.value.activated == False:
             self.picked_minus_y.LightCube.value.activate_light()
       elif (l == 5):
         if len(self.mf_pick_results_plus_z.value) > 0:
           self.picked_plus_z = self.mf_pick_results_plus_z.value[0].Object.value
+          if self.picked_plus_z.has_field("LightCube"):
+            self.portal_buttons[4] = 2
           if self.picked_plus_z.has_field("LightCube") and self.picked_plus_z.LightCube.value.activated == False:
             self.picked_plus_z.LightCube.value.activate_light()
       elif (l == 6):
         if len(self.mf_pick_results_minus_z.value) > 0:
           self.picked_minus_z = self.mf_pick_results_minus_z.value[0].Object.value
+          if self.picked_plus_x.has_field("LightCube"):
+            self.portal_buttons[5] = 2          
           if self.picked_minus_z.has_field("LightCube") and self.picked_minus_z.LightCube.value.activated == False:
             self.picked_minus_z.LightCube.value.activate_light()
 
     #print "eval", self.NAME, time.time() - _time_sav
 
+  def ray_node_append(self, ray_visual_trans, ray_visual, pick_transform, mf_pick_results):
+    ray_visual_trans.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
+    self.cube_rotate.Children.value.append(pick_transform)
+    if len(mf_pick_results.value) > 0:
+      ray_visual.Transform.value =  avango.gua.make_trans_mat(0,0,-(mf_pick_results.value[0].Distance.value)/2) *\
+                                          avango.gua.make_scale_mat(1,1,(mf_pick_results.value[0].Distance.value)/2)
+      pick_transform.Children.value.append(ray_visual_trans)
+      ray_visual_trans.Children.value.append(ray_visual)
+    else:
+      ray_visual.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
+                                          avango.gua.make_scale_mat(1,1,0.5)
+      pick_transform.Children.value.append(ray_visual_trans)
+      ray_visual_trans.Children.value.append(ray_visual)
+
+
   def append_ray_nodes(self):
     if (self.pick_transforms_appended == False):
       for l in self.LIGHTEXITS:
         if (l == 1):
-          self.ray_visual_trans_plus_x = avango.gua.nodes.TransformNode(Name = "ray_transform")
-          self.ray_visual_trans_plus_x.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
-          self.cube_rotate.Children.value.append(self.pick_transform_plus_x)
-          if len(self.mf_pick_results_plus_x.value) > 0:
-            self._ray_visual_plus_x.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_plus_x.value[0].Distance.value)/2) *\
-                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_plus_x.value[0].Distance.value)/2)
-            self.pick_transform_plus_x.Children.value.append(self.ray_visual_trans_plus_x)
-            self.ray_visual_trans_plus_x.Children.value.append(self._ray_visual_plus_x)
-          else:
-            self._ray_visual_plus_x.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
-                                                avango.gua.make_scale_mat(1,1,0.5)
-            self.pick_transform_plus_x.Children.value.append(self.ray_visual_trans_plus_x)
-            self.ray_visual_trans_plus_x.Children.value.append(self._ray_visual_plus_x)
+          self.ray_node_append(self.ray_visual_trans_plus_x, 
+                               self._ray_visual_plus_x, 
+                               self.pick_transform_plus_x, 
+                               self.mf_pick_results_plus_x)
+
         elif (l == 2):
-          self.ray_visual_trans_minus_x = avango.gua.nodes.TransformNode(Name = "ray_transform")
-          self.ray_visual_trans_minus_x.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
-          self.cube_rotate.Children.value.append(self.pick_transform_minus_x)
-          if len(self.mf_pick_results_minus_x.value) > 0:
-            self._ray_visual_minus_x.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_minus_x.value[0].Distance.value)/2) *\
-                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_minus_x.value[0].Distance.value)/2)
-            self.pick_transform_minus_x.Children.value.append(self.ray_visual_trans_minus_x)
-            self.ray_visual_trans_minus_x.Children.value.append(self._ray_visual_minus_x)
-          else:
-            self._ray_visual_minus_x.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
-                                                avango.gua.make_scale_mat(1,1,0.5)
-            self.pick_transform_minus_x.Children.value.append(self.ray_visual_trans_minus_x)
-            self.ray_visual_trans_minus_x.Children.value.append(self._ray_visual_minus_x)
+          self.ray_node_append(self.ray_visual_trans_minus_x, 
+                               self._ray_visual_minus_x, 
+                               self.pick_transform_minus_x, 
+                               self.mf_pick_results_minus_x)
+
         elif (l == 3):
-          self.ray_visual_trans_plus_y = avango.gua.nodes.TransformNode(Name = "ray_transform")
-          self.ray_visual_trans_plus_y.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
-          self.cube_rotate.Children.value.append(self.pick_transform_plus_y)
-          if len(self.mf_pick_results_plus_y.value) > 0:
-            self._ray_visual_plus_y.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_plus_y.value[0].Distance.value)/2) *\
-                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_plus_y.value[0].Distance.value)/2)
-            self.pick_transform_plus_y.Children.value.append(self.ray_visual_trans_plus_y)
-            self.ray_visual_trans_plus_y.Children.value.append(self._ray_visual_plus_y)
-          else:
-            self._ray_visual_plus_y.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
-                                                avango.gua.make_scale_mat(1,1,0.5)
-            self.pick_transform_plus_y.Children.value.append(self.ray_visual_trans_plus_y)
-            self.ray_visual_trans_plus_y.Children.value.append(self._ray_visual_plus_y)
+          self.ray_node_append(self.ray_visual_trans_plus_y, 
+                               self._ray_visual_plus_y, 
+                               self.pick_transform_plus_y, 
+                               self.mf_pick_results_plus_y)
+
         elif (l == 4):
-          self.ray_visual_trans_minus_y = avango.gua.nodes.TransformNode(Name = "ray_transform")
-          self.ray_visual_trans_minus_y.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
-          self.cube_rotate.Children.value.append(self.pick_transform_minus_y)
-          if len(self.mf_pick_results_minus_y.value) > 0:
-            self._ray_visual_minus_y.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_minus_y.value[0].Distance.value)/2) *\
-                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_minus_y.value[0].Distance.value)/2)
-            self.pick_transform_minus_y.Children.value.append(self.ray_visual_trans_minus_y)
-            self.ray_visual_trans_minus_y.Children.value.append(self._ray_visual_minus_y)
-          else:
-            self._ray_visual_minus_y.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
-                                                avango.gua.make_scale_mat(1,1,0.5)
-            self.pick_transform_minus_y.Children.value.append(self.ray_visual_trans_minus_y)
-            self.ray_visual_trans_minus_y.Children.value.append(self._ray_visual_minus_y)
+          self.ray_node_append(self.ray_visual_trans_minus_y, 
+                               self._ray_visual_minus_y, 
+                               self.pick_transform_minus_y, 
+                               self.mf_pick_results_minus_y)
         elif (l == 5):
-          self.ray_visual_trans_plus_z = avango.gua.nodes.TransformNode(Name = "ray_transform")
-          self.ray_visual_trans_plus_z.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
-          self.cube_rotate.Children.value.append(self.pick_transform_plus_z)
-          if len(self.mf_pick_results_plus_z.value) > 0:
-            self._ray_visual_plus_z.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_plus_z.value[0].Distance.value)/2) *\
-                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_plus_z.value[0].Distance.value)/2)
-            self.pick_transform_plus_z.Children.value.append(self.ray_visual_trans_plus_z)
-            self.ray_visual_trans_plus_z.Children.value.append(self._ray_visual_plus_z)
-          else:
-            self._ray_visual_plus_z.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
-                                                avango.gua.make_scale_mat(1,1,0.5)
-            self.pick_transform_plus_z.Children.value.append(self.ray_visual_trans_plus_z)
-            self.ray_visual_trans_plus_z.Children.value.append(self._ray_visual_plus_z)
+          self.ray_node_append(self.ray_visual_trans_plus_z, 
+                               self._ray_visual_plus_z, 
+                               self.pick_transform_plus_z, 
+                               self.mf_pick_results_plus_z)
         elif (l == 6):
-          self.ray_visual_trans_minus_z = avango.gua.nodes.TransformNode(Name = "ray_transform")
-          self.ray_visual_trans_minus_z.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
-          self.cube_rotate.Children.value.append(self.pick_transform_minus_z)
-          if len(self.mf_pick_results_minus_z.value) > 0:
-            self._ray_visual_minus_z.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_minus_z.value[0].Distance.value)/2) *\
-                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_minus_z.value[0].Distance.value)/2)
-            self.pick_transform_minus_z.Children.value.append(self.ray_visual_trans_minus_z)
-            self.ray_visual_trans_minus_z.Children.value.append(self._ray_visual_minus_z)
-          else:
-            self._ray_visual_minus_z.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
-                                                avango.gua.make_scale_mat(1,1,0.5)
-            self.pick_transform_minus_z.Children.value.append(self.ray_visual_trans_minus_z)
-            self.ray_visual_trans_minus_z.Children.value.append(self._ray_visual_minus_z)
+          self.ray_node_append(self.ray_visual_trans_minus_z, 
+                               self._ray_visual_minus_z, 
+                               self.pick_transform_minus_z, 
+                               self.mf_pick_results_minus_z)
+        
         self.pick_transforms_appended = True
+
 
   def remove_ray_nodes(self):
     if (self.pick_transforms_appended == True):
@@ -317,8 +295,6 @@ class LightCube(avango.script.Script):
           self.pick_transform_plus_z.Children.value.remove(self.ray_visual_trans_minus_z)
           self.ray_visual_trans_minus_z.Children.value.remove(self._ray_visual_minus_z)
         self.pick_transforms_appended = False
-
-
 
 
   def enable_console(self, MENU_LOCATION):
@@ -445,21 +421,21 @@ class LightCube(avango.script.Script):
         self.cube.Children.value.append(exit_minus_z)
 
 
-
   def init_portal_buttons(self):
     for p in self.ROOMPORTALS:
       if p == 1:
-        self.portal_buttons[0] = True
+        self.portal_buttons[0] = 1
       if p == 2:
-        self.portal_buttons[1] = True
+        self.portal_buttons[1] = 1
       if p == 3:
-        self.portal_buttons[2] = True
+        self.portal_buttons[2] = 1
       if p == 4:
-        self.portal_buttons[3] = True
+        self.portal_buttons[3] = 1
       if p == 5:
-        self.portal_buttons[4] = True
+        self.portal_buttons[4] = 1
       if p == 6:
-        self.portal_buttons[5] = True
+        self.portal_buttons[5] = 1
+
 
   def init_pickers(self):
     # One Pick_Transform for every side of the cube
@@ -467,36 +443,36 @@ class LightCube(avango.script.Script):
     self.picker_plus_x         = LightRayPicker()
     self.pick_transform_plus_x = avango.gua.nodes.TransformNode(Name = "pick_transform_plus_x")
     self.pick_transform_plus_x.Transform.value = avango.gua.make_rot_mat(-90, 0, 1, 0)
-    self.ray_visual_trans_plus_x = avango.gua.nodes.TransformNode()
+    self.ray_visual_trans_plus_x = avango.gua.nodes.TransformNode(Name = "ray_visual_trans_plus_x")
     self.initialize_pick_transform(self.pick_transform_plus_x, self.picker_plus_x)
 
     self.picker_minus_x         = LightRayPicker()
     self.pick_transform_minus_x = avango.gua.nodes.TransformNode(Name = "pick_transform_minus_x")
     self.pick_transform_minus_x.Transform.value = avango.gua.make_rot_mat(90, 0, 1, 0)
-    self.ray_visual_trans_minus_x = avango.gua.nodes.TransformNode()
+    self.ray_visual_trans_minus_x = avango.gua.nodes.TransformNode(Name = "ray_visual_trans_minus_x")
     self.initialize_pick_transform(self.pick_transform_minus_x, self.picker_minus_x)
 
     self.picker_plus_y         = LightRayPicker()
     self.pick_transform_plus_y = avango.gua.nodes.TransformNode(Name = "pick_transform_plus_y")
     self.pick_transform_plus_y.Transform.value = avango.gua.make_rot_mat(90, 1, 0, 0)
-    self.ray_visual_trans_plus_y = avango.gua.nodes.TransformNode()
+    self.ray_visual_trans_plus_y = avango.gua.nodes.TransformNode(Name = "ray_visual_trans_plus_y")
     self.initialize_pick_transform(self.pick_transform_plus_y, self.picker_plus_y)
     
     self.picker_minus_y         = LightRayPicker()
     self.pick_transform_minus_y = avango.gua.nodes.TransformNode(Name = "pick_transform_minus_y")
     self.pick_transform_minus_y.Transform.value = avango.gua.make_rot_mat(-90, 1, 0, 0)
-    self.ray_visual_trans_minus_y = avango.gua.nodes.TransformNode()
+    self.ray_visual_trans_minus_y = avango.gua.nodes.TransformNode(Name = "ray_visual_trans_minus_y")
     self.initialize_pick_transform(self.pick_transform_minus_y, self.picker_minus_y)
     
     self.picker_plus_z         = LightRayPicker()
     self.pick_transform_plus_z = avango.gua.nodes.TransformNode(Name = "pick_transform_plus_z")
-    self.ray_visual_trans_plus_z = avango.gua.nodes.TransformNode()
     self.pick_transform_plus_z.Transform.value = avango.gua.make_rot_mat(180, 1, 0, 0)
+    self.ray_visual_trans_plus_z = avango.gua.nodes.TransformNode(Name = "ray_visual_trans_plus_z")
     self.initialize_pick_transform(self.pick_transform_plus_z, self.picker_plus_z)
 
     self.picker_minus_z         = LightRayPicker()
     self.pick_transform_minus_z = avango.gua.nodes.TransformNode(Name = "pick_transform_minus_z")
-    self.ray_visual_trans_minus_z = avango.gua.nodes.TransformNode()
+    self.ray_visual_trans_minus_z = avango.gua.nodes.TransformNode(Name = "ray_visual_trans_minus_z")
     self.initialize_pick_transform(self.pick_transform_minus_z, self.picker_minus_z)
 
     # Ray Visualizations
@@ -543,3 +519,92 @@ class LightRayPicker(avango.script.Script):
                                              self.Options.value,
                                              self.Mask.value)
     self.Results.value = results.value
+
+
+
+    '''
+    if (l == 1):
+          self.ray_visual_trans_plus_x = avango.gua.nodes.TransformNode(Name = "ray_transform")
+          self.ray_visual_trans_plus_x.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
+          self.cube_rotate.Children.value.append(self.pick_transform_plus_x)
+          if len(self.mf_pick_results_plus_x.value) > 0:
+            self._ray_visual_plus_x.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_plus_x.value[0].Distance.value)/2) *\
+                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_plus_x.value[0].Distance.value)/2)
+            self.pick_transform_plus_x.Children.value.append(self.ray_visual_trans_plus_x)
+            self.ray_visual_trans_plus_x.Children.value.append(self._ray_visual_plus_x)
+          else:
+            self._ray_visual_plus_x.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
+                                                avango.gua.make_scale_mat(1,1,0.5)
+            self.pick_transform_plus_x.Children.value.append(self.ray_visual_trans_plus_x)
+            self.ray_visual_trans_plus_x.Children.value.append(self._ray_visual_plus_x)
+        elif (l == 2):
+          self.ray_visual_trans_minus_x = avango.gua.nodes.TransformNode(Name = "ray_transform")
+          self.ray_visual_trans_minus_x.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
+          self.cube_rotate.Children.value.append(self.pick_transform_minus_x)
+          if len(self.mf_pick_results_minus_x.value) > 0:
+            self._ray_visual_minus_x.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_minus_x.value[0].Distance.value)/2) *\
+                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_minus_x.value[0].Distance.value)/2)
+            self.pick_transform_minus_x.Children.value.append(self.ray_visual_trans_minus_x)
+            self.ray_visual_trans_minus_x.Children.value.append(self._ray_visual_minus_x)
+          else:
+            self._ray_visual_minus_x.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
+                                                avango.gua.make_scale_mat(1,1,0.5)
+            self.pick_transform_minus_x.Children.value.append(self.ray_visual_trans_minus_x)
+            self.ray_visual_trans_minus_x.Children.value.append(self._ray_visual_minus_x)
+        elif (l == 3):
+          self.ray_visual_trans_plus_y = avango.gua.nodes.TransformNode(Name = "ray_transform")
+          self.ray_visual_trans_plus_y.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
+          self.cube_rotate.Children.value.append(self.pick_transform_plus_y)
+          if len(self.mf_pick_results_plus_y.value) > 0:
+            self._ray_visual_plus_y.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_plus_y.value[0].Distance.value)/2) *\
+                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_plus_y.value[0].Distance.value)/2)
+            self.pick_transform_plus_y.Children.value.append(self.ray_visual_trans_plus_y)
+            self.ray_visual_trans_plus_y.Children.value.append(self._ray_visual_plus_y)
+          else:
+            self._ray_visual_plus_y.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
+                                                avango.gua.make_scale_mat(1,1,0.5)
+            self.pick_transform_plus_y.Children.value.append(self.ray_visual_trans_plus_y)
+            self.ray_visual_trans_plus_y.Children.value.append(self._ray_visual_plus_y)
+        elif (l == 4):
+          self.ray_visual_trans_minus_y = avango.gua.nodes.TransformNode(Name = "ray_transform")
+          self.ray_visual_trans_minus_y.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
+          self.cube_rotate.Children.value.append(self.pick_transform_minus_y)
+          if len(self.mf_pick_results_minus_y.value) > 0:
+            self._ray_visual_minus_y.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_minus_y.value[0].Distance.value)/2) *\
+                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_minus_y.value[0].Distance.value)/2)
+            self.pick_transform_minus_y.Children.value.append(self.ray_visual_trans_minus_y)
+            self.ray_visual_trans_minus_y.Children.value.append(self._ray_visual_minus_y)
+          else:
+            self._ray_visual_minus_y.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
+                                                avango.gua.make_scale_mat(1,1,0.5)
+            self.pick_transform_minus_y.Children.value.append(self.ray_visual_trans_minus_y)
+            self.ray_visual_trans_minus_y.Children.value.append(self._ray_visual_minus_y)
+        elif (l == 5):
+          self.ray_visual_trans_plus_z = avango.gua.nodes.TransformNode(Name = "ray_transform")
+          self.ray_visual_trans_plus_z.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
+          self.cube_rotate.Children.value.append(self.pick_transform_plus_z)
+          if len(self.mf_pick_results_plus_z.value) > 0:
+            self._ray_visual_plus_z.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_plus_z.value[0].Distance.value)/2) *\
+                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_plus_z.value[0].Distance.value)/2)
+            self.pick_transform_plus_z.Children.value.append(self.ray_visual_trans_plus_z)
+            self.ray_visual_trans_plus_z.Children.value.append(self._ray_visual_plus_z)
+          else:
+            self._ray_visual_plus_z.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
+                                                avango.gua.make_scale_mat(1,1,0.5)
+            self.pick_transform_plus_z.Children.value.append(self.ray_visual_trans_plus_z)
+            self.ray_visual_trans_plus_z.Children.value.append(self._ray_visual_plus_z)
+        elif (l == 6):
+          self.ray_visual_trans_minus_z = avango.gua.nodes.TransformNode(Name = "ray_transform")
+          self.ray_visual_trans_minus_z.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
+          self.cube_rotate.Children.value.append(self.pick_transform_minus_z)
+          if len(self.mf_pick_results_minus_z.value) > 0:
+            self._ray_visual_minus_z.Transform.value =  avango.gua.make_trans_mat(0,0,-(self.mf_pick_results_minus_z.value[0].Distance.value)/2) *\
+                                                avango.gua.make_scale_mat(1,1,(self.mf_pick_results_minus_z.value[0].Distance.value)/2)
+            self.pick_transform_minus_z.Children.value.append(self.ray_visual_trans_minus_z)
+            self.ray_visual_trans_minus_z.Children.value.append(self._ray_visual_minus_z)
+          else:
+            self._ray_visual_minus_z.Transform.value =  avango.gua.make_trans_mat(0,0,-0.5) *\
+                                                avango.gua.make_scale_mat(1,1,0.5)
+            self.pick_transform_minus_z.Children.value.append(self.ray_visual_trans_minus_z)
+            self.ray_visual_trans_minus_z.Children.value.append(self._ray_visual_minus_z)
+    '''
