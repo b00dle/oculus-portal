@@ -490,14 +490,14 @@ class LightCube(avango.script.Script):
     self.initialize_pick_transform(self.pick_transform_minus_z, self.picker_minus_z)
 
     # Ray Visualizations
-    self._ray_visual_plus_x = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'Yellow', avango.gua.LoaderFlags.DEFAULTS)
-    self._ray_visual_minus_x = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'Yellow', avango.gua.LoaderFlags.DEFAULTS)
+    self._ray_visual_plus_x = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'White', avango.gua.LoaderFlags.DEFAULTS)
+    self._ray_visual_minus_x = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'White', avango.gua.LoaderFlags.DEFAULTS)
 
-    self._ray_visual_plus_y = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'Yellow', avango.gua.LoaderFlags.DEFAULTS)
-    self._ray_visual_minus_y = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'Yellow', avango.gua.LoaderFlags.DEFAULTS)
+    self._ray_visual_plus_y = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'White', avango.gua.LoaderFlags.DEFAULTS)
+    self._ray_visual_minus_y = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'White', avango.gua.LoaderFlags.DEFAULTS)
 
-    self._ray_visual_plus_z = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'Yellow', avango.gua.LoaderFlags.DEFAULTS)
-    self._ray_visual_minus_z = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'Yellow', avango.gua.LoaderFlags.DEFAULTS)
+    self._ray_visual_plus_z = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'White', avango.gua.LoaderFlags.DEFAULTS)
+    self._ray_visual_minus_z = self.loader.create_geometry_from_file('ray', 'data/objects/cube.obj', 'White', avango.gua.LoaderFlags.DEFAULTS)
 
 
     # Field Connections for the pick results

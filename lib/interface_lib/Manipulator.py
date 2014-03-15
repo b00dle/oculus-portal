@@ -30,12 +30,12 @@ class Manipulator(avango.script.Script):
 
     self.LeftPointer = PointerDevice()
 
-    self.LeftPointer.my_constructor("MOSART Semi. Input Device") #"2.4G Presenter"
+    self.LeftPointer.my_constructor("2.4G Presenter") #"2.4G Presenter"
     self.LeftPicker = ManipulatorPicker()
     self.LeftRay = avango.gua.nodes.RayNode(Name = "pick_ray_left")
 
     self.RightPointer = PointerDevice()
-    self.RightPointer.my_constructor("2.4G Presenter") #MOUSE USB MOUSE
+    self.RightPointer.my_constructor("MOSART Semi. Input Device") #MOUSE USB MOUSE 
     self.RightPicker = ManipulatorPicker()
     self.RightRay = avango.gua.nodes.RayNode(Name = "pick_ray_right")
 
@@ -311,9 +311,9 @@ class Manipulator(avango.script.Script):
     self.LeftRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
 
     ray_left_avatar = loader.create_geometry_from_file('ray_left' , 'data/objects/cube.obj',
-                                                    'White', avango.gua.LoaderFlags.DEFAULTS)
+                                                    'Grey', avango.gua.LoaderFlags.DEFAULTS)
     ray_left_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -2.0) *\
-                                       avango.gua.make_scale_mat(0.008, 0.008, 2)
+                                       avango.gua.make_scale_mat(0.004, 0.004, 2)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
    
 
@@ -332,7 +332,7 @@ class Manipulator(avango.script.Script):
     loader = avango.gua.nodes.GeometryLoader()
     self.RightRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 5.0)
     ray_right_avatar = loader.create_geometry_from_file('ray_right' , 'data/objects/cube.obj',
-                                                     'Bright', avango.gua.LoaderFlags.DEFAULTS)
+                                                     'Grey', avango.gua.LoaderFlags.DEFAULTS)
     ray_right_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.5) *\
                                        avango.gua.make_scale_mat(0.003, 0.003, 0.5)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")

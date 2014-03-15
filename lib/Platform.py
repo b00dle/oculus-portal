@@ -66,7 +66,7 @@ class Platform(avango.script.Script):
     self.geometry.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, self.depth/2) * \
                                     avango.gua.make_scale_mat(self.width, 0.0, self.depth)
 
-    self.platform_transform_node.Children.value.append(self.geometry)
+    #self.platform_transform_node.Children.value.append(self.geometry)
 
     ## @var left_border
     # Geometry scenegraph node of the platform's left border
