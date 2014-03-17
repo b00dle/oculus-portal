@@ -28,7 +28,7 @@ def start():
   for i in range(0, 36):
     #portalNames.append("portal_" + str(i) + "_DESK_0")
     #portalNames.append("portal_" + str(i) + "_DESK_1")
-    portalNames.append("portal_" + str(i) + "_DESK_0")
+    portalNames.append("portal_" + str(i) + "_OVR_0")
     #portalNames.append("portal_" + str(i) + "_OVR_1")
     #portalNames.append("portal_" + str(i) + "_PW_0")
     #portalNames.append("portal_" + str(i) + "_PW_1")
@@ -49,7 +49,7 @@ def start():
 
   # initialize viewing setup
   #viewing_manager = ViewingManager(scene_manager.graphs, sys.argv[1])
-  viewing_manager = ViewingManager(scene_manager.graphs, "configs/spacemouse_one_desktop.xml")
+  viewing_manager = ViewingManager(scene_manager.graphs, "configs/controller_one_ovr.xml")
 
   # initialize portals
   portal_manager = PortalManager()

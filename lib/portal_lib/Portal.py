@@ -37,6 +37,7 @@ class Portal(avango.script.Script):
 
     # init fields
     sf_portal_pos   = avango.gua.SFMatrix4()
+   #sf_active       = avango.SFBool() 
     
     def __init__(self):
         self.super(Portal).__init__()
@@ -57,6 +58,8 @@ class Portal(avango.script.Script):
         self.EXCLUDEGROUPS          = []
 
     def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS, PICKABLE = True, GEOMETRY = None):
+        #self.sf_active.value        = True
+
         self.NAME                   = NAME
         self.ENTRYSCENE             = ENTRYSCENE
         self.EXITSCENE              = EXITSCENE
@@ -68,8 +71,9 @@ class Portal(avango.script.Script):
         self.PRE_PIPE               = self.create_default_pipe()
         self.GEOMETRY               = self.create_geometry(ENTRYPOS, GEOMETRY, PICKABLE)
         self.HEAD                   = "/" + self.NAME + "Screen/head"
-
-        self.scene_changed          = False
+    # @field_has_changed(sf_active)
+    # def toggle_pipe_enabled_field(self):
+    #     self.PRE_PIPE.Enabled.value = self.sf_active.value 
 
     def create_default_pipe(self):
         self.create_camera()

@@ -70,7 +70,10 @@ class PortalController(avango.script.Script):
     self.PORTALUPDATERS = []
     self.PLATFORM       = -1
     self.USERHEAD       = avango.gua.nodes.TransformNode()
+    self.first_frame    = 1500
     self.visible_cube   = PortalCube()
+    self.timer          = avango.nodes.TimeSensor()
+    self.start_time     = 0.0
     
   def my_constructor(self, ACTIVESCENE, NAME, VIEWINGPIPELINES, PIPELINE, PORTALS, PORTALCUBES, NAVIGATION, USERHEAD):
     self.NAME             = NAME
@@ -89,14 +92,14 @@ class PortalController(avango.script.Script):
 
     # references
     self.USERHEAD         = USERHEAD
-        
+    
+    self.start_time = self.timer.Time.value
+
     self.create_portal_updaters()     
 
     self.initialize_portal_group_names()
     self.initialize_prepipes()
     self.initialize_portal_picker()
-
-    self.did_change_scene = False
 
     self.always_evaluate(True) # set class evaluation policy
 
@@ -104,10 +107,10 @@ class PortalController(avango.script.Script):
   @field_has_changed(PickedPortals)
   def evaluate_scene_change(self):
     _platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
-    _pos_p1 = _platform.Transform.value.get_translate()
+    _pos_p1 = self.USERHEAD.Transform.value.get_translate() #_platform.Transform.value.get_translate()
 
     for portal in self.PickedPortals.value:
-      if portal.Distance.value < 0.2:
+      if portal.Distance.value < 0.19:
         for p in self.ACTIVEPORTALS:
           if p.GEOMETRY.Name.value == portal.Object.value.Name.value:
             _pos_p2 = p.GEOMETRY.Transform.value.get_translate()
@@ -120,41 +123,34 @@ class PortalController(avango.script.Script):
   def evaluate(self):
     self.sfUserHead.value = self.USERHEAD.WorldTransform.value
 
-
     for p_cube in self.PORTALCUBES:
-      if p_cube.visibility_updated == True:
-        if p_cube.sf_visibility.value == False:
-          for c_portal in p_cube.Portals:
-            portal = next((p for p in self.PORTALS if c_portal.NAME == p.NAME), None)
-            if portal in self.ACTIVEPORTALS:
-              self.ACTIVEPORTALS.remove(portal)
-              ##self.update_prepipes()
-              #print("update prepipes called (portals invisible)")
-            if "do_not_display_group" not in portal.GEOMETRY.GroupNames.value:
-              #print("message from portalController: do not display group added")
-              portal.GEOMETRY.GroupNames.value.append("do_not_display_group")
+      
+      if p_cube.visibility_updated == True and self.timer.Time.value - self.start_time > 10.0:
+          p_cube.visibility_updated = False
 
-        else: # p_cube.sf_visibility.value == True
-          for c_portal in p_cube.Portals:
-            portal = next((p for p in self.PORTALS if c_portal.NAME == p.NAME), None)
-            if portal not in self.ACTIVEPORTALS:
-              self.ACTIVEPORTALS.append(portal)
-              ##self.update_prepipes()
-              #print("update prepipes called (portals VISIBLE)")
-              #for group in portal.GEOMETRY.GroupNames.value:
-              #  print(group)
-            if "do_not_display_group" in portal.GEOMETRY.GroupNames.value:
-              #print("about to remove do not display group")
-              portal.GEOMETRY.GroupNames.value.remove("do_not_display_group")
-              #print("do not display group removed")
-          self.visible_cube = p_cube
-          self.hide_invisible_portal_cubes()
+          if p_cube.sf_visibility.value == False:
+            for c_portal in p_cube.Portals:
+              portal = next((p for p in self.PORTALS if c_portal.NAME == p.NAME), None)
+              if portal in self.ACTIVEPORTALS:
+                self.ACTIVEPORTALS.remove(portal)
+                portal.PRE_PIPE.Enabled.value = False
+              if "do_not_display_group" not in portal.GEOMETRY.GroupNames.value:
+                portal.GEOMETRY.GroupNames.value.append("do_not_display_group")
+
+          else: # p_cube.sf_visibility.value == True
+            for c_portal in p_cube.Portals:
+              portal = next((p for p in self.PORTALS if c_portal.NAME == p.NAME), None)
+              if portal not in self.ACTIVEPORTALS:
+                self.ACTIVEPORTALS.append(portal)
+                portal.PRE_PIPE.Enabled.value = True
+              if "do_not_display_group" in portal.GEOMETRY.GroupNames.value:
+                portal.GEOMETRY.GroupNames.value.remove("do_not_display_group")
+            self.visible_cube = p_cube
+            self.hide_invisible_portal_cubes()
 
     #self.adjust_nearplane()
     
   def change_scene(self, PORTAL, DISTANCE_X, DISTANCE_Y):
-    self.did_change_scene = True
-    PORTAL.scene_changed = True
 
     _platform = self.ACTIVESCENE["/platform_" + str(self.PLATFORM)]
     _rotate_old_scene = _platform.Transform.value.get_rotate()
@@ -171,21 +167,28 @@ class PortalController(avango.script.Script):
 
     self.ACTIVESCENE = PORTAL.EXITSCENE
 
-    # Starting Position
-    new_pos = avango.gua.make_trans_mat(PORTAL.EXITPOS.get_translate().x + DISTANCE_X,
-                                        PORTAL.EXITPOS.get_translate().y + DISTANCE_Y,
-                                        PORTAL.EXITPOS.get_translate().z +  0.2) * \
-              avango.gua.make_trans_mat(1.0 * self.USERHEAD.Transform.value.get_translate().x,
-                                        0.0,
-                                        -1.0 * self.USERHEAD.Transform.value.get_translate().z)
 
+    pos_correction = avango.gua.make_trans_mat(PORTAL.sf_portal_pos.value.get_translate() - _platform.Transform.value.get_translate())
+
+    # Starting Position
+    new_pos = avango.gua.make_trans_mat(PORTAL.EXITPOS.get_translate().x,
+                                        PORTAL.EXITPOS.get_translate().y,
+                                        PORTAL.EXITPOS.get_translate().z) * \
+              avango.gua.make_trans_mat(-1.0 * pos_correction.get_translate().x,
+                                        -1.0 * pos_correction.get_translate().y,
+                                        -1.0 * pos_correction.get_translate().z)
+    # new_pos = avango.gua.make_trans_mat(PORTAL.EXITPOS.get_translate().x + DISTANCE_X,
+    #                                     PORTAL.EXITPOS.get_translate().y + DISTANCE_Y,
+    #                                     PORTAL.EXITPOS.get_translate().z +  0.2) * \
+    #           avango.gua.make_trans_mat(1.0 * self.USERHEAD.Transform.value.get_translate().x,
+    #                                     0.0,
+    #                                     -1.0 * self.USERHEAD.Transform.value.get_translate().z)
+
+              #avango.gua.make_inverse_mat(avango.gua.make_rot_mat(PORTAL.EXITPOS.get_rotate()))
     # Starting Rotation
     new_rot = avango.gua.make_rot_mat(_rotate_old_scene)
 
     self.NAVIGATION.set_to_pos(new_pos * new_rot)
-
-    #head_trans = self.USERHEAD.Transform.value.get_translate()
-    #self.USERHEAD.Transform.value = avango.gua.make_trans_mat(head_trans.x, head_trans.y, head_trans.z)
 
     self.ACTIVEPORTALS  = self.create_active_portals()
 
@@ -214,15 +217,15 @@ class PortalController(avango.script.Script):
     return activeportals
       
   def initialize_prepipes(self):
-    pre_pipes = []      
+    pre_pipes = []
     for p in self.PORTALS:
       pre_pipes.append(p.PRE_PIPE)
-
+      
     self.PIPELINE.PreRenderPipelines.value = pre_pipes
 
+
   def update_prepipes(self):
-    pre_pipes = []
-    for p in self.ACTIVEPORTALS:
+    for p in self.PORTALS:
       pre_pipes.append(p.PRE_PIPE)
 
     self.PIPELINE.PreRenderPipelines.value = pre_pipes
@@ -259,9 +262,7 @@ class PortalController(avango.script.Script):
             portal = next((p for p in self.PORTALS if c_portal.NAME == p.NAME), None)
             if portal in self.ACTIVEPORTALS:
               self.ACTIVEPORTALS.remove(portal)
-              ##self.update_prepipes()
-              #print("update prepipes called (portals invisible)")
+              portal.PRE_PIPE.Enabled.value = False
             if "do_not_display_group" not in portal.GEOMETRY.GroupNames.value:
-              #print("message from portalController: do not display group added")
               portal.GEOMETRY.GroupNames.value.append("do_not_display_group")
 

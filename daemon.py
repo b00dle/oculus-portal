@@ -51,7 +51,7 @@ def init_led_wall_tracking():
   
   _dtrack.stations[27] = avango.daemon.Station('tracking-oculus-front') # tracking-oculus-back
   _dtrack.stations[15] = avango.daemon.Station('tracking-pointer-green')  # blue pointer 
-  _dtrack.stations[16] = avango.daemon.Station('tracking-pointer-blue') # green pointer
+  _dtrack.stations[23] = avango.daemon.Station('tracking-pointer-blue') # green pointer
 
   device_list.append(_dtrack)
   print "ART Tracking started at LED WALL"

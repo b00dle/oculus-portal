@@ -193,7 +193,7 @@ class LightCube(avango.script.Script):
                                                    avango.gua.make_trans_mat(2.0, 1.4, 0.0) *\
                                                    avango.gua.make_rot_mat(90, 0, 1, 0) *\
                                                    avango.gua.make_rot_mat(90, 1, 0, 0), 
-                                                   self.ROOMNODE)
+                                                   self.ROOMNODE, "Green")
 
           self.sf_portal_plus_x.connect_from(self.portal_button_plus_x.sf_bool_button)
 
@@ -205,7 +205,7 @@ class LightCube(avango.script.Script):
                                          avango.gua.make_trans_mat(-2.0, 1.4, 0.0) *\
                                          avango.gua.make_rot_mat(90, 0, 1, 0) *\
                                          avango.gua.make_rot_mat(90, 1, 0, 0), 
-                                         self.ROOMNODE)
+                                         self.ROOMNODE, "Green")
 
           self.sf_portal_minus_x.connect_from(self.portal_button_minus_x.sf_bool_button)
 
@@ -215,7 +215,7 @@ class LightCube(avango.script.Script):
 
           self.portal_button_plus_y.my_constructor("portal_button_plus_y",
                                          avango.gua.make_trans_mat(0.0, 2.7, 0.0),
-                                         self.ROOMNODE)
+                                         self.ROOMNODE, "Green")
 
           self.sf_portal_plus_y.connect_from(self.portal_button_plus_y.sf_bool_button)
 
@@ -223,9 +223,9 @@ class LightCube(avango.script.Script):
           self.portal_buttons[3] = 1
           self.build_portal_button_minus_y = True
 
-          self.portal_button_minus_y.my_constructor("portal_button_minus_y",
+          self.portal_button_minus_y.my_constructor("portal_button_minus_y", 
                                          avango.gua.make_trans_mat(0.0, 0.2, 0.0),
-                                         self.ROOMNODE)
+                                         self.ROOMNODE, "Green")
 
           self.sf_portal_minus_y.connect_from(self.portal_button_minus_y.sf_bool_button)
 
@@ -236,7 +236,7 @@ class LightCube(avango.script.Script):
           self.portal_button_plus_z.my_constructor("portal_button_plus_z",
                                          avango.gua.make_trans_mat(0.0, 1.5, 2.0) *\
                                          avango.gua.make_rot_mat(90, 1, 0, 0),
-                                         self.ROOMNODE)
+                                         self.ROOMNODE, "Green")
 
           self.sf_portal_plus_z.connect_from(self.portal_button_plus_z.sf_bool_button)
 
@@ -247,7 +247,7 @@ class LightCube(avango.script.Script):
           self.portal_button_minus_z.my_constructor("portal_button_minus_z",
                                          avango.gua.make_trans_mat(0.0, 1.5, -2.0)*\
                                          avango.gua.make_rot_mat(90, 1, 0, 0), 
-                                         self.ROOMNODE)
+                                         self.ROOMNODE, "Green")
 
           self.sf_portal_minus_z.connect_from(self.portal_button_minus_z.sf_bool_button)
     #if (self.HAS_LIGHT):

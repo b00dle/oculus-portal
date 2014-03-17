@@ -75,6 +75,7 @@ class PortalCube(avango.script.Script):
                                   self.EXCLUDEGROUPS,
                                   True
                                   )
+    #self.Portals[0].sf_active.connect_from(self.sf_visibility)
 
     #############PORTAL 1##############
     entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x,
@@ -97,8 +98,9 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
                                   self.EXCLUDEGROUPS,
-                                  False
+                                  True
                                   )
+    #self.Portals[1].sf_active.connect_from(self.sf_visibility)
 
     #############PORTAL 2##############
     entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x,
@@ -123,8 +125,9 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
                                   self.EXCLUDEGROUPS,
-                                  False
+                                  True
                                   )
+    #self.Portals[2].sf_active.connect_from(self.sf_visibility)
 
     #############PORTAL 3##############
     entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x,
@@ -149,8 +152,9 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
                                   self.EXCLUDEGROUPS,
-                                  False
+                                  True
                                   )
+    #self.Portals[3].sf_active.connect_from(self.sf_visibility)
 
     #############PORTAL 4##############
     entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x - self.SIZE/2,
@@ -173,8 +177,9 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
                                   self.EXCLUDEGROUPS,
-                                  False
+                                  True
                                   )
+    #self.Portals[4].sf_active.connect_from(self.sf_visibility)
 
     #############PORTAL 5##############
     entry_pos = avango.gua.make_trans_mat(self.ENTRYORIGIN.x + self.SIZE/2,
@@ -197,8 +202,9 @@ class PortalCube(avango.script.Script):
                                   self.SIZE,
                                   self.USERTYPE + "_" + str(self.USERID) + "_portals",
                                   self.EXCLUDEGROUPS,
-                                  False
+                                  True
                                   )
+    #self.Portals[5].sf_active.connect_from(self.sf_visibility)
 
     if self.sf_visibility == False:
       for portal in self.Portals:
