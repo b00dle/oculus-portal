@@ -63,7 +63,7 @@ class InteractivGeometry(avango.script.Script):
 
   def initalize_menu(self, CHANGE_OPTIONS):
     element_counter = 0
-    self.menu_node.Transform.value = avango.gua.make_trans_mat(0, 0, -0.5) * avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
+    self.menu_node.Transform.value = avango.gua.make_trans_mat(0, 0, -0.3) * avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
     for option in CHANGE_OPTIONS:
       # Slider to change size
       if(option == "size"):

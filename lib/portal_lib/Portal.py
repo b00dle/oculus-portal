@@ -56,7 +56,7 @@ class Portal(avango.script.Script):
         self.GROUPNAME              = ""
         self.EXCLUDEGROUPS          = []
 
-    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS, GEOMETRY = None):
+    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS, PICKABLE = True, GEOMETRY = None):
         self.NAME                   = NAME
         self.ENTRYSCENE             = ENTRYSCENE
         self.EXITSCENE              = EXITSCENE
@@ -66,7 +66,7 @@ class Portal(avango.script.Script):
         self.GROUPNAME              = GROUPNAME
         self.EXCLUDEGROUPS          = EXCLUDEGROUPS
         self.PRE_PIPE               = self.create_default_pipe()
-        self.GEOMETRY               = self.create_geometry(ENTRYPOS, GEOMETRY)
+        self.GEOMETRY               = self.create_geometry(ENTRYPOS, GEOMETRY, PICKABLE)
         self.HEAD                   = "/" + self.NAME + "Screen/head"
 
         self.scene_changed          = False
@@ -101,15 +101,21 @@ class Portal(avango.script.Script):
 
         return pre_pipe
 
-    def create_geometry(self, PORTALPOS, GEOMETRY):
+    def create_geometry(self, PORTALPOS, GEOMETRY, PICKABLE):
         loader = avango.gua.nodes.GeometryLoader()
         
         if(GEOMETRY == None):
-            geometry = loader.create_geometry_from_file(self.NAME + "Node",
-                                                    "data/objects/plane.obj",
-                                                    "Portal" + self.NAME,
-                                                    avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-
+            if PICKABLE:
+                geometry = loader.create_geometry_from_file(self.NAME + "Node",
+                                                        "data/objects/plane.obj",
+                                                        "Portal" + self.NAME,
+                                                        avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+            else:
+                geometry = loader.create_geometry_from_file(self.NAME + "Node",
+                                                        "data/objects/plane.obj",
+                                                        "Portal" + self.NAME,
+                                                        avango.gua.LoaderFlags.DEFAULTS)
+            
             geometry.Transform.value = PORTALPOS *\
                                     avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
                                     avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\

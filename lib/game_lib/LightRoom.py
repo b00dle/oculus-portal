@@ -12,7 +12,7 @@ class LightRoom(avango.script.Script):
     self.super(LightRoom).__init__()
     self.NAME = "default"
     self.SCENEGRAPH = avango.gua.nodes.SceneGraph()
-    self.POSITION = avango.gua.nodes.TransformNode()
+    self.POSITION = avango.gua.Mat4()
     self.COLOR = "White"
     self.ROOM_PORTALS = [] #list with indexes
     self.portal_cubes = [] #lsit with portal cubes
@@ -24,6 +24,7 @@ class LightRoom(avango.script.Script):
     self.POSITION = POSITION
     self.COLOR = COLOR
     self.ROOM_PORTALS = ROOM_PORTALS
+
 
     self.loader = avango.gua.nodes.GeometryLoader()
 

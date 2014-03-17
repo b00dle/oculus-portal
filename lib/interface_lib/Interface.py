@@ -87,7 +87,7 @@ class Button(avango.script.Script):
     self.sf_bool_button.value = False
     self.just_rotated = False
 
-  def my_constructor(self, NAME, BUTTONPOS, PARENT_NODE):
+  def my_constructor(self, NAME, BUTTONPOS, PARENT_NODE, COLOR):
     self.NAME = NAME
     self.BUTTONPOS = BUTTONPOS
     self.PARENT_NODE = PARENT_NODE
@@ -95,7 +95,7 @@ class Button(avango.script.Script):
     self.LOADER = avango.gua.nodes.GeometryLoader()
 
     self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/cube.obj',
-                                                            'Dark_red', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+                                                            COLOR , avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.button_geometry.Transform.value = self.button_scale
     self.button_geometry.GroupNames.value = ["console"]
     self.button_geometry.add_and_init_field(avango.script.SFObject(), "Button", self)
@@ -111,6 +111,7 @@ class Button(avango.script.Script):
       self.sf_bool_button.value = False
       self.just_rotated = False
     elif (self.sf_bool_button.value == True):
+      #print " ay ay"
       self.sf_bool_button.value = False
     elif (self.sf_bool_button.value == False):
       self.button_geometry.Transform.value = self.button_scale

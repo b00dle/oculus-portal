@@ -59,6 +59,15 @@ class Platform(avango.script.Script):
     # create four boundary planes
     _loader = avango.gua.nodes.GeometryLoader()
 
+    self.geometry = _loader.create_geometry_from_file('ground_geometry',
+                                                      'data/objects/plane.obj',
+                                                      'Stones',
+                                                      avango.gua.LoaderFlags.DEFAULTS)
+    self.geometry.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, self.depth/2) * \
+                                    avango.gua.make_scale_mat(self.width, 0.0, self.depth)
+
+    #self.platform_transform_node.Children.value.append(self.geometry)
+
     ## @var left_border
     # Geometry scenegraph node of the platform's left border
     self.left_border = _loader.create_geometry_from_file('left_border_geometry',
