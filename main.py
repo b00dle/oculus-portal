@@ -49,7 +49,7 @@ def start():
 
   # initialize viewing setup
   #viewing_manager = ViewingManager(scene_manager.graphs, sys.argv[1])
-  viewing_manager = ViewingManager(scene_manager.graphs, "configs/controller_one_ovr.xml")
+  viewing_manager = ViewingManager(scene_manager.graphs, "configs/desktop_ovr.xml")
 
   # initialize portals
   portal_manager = PortalManager(viewing_manager)

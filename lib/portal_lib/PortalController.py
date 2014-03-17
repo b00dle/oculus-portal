@@ -159,7 +159,7 @@ class PortalController(avango.script.Script):
     self.ACTIVESCENE = PORTAL.EXITSCENE
 
     # Starting Position
-    new_pos = avango.gua.make_trans_mat(PORTAL.EXITPOS.get_translate().x + DISTANCE_X, 
+    new_pos = avango.gua.make_trans_mat(PORTAL.EXITPOS.get_translate().x + DISTANCE_X,
                                         PORTAL.EXITPOS.get_translate().y + DISTANCE_Y,
                                         PORTAL.EXITPOS.get_translate().z)   
     # Starting Rotation

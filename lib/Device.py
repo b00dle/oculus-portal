@@ -202,7 +202,7 @@ class KeyboardMouseDevice(MultiDofDevice):
     ## @var keyboard_device_sensor
     # Input sensor referencing the keyboard connected to the computer.
     self.keyboard_device_sensor = avango.daemon.nodes.DeviceSensor(DeviceService = avango.daemon.DeviceService())
-    self.keyboard_device_sensor.Station.value = "device-keyboard1"
+    self.keyboard_device_sensor.Station.value = "device-keyboard0"
 
     ## @var frame_trigger
     # Triggers framewise evaluation of frame_callback method

@@ -184,7 +184,7 @@ def init_mouse():
   mouse_name = mouse_name.split()
   if len(mouse_name) > 0:
 
-    mouse_name = mouse_name[1]
+    mouse_name = mouse_name[0]
 
     mouse = avango.daemon.HIDInput()
     mouse.station = avango.daemon.Station('device-mouse')

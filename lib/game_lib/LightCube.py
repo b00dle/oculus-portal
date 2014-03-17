@@ -84,6 +84,24 @@ class LightCube(avango.script.Script):
     self.animation_flag = False
     self.animation_time = 0.5
 
+    self.build_portal_button_plus_x = False
+    self.portal_button_plus_x = Button()
+    
+    self.build_portal_button_minus_x = False
+    self.portal_button_minus_x = Button()
+
+    self.build_portal_button_plus_y = False
+    self.portal_button_plus_y = Button()
+
+    self.build_portal_button_minus_y = False
+    self.portal_button_minus_y = Button()
+
+    self.build_portal_button_plus_z = False
+    self.portal_button_plus_z = Button()
+
+    self.build_portal_button_minus_z = False
+    self.portal_button_minus_z = Button()
+
   def my_constructor(self, NAME, SCENEGRAPH, ROOMNODE, ACTIV, LIGHTEXITS, CONSOLE_NODE, ROOMPORTALS):
     # init light cube
     self.loader       = avango.gua.nodes.GeometryLoader()
@@ -96,7 +114,7 @@ class LightCube(avango.script.Script):
     self.CONSOLE_NODE = CONSOLE_NODE
     self.ROOMPORTALS  = ROOMPORTALS
 
-    self.init_portal_buttons()
+    #self.init_portal_buttons()
 
     self.cube_transform = avango.gua.nodes.TransformNode(Name = "cube_transform")
 
@@ -150,15 +168,89 @@ class LightCube(avango.script.Script):
     if self.activated == False:
       self.remove_ray_nodes()
 
-    # NEUER ANSATZ:
     if self.IS_EMITTER:
       self.activate_light()
 
     if self.activated:
       self.HAS_LIGHT = True
       self.activated = False
-    elif (self.activated ==False):
+    elif (self.activated == False):
       self.HAS_LIGHT = False
+
+    # Portal Updating
+    for button in range (0, len(self.portal_buttons)):
+      if self.portal_buttons[button] == 2:
+
+        if button == 0 and not self.build_portal_button_plus_x:
+          self.portal_buttons[0] = 1
+          self.build_portal_button_plus_x = True
+
+          self.portal_button_plus_x.my_constructor("portal_button_plus_x", 
+                                                   avango.gua.make_trans_mat(2.0, 1.4, 0.0) *\
+                                                   avango.gua.make_rot_mat(90, 0, 1, 0) *\
+                                                   avango.gua.make_rot_mat(90, 1, 0, 0), 
+                                                   self.ROOMNODE)
+
+          self.sf_portal_plus_x.connect_from(self.portal_button_plus_x.sf_bool_button)
+
+        if button == 1 and not self.build_portal_button_minus_x:
+          self.portal_buttons[1] = 1
+          self.build_portal_button_minus_x = True
+
+          self.portal_button_minus_x.my_constructor("portal_button_minus_x",
+                                         avango.gua.make_trans_mat(-2.0, 1.4, 0.0) *\
+                                         avango.gua.make_rot_mat(90, 0, 1, 0) *\
+                                         avango.gua.make_rot_mat(90, 1, 0, 0), 
+                                         self.ROOMNODE)
+
+          self.sf_portal_minus_x.connect_from(self.portal_button_minus_x.sf_bool_button)
+
+        if button == 2 and not self.build_portal_button_plus_y:
+          self.portal_buttons[2] = 1
+          self.build_portal_button_plus_y = True
+
+          self.portal_button_plus_y.my_constructor("portal_button_plus_y",
+                                         avango.gua.make_trans_mat(0.0, 2.7, 0.0),
+                                         self.ROOMNODE)
+
+          self.sf_portal_plus_y.connect_from(self.portal_button_plus_y.sf_bool_button)
+
+        if button == 3 and not self.build_portal_button_minus_y:
+          self.portal_buttons[3] = 1
+          self.build_portal_button_minus_y = True
+
+          self.portal_button_minus_y.my_constructor("portal_button_minus_y",
+                                         avango.gua.make_trans_mat(0.0, 0.2, 0.0),
+                                         self.ROOMNODE)
+
+          self.sf_portal_minus_y.connect_from(self.portal_button_minus_y.sf_bool_button)
+
+        if button == 4 and not self.build_portal_button_plus_z:
+          self.portal_buttons[4] = 1
+          self.build_portal_button_plus_z = True
+
+          self.portal_button_plus_z.my_constructor("portal_button_plus_z",
+                                         avango.gua.make_trans_mat(0.0, 1.5, 2.0) *\
+                                         avango.gua.make_rot_mat(90, 1, 0, 0),
+                                         self.ROOMNODE)
+
+          self.sf_portal_plus_z.connect_from(self.portal_button_plus_z.sf_bool_button)
+
+        if button == 5 and not self.build_portal_button_minus_z:
+          self.portal_buttons[5] = 1
+          self.build_portal_button_minus_z = True
+
+          self.portal_button_minus_z.my_constructor("portal_button_minus_z",
+                                         avango.gua.make_trans_mat(0.0, 1.5, -2.0)*\
+                                         avango.gua.make_rot_mat(90, 1, 0, 0), 
+                                         self.ROOMNODE)
+
+          self.sf_portal_minus_z.connect_from(self.portal_button_minus_z.sf_bool_button)
+    if (self.HAS_LIGHT):
+      for room in self.NEIGHBOUR_ROOMS:
+        if room.HAS_LIGHT;
+          button.connect_from(p)
+
 
   def activate_light(self):
     #print self.NAME
@@ -169,43 +261,49 @@ class LightCube(avango.script.Script):
       if (l == 1):
         if len(self.mf_pick_results_plus_x.value) > 0:
           self.picked_plus_x = self.mf_pick_results_plus_x.value[0].Object.value
-          if self.picked_plus_x.has_field("LightCube"):
+          if self.picked_plus_x.has_field("LightCube"):# and self.portal_buttons[0] == 1:
             self.portal_buttons[0] = 2
           if self.picked_plus_x.has_field("LightCube") and self.picked_plus_x.LightCube.value.activated == False:
             self.picked_plus_x.LightCube.value.activate_light()
       elif (l == 2):
         if len(self.mf_pick_results_minus_x.value) > 0:
           self.picked_minus_x = self.mf_pick_results_minus_x.value[0].Object.value
-          if self.picked_minus_x.has_field("LightCube"):
+          if self.picked_minus_x.has_field("LightCube"):# and self.portal_buttons[1] == 1:
             self.portal_buttons[1] = 2
           if self.picked_minus_x.has_field("LightCube") and self.picked_minus_x.LightCube.value.activated == False:
             self.picked_minus_x.LightCube.value.activate_light()
       elif (l == 3):
         if len(self.mf_pick_results_plus_y.value) > 0:
           self.picked_plus_y = self.mf_pick_results_plus_y.value[0].Object.value
-          if self.picked_plus_y.has_field("LightCube"):
+          if self.picked_plus_y.has_field("LightCube"):# and self.portal_buttons[2] == 1:
             self.portal_buttons[2] = 2          
           if self.picked_plus_y.has_field("LightCube") and self.picked_plus_y.LightCube.value.activated == False:
             self.picked_plus_y.LightCube.value.activate_light()
       elif (l == 4):
         if len(self.mf_pick_results_minus_y.value) > 0:
           self.picked_minus_y = self.mf_pick_results_minus_y.value[0].Object.value
-          if self.picked_minus_y.has_field("LightCube"):
+          if self.picked_minus_y.has_field("LightCube"):# and self.portal_buttons[3] == 1:
             self.portal_buttons[3] = 2          
           if self.picked_minus_y.has_field("LightCube") and self.picked_minus_y.LightCube.value.activated == False:
             self.picked_minus_y.LightCube.value.activate_light()
       elif (l == 5):
         if len(self.mf_pick_results_plus_z.value) > 0:
           self.picked_plus_z = self.mf_pick_results_plus_z.value[0].Object.value
-          if self.picked_plus_z.has_field("LightCube"):
+          if self.picked_plus_z.has_field("LightCube"):# and self.portal_buttons[4] == 1:
             self.portal_buttons[4] = 2
           if self.picked_plus_z.has_field("LightCube") and self.picked_plus_z.LightCube.value.activated == False:
             self.picked_plus_z.LightCube.value.activate_light()
       elif (l == 6):
         if len(self.mf_pick_results_minus_z.value) > 0:
           self.picked_minus_z = self.mf_pick_results_minus_z.value[0].Object.value
-          if self.picked_plus_x.has_field("LightCube"):
-            self.portal_buttons[5] = 2          
+          if self.picked_minus_z.has_field("LightCube"):# and self.portal_buttons[5] == 1:
+            _picked_room_transform = self.picked_minus_z.LightCube.value.ROOMNODE.value.Transform.value
+            for p in self.ROOMPORTALS:
+              _portal_exit_x = p.EXITPOS.get_translate().x
+              _portal_exit_z = p.EXITPOS.get_translate().z
+              print "X-Distance ", _portal_exit_x - _picked_room_transform.get_translate().x
+              print "Z-Distance ", _portal_exit_z - _picked_room_transform.get_translate().z
+            #self.portal_buttons[5] = 2     
           if self.picked_minus_z.has_field("LightCube") and self.picked_minus_z.LightCube.value.activated == False:
             self.picked_minus_z.LightCube.value.activate_light()
 
@@ -345,7 +443,7 @@ class LightCube(avango.script.Script):
 
   @field_has_changed(sf_portal_minus_z)
   def create_portal_button_plus_x(self):
-    print "create portal button"
+    print self.sf_portal_minus_z.value
 
 
 

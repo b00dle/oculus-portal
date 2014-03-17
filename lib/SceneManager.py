@@ -29,10 +29,12 @@ class SceneManager:
   ## Custom constructor
   def __init__(self):
     self.graphs = []
+    self.scene_names = []
+    self.rooms = []
+    
+    self.create_gamescene()
     #self.create_simplescene()
     #self.create_harbourscene()
-    self.scene_names = []
-    self.create_gamescene()
     #self.create_simplescene()
     #self.create_level_2()
     #self.create_harbourscene()
@@ -65,11 +67,17 @@ class SceneManager:
     level1 = LightRoom()
     level1.my_constructor("room1", graph, avango.gua.make_trans_mat(0,0,2), [1], True, "White", [6])
 
+    self.rooms.append(level1)
+
     level2 = LightRoom()
     level2.my_constructor("room2",graph,avango.gua.make_trans_mat(0,0,-8), [3,4,5], False, "Green", [6])
 
+    self.rooms.append(level2)
+
     level3 = LightRoom()
     level3.my_constructor("room3",graph,avango.gua.make_trans_mat(-10,0,-8), [1,6], False, "Blue", [6])
+
+    self.rooms.append(level3)
 
     box2 = InteractivGeometry()
     box2.my_constructor('box2', 'data/objects/cube.obj', 'Stone', avango.gua.make_trans_mat(-10.6,1.5,-13) * avango.gua.make_scale_mat(0.8,0.8,0.8),
@@ -78,11 +86,17 @@ class SceneManager:
     level4 = LightRoom()
     level4.my_constructor("room4",graph,avango.gua.make_trans_mat(-10,0,-18), [2,5], False, "Red", [6])
 
+    self.rooms.append(level4)
+
     level5 = LightRoom()
     level5.my_constructor("room5",graph,avango.gua.make_trans_mat(0,0,-18), [1,2], False, "Purple", [6])
 
+    self.rooms.append(level5)
+
     level6 = LightRoom()
     level6.my_constructor("room6",graph,avango.gua.make_trans_mat(0,0,-28), [5], False, "White", [6])
+
+    self.rooms.append(level6)
 
 
     box = loader.create_geometry_from_file('box', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
