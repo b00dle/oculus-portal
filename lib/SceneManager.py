@@ -68,9 +68,9 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(spot)
 
-    monkey = InteractivGeometry()
-    monkey.my_constructor('monkey', 'data/objects/monkey.obj', 'slider_mat_1', avango.gua.make_trans_mat(-4.6,1.5,-7) * avango.gua.make_scale_mat(1.8,1.8,1.8),
-      graph.Root.value, ["red", "green", "blue", "size"])
+    #monkey = InteractivGeometry()
+    #monkey.my_constructor('monkey', 'data/objects/monkey.obj', 'slider_mat_1', avango.gua.make_trans_mat(-4.6,1.5,-7) * avango.gua.make_scale_mat(1.8,1.8,1.8),
+    #  graph.Root.value, ["red", "green", "blue", "size"])
 
     teapot = InteractivGeometry()
     teapot.my_constructor('teapot', 'data/objects/teapot.obj', 'slider_mat_2', avango.gua.make_trans_mat(-0,1.5,-17) * avango.gua.make_scale_mat(1.2,1.2,1.2) * avango.gua.make_rot_mat(45,0,1,1),
@@ -81,17 +81,17 @@ class SceneManager:
       graph.Root.value, ["red", "green", "blue"])
 
     level1 = LightRoom()
-    level1.my_constructor("room1", graph, avango.gua.make_trans_mat(0,0,2), [1], True, "White", [6])
+    level1.my_constructor("room1", graph, avango.gua.make_trans_mat(0,0,2), [1], True, "White")
 
     self.rooms.append(level1)
 
     level2 = LightRoom()
-    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(0,0,-8), [3,4,5], False, "Green", [6])
+    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(0,0,-8), [3,4,5], False, "Green")
 
     self.rooms.append(level2)
 
     level3 = LightRoom()
-    level3.my_constructor("room3",graph,avango.gua.make_trans_mat(-10,0,-8), [1,3,5], False, "Blue", [6])
+    level3.my_constructor("room3",graph,avango.gua.make_trans_mat(-10,0,-8), [1,3,5], False, "Blue",)
 
     self.rooms.append(level3)
 
@@ -100,19 +100,19 @@ class SceneManager:
       graph.Root.value, ["size"])
 
     level4 = LightRoom()
-    level4.my_constructor("room4",graph,avango.gua.make_trans_mat(-10,0,-18), [2,5], False, "Red", [6])
+    level4.my_constructor("room4",graph,avango.gua.make_trans_mat(-10,0,-18), [2,5], False, "Red")
 
     self.rooms.append(level4)
 
 
     # Raueme ohne Portale:
     level5 = LightRoom()
-    level5.my_constructor("room5",graph,avango.gua.make_trans_mat(0,10,-8), [1,2,3,4,5,6], False, "Purple", [6])
+    level5.my_constructor("room5",graph,avango.gua.make_trans_mat(0,10,-8), [1,2,3,4,5,6], False, "Purple")
 
     self.rooms.append(level5)
 
     level6 = LightRoom()
-    level6.my_constructor("room6",graph,avango.gua.make_trans_mat(-10,-10,-8), [1,2,3,5], False, "White", [6])
+    level6.my_constructor("room6",graph,avango.gua.make_trans_mat(10,0,-8), [1,2,3,5], False, "White")
 
     self.rooms.append(level6)
 

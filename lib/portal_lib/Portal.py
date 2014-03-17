@@ -25,7 +25,6 @@ class TimedMaterialUniformUpdate(avango.script.Script):
   ## @var UniformName
   # Field containing the name of the uniform value to be updated
   UniformName = avango.SFString()
-
   ## Called whenever TimeIn changes.
   @field_has_changed(TimeIn)
   def update(self):

@@ -106,7 +106,7 @@ class LightCube(avango.script.Script):
     self.build_portal_button_minus_z = False
     self.portal_button_minus_z = Button()
 
-  def my_constructor(self, NAME, SCENEGRAPH, ROOMNODE, ACTIV, LIGHTEXITS, CONSOLE_NODE, ROOMPORTALS):
+  def my_constructor(self, NAME, SCENEGRAPH, ROOMNODE, ACTIV, LIGHTEXITS, CONSOLE_NODE):
     # init light cube
     self.loader       = avango.gua.nodes.GeometryLoader()
     self.NAME         = NAME
@@ -116,7 +116,8 @@ class LightCube(avango.script.Script):
     self.SCENEGRAPH   = SCENEGRAPH
     self.ROOMNODE     = ROOMNODE
     self.CONSOLE_NODE = CONSOLE_NODE
-    self.ROOMPORTALS  = ROOMPORTALS
+    self.ROOMPORTALS  = []
+    self.PORTAL_BUTTONS = []
 
     #self.init_portal_buttons()
 
@@ -155,6 +156,7 @@ class LightCube(avango.script.Script):
   def evaluate(self):
     #print "new eval", self.pick_transforms_appended
     # Animation
+    
     if (self.animation_flag == True ):
       _current_time = self.timer.Time.value
       _slerp_ratio = (_current_time - self.animation_start_time) / self.animation_time
@@ -171,6 +173,8 @@ class LightCube(avango.script.Script):
 
     if self.activated == False:
       self.remove_ray_nodes()
+      for button in self.PORTAL_BUTTONS: 
+        button.sf_visible.value = False
 
     if self.IS_EMITTER:
       self.activate_light()
@@ -260,56 +264,90 @@ class LightCube(avango.script.Script):
     #print self.NAME
     self.activated = True
     self.append_ray_nodes()
+
+    for button in self.PORTAL_BUTTONS: 
+      button.sf_visible.value = False
+
     #_time_sav = time.time()
     for l in self.LIGHTEXITS:
       if (l == 1):
         if len(self.mf_pick_results_plus_x.value) > 0:
           self.picked_plus_x = self.mf_pick_results_plus_x.value[0].Object.value
-          if self.picked_plus_x.has_field("LightCube"):# and self.portal_buttons[0] == 1:
-            self.portal_buttons[0] = 2
+
+          if self.picked_plus_x.has_field("LightCube"):
+            for button in self.PORTAL_BUTTONS: 
+              if self.picked_plus_x.LightCube.value.NAME == button.NAME:
+                button.sf_visible.value = True
+
           if self.picked_plus_x.has_field("LightCube") and self.picked_plus_x.LightCube.value.activated == False:
             self.picked_plus_x.LightCube.value.activate_light()
+
       elif (l == 2):
         if len(self.mf_pick_results_minus_x.value) > 0:
           self.picked_minus_x = self.mf_pick_results_minus_x.value[0].Object.value
-          if self.picked_minus_x.has_field("LightCube"):# and self.portal_buttons[1] == 1:
-            self.portal_buttons[1] = 2
+
+          if self.picked_minus_x.has_field("LightCube"):
+            for button in self.PORTAL_BUTTONS: 
+              if self.picked_minus_x.LightCube.value.NAME == button.NAME:
+                button.sf_visible.value = True
+
           if self.picked_minus_x.has_field("LightCube") and self.picked_minus_x.LightCube.value.activated == False:
             self.picked_minus_x.LightCube.value.activate_light()
+
       elif (l == 3):
         if len(self.mf_pick_results_plus_y.value) > 0:
           self.picked_plus_y = self.mf_pick_results_plus_y.value[0].Object.value
-          if self.picked_plus_y.has_field("LightCube"):# and self.portal_buttons[2] == 1:
-            self.portal_buttons[2] = 2          
+
+          if self.picked_plus_y.has_field("LightCube"):
+            for button in self.PORTAL_BUTTONS: 
+              if self.picked_plus_y.LightCube.value.NAME == button.NAME:
+                button.sf_visible.value = True
+
           if self.picked_plus_y.has_field("LightCube") and self.picked_plus_y.LightCube.value.activated == False:
             self.picked_plus_y.LightCube.value.activate_light()
+
       elif (l == 4):
         if len(self.mf_pick_results_minus_y.value) > 0:
           self.picked_minus_y = self.mf_pick_results_minus_y.value[0].Object.value
-          if self.picked_minus_y.has_field("LightCube"):# and self.portal_buttons[3] == 1:
-            self.portal_buttons[3] = 2          
+
+          if self.picked_minus_y.has_field("LightCube"):
+            for button in self.PORTAL_BUTTONS: 
+              if self.picked_minus_y.LightCube.value.NAME == button.NAME:
+                button.sf_visible.value = True
+          
           if self.picked_minus_y.has_field("LightCube") and self.picked_minus_y.LightCube.value.activated == False:
             self.picked_minus_y.LightCube.value.activate_light()
+
       elif (l == 5):
         if len(self.mf_pick_results_plus_z.value) > 0:
           self.picked_plus_z = self.mf_pick_results_plus_z.value[0].Object.value
-          if self.picked_plus_z.has_field("LightCube"):# and self.portal_buttons[4] == 1:
-            self.portal_buttons[4] = 2
+
+          if self.picked_plus_z.has_field("LightCube"):
+            for button in self.PORTAL_BUTTONS: 
+              if self.picked_plus_z.LightCube.value.NAME == button.NAME:
+                button.sf_visible.value = True
+
           if self.picked_plus_z.has_field("LightCube") and self.picked_plus_z.LightCube.value.activated == False:
             self.picked_plus_z.LightCube.value.activate_light()
+
       elif (l == 6):
         if len(self.mf_pick_results_minus_z.value) > 0:
           self.picked_minus_z = self.mf_pick_results_minus_z.value[0].Object.value
-          if self.picked_minus_z.has_field("LightCube"):# and self.portal_buttons[5] == 1:
-            _picked_room_transform = self.picked_minus_z.LightCube.value.ROOMNODE.value.Transform.value
-            for p in self.ROOMPORTALS:
-              _portal_exit_x = p.EXITPOS.get_translate().x
-              _portal_exit_z = p.EXITPOS.get_translate().z
-              print "X-Distance ", _portal_exit_x - _picked_room_transform.get_translate().x
-              print "Z-Distance ", _portal_exit_z - _picked_room_transform.get_translate().z
-            #self.portal_buttons[5] = 2     
+
+          if self.picked_minus_z.has_field("LightCube"):
+            for button in self.PORTAL_BUTTONS: 
+              if self.picked_minus_z.LightCube.value.NAME == button.NAME:
+                button.sf_visible.value = True
+
           if self.picked_minus_z.has_field("LightCube") and self.picked_minus_z.LightCube.value.activated == False:
             self.picked_minus_z.LightCube.value.activate_light()
+
+    button_ = next((b for b in self.PORTAL_BUTTONS if b.state_changed), None)
+    if button_ != None:
+      for b in self.PORTAL_BUTTONS:
+        if b.NAME != button_.NAME and not b.sf_portal_active.value:
+          b.sf_portal_active.value = False
+      button_.state_changed = False
 
     #print "eval", self.NAME, time.time() - _time_sav
 

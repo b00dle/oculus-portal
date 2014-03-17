@@ -14,16 +14,16 @@ class LightRoom(avango.script.Script):
     self.SCENEGRAPH = avango.gua.nodes.SceneGraph()
     self.POSITION = avango.gua.Mat4()
     self.COLOR = "White"
-    self.ROOM_PORTALS = [] #list with indexes
+    #self.ROOM_PORTALS = [] #list with indexes
     self.portal_cubes = [] #lsit with portal cubes
     self.console_node = avango.gua.nodes.TransformNode(Name = "menu_node")
 
-  def my_constructor(self,NAME,SCENEGRAPH,POSITION, EXITS, ACTIV, COLOR, ROOM_PORTALS):
+  def my_constructor(self,NAME,SCENEGRAPH,POSITION, EXITS, ACTIV, COLOR):
     self.NAME = NAME
     self.SCENEGRAPH = SCENEGRAPH
     self.POSITION = POSITION
     self.COLOR = COLOR
-    self.ROOM_PORTALS = ROOM_PORTALS
+    #self.ROOM_PORTALS = ROOM_PORTALS
 
 
     self.loader = avango.gua.nodes.GeometryLoader()
@@ -53,23 +53,31 @@ class LightRoom(avango.script.Script):
     #self.init_portal_cubes()
 
     self.lightcube = LightCube()
-    self.lightcube.my_constructor(self.NAME, self.SCENEGRAPH, self.room_transform, ACTIV, EXITS, self.console_node, self.ROOM_PORTALS)
+    self.lightcube.my_constructor(self.NAME, self.SCENEGRAPH, self.room_transform, ACTIV, EXITS, self.console_node)
 
 
-  def init_portal_cubes(self):
-    for p in self.ROOM_PORTALS:
-      if (p == 1):
-        self.portal_cubes.append(PortalCube( ) )
-      if (p == 2):
-        self.portal_cubes.append(PortalCube( ) )
-      if (p == 3):
-        self.portal_cubes.append(PortalCube( ) )
-      if (p == 4):
-        self.portal_cubes.append(PortalCube( ) )
-      if (p == 5):
-        self.portal_cubes.append(PortalCube( ) )
-      if (p == 6):
-        self.portal_cubes.append(PortalCube( ) )
+
+
+  # def init_portal_cubes(self):
+  #   for p in self.ROOM_PORTALS:
+  #     if (p == 1):
+  #       self.portal_cubes.append(PortalCube( ) )
+  #     if (p == 2):
+  #       self.portal_cubes.append(PortalCube( ) )
+  #     if (p == 3):
+  #       self.portal_cubes.append(PortalCube( ) )
+  #     if (p == 4):
+  #       self.portal_cubes.append(PortalCube( ) )
+  #     if (p == 5):
+  #       self.portal_cubes.append(PortalCube( ) )
+  #     if (p == 6):
+  #       self.portal_cubes.append(PortalCube( ) )
+
+  #def init_portal_buttons(self):
+  #  for button in self.PORTAL_BUTTONS:
+  #      print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1", button.NAME
+
+
 
   def init_room_lines(self):
     right_upper_cornor  = avango.gua.Vec3( 1.2, 0, -1)

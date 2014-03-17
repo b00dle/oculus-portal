@@ -206,8 +206,8 @@ class PortalCube(avango.script.Script):
                                   )
     #self.Portals[5].sf_active.connect_from(self.sf_visibility)
 
-    if self.sf_visibility == False:
-      for portal in self.Portals:
-        if "do_not_display_group" not in portal.GEOMETRY.GroupNames.value:
-          portal.GEOMETRY.GroupNames.value.append("do_not_display_group")
+    #if self.sf_visibility == False:
+    #  for portal in self.Portals:
+    #    if "do_not_display_group" not in portal.GEOMETRY.GroupNames.value:
+    #      portal.GEOMETRY.GroupNames.value.append("do_not_display_group")
 

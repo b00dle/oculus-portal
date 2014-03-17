@@ -34,6 +34,8 @@ class PortalPicker(avango.script.Script):
     results = self.SceneGraph.value.ray_test(self.Ray.value,
                                              self.Options.value,
                                              self.Mask.value)
+    #for res in results.value:
+    #  print(res.Object.value.Name.value)
     self.Results.value = results.value
 
 class UpdatePortalTransform(avango.script.Script):
@@ -136,7 +138,10 @@ class PortalController(avango.script.Script):
                 portal.PRE_PIPE.Enabled.value = False
               if "do_not_display_group" not in portal.GEOMETRY.GroupNames.value:
                 portal.GEOMETRY.GroupNames.value.append("do_not_display_group")
-
+                portal.GEOMETRY.Transform.value = portal.GEOMETRY.Transform.value * \
+                                                  avango.gua.make_trans_mat(0.0,0.0,0.5) * \
+                                                  avango.gua.make_scale_mat(0.5,0.5,0.5)
+        
           else: # p_cube.sf_visibility.value == True
             for c_portal in p_cube.Portals:
               portal = next((p for p in self.PORTALS if c_portal.NAME == p.NAME), None)
@@ -145,6 +150,9 @@ class PortalController(avango.script.Script):
                 portal.PRE_PIPE.Enabled.value = True
               if "do_not_display_group" in portal.GEOMETRY.GroupNames.value:
                 portal.GEOMETRY.GroupNames.value.remove("do_not_display_group")
+                portal.GEOMETRY.Transform.value = portal.GEOMETRY.Transform.value * \
+                                                  avango.gua.make_inverse_mat(avango.gua.make_trans_mat(0.0,0.0,0.5) * \
+                                                                              avango.gua.make_scale_mat(0.5,0.5,0.5))
             self.visible_cube = p_cube
             self.hide_invisible_portal_cubes()
 
@@ -265,4 +273,8 @@ class PortalController(avango.script.Script):
               portal.PRE_PIPE.Enabled.value = False
             if "do_not_display_group" not in portal.GEOMETRY.GroupNames.value:
               portal.GEOMETRY.GroupNames.value.append("do_not_display_group")
+              portal.GEOMETRY.Transform.value = portal.GEOMETRY.Transform.value * \
+                                                  avango.gua.make_trans_mat(0.0,0.0,0.5) * \
+                                                  avango.gua.make_scale_mat(0.5,0.5,0.5)
+
 

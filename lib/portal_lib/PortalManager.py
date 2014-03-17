@@ -8,6 +8,8 @@ from Portal import *
 from PortalController import *
 from PortalCube import *
 
+from ..interface_lib.PortalButton import *
+
 class PortalManager():
   def __init__(self):
     self.PW_user_portals        = [[]]
@@ -120,7 +122,10 @@ class PortalManager():
                                                         )
       for room in SCENEMANAGER.light_rooms:
         if room.NAME == "room1":
-          self.OVR_user_portalcubes[OVR_user.id][0].sf_visibility.connect_from(room.lightcube.sf_visible)
+          room.lightcube.PORTAL_BUTTONS.append(PortalButton())
+          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room2", avango.gua.make_trans_mat(0, 1.5, -1), room.room_transform)
+          self.OVR_user_portalcubes[OVR_user.id][0].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[0].sf_portal_active)
+
 
       ######PORTALCUBE ROOM 2#######
       for room in SCENEMANAGER.light_rooms:
@@ -129,7 +134,7 @@ class PortalManager():
                                          room.POSITION.get_translate().y + 1.5,
                                          room.POSITION.get_translate().z)
           
-        if room.NAME == "room3":
+        if room.NAME == "room6":
           origin_exit  = avango.gua.Vec3(room.POSITION.get_translate().x,
                                          room.POSITION.get_translate().y + 1.5,
                                          room.POSITION.get_translate().z)
@@ -146,18 +151,15 @@ class PortalManager():
                                                         "OVR",
                                                         str(OVR_user.id)
                                                         )
+
+      ######PORTALCUBE ROOM 2#######
       for room in SCENEMANAGER.light_rooms:
         if room.NAME == "room2":
-          self.OVR_user_portalcubes[OVR_user.id][1].sf_visibility.connect_from(room.lightcube.sf_visible)
-
-      ######PORTALCUBE ROOM 3#######
-      for room in SCENEMANAGER.light_rooms:
-        if room.NAME == "room3":
           origin_entry = avango.gua.Vec3(room.POSITION.get_translate().x,
                                          room.POSITION.get_translate().y + 1.5,
                                          room.POSITION.get_translate().z)
           
-        if room.NAME == "room4":
+        if room.NAME == "room3":
           origin_exit  = avango.gua.Vec3(room.POSITION.get_translate().x,
                                          room.POSITION.get_translate().y + 1.5,
                                          room.POSITION.get_translate().z)
@@ -174,9 +176,20 @@ class PortalManager():
                                                         "OVR",
                                                         str(OVR_user.id)
                                                         )
+
       for room in SCENEMANAGER.light_rooms:
-        if room.NAME == "room3":
-          self.OVR_user_portalcubes[OVR_user.id][2].sf_visibility.connect_from(room.lightcube.sf_visible)
+        if room.NAME == "room2":
+          #self.OVR_user_portalcubes[OVR_user.id][1].sf_visibility.connect_from(room.lightcube.sf_visible)
+
+          room.lightcube.PORTAL_BUTTONS.append(PortalButton())
+          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room3", avango.gua.make_trans_mat(-1, 1.5, 0), room.room_transform)
+          self.OVR_user_portalcubes[OVR_user.id][2].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[0].sf_portal_active)
+
+          room.lightcube.PORTAL_BUTTONS.append(PortalButton())
+          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room6", avango.gua.make_trans_mat(1, 1.5, 0), room.room_transform)
+          self.OVR_user_portalcubes[OVR_user.id][1].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[1].sf_portal_active)
+
+
 
       ######PORTALCUBE ROOM 4#######
       for room in SCENEMANAGER.light_rooms:
@@ -205,6 +218,9 @@ class PortalManager():
       for room in SCENEMANAGER.light_rooms:
         if room.NAME == "room4":
           self.OVR_user_portalcubes[OVR_user.id][3].sf_visibility.connect_from(room.lightcube.sf_visible)
+
+      ##############PORTAL BUTTONS############
+
 
       # ######PORTALCUBE ROOM 5#######
       # for room in SCENEMANAGER.light_rooms:
