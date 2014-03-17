@@ -250,10 +250,10 @@ class LightCube(avango.script.Script):
                                          self.ROOMNODE)
 
           self.sf_portal_minus_z.connect_from(self.portal_button_minus_z.sf_bool_button)
-    if (self.HAS_LIGHT):
-      for room in self.NEIGHBOUR_ROOMS:
-        if room.HAS_LIGHT;
-          button.connect_from(p)
+    #if (self.HAS_LIGHT):
+    #  for room in self.NEIGHBOUR_ROOMS:
+    #    if room.HAS_LIGHT:
+    #      button.connect_from(p)
 
 
   def activate_light(self):
