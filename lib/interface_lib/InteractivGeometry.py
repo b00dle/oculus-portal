@@ -13,11 +13,11 @@ from examples_common.GuaVE import GuaVE
 from Interface import *
 
 class InteractivGeometry(avango.script.Script):
-  sf_enabled      = avango.SFBool()
-  sf_resize       = avango.SFFloat()
-  sf_color_red    = avango.SFFloat()
-  sf_color_green  = avango.SFFloat()
-  sf_color_blue   = avango.SFFloat()
+  sf_enabled        = avango.SFBool()
+  sf_resize         = avango.SFFloat()
+  sf_color_red      = avango.SFFloat()
+  sf_color_green    = avango.SFFloat()
+  sf_color_blue     = avango.SFFloat()
   sf_switch_enable  = avango.SFBool()
 
   material = 'slider_mat_1'
@@ -33,9 +33,6 @@ class InteractivGeometry(avango.script.Script):
     self.sf_color_red.value        = 0.5
     self.sf_color_green.value      = 0.5
     self.sf_color_blue.value       = 0.5
-
-    # test slider
-    #self.size_slider = Slider()
 
   def my_constructor(self, NAME, PATH, MATERIAL, TRANSFORMATION, PARENT_NODE, CHANGE_OPTIONS):
     # init interactiv geometry
@@ -65,6 +62,7 @@ class InteractivGeometry(avango.script.Script):
     element_counter = 0
     self.menu_node.Transform.value = avango.gua.make_trans_mat(0, 0, -0.3) * avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
     for option in CHANGE_OPTIONS:
+      
       # Slider to change size
       if(option == "size"):
         size_slider = Slider()
@@ -75,36 +73,7 @@ class InteractivGeometry(avango.script.Script):
 
         self.interface_elements.append(size_slider)
         print option, "created"
-      # Slider to change y Position
-      if(option == "x_pos"):
-        x_pos_slider = Slider()
-        x_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
-        x_pos_slider.slider_geometry.GroupNames.value = ["interface_element"]
-        self.sf_resize.connect_from(x_pos_slider.sf_float_output)
-        element_counter += 1
 
-        self.interface_elements.append(x_pos_slider)
-        print option, "created"
-      # Slider to change y Position
-      if(option == "y_pos"):
-        y_pos_slider = Slider()
-        y_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
-        y_pos_slider.slider_geometry.GroupNames.value = ["interface_element"]
-        self.sf_resize.connect_from(y_pos_slider.sf_float_output)
-        element_counter += 1
-
-        self.interface_elements.append(y_pos_slider)
-        print option, "created"
-      # Slider to change z Position
-      if(option == "z_pos"):
-        z_pos_slider = Slider()
-        z_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
-        z_pos_slider.slider_geometry.GroupNames.value = ["interface_element"]
-        self.sf_resize.connect_from(z_pos_slider.sf_float_output)
-        element_counter += 1
-
-        self.interface_elements.append(z_pos_slider)
-        print option, "created"
       # Slider to change red color
       elif(option == "red"):
         red_slider = Slider()
@@ -115,6 +84,7 @@ class InteractivGeometry(avango.script.Script):
 
         self.interface_elements.append(red_slider)
         print option, "created"
+      
       # Slider to change green color
       elif(option == "green"):
         green_slider = Slider()
@@ -125,6 +95,7 @@ class InteractivGeometry(avango.script.Script):
 
         self.interface_elements.append(green_slider)
         print option, "created"
+      
       # Slider to change blue color
       elif(option == "blue"):
         blue_slider = Slider()
@@ -187,3 +158,39 @@ class InteractivGeometry(avango.script.Script):
                                                               self.sf_resize.value,
                                                               self.sf_resize.value)
     print self.geometry.Transform.value
+
+
+
+##### OLD POSITION SLIDER #####
+'''
+      # Slider to change y Position
+      if(option == "x_pos"):
+        x_pos_slider = Slider()
+        x_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
+        x_pos_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_resize.connect_from(x_pos_slider.sf_float_output)
+        element_counter += 1
+
+        self.interface_elements.append(x_pos_slider)
+        print option, "created"
+      # Slider to change y Position
+      if(option == "y_pos"):
+        y_pos_slider = Slider()
+        y_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
+        y_pos_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_resize.connect_from(y_pos_slider.sf_float_output)
+        element_counter += 1
+
+        self.interface_elements.append(y_pos_slider)
+        print option, "created"
+      # Slider to change z Position
+      if(option == "z_pos"):
+        z_pos_slider = Slider()
+        z_pos_slider.my_constructor(option, avango.gua.make_trans_mat(0.0, (element_counter * 0.4), 0.0), self.menu_node)
+        z_pos_slider.slider_geometry.GroupNames.value = ["interface_element"]
+        self.sf_resize.connect_from(z_pos_slider.sf_float_output)
+        element_counter += 1
+
+        self.interface_elements.append(z_pos_slider)
+        print option, "created"
+'''

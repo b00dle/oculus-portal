@@ -319,7 +319,7 @@ init_keyboard()
 init_mouse()
 init_spacemouse()
 #init_pointer("MOUSE USB MOUSE")
-init_pointer("2.4G Presenter")
+init_pointer("MOUSE USB MOUSE")
 init_pointer("MOSART Semi. Input Device")
 
 '''

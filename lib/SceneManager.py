@@ -118,11 +118,6 @@ class SceneManager:
 
     self.light_rooms = [level1, level2, level3, level4, level5, level6]
 
-    #box = loader.create_geometry_from_file('box', 'data/objects/cube.obj', 'Stone', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    #box.Transform.value = avango.gua.make_trans_mat(-10,0,0) * avango.gua.make_scale_mat(2,2,2)
-    #box.GroupNames.value = ["obsticale", "interactiv"]
-    #graph.Root.value.Children.value.append(box)
-
 
     # screen
     screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)
