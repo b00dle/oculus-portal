@@ -75,7 +75,6 @@ class LightCube(avango.script.Script):
     self.SCENEGRAPH     = SCENEGRAPH
     self.ROOMNODE       = ROOMNODE
     self.CONSOLE_NODE   = CONSOLE_NODE
-    self.ROOMPORTALS    = []
     self.PORTAL_BUTTONS = []
 
 
@@ -193,7 +192,6 @@ class LightCube(avango.script.Script):
 
 
   def update_ray_visual(self, ray_visual, mf_pick_results):
-
     if len(mf_pick_results.value) > 0:
       ray_visual.Transform.value =  avango.gua.make_trans_mat(0,0,-(mf_pick_results.value[0].Distance.value)/2) *\
                                           avango.gua.make_scale_mat(1,1,(mf_pick_results.value[0].Distance.value)/2)
@@ -203,8 +201,9 @@ class LightCube(avango.script.Script):
 
 
   def ray_node_append(self, ray_visual_trans, ray_visual, pick_transform, mf_pick_results):
-    ray_visual_trans.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
+    ray_visual_trans.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 7.5-0.15)
     self.cube_rotate.Children.value.append(pick_transform)
+    #print "about to append"
 
     if len(mf_pick_results.value) > 0:
       ray_visual.Transform.value =  avango.gua.make_trans_mat(0,0,-(mf_pick_results.value[0].Distance.value)/2) *\
@@ -220,6 +219,7 @@ class LightCube(avango.script.Script):
 
 
   def append_ray_nodes(self):
+    #sprint "called append"
     if (self.pick_transforms_appended == False):
       for l in self.LIGHTEXITS:
         if (l == 1):
@@ -227,19 +227,16 @@ class LightCube(avango.script.Script):
                                self._ray_visual_plus_x, 
                                self.pick_transform_plus_x, 
                                self.mf_pick_results_plus_x)
-
         elif (l == 2):
           self.ray_node_append(self.ray_visual_trans_minus_x, 
                                self._ray_visual_minus_x, 
                                self.pick_transform_minus_x, 
                                self.mf_pick_results_minus_x)
-
         elif (l == 3):
           self.ray_node_append(self.ray_visual_trans_plus_y, 
                                self._ray_visual_plus_y, 
                                self.pick_transform_plus_y, 
                                self.mf_pick_results_plus_y)
-
         elif (l == 4):
           self.ray_node_append(self.ray_visual_trans_minus_y, 
                                self._ray_visual_minus_y, 
@@ -260,36 +257,29 @@ class LightCube(avango.script.Script):
 
 
   def remove_ray_nodes(self):
+    #print "called remove"
     if (self.pick_transforms_appended == True):
       #print "removed"
       for l in self.LIGHTEXITS:
         if (l == 1):
-          self.cube_rotate.Children.value.remove(self.pick_transform_plus_x)
-          self.pick_transform_plus_x.Children.value.remove(self.ray_visual_trans_plus_x)
-          self.ray_visual_trans_plus_x.Children.value.remove(self._ray_visual_plus_x)
+          self.remove_ray(self.ray_visual_trans_plus_x, self._ray_visual_plus_x, self.pick_transform_plus_x)
         elif (l == 2):
-          self.cube_rotate.Children.value.remove(self.pick_transform_minus_x)
-          self.pick_transform_plus_x.Children.value.remove(self.ray_visual_trans_minus_x)
-          self.ray_visual_trans_minus_x.Children.value.remove(self._ray_visual_minus_x)
+          self.remove_ray(self.ray_visual_trans_minus_x, self._ray_visual_minus_x, self.pick_transform_minus_x)
         elif (l == 3):
-          self.cube_rotate.Children.value.remove(self.pick_transform_plus_y)
-          self.pick_transform_plus_y.Children.value.remove(self.ray_visual_trans_plus_y)
-          self.ray_visual_trans_plus_y.Children.value.remove(self._ray_visual_plus_y)
+          self.remove_ray(self.ray_visual_trans_plus_y, self._ray_visual_plus_y, self.pick_transform_plus_y)
         elif (l == 4):
-          self.cube_rotate.Children.value.remove(self.pick_transform_minus_y)
-          self.pick_transform_plus_y.Children.value.remove(self.ray_visual_trans_minus_y)
-          self.ray_visual_trans_minus_y.Children.value.remove(self._ray_visual_minus_y)
+          self.remove_ray(self.ray_visual_trans_minus_y, self._ray_visual_minus_y, self.pick_transform_minus_y)
         elif (l == 5):
-          self.cube_rotate.Children.value.remove(self.pick_transform_plus_z)
-          self.pick_transform_plus_z.Children.value.remove(self.ray_visual_trans_plus_z)
-          self.ray_visual_trans_plus_z.Children.value.remove(self._ray_visual_plus_z)
+          self.remove_ray(self.ray_visual_trans_plus_z, self._ray_visual_plus_z, self.pick_transform_plus_z)
         elif (l == 6):
-          self.cube_rotate.Children.value.remove(self.pick_transform_minus_z)
-          self.pick_transform_plus_z.Children.value.remove(self.ray_visual_trans_minus_z)
-          self.ray_visual_trans_minus_z.Children.value.remove(self._ray_visual_minus_z)
+          self.remove_ray(self.ray_visual_trans_minus_z, self._ray_visual_minus_z, self.pick_transform_minus_z)
+
         self.pick_transforms_appended = False
 
-
+  def remove_ray(self, ray_visual_trans, ray_visual, pick_transform):
+    ray_visual_trans.Children.value.remove(ray_visual)
+    pick_transform.Children.value.remove(ray_visual_trans)
+    self.cube_rotate.Children.value.remove(pick_transform)
 
   def enable_console(self, MENU_LOCATION):
       MENU_LOCATION.Children.value.append(self.CONSOLE_NODE)
@@ -347,7 +337,7 @@ class LightCube(avango.script.Script):
     _ray = avango.gua.nodes.RayNode(Name = "pick_ray_")
     #_ray.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.14) * avango.gua.make_scale_mat(1.0, 1.0, 10-0.15)
     _ray_trans = avango.gua.nodes.TransformNode(Name = "ray_transform")
-    _ray_trans.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.14) * avango.gua.make_scale_mat(1.0, 1.0, 10-0.15)
+    _ray_trans.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.14) * avango.gua.make_scale_mat(1.0, 1.0, 7.5-0.15)
                                        
     # set picker values
     PICKER.SceneGraph = self.SCENEGRAPH
