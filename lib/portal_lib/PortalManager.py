@@ -313,65 +313,65 @@ class PortalManager():
           self.OVR_user_portalcubes[OVR_user.id][6].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[1].sf_portal_active)
 
       ###### ROOM 6#######
-      # ##cube 10
-      # for room in SCENEMANAGER.light_rooms:
-      #   if room.NAME == "room6":
-      #     origin_entry = avango.gua.Vec3(room.POSITION.get_translate().x,
-      #                                    room.POSITION.get_translate().y + 1.5,
-      #                                    room.POSITION.get_translate().z)
+      ##cube 10
+      for room in SCENEMANAGER.light_rooms:
+        if room.NAME == "room6":
+          origin_entry = avango.gua.Vec3(room.POSITION.get_translate().x,
+                                         room.POSITION.get_translate().y + 1.5,
+                                         room.POSITION.get_translate().z)
           
-      #   if room.NAME == "room3":
-      #     origin_exit  = avango.gua.Vec3(room.POSITION.get_translate().x,
-      #                                    room.POSITION.get_translate().y + 1.5,
-      #                                    room.POSITION.get_translate().z)
+        if room.NAME == "room3":
+          origin_exit  = avango.gua.Vec3(room.POSITION.get_translate().x,
+                                         room.POSITION.get_translate().y + 1.5,
+                                         room.POSITION.get_translate().z)
 
-      # self.OVR_user_portalcubes[OVR_user.id].append(PortalCube())
-      # self.OVR_user_portalcubes[OVR_user.id][7].my_constructor("portalCube",
-      #                                                   VIEWINGMANAGER.viewer.SceneGraphs.value[0],
-      #                                                   VIEWINGMANAGER.viewer.SceneGraphs.value[0],
-      #                                                   origin_entry,
-      #                                                   origin_exit,
-      #                                                   box_size,
-      #                                                   self.group_names,
-      #                                                   42,
-      #                                                   "OVR",
-      #                                                   str(OVR_user.id)
-      #                                                   )
+      self.OVR_user_portalcubes[OVR_user.id].append(PortalCube())
+      self.OVR_user_portalcubes[OVR_user.id][7].my_constructor("portalCube",
+                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[0],
+                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[0],
+                                                        origin_entry,
+                                                        origin_exit,
+                                                        box_size,
+                                                        self.group_names,
+                                                        42,
+                                                        "OVR",
+                                                        str(OVR_user.id)
+                                                        )
       #cube 11
-      # for room in SCENEMANAGER.light_rooms:
-      #   if room.NAME == "room6":
-      #     origin_entry = avango.gua.Vec3(room.POSITION.get_translate().x,
-      #                                    room.POSITION.get_translate().y + 1.5,
-      #                                    room.POSITION.get_translate().z)
+      for room in SCENEMANAGER.light_rooms:
+        if room.NAME == "room6":
+          origin_entry = avango.gua.Vec3(room.POSITION.get_translate().x,
+                                         room.POSITION.get_translate().y + 1.5,
+                                         room.POSITION.get_translate().z)
           
-      #   if room.NAME == "room5":
-      #     origin_exit  = avango.gua.Vec3(room.POSITION.get_translate().x,
-      #                                    room.POSITION.get_translate().y + 1.5,
-      #                                    room.POSITION.get_translate().z)
+        if room.NAME == "room5":
+          origin_exit  = avango.gua.Vec3(room.POSITION.get_translate().x,
+                                         room.POSITION.get_translate().y + 1.5,
+                                         room.POSITION.get_translate().z)
 
-      # self.OVR_user_portalcubes[OVR_user.id].append(PortalCube())
-      # self.OVR_user_portalcubes[OVR_user.id][8].my_constructor("portalCube",
-      #                                                   VIEWINGMANAGER.viewer.SceneGraphs.value[0],
-      #                                                   VIEWINGMANAGER.viewer.SceneGraphs.value[0],
-      #                                                   origin_entry,
-      #                                                   origin_exit,
-      #                                                   box_size,
-      #                                                   self.group_names,
-      #                                                   48,
-      #                                                   "OVR",
-      #                                                   str(OVR_user.id)
-      #                                                   )
+      self.OVR_user_portalcubes[OVR_user.id].append(PortalCube())
+      self.OVR_user_portalcubes[OVR_user.id][8].my_constructor("portalCube",
+                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[0],
+                                                        VIEWINGMANAGER.viewer.SceneGraphs.value[0],
+                                                        origin_entry,
+                                                        origin_exit,
+                                                        box_size,
+                                                        self.group_names,
+                                                        48,
+                                                        "OVR",
+                                                        str(OVR_user.id)
+                                                        )
       
-      # for room in SCENEMANAGER.light_rooms:
-      #   if room.NAME == "room6":
-      #     #connect portalcube 11
-      #     room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-      #     room.lightcube.PORTAL_BUTTONS[0].my_constructor("room3", avango.gua.make_trans_mat(1, 1.5, 0), room.room_transform)
-      #     self.OVR_user_portalcubes[OVR_user.id][7].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[0].sf_portal_active)
+      for room in SCENEMANAGER.light_rooms:
+        if room.NAME == "room6":
+          #connect portalcube 11
+          room.lightcube.PORTAL_BUTTONS.append(PortalButton())
+          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room3", avango.gua.make_trans_mat(1, 1.5, 0), room.room_transform)
+          self.OVR_user_portalcubes[OVR_user.id][7].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[0].sf_portal_active)
           #connect portalcube 12
-          #room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          #room.lightcube.PORTAL_BUTTONS[1].my_constructor("room5", avango.gua.make_trans_mat(0, 1.5, 1), room.room_transform)
-          #self.OVR_user_portalcubes[OVR_user.id][8].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[1].sf_portal_active)
+          room.lightcube.PORTAL_BUTTONS.append(PortalButton())
+          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room5", avango.gua.make_trans_mat(0, 1.5, 1), room.room_transform)
+          self.OVR_user_portalcubes[OVR_user.id][8].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[1].sf_portal_active)
      
       ########PORTALCONTROLLER########
       OVR_user.portal_controller.my_constructor(VIEWINGMANAGER.SCENEGRAPH,

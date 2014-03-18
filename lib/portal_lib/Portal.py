@@ -77,7 +77,7 @@ class Portal(avango.script.Script):
     def create_default_pipe(self):
         self.create_camera()
 
-        width   = 1920
+        width   = 640
         height  = int(width * 9.0 / 16.0)
         size    = avango.gua.Vec2ui(width, height)
 
