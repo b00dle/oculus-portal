@@ -85,7 +85,7 @@ class LightCube(avango.script.Script):
     self.cube_rotate = avango.gua.nodes.TransformNode(Name = "cube_rotate")
 
 
-    self.cube = self.loader.create_geometry_from_file( NAME + "_cube" , 'data/objects/cube.obj', "lightcube",
+    self.cube = self.loader.create_geometry_from_file( NAME + "_cube" , 'data/objects/lightcube.obj', "lightcube",
                   avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.cube.Transform.value = avango.gua.make_scale_mat(0.1, 0.1, 0.1)
     self.cube.GroupNames.value  = ["interactiv"]
@@ -371,42 +371,42 @@ class LightCube(avango.script.Script):
   def init_lightexits(self):
     for l in self.LIGHTEXITS:
       if (l == 1):
-        exit_plus_x = self.loader.create_geometry_from_file('light_exit_plus_x', 'data/objects/cube.obj',
+        exit_plus_x = self.loader.create_geometry_from_file('light_exit_plus_x', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_plus_x.GroupNames.value = ["light_emitter"]
         exit_plus_x.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         exit_plus_x.Transform.value = avango.gua.make_trans_mat(0.75,0,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         self.cube.Children.value.append(exit_plus_x)
       elif (l == 2):
-        exit_minus_x = self.loader.create_geometry_from_file('light_exit_minus_x', 'data/objects/cube.obj',
+        exit_minus_x = self.loader.create_geometry_from_file('light_exit_minus_x', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_minus_x.Transform.value = avango.gua.make_trans_mat(-0.75,0,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         exit_minus_x.GroupNames.value = ["light_emitter"]
         exit_minus_x.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         self.cube.Children.value.append(exit_minus_x)
       elif (l == 3):
-        exit_plus_y = self.loader.create_geometry_from_file('light_exit_plus_y', 'data/objects/cube.obj',
+        exit_plus_y = self.loader.create_geometry_from_file('light_exit_plus_y', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_plus_y.GroupNames.value = ["light_emitter"]
         exit_plus_y.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         exit_plus_y.Transform.value = avango.gua.make_trans_mat(0,0.75,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         self.cube.Children.value.append(exit_plus_y)
       elif (l == 4):
-        exit_minus_y = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/cube.obj',
+        exit_minus_y = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_minus_y.GroupNames.value = ["light_emitter"]
         exit_minus_y.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         exit_minus_y.Transform.value = avango.gua.make_trans_mat(0,-0.75,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         self.cube.Children.value.append(exit_minus_y)
       elif (l == 5):
-        exit_plus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/cube.obj',
+        exit_plus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_plus_z.GroupNames.value = ["light_emitter"]
         exit_plus_z.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         exit_plus_z.Transform.value = avango.gua.make_trans_mat(0,0,0.75) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         self.cube.Children.value.append(exit_plus_z)
       elif (l == 6):
-        exit_minus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/cube.obj',
+        exit_minus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_minus_z.GroupNames.value = ["light_emitter"]
         exit_minus_z.add_and_init_field(avango.script.SFObject(), "LightCube", self)
