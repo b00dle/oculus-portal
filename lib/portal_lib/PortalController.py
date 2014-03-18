@@ -72,7 +72,6 @@ class PortalController(avango.script.Script):
     self.PORTALUPDATERS = []
     self.PLATFORM       = -1
     self.USERHEAD       = avango.gua.nodes.TransformNode()
-    self.first_frame    = 1500
     self.visible_cube   = PortalCube()
     self.timer          = avango.nodes.TimeSensor()
     self.start_time     = 0.0
@@ -127,7 +126,7 @@ class PortalController(avango.script.Script):
 
     for p_cube in self.PORTALCUBES:
       
-      if p_cube.visibility_updated == True and self.timer.Time.value - self.start_time > 10.0:
+      if p_cube.visibility_updated == True and self.timer.Time.value - self.start_time > 30.0:
           p_cube.visibility_updated = False
 
           if p_cube.sf_visibility.value == False:

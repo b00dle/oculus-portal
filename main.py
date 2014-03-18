@@ -25,7 +25,7 @@ def start():
   ####### CREATE MATERIAL FILE FOR EACH PORTAL ########
   portalNames = []
 
-  for i in range(0, 36):
+  for i in range(0, 42):
     #portalNames.append("portal_" + str(i) + "_DESK_0")
     #portalNames.append("portal_" + str(i) + "_DESK_1")
     portalNames.append("portal_" + str(i) + "_OVR_0")

@@ -68,62 +68,61 @@ class SceneManager:
 
     graph.Root.value.Children.value.append(spot)
 
+
+    #####      Create LightRooms       #####
+
+    #level1 = LightRoom()
+    #level1.my_constructor("room1", graph, avango.gua.make_trans_mat(0,0,0), [1], True, "White")
+    #self.rooms.append(level1)
+
+    level2 = LightRoom()
+    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(0,0,-7.5), [3,4,5], True, "Green")
+    self.rooms.append(level2)
+
+    level3 = LightRoom()
+    level3.my_constructor("room3",graph,avango.gua.make_trans_mat(0,0,-15), [1,2], False, "Yellow",)
+    self.rooms.append(level3)
+
+    level4 = LightRoom()
+    level4.my_constructor("room4",graph,avango.gua.make_trans_mat(0,0,-22.5), [5], False, "Red")
+    self.rooms.append(level4)
+
+    level5 = LightRoom()
+    level5.my_constructor("room5",graph,avango.gua.make_trans_mat(-7.5,0,-7.5), [1,3], False, "Purple")
+    self.rooms.append(level5)
+
+    level6 = LightRoom()
+    level6.my_constructor("room6",graph,avango.gua.make_trans_mat(-7.5,0,-15), [2,5], False, "Blue")
+    self.rooms.append(level6)
+
+
+    self.light_rooms = [level2, level3, level4, level5, level6]
+
+
+    #####     Create InteractivGeometries     #####
+
+    #box2 = InteractivGeometry()
+    #box2.my_constructor('box2', 'data/objects/cube.obj', 'Stone', avango.gua.make_trans_mat(-10.6,1.5,-13) * avango.gua.make_scale_mat(0.8,0.8,0.8),
+    #  graph.Root.value, ["size"])
+
     #monkey = InteractivGeometry()
     #monkey.my_constructor('monkey', 'data/objects/monkey.obj', 'slider_mat_1', avango.gua.make_trans_mat(-4.6,1.5,-7) * avango.gua.make_scale_mat(1.8,1.8,1.8),
     #  graph.Root.value, ["red", "green", "blue", "size"])
 
-    teapot = InteractivGeometry()
-    teapot.my_constructor('teapot', 'data/objects/teapot.obj', 'slider_mat_2', avango.gua.make_trans_mat(-0,1.5,-17) * avango.gua.make_scale_mat(1.2,1.2,1.2) * avango.gua.make_rot_mat(45,0,1,1),
-      graph.Root.value, ["red", "green", "blue"])
+    #teapot = InteractivGeometry()
+    #teapot.my_constructor('teapot', 'data/objects/teapot.obj', 'slider_mat_2', avango.gua.make_trans_mat(-0,1.5,-17) * avango.gua.make_scale_mat(1.2,1.2,1.2) * avango.gua.make_rot_mat(45,0,1,1),
+    #  graph.Root.value, ["red", "green", "blue"])
 
-    sphere = InteractivGeometry()
-    sphere.my_constructor('sphere', 'data/objects/cube.obj', 'slider_mat_3', avango.gua.make_trans_mat(0,5.5,-2) * avango.gua.make_scale_mat(0.9,0.9,0.9) * avango.gua.make_rot_mat(45,0,1,1),
-      graph.Root.value, ["red", "green", "blue"])
+    #sphere = InteractivGeometry()
+    #sphere.my_constructor('sphere', 'data/objects/cube.obj', 'slider_mat_3', avango.gua.make_trans_mat(0,5.5,-2) * avango.gua.make_scale_mat(0.9,0.9,0.9) * avango.gua.make_rot_mat(45,0,1,1),
+    #  graph.Root.value, ["red", "green", "blue"])
 
-    level1 = LightRoom()
-    level1.my_constructor("room1", graph, avango.gua.make_trans_mat(0,0,2), [1], True, "White")
-
-    self.rooms.append(level1)
-
-    level2 = LightRoom()
-    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(0,0,-8), [3,4,5], False, "Green")
-
-    self.rooms.append(level2)
-
-    level3 = LightRoom()
-    level3.my_constructor("room3",graph,avango.gua.make_trans_mat(-10,0,-8), [1,3,5], False, "Blue",)
-
-    self.rooms.append(level3)
-
-    box2 = InteractivGeometry()
-    box2.my_constructor('box2', 'data/objects/cube.obj', 'Stone', avango.gua.make_trans_mat(-10.6,1.5,-13) * avango.gua.make_scale_mat(0.8,0.8,0.8),
-      graph.Root.value, ["size"])
-
-    level4 = LightRoom()
-    level4.my_constructor("room4",graph,avango.gua.make_trans_mat(-10,0,-18), [2,5], False, "Red")
-
-    self.rooms.append(level4)
-
-
-    # Raueme ohne Portale:
-    level5 = LightRoom()
-    level5.my_constructor("room5",graph,avango.gua.make_trans_mat(0,10,-8), [1,2,3,4,5,6], False, "Purple")
-
-    self.rooms.append(level5)
-
-    level6 = LightRoom()
-    level6.my_constructor("room6",graph,avango.gua.make_trans_mat(10,0,-8), [1,2,3,5], False, "White")
-
-    self.rooms.append(level6)
-
-    self.light_rooms = [level1, level2, level3, level4, level5, level6]
 
 
     # screen
     screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)
-
     #screen.Transform.value = avango.gua.make_rot_mat(-90.0, 0, 1, 0) * \
-    #                                                   avango.gua.make_trans_mat(0, 1.5, 0)
+    #                         avango.gua.make_trans_mat(0, 1.5, 0)
 
     # head, mono_eye, left und right eye
     head = avango.gua.nodes.TransformNode(Name = "head")
