@@ -148,101 +148,40 @@ class LightCube(avango.script.Script):
     self.update_ray_visual(self._ray_visual_minus_z, self.mf_pick_results_minus_z)
 
 
-  # def check_pick_results(self, mf_pick_results, picked):
-  #   if len(mf_pick_results.value) > 0:
-  #     picked = mf_pick_results.value[0].Object.value
+  def check_pick_results(self, mf_pick_results, picked):
+    if len(mf_pick_results.value) > 0:
+      picked = mf_pick_results.value[0].Object.value
 
-  #     if picked.has_field("LightCube"):
-  #       for button in self.PORTAL_BUTTONS: 
-  #         if picked.LightCube.value.NAME == button.NAME:
-  #           button.sf_visible.value = True
+      if picked.has_field("LightCube"):
+        for button in self.PORTAL_BUTTONS: 
+          if picked.LightCube.value.NAME == button.NAME:
+            button.sf_visible.value = True
 
-  #     if picked.has_field("LightCube") and picked.LightCube.value.activated == False:
-  #       picked.LightCube.value.activate_light()
+      if picked.has_field("LightCube") and picked.LightCube.value.activated == False:
+        picked.LightCube.value.activate_light()
 
   def activate_light(self):
-    #print self.NAME
+    # Set activated Flag
     self.activated = True
+    # Append Rays and Ray-Visualizations
     self.append_ray_nodes()
 
     for button in self.PORTAL_BUTTONS: 
       button.sf_visible.value = False
 
-    #_time_sav = time.time()
     for l in self.LIGHTEXITS:
       if (l == 1):
-        #self.check_pick_results(self.mf_pick_results_plus_x, self.picked_plus_x)
-
-        if len(self.mf_pick_results_plus_x.value) > 0:
-          self.picked_plus_x = self.mf_pick_results_plus_x.value[0].Object.value
-
-          if self.picked_plus_x.has_field("LightCube"):
-            for button in self.PORTAL_BUTTONS: 
-              if self.picked_plus_x.LightCube.value.NAME == button.NAME:
-                button.sf_visible.value = True
-
-          if self.picked_plus_x.has_field("LightCube") and self.picked_plus_x.LightCube.value.activated == False:
-            self.picked_plus_x.LightCube.value.activate_light()
-
+        self.check_pick_results(self.mf_pick_results_plus_x, self.picked_plus_x)
       elif (l == 2):
-        if len(self.mf_pick_results_minus_x.value) > 0:
-          self.picked_minus_x = self.mf_pick_results_minus_x.value[0].Object.value
-
-          if self.picked_minus_x.has_field("LightCube"):
-            for button in self.PORTAL_BUTTONS: 
-              if self.picked_minus_x.LightCube.value.NAME == button.NAME:
-                button.sf_visible.value = True
-
-          if self.picked_minus_x.has_field("LightCube") and self.picked_minus_x.LightCube.value.activated == False:
-            self.picked_minus_x.LightCube.value.activate_light()
-
+        self.check_pick_results(self.mf_pick_results_minus_x, self.picked_minus_x)
       elif (l == 3):
-        if len(self.mf_pick_results_plus_y.value) > 0:
-          self.picked_plus_y = self.mf_pick_results_plus_y.value[0].Object.value
-
-          if self.picked_plus_y.has_field("LightCube"):
-            for button in self.PORTAL_BUTTONS: 
-              if self.picked_plus_y.LightCube.value.NAME == button.NAME:
-                button.sf_visible.value = True
-
-          if self.picked_plus_y.has_field("LightCube") and self.picked_plus_y.LightCube.value.activated == False:
-            self.picked_plus_y.LightCube.value.activate_light()
-
+        self.check_pick_results(self.mf_pick_results_plus_y, self.picked_plus_y)
       elif (l == 4):
-        if len(self.mf_pick_results_minus_y.value) > 0:
-          self.picked_minus_y = self.mf_pick_results_minus_y.value[0].Object.value
-
-          if self.picked_minus_y.has_field("LightCube"):
-            for button in self.PORTAL_BUTTONS: 
-              if self.picked_minus_y.LightCube.value.NAME == button.NAME:
-                button.sf_visible.value = True
-          
-          if self.picked_minus_y.has_field("LightCube") and self.picked_minus_y.LightCube.value.activated == False:
-            self.picked_minus_y.LightCube.value.activate_light()
-
+        self.check_pick_results(self.mf_pick_results_minus_y, self.picked_minus_y)
       elif (l == 5):
-        if len(self.mf_pick_results_plus_z.value) > 0:
-          self.picked_plus_z = self.mf_pick_results_plus_z.value[0].Object.value
-
-          if self.picked_plus_z.has_field("LightCube"):
-            for button in self.PORTAL_BUTTONS: 
-              if self.picked_plus_z.LightCube.value.NAME == button.NAME:
-                button.sf_visible.value = True
-
-          if self.picked_plus_z.has_field("LightCube") and self.picked_plus_z.LightCube.value.activated == False:
-            self.picked_plus_z.LightCube.value.activate_light()
-
+        self.check_pick_results(self.mf_pick_results_plus_z, self.picked_plus_z)
       elif (l == 6):
-        if len(self.mf_pick_results_minus_z.value) > 0:
-          self.picked_minus_z = self.mf_pick_results_minus_z.value[0].Object.value
-
-          if self.picked_minus_z.has_field("LightCube"):
-            for button in self.PORTAL_BUTTONS: 
-              if self.picked_minus_z.LightCube.value.NAME == button.NAME:
-                button.sf_visible.value = True
-
-          if self.picked_minus_z.has_field("LightCube") and self.picked_minus_z.LightCube.value.activated == False:
-            self.picked_minus_z.LightCube.value.activate_light()
+        self.check_pick_results(self.mf_pick_results_minus_z, self.picked_minus_z)
 
     button_ = next((b for b in self.PORTAL_BUTTONS if b.state_changed), None)
     if button_ != None:
@@ -250,9 +189,6 @@ class LightCube(avango.script.Script):
         if b.NAME != button_.NAME and not b.sf_portal_active.value:
           b.sf_portal_active.value = False
       button_.state_changed = False
-
-    #print "eval", self.NAME, time.time() - _time_sav
-
 
 
 
