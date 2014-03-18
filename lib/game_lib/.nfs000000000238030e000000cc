@@ -75,6 +75,7 @@ class LightCube(avango.script.Script):
     self.SCENEGRAPH     = SCENEGRAPH
     self.ROOMNODE       = ROOMNODE
     self.CONSOLE_NODE   = CONSOLE_NODE
+    self.ROOMPORTALS    = []
     self.PORTAL_BUTTONS = []
 
 
@@ -84,7 +85,7 @@ class LightCube(avango.script.Script):
     self.cube_rotate = avango.gua.nodes.TransformNode(Name = "cube_rotate")
 
 
-    self.cube = self.loader.create_geometry_from_file( NAME + "_cube" , 'data/objects/lightcube.obj', "lightcube",
+    self.cube = self.loader.create_geometry_from_file( NAME + "_cube" , 'data/objects/cube.obj', "lightcube",
                   avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.cube.Transform.value = avango.gua.make_scale_mat(0.1, 0.1, 0.1)
     self.cube.GroupNames.value  = ["interactiv"]
@@ -136,7 +137,7 @@ class LightCube(avango.script.Script):
       self.HAS_LIGHT = False
 
 
-    # Update the visualization of the light KOENNTE VORHER NOCH UEBER LIGHTEXITS ITERIEREN
+    # Update the visualization of the light
     self.update_ray_visual(self._ray_visual_plus_x, self.mf_pick_results_plus_x)
     self.update_ray_visual(self._ray_visual_minus_x, self.mf_pick_results_minus_x)
 
@@ -192,6 +193,7 @@ class LightCube(avango.script.Script):
 
 
   def update_ray_visual(self, ray_visual, mf_pick_results):
+
     if len(mf_pick_results.value) > 0:
       ray_visual.Transform.value =  avango.gua.make_trans_mat(0,0,-(mf_pick_results.value[0].Distance.value)/2) *\
                                           avango.gua.make_scale_mat(1,1,(mf_pick_results.value[0].Distance.value)/2)
@@ -201,9 +203,8 @@ class LightCube(avango.script.Script):
 
 
   def ray_node_append(self, ray_visual_trans, ray_visual, pick_transform, mf_pick_results):
-    ray_visual_trans.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 7.5-0.15)
+    ray_visual_trans.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0) * avango.gua.make_scale_mat(0.01, 0.01, 10-0.15)
     self.cube_rotate.Children.value.append(pick_transform)
-    #print "about to append"
 
     if len(mf_pick_results.value) > 0:
       ray_visual.Transform.value =  avango.gua.make_trans_mat(0,0,-(mf_pick_results.value[0].Distance.value)/2) *\
@@ -219,7 +220,6 @@ class LightCube(avango.script.Script):
 
 
   def append_ray_nodes(self):
-    #sprint "called append"
     if (self.pick_transforms_appended == False):
       for l in self.LIGHTEXITS:
         if (l == 1):
@@ -227,16 +227,19 @@ class LightCube(avango.script.Script):
                                self._ray_visual_plus_x, 
                                self.pick_transform_plus_x, 
                                self.mf_pick_results_plus_x)
+
         elif (l == 2):
           self.ray_node_append(self.ray_visual_trans_minus_x, 
                                self._ray_visual_minus_x, 
                                self.pick_transform_minus_x, 
                                self.mf_pick_results_minus_x)
+
         elif (l == 3):
           self.ray_node_append(self.ray_visual_trans_plus_y, 
                                self._ray_visual_plus_y, 
                                self.pick_transform_plus_y, 
                                self.mf_pick_results_plus_y)
+
         elif (l == 4):
           self.ray_node_append(self.ray_visual_trans_minus_y, 
                                self._ray_visual_minus_y, 
@@ -257,29 +260,36 @@ class LightCube(avango.script.Script):
 
 
   def remove_ray_nodes(self):
-    #print "called remove"
     if (self.pick_transforms_appended == True):
       #print "removed"
       for l in self.LIGHTEXITS:
         if (l == 1):
-          self.remove_ray(self.ray_visual_trans_plus_x, self._ray_visual_plus_x, self.pick_transform_plus_x)
+          self.cube_rotate.Children.value.remove(self.pick_transform_plus_x)
+          self.pick_transform_plus_x.Children.value.remove(self.ray_visual_trans_plus_x)
+          self.ray_visual_trans_plus_x.Children.value.remove(self._ray_visual_plus_x)
         elif (l == 2):
-          self.remove_ray(self.ray_visual_trans_minus_x, self._ray_visual_minus_x, self.pick_transform_minus_x)
+          self.cube_rotate.Children.value.remove(self.pick_transform_minus_x)
+          self.pick_transform_plus_x.Children.value.remove(self.ray_visual_trans_minus_x)
+          self.ray_visual_trans_minus_x.Children.value.remove(self._ray_visual_minus_x)
         elif (l == 3):
-          self.remove_ray(self.ray_visual_trans_plus_y, self._ray_visual_plus_y, self.pick_transform_plus_y)
+          self.cube_rotate.Children.value.remove(self.pick_transform_plus_y)
+          self.pick_transform_plus_y.Children.value.remove(self.ray_visual_trans_plus_y)
+          self.ray_visual_trans_plus_y.Children.value.remove(self._ray_visual_plus_y)
         elif (l == 4):
-          self.remove_ray(self.ray_visual_trans_minus_y, self._ray_visual_minus_y, self.pick_transform_minus_y)
+          self.cube_rotate.Children.value.remove(self.pick_transform_minus_y)
+          self.pick_transform_plus_y.Children.value.remove(self.ray_visual_trans_minus_y)
+          self.ray_visual_trans_minus_y.Children.value.remove(self._ray_visual_minus_y)
         elif (l == 5):
-          self.remove_ray(self.ray_visual_trans_plus_z, self._ray_visual_plus_z, self.pick_transform_plus_z)
+          self.cube_rotate.Children.value.remove(self.pick_transform_plus_z)
+          self.pick_transform_plus_z.Children.value.remove(self.ray_visual_trans_plus_z)
+          self.ray_visual_trans_plus_z.Children.value.remove(self._ray_visual_plus_z)
         elif (l == 6):
-          self.remove_ray(self.ray_visual_trans_minus_z, self._ray_visual_minus_z, self.pick_transform_minus_z)
-
+          self.cube_rotate.Children.value.remove(self.pick_transform_minus_z)
+          self.pick_transform_plus_z.Children.value.remove(self.ray_visual_trans_minus_z)
+          self.ray_visual_trans_minus_z.Children.value.remove(self._ray_visual_minus_z)
         self.pick_transforms_appended = False
 
-  def remove_ray(self, ray_visual_trans, ray_visual, pick_transform):
-    ray_visual_trans.Children.value.remove(ray_visual)
-    pick_transform.Children.value.remove(ray_visual_trans)
-    self.cube_rotate.Children.value.remove(pick_transform)
+
 
   def enable_console(self, MENU_LOCATION):
       MENU_LOCATION.Children.value.append(self.CONSOLE_NODE)
@@ -337,7 +347,7 @@ class LightCube(avango.script.Script):
     _ray = avango.gua.nodes.RayNode(Name = "pick_ray_")
     #_ray.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.14) * avango.gua.make_scale_mat(1.0, 1.0, 10-0.15)
     _ray_trans = avango.gua.nodes.TransformNode(Name = "ray_transform")
-    _ray_trans.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.14) * avango.gua.make_scale_mat(1.0, 1.0, 7.5-0.15)
+    _ray_trans.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.14) * avango.gua.make_scale_mat(1.0, 1.0, 10-0.15)
                                        
     # set picker values
     PICKER.SceneGraph = self.SCENEGRAPH
@@ -361,42 +371,42 @@ class LightCube(avango.script.Script):
   def init_lightexits(self):
     for l in self.LIGHTEXITS:
       if (l == 1):
-        exit_plus_x = self.loader.create_geometry_from_file('light_exit_plus_x', 'data/objects/lightreceptor.obj',
+        exit_plus_x = self.loader.create_geometry_from_file('light_exit_plus_x', 'data/objects/cube.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_plus_x.GroupNames.value = ["light_emitter"]
         exit_plus_x.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         exit_plus_x.Transform.value = avango.gua.make_trans_mat(0.75,0,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         self.cube.Children.value.append(exit_plus_x)
       elif (l == 2):
-        exit_minus_x = self.loader.create_geometry_from_file('light_exit_minus_x', 'data/objects/lightreceptor.obj',
+        exit_minus_x = self.loader.create_geometry_from_file('light_exit_minus_x', 'data/objects/cube.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_minus_x.Transform.value = avango.gua.make_trans_mat(-0.75,0,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         exit_minus_x.GroupNames.value = ["light_emitter"]
         exit_minus_x.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         self.cube.Children.value.append(exit_minus_x)
       elif (l == 3):
-        exit_plus_y = self.loader.create_geometry_from_file('light_exit_plus_y', 'data/objects/lightreceptor.obj',
+        exit_plus_y = self.loader.create_geometry_from_file('light_exit_plus_y', 'data/objects/cube.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_plus_y.GroupNames.value = ["light_emitter"]
         exit_plus_y.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         exit_plus_y.Transform.value = avango.gua.make_trans_mat(0,0.75,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         self.cube.Children.value.append(exit_plus_y)
       elif (l == 4):
-        exit_minus_y = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/lightreceptor.obj',
+        exit_minus_y = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/cube.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_minus_y.GroupNames.value = ["light_emitter"]
         exit_minus_y.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         exit_minus_y.Transform.value = avango.gua.make_trans_mat(0,-0.75,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         self.cube.Children.value.append(exit_minus_y)
       elif (l == 5):
-        exit_plus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/lightreceptor.obj',
+        exit_plus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/cube.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_plus_z.GroupNames.value = ["light_emitter"]
         exit_plus_z.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         exit_plus_z.Transform.value = avango.gua.make_trans_mat(0,0,0.75) * avango.gua.make_scale_mat(0.5,0.5,0.5)
         self.cube.Children.value.append(exit_plus_z)
       elif (l == 6):
-        exit_minus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/lightreceptor.obj',
+        exit_minus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/cube.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_minus_z.GroupNames.value = ["light_emitter"]
         exit_minus_z.add_and_init_field(avango.script.SFObject(), "LightCube", self)
