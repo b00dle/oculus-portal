@@ -126,7 +126,7 @@ class PortalController(avango.script.Script):
 
     for p_cube in self.PORTALCUBES:
       
-      if p_cube.visibility_updated == True and self.timer.Time.value - self.start_time > 30.0:
+      if p_cube.visibility_updated == True and self.timer.Time.value - self.start_time > 12.0:
           p_cube.visibility_updated = False
 
           if p_cube.sf_visibility.value == False:

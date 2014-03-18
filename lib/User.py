@@ -229,7 +229,7 @@ class User:
     # OVR User and PowerwallUser get 'Pointer-Hands'
     if self.node_pretext == "ovr" or self.node_pretext == "powerwall": # ! powerwall pretext richtig???
       # Left Hand
-      self.left_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.2) * avango.gua.make_scale_mat(0.3, 0.3, 0.3) *\
+      self.left_hand_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, 0.3) * avango.gua.make_scale_mat(0.3, 0.3, 0.3) *\
                                               avango.gua.make_rot_mat(90, 1, 0, 0) * avango.gua.make_rot_mat(180, 0, 1, 0)
       self.left_hand_transform.Transform.connect_from(LEFTHAND_MAT)
 

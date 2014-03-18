@@ -255,11 +255,8 @@ class LightCube(avango.script.Script):
         
         self.pick_transforms_appended = True
 
-
   def remove_ray_nodes(self):
-    #print "called remove"
     if (self.pick_transforms_appended == True):
-      #print "removed"
       for l in self.LIGHTEXITS:
         if (l == 1):
           self.remove_ray(self.ray_visual_trans_plus_x, self._ray_visual_plus_x, self.pick_transform_plus_x)
@@ -283,8 +280,6 @@ class LightCube(avango.script.Script):
 
   def enable_console(self, MENU_LOCATION):
       MENU_LOCATION.Children.value.append(self.CONSOLE_NODE)
-
-
 
 
   @field_has_changed(sf_rot_up)
@@ -330,10 +325,7 @@ class LightCube(avango.script.Script):
       self.sf_visible.value = not self.sf_visible.value
 
 
-
-
   def initialize_pick_transform(self, pick_transform, PICKER):
-
     _ray = avango.gua.nodes.RayNode(Name = "pick_ray_")
     #_ray.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.14) * avango.gua.make_scale_mat(1.0, 1.0, 10-0.15)
     _ray_trans = avango.gua.nodes.TransformNode(Name = "ray_transform")
@@ -348,14 +340,23 @@ class LightCube(avango.script.Script):
 
 
   def initalize_console(self):
-    self.rot_up_button.my_constructor("rot_up_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, -0.3) * avango.gua.make_rot_mat(90, 0, 1, 0),self.CONSOLE_NODE, "Dark_red")
+    self.rot_up_button.my_constructor("rot_up_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, 0.0),self.CONSOLE_NODE, "Dark_red","up")
     self.sf_rot_up.connect_from(self.rot_up_button.sf_bool_button)
-    self.rot_down_button.my_constructor("rot_down_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, 0.3) * avango.gua.make_rot_mat(90, 0, 1, 0),self.CONSOLE_NODE, "Dark_red")
+    self.rot_down_button.my_constructor("rot_down_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, 0),self.CONSOLE_NODE, "Dark_red","down")
     self.sf_rot_down.connect_from(self.rot_down_button.sf_bool_button)
-    self.rot_left_button.my_constructor("rot_left_" + self.NAME, avango.gua.make_trans_mat(-0.3, 0.0, 0.0),self.CONSOLE_NODE,"Dark_red")
+    self.rot_left_button.my_constructor("rot_left_" + self.NAME, avango.gua.make_trans_mat(0, 0.0, 0.0),self.CONSOLE_NODE,"Dark_red", "left")
     self.sf_rot_left.connect_from(self.rot_left_button.sf_bool_button)
-    self.rot_right_button.my_constructor("rot_right_" + self.NAME, avango.gua.make_trans_mat(0.3, 0.0, 0.0),self.CONSOLE_NODE, "Dark_red")
+    self.rot_right_button.my_constructor("rot_right_" + self.NAME, avango.gua.make_trans_mat(0, 0.0, 0.0),self.CONSOLE_NODE, "Dark_red","right")
     self.sf_rot_right.connect_from(self.rot_right_button.sf_bool_button)
+
+    #self.rot_up_button.my_constructor("rot_up_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, -0.3) * avango.gua.make_rot_mat(90, 0, 1, 0),self.CONSOLE_NODE, "Dark_red")
+    #self.sf_rot_up.connect_from(self.rot_up_button.sf_bool_button)
+    #self.rot_down_button.my_constructor("rot_down_" + self.NAME, avango.gua.make_trans_mat(0.0, 0.0, 0.3) * avango.gua.make_rot_mat(90, 0, 1, 0),self.CONSOLE_NODE, "Dark_red")
+    #self.sf_rot_down.connect_from(self.rot_down_button.sf_bool_button)
+    #self.rot_left_button.my_constructor("rot_left_" + self.NAME, avango.gua.make_trans_mat(-0.3, 0.0, 0.0),self.CONSOLE_NODE,"Dark_red", )
+    #self.sf_rot_left.connect_from(self.rot_left_button.sf_bool_button)
+    #self.rot_right_button.my_constructor("rot_right_" + self.NAME, avango.gua.make_trans_mat(0.3, 0.0, 0.0),self.CONSOLE_NODE, "Dark_red")
+    #self.sf_rot_right.connect_from(self.rot_right_button.sf_bool_button)
 
 
   def init_lightexits(self):
@@ -365,12 +366,12 @@ class LightCube(avango.script.Script):
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_plus_x.GroupNames.value = ["light_emitter"]
         exit_plus_x.add_and_init_field(avango.script.SFObject(), "LightCube", self)
-        exit_plus_x.Transform.value = avango.gua.make_trans_mat(0.75,0,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
+        exit_plus_x.Transform.value = avango.gua.make_trans_mat(1.03,0,0) * avango.gua.make_scale_mat(0.8,0.8,0.8) * avango.gua.make_rot_mat(90,0,1,0)
         self.cube.Children.value.append(exit_plus_x)
       elif (l == 2):
         exit_minus_x = self.loader.create_geometry_from_file('light_exit_minus_x', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-        exit_minus_x.Transform.value = avango.gua.make_trans_mat(-0.75,0,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
+        exit_minus_x.Transform.value = avango.gua.make_trans_mat(-1.03,0,0) * avango.gua.make_scale_mat(0.8,0.8,0.8) * avango.gua.make_rot_mat(-90,0,1,0)
         exit_minus_x.GroupNames.value = ["light_emitter"]
         exit_minus_x.add_and_init_field(avango.script.SFObject(), "LightCube", self)
         self.cube.Children.value.append(exit_minus_x)
@@ -379,28 +380,28 @@ class LightCube(avango.script.Script):
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_plus_y.GroupNames.value = ["light_emitter"]
         exit_plus_y.add_and_init_field(avango.script.SFObject(), "LightCube", self)
-        exit_plus_y.Transform.value = avango.gua.make_trans_mat(0,0.75,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
+        exit_plus_y.Transform.value = avango.gua.make_trans_mat(0,1.03,0) * avango.gua.make_scale_mat(0.8,0.8,0.8)* avango.gua.make_rot_mat(-90,1,0,0)
         self.cube.Children.value.append(exit_plus_y)
       elif (l == 4):
         exit_minus_y = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_minus_y.GroupNames.value = ["light_emitter"]
         exit_minus_y.add_and_init_field(avango.script.SFObject(), "LightCube", self)
-        exit_minus_y.Transform.value = avango.gua.make_trans_mat(0,-0.75,0) * avango.gua.make_scale_mat(0.5,0.5,0.5)
+        exit_minus_y.Transform.value = avango.gua.make_trans_mat(0,-1.03,0) * avango.gua.make_scale_mat(0.8,0.8,0.8) * avango.gua.make_rot_mat(90,1,0,0)
         self.cube.Children.value.append(exit_minus_y)
       elif (l == 5):
         exit_plus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_plus_z.GroupNames.value = ["light_emitter"]
         exit_plus_z.add_and_init_field(avango.script.SFObject(), "LightCube", self)
-        exit_plus_z.Transform.value = avango.gua.make_trans_mat(0,0,0.75) * avango.gua.make_scale_mat(0.5,0.5,0.5)
+        exit_plus_z.Transform.value = avango.gua.make_trans_mat(0,0,1.03) * avango.gua.make_scale_mat(0.8,0.8,0.8)
         self.cube.Children.value.append(exit_plus_z)
       elif (l == 6):
         exit_minus_z = self.loader.create_geometry_from_file('light_exit_plus_z', 'data/objects/lightreceptor.obj',
                                                         'Black', avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
         exit_minus_z.GroupNames.value = ["light_emitter"]
         exit_minus_z.add_and_init_field(avango.script.SFObject(), "LightCube", self)
-        exit_minus_z.Transform.value = avango.gua.make_trans_mat(0,0,-0.75) * avango.gua.make_scale_mat(0.5,0.5,0.5)
+        exit_minus_z.Transform.value = avango.gua.make_trans_mat(0,0,-1.03) * avango.gua.make_scale_mat(0.8,0.8,0.8) * avango.gua.make_rot_mat(180,0,1,0)
         self.cube.Children.value.append(exit_minus_z)
 
 

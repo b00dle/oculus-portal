@@ -152,11 +152,11 @@ class PortalManager():
         if room.NAME == "room2":
           #connect portalcube 3
           room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room3", avango.gua.make_trans_mat(0, 1.5, -1), room.room_transform)
+          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room3", room.room_transform, "front")
           self.OVR_user_portalcubes[OVR_user.id][0].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[0].sf_portal_active)
           #connect portalcube 4
           room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room5", avango.gua.make_trans_mat(-1, 1.5, 0), room.room_transform)
+          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room5", room.room_transform, "left")
           self.OVR_user_portalcubes[OVR_user.id][1].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[1].sf_portal_active)
 
       ##### ROOM 3#######
@@ -237,15 +237,15 @@ class PortalManager():
         if room.NAME == "room3":
           #connect portalcube 5
           room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room2", avango.gua.make_trans_mat(0, 1.5, 1), room.room_transform)
+          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room2", room.room_transform, "back")
           self.OVR_user_portalcubes[OVR_user.id][2].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[0].sf_portal_active)
           #connect portalcube 6
           room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room4", avango.gua.make_trans_mat(0, 1.5, -1), room.room_transform)
+          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room4", room.room_transform, "front")
           self.OVR_user_portalcubes[OVR_user.id][3].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[1].sf_portal_active)
           #connect portalcube 7
           room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          room.lightcube.PORTAL_BUTTONS[2].my_constructor("room6", avango.gua.make_trans_mat(-1, 1.5, 0), room.room_transform)
+          room.lightcube.PORTAL_BUTTONS[2].my_constructor("room6", room.room_transform, "left")
           self.OVR_user_portalcubes[OVR_user.id][4].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[2].sf_portal_active)
       
       ###### room4
@@ -305,11 +305,11 @@ class PortalManager():
         if room.NAME == "room5":
           #connect portalcube 8
           room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room2", avango.gua.make_trans_mat(1, 1.5, 0), room.room_transform)
+          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room2", room.room_transform, "right")
           self.OVR_user_portalcubes[OVR_user.id][5].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[0].sf_portal_active)
           #connect portalcube 9
           room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room6", avango.gua.make_trans_mat(0, 1.5, -1), room.room_transform)
+          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room6",  room.room_transform, "front")
           self.OVR_user_portalcubes[OVR_user.id][6].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[1].sf_portal_active)
 
       ##### ROOM 6#######
@@ -368,11 +368,11 @@ class PortalManager():
         if room.NAME == "room6":
           #connect portalcube 11
           room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room3", avango.gua.make_trans_mat(1, 1.5, 0), room.room_transform)
+          room.lightcube.PORTAL_BUTTONS[0].my_constructor("room3", room.room_transform, "right")
           self.OVR_user_portalcubes[OVR_user.id][7].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[0].sf_portal_active)
           #connect portalcube 12
           room.lightcube.PORTAL_BUTTONS.append(PortalButton())
-          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room5", avango.gua.make_trans_mat(0, 1.5, 1), room.room_transform)
+          room.lightcube.PORTAL_BUTTONS[1].my_constructor("room5", room.room_transform ,"back")
           self.OVR_user_portalcubes[OVR_user.id][8].sf_visibility.connect_from(room.lightcube.PORTAL_BUTTONS[1].sf_portal_active)
      
      

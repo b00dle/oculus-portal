@@ -82,20 +82,31 @@ class Button(avango.script.Script):
     self.button_geometry = avango.gua.nodes.GeometryNode()
     self.button_transform = avango.gua.nodes.TransformNode()
 
-    self.button_scale = avango.gua.make_scale_mat(0.2, 0.02, 0.07)
+    self.button_scale = avango.gua.make_scale_mat(1, 1, 1)
 
     self.sf_bool_button.value = False
     self.just_rotated = False
 
-  def my_constructor(self, NAME, BUTTONPOS, PARENT_NODE, COLOR):
+  def my_constructor(self, NAME, BUTTONPOS, PARENT_NODE, COLOR, DIRECTION):
     self.NAME = NAME
     self.BUTTONPOS = BUTTONPOS
     self.PARENT_NODE = PARENT_NODE
 
     self.LOADER = avango.gua.nodes.GeometryLoader()
-
-    self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/cube.obj',
+    if (DIRECTION == "left"):
+      self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/left_arrow.obj',
                                                             COLOR , avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    elif (DIRECTION == "right"):
+      self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/right_arrow.obj',
+                                                            COLOR , avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    elif (DIRECTION == "up"):
+      self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/upper_arrow.obj',
+                                                            COLOR , avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    elif (DIRECTION == "down"):
+      self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/lower_arrow.obj',
+                                                            COLOR , avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+    
+
     self.button_geometry.Transform.value = self.button_scale
     self.button_geometry.GroupNames.value = ["console"]
     self.button_geometry.add_and_init_field(avango.script.SFObject(), "Button", self)

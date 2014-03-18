@@ -76,7 +76,7 @@ class SceneManager:
     #self.rooms.append(level1)
 
     level2 = LightRoom()
-    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(0,0,-7.5), [3,4,5], True, "Green")
+    level2.my_constructor("room2",graph,avango.gua.make_trans_mat(0,0,-7.5), [2,3,5], True, "Green")
     self.rooms.append(level2)
 
     level3 = LightRoom()
