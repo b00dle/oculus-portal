@@ -137,7 +137,7 @@ class LightCube(avango.script.Script):
       self.HAS_LIGHT = False
 
 
-    # Update the visualization of the light KOENNTE VORHER NOCH UEBER LIGHTEXITS ITERIEREN
+    # Update the visualization of the light
     self.update_ray_visual(self._ray_visual_plus_x, self.mf_pick_results_plus_x)
     self.update_ray_visual(self._ray_visual_minus_x, self.mf_pick_results_minus_x)
 
