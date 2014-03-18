@@ -30,12 +30,12 @@
 
     <inputsensor>device-xbox-1</inputsensor>
 
-    <trackingstation>tracking-oculus-stag</trackingstation>
+    <trackingstation>tracking-oculus-front</trackingstation>
 
     <platformpos>
       <x>0.0</x>
       <y>0.0</y>
-      <z>6.0</z>
+      <z>0.0</z>
     </platformpos>
 
     <platformrot>
@@ -56,7 +56,7 @@
 
     <type>OVRUser</type>
 
-    <headtrackingstation>tracking-oculus-stag</headtrackingstation>
+    <headtrackingstation>tracking-oculus-front</headtrackingstation>
 
     <startplatform>0</startplatform>
 

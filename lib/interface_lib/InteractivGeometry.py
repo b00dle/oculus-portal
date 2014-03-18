@@ -40,15 +40,16 @@ class InteractivGeometry(avango.script.Script):
   def my_constructor(self, NAME, PATH, MATERIAL, TRANSFORMATION, PARENT_NODE, CHANGE_OPTIONS):
     # init interactiv geometry
     loader = avango.gua.nodes.GeometryLoader()
+    self.TRANSFORMATION = TRANSFORMATION
     self.geometry = loader.create_geometry_from_file(NAME, PATH, MATERIAL,
                   avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-    self.geometry.GroupNames.value  = ["interactiv"]
-    self.geometry.Transform.value = TRANSFORMATION
+    self.geometry.GroupNames.value  = ["interactiv", "obsticale"]
+    self.geometry.Transform.value = self.TRANSFORMATION
     self.geometry.add_and_init_field(avango.script.SFObject(), "InteractivGeometry", self)
     PARENT_NODE.Children.value.append(self.geometry)
 
     self.material = MATERIAL
-
+    self.sf_resize.value = 1
     # init menu
     self.initalize_menu(CHANGE_OPTIONS)
 
@@ -62,7 +63,7 @@ class InteractivGeometry(avango.script.Script):
 
   def initalize_menu(self, CHANGE_OPTIONS):
     element_counter = 0
-    self.menu_node.Transform.value = avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
+    self.menu_node.Transform.value = avango.gua.make_trans_mat(0, 0, -0.3) * avango.gua.make_rot_mat(-90,1,0,0) * avango.gua.make_scale_mat(0.25,0.25,0.25)
     for option in CHANGE_OPTIONS:
       # Slider to change size
       if(option == "size"):
@@ -178,3 +179,11 @@ class InteractivGeometry(avango.script.Script):
       self.geometry.Material.value = "AvatarYellow"
     elif self.sf_switch_enable.value == False:
       self.geometry.Material.value = "Stone"
+
+  @field_has_changed(sf_resize)
+  def change_size(self):
+    self.geometry.Transform.value = self.TRANSFORMATION *\
+                                    avango.gua.make_scale_mat(self.sf_resize.value,
+                                                              self.sf_resize.value,
+                                                              self.sf_resize.value)
+    print self.geometry.Transform.value

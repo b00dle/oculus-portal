@@ -494,13 +494,17 @@ class PointerDevice(avango.script.Script):
     self.device_sensor = avango.daemon.nodes.DeviceSensor(DeviceService = avango.daemon.DeviceService())
     self.device_sensor.Station.value = "device-pointer_" + NAME
 
-    if (NAME =="MOUSE USB MOUSE"):
+    if (NAME == "MOUSE USB MOUSE"):
       self.sf_key_pageup.connect_from(self.device_sensor.Button0)
       self.sf_key_pagedown.connect_from(self.device_sensor.Button1)
 
     if (NAME == "2.4G Presenter"):
       self.sf_key_pageup.connect_from(self.device_sensor.Button3)
       self.sf_key_pagedown.connect_from(self.device_sensor.Button4)
+
+    if (NAME == "MOSART Semi. Input Device"):
+      self.sf_key_pageup.connect_from(self.device_sensor.Button5)
+
 
 '''
   @field_has_changed(sf_key_pageup)

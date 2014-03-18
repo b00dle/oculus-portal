@@ -1,7 +1,7 @@
 
 {
 	"shading_model" : "ComplexTexture",
-	"uniforms" :
+	"uniforms" : 
 	{
 		"diffuse_map" : "data/textures/tiles_diffuse.jpg",
 		"emit" : "0.2",

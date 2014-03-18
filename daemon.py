@@ -49,9 +49,9 @@ def init_led_wall_tracking():
   _dtrack = avango.daemon.DTrack()
   _dtrack.port = "5002" # ART port at LED wall
   
-  _dtrack.stations[27] = avango.daemon.Station('tracking-oculus-back')
-  _dtrack.stations[24] = avango.daemon.Station('tracking-pointer-blue')  # blue pointer
-  _dtrack.stations[16] = avango.daemon.Station('tracking-pointer-green') # green pointer
+  _dtrack.stations[27] = avango.daemon.Station('tracking-oculus-front') # tracking-oculus-back
+  _dtrack.stations[15] = avango.daemon.Station('tracking-pointer-green')  # blue pointer 
+  _dtrack.stations[23] = avango.daemon.Station('tracking-pointer-blue') # green pointer
 
   device_list.append(_dtrack)
   print "ART Tracking started at LED WALL"
@@ -82,6 +82,7 @@ def init_pointer(NAME):
     _pointer.buttons[2] = "EV_KEY::KEY_F5"
     _pointer.buttons[3] = "EV_KEY::KEY_RIGHT"
     _pointer.buttons[4] = "EV_KEY::KEY_LEFT"
+    _pointer.buttons[5] = "EV_KEY::KEY_B"
 
     device_list.append(_pointer)
     print "Pointer started at:", _string
@@ -183,7 +184,7 @@ def init_mouse():
   mouse_name = mouse_name.split()
   if len(mouse_name) > 0:
 
-    mouse_name = mouse_name[1]
+    mouse_name = mouse_name[0]
 
     mouse = avango.daemon.HIDInput()
     mouse.station = avango.daemon.Station('device-mouse')
@@ -304,8 +305,8 @@ def xbox_controller(PLAYER_NUMBER):
 device_list = []
 
 
-init_lcd_wall_tracking()
-#init_led_wall_tracking()
+#init_lcd_wall_tracking()
+init_led_wall_tracking()
 
 xbox_controller(1)
 xbox_controller(2)
@@ -317,8 +318,9 @@ init_old_spheron()
 init_keyboard()
 init_mouse()
 init_spacemouse()
-init_pointer("MOUSE USB MOUSE")
+#init_pointer("MOUSE USB MOUSE")
 init_pointer("2.4G Presenter")
+init_pointer("MOSART Semi. Input Device")
 
 '''
 init_pst_tracking()

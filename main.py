@@ -23,15 +23,22 @@ import sys
 def start():
 
   ####### CREATE MATERIAL FILE FOR EACH PORTAL ########
-  portalNames = ["portal_0_DESK_0", "portal_0_OVR_0", "portal_1_DESK_0", "portal_1_OVR_0"]
+  portalNames = []
+
+  for i in range(0, 36):
+    #portalNames.append("portal_" + str(i) + "_DESK_0")
+    #portalNames.append("portal_" + str(i) + "_DESK_1")
+    portalNames.append("portal_" + str(i) + "_OVR_0")
+    #portalNames.append("portal_" + str(i) + "_OVR_1")
+    #portalNames.append("portal_" + str(i) + "_PW_0")
+    #portalNames.append("portal_" + str(i) + "_PW_1")
+  
   for name in portalNames:
     newGMD = open('data/materials/Portal' + name + '.gmd', 'w+')
     with open('data/materials/Portal.gmd', 'r') as content_file:
       newGMD.write(content_file.read() + '\n')
     newGMD.close()
   #####################################################
-
-  loader = avango.gua.nodes.GeometryLoader()
 
   # initialize materials
   avango.gua.load_shading_models_from("data/materials")
@@ -42,10 +49,11 @@ def start():
 
   # initialize viewing setup
   #viewing_manager = ViewingManager(scene_manager.graphs, sys.argv[1])
-  viewing_manager = ViewingManager(scene_manager.graphs, "configs/desktop_ovr.xml")
+  viewing_manager = ViewingManager(scene_manager.graphs, "configs/controller_one_ovr.xml")
 
   # initialize portals
-  portal_manager = PortalManager(viewing_manager)
+  portal_manager = PortalManager()
+  portal_manager.my_constructor(viewing_manager, scene_manager)
 
   viewing_manager.setup_portal_render_masks()
 

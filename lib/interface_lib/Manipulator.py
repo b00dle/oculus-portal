@@ -1,4 +1,3 @@
-
 import avango
 import avango.gua
 import avango.script
@@ -29,13 +28,12 @@ class Manipulator(avango.script.Script):
     self.Keyboard = KeyboardMouseDevice()
 
     self.LeftPointer = PointerDevice()
-
-    self.LeftPointer.my_constructor("2.4G Presenter") #
+    self.LeftPointer.my_constructor("MOUSE USB MOUSE") #"2.4G Presenter"
     self.LeftPicker = ManipulatorPicker()
     self.LeftRay = avango.gua.nodes.RayNode(Name = "pick_ray_left")
 
     self.RightPointer = PointerDevice()
-    self.RightPointer.my_constructor("MOUSE USB MOUSE")
+    self.RightPointer.my_constructor("MOSART Semi. Input Device") #MOUSE USB MOUSE 
     self.RightPicker = ManipulatorPicker()
     self.RightRay = avango.gua.nodes.RayNode(Name = "pick_ray_right")
 
@@ -51,6 +49,7 @@ class Manipulator(avango.script.Script):
 
     # Handler fuer rechten Pointer Button
     self.right_pointer_pressed = False
+    self.right_pointer_one_press = False
     self.sf_key_right_pointer.connect_from(self.RightPointer.sf_key_pageup)
 
     self.left_pointer_pressed = False
@@ -83,16 +82,22 @@ class Manipulator(avango.script.Script):
       self.left_pointer_pressed = True
 
   @field_has_changed(sf_key_right_pointer)
-  def key_right_handler(self):
-    #if self.sf_key_right_pointer.value == False:
+  def key_right_handler_buttons(self):
     self.right_pointer_pressed = True
+    if self.sf_key_right_pointer.value == False:
+      self.right_pointer_one_press = True
+
+
 
   # todo - wenn was gepickt wurde auf pointer klicks warten um objekt zu aktivieren und interface aufzurufen
   def evaluate(self):
+    # ACTIVATE PORTAL_CUBE 
+
     if (len(self.RightPicker.Results.value) > 0) and self.right_pointer_pressed and\
         self.RightPointer.sf_key_pageup.value:
 
       picked_object = self.RightPicker.Results.value[0].Object.value
+      #print picked_object.Name.value, "picked"
 
       if picked_object.has_field("Button"):
         picked_object.Button.value.sf_bool_button.value = True
@@ -117,7 +122,7 @@ class Manipulator(avango.script.Script):
         if self.RightPointerPicked == True:
           self.RightPointerPicked = False
           self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.remove(self.inv_plane)
-          self.RightPicker.Mask.value = "interface_element"
+          self.RightPicker.Mask.value = "interface_element || console"
 
           self.disconnect_interface_fields()
 
@@ -129,6 +134,8 @@ class Manipulator(avango.script.Script):
     # pick button left hand
     if self.LeftPointer.sf_key_pageup.value and self.LeftPointerPicked == False and\
        self.left_pointer_pressed == True and (len(self.LeftPicker.Results.value) > 0):
+
+      print self.left_picked_object.Name.value
 
       self.left_picked_object = self.LeftPicker.Results.value[0].Object.value
       self.left_picked_object.InteractivGeometry.value.enable_menu(self.LEFTHAND)
@@ -148,7 +155,6 @@ class Manipulator(avango.script.Script):
       
       self.LeftPointerPicked = False
       self.left_pointer_pressed = False
-
       self.left_picked_object.InteractivGeometry.value.disable_menu(self.LEFTHAND)
       
       print "closed display"
@@ -158,13 +164,13 @@ class Manipulator(avango.script.Script):
     if self.PlaneModeFlag == True and (len(self.RightPicker.Results.value) > 0):
       if self.RightPicker.Results.value[0].Object.value.Name.value == 'inv_plane':
         self.sf_XOutput.value = self.RightPicker.Results.value[0].Position.value.x
-
+    
 
     # pick button right hand
     if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == False and\
-        self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0) and self.right_pointer_pressed:
+        self.LeftPointerPicked == True and (len(self.RightPicker.Results.value) > 0) and self.right_pointer_one_press:
 
-      self.right_pointer_pressed = False
+      self.right_pointer_one_press = False
       self.RightPointerPicked = True
       
       print "Interact with ",self.RightPicker.Results.value[0].Object.value.Name.value
@@ -239,12 +245,12 @@ class Manipulator(avango.script.Script):
 
 
     # unpick button
-    if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == True and self.right_pointer_pressed:
+    if self.RightPointer.sf_key_pageup.value and self.RightPointerPicked == True and self.right_pointer_one_press:
       self.RightPointerPicked = False
-      self.right_pointer_pressed = False
+      self.right_pointer_one_press = False
 
       self.left_picked_object.InteractivGeometry.value.menu_node.Children.value.remove(self.inv_plane)
-      self.RightPicker.Mask.value = "interface_element"
+      self.RightPicker.Mask.value = "interface_element || console"
 
       self.disconnect_interface_fields()
 
@@ -303,9 +309,9 @@ class Manipulator(avango.script.Script):
     self.LeftRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
 
     ray_left_avatar = loader.create_geometry_from_file('ray_left' , 'data/objects/cube.obj',
-                                                    'White', avango.gua.LoaderFlags.DEFAULTS)
-    ray_left_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -20.0) *\
-                                       avango.gua.make_scale_mat(0.008, 0.008, 20)
+                                                    'Grey', avango.gua.LoaderFlags.DEFAULTS)
+    ray_left_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -2.0) *\
+                                       avango.gua.make_scale_mat(0.004, 0.004, 2)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
    
 
@@ -322,11 +328,11 @@ class Manipulator(avango.script.Script):
     # create ray
 
     loader = avango.gua.nodes.GeometryLoader()
-    self.RightRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 50.0)
+    self.RightRay.Transform.value = avango.gua.make_scale_mat(1.0, 1.0, 5.0)
     ray_right_avatar = loader.create_geometry_from_file('ray_right' , 'data/objects/cube.obj',
-                                                     'Bright', avango.gua.LoaderFlags.DEFAULTS)
-    ray_right_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -5.0) *\
-                                       avango.gua.make_scale_mat(0.003, 0.003, 5)
+                                                     'Grey', avango.gua.LoaderFlags.DEFAULTS)
+    ray_right_avatar.Transform.value = avango.gua.make_trans_mat(0.0, 0.0, -0.5) *\
+                                       avango.gua.make_scale_mat(0.003, 0.003, 0.5)
     pick_transform = avango.gua.nodes.TransformNode(Name = "pick_transform")
     pick_transform.Children.value = [self.RightRay, ray_right_avatar]
 

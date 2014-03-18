@@ -9,7 +9,6 @@ import math
 
 import examples_common.navigator
 from examples_common.GuaVE import GuaVE
-from ..interface_lib.InteractivGeometry import *
 
 ## Helper class to update material values with respect to the current time.
 class TimedMaterialUniformUpdate(avango.script.Script):
@@ -25,6 +24,7 @@ class TimedMaterialUniformUpdate(avango.script.Script):
   ## @var UniformName
   # Field containing the name of the uniform value to be updated
   UniformName = avango.SFString()
+
   ## Called whenever TimeIn changes.
   @field_has_changed(TimeIn)
   def update(self):
@@ -36,10 +36,11 @@ class Portal(avango.script.Script):
 
     # init fields
     sf_portal_pos   = avango.gua.SFMatrix4()
-   #sf_active       = avango.SFBool() 
-    
+    sf_portal_zoom  = avango.SFFloat()
+
     def __init__(self):
         self.super(Portal).__init__()
+        self.sf_portal_zoom.value   = 1.0
         self.timer                  = avango.nodes.TimeSensor()
         self.water_updater          = TimedMaterialUniformUpdate()
         self.NAME                   = ""
@@ -56,9 +57,7 @@ class Portal(avango.script.Script):
         self.GROUPNAME              = ""
         self.EXCLUDEGROUPS          = []
 
-    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS, PICKABLE = True, GEOMETRY = None):
-        #self.sf_active.value        = True
-
+    def my_constructor(self, NAME, ENTRYSCENE, EXITSCENE, ENTRYPOS, EXITPOS, WIDTH, HEIGHT, GROUPNAME, EXCLUDEGROUPS, GEOMETRY = None):
         self.NAME                   = NAME
         self.ENTRYSCENE             = ENTRYSCENE
         self.EXITSCENE              = EXITSCENE
@@ -68,11 +67,8 @@ class Portal(avango.script.Script):
         self.GROUPNAME              = GROUPNAME
         self.EXCLUDEGROUPS          = EXCLUDEGROUPS
         self.PRE_PIPE               = self.create_default_pipe()
-        self.GEOMETRY               = self.create_geometry(ENTRYPOS, GEOMETRY, PICKABLE)
+        self.GEOMETRY               = self.create_geometry(ENTRYPOS, GEOMETRY)
         self.HEAD                   = "/" + self.NAME + "Screen/head"
-    # @field_has_changed(sf_active)
-    # def toggle_pipe_enabled_field(self):
-    #     self.PRE_PIPE.Enabled.value = self.sf_active.value 
 
     def create_default_pipe(self):
         self.create_camera()
@@ -87,7 +83,7 @@ class Portal(avango.script.Script):
                                         RightScreen = "/" + self.NAME + "Screen",
                                         SceneGraph  = self.EXITSCENE.Name.value)
 
-        camera.RenderMask.value = "!portal_display_exclude && !portal && !do_not_display_group"        
+        camera.RenderMask.value = "!portal_display_exclude && !portal"        
 
         for group in self.EXCLUDEGROUPS:
             if group != self.GROUPNAME:
@@ -99,26 +95,20 @@ class Portal(avango.script.Script):
 
         pre_pipe.LeftResolution.value  = avango.gua.Vec2ui(width/2, height/2)
         pre_pipe.EnableStereo.value = False
-        pre_pipe.BackgroundTexture.value = "data/textures/skybox.jpg"
+        pre_pipe.BackgroundTexture.value = "data/textures/sky.jpg"
         pre_pipe.EnableBackfaceCulling.value = True
 
         return pre_pipe
 
-    def create_geometry(self, PORTALPOS, GEOMETRY, PICKABLE):
+    def create_geometry(self, PORTALPOS, GEOMETRY):
         loader = avango.gua.nodes.GeometryLoader()
         
         if(GEOMETRY == None):
-            if PICKABLE:
-                geometry = loader.create_geometry_from_file(self.NAME + "Node",
-                                                        "data/objects/plane.obj",
-                                                        "Portal" + self.NAME,
-                                                        avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
-            else:
-                geometry = loader.create_geometry_from_file(self.NAME + "Node",
-                                                        "data/objects/plane.obj",
-                                                        "Portal" + self.NAME,
-                                                        avango.gua.LoaderFlags.DEFAULTS)
-            
+            geometry = loader.create_geometry_from_file(self.NAME + "Node",
+                                                    "data/objects/plane.obj",
+                                                    "Portal" + self.NAME,
+                                                    avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+
             geometry.Transform.value = PORTALPOS *\
                                     avango.gua.make_rot_mat(90, 1.0, 0.0, 0.0) *\
                                     avango.gua.make_rot_mat(180, 0.0, 1.0, 0.0) *\
@@ -147,11 +137,6 @@ class Portal(avango.script.Script):
         self.water_updater.MaterialName.value = "Portal" + self.NAME
         self.water_updater.UniformName.value = "time"
         self.water_updater.TimeIn.connect_from(self.timer.Time)
-
-        # make interactive
-        #geometry.GroupNames.value.append("interactiv")
-        #interactiv_geometry = InteractivGeometry()
-        #interactiv_geometry.portal_constructor("TestPortal", geometry, ["x_pos", "y_pos", "z_pos"], self)
 
         self.ENTRYSCENE.Root.value.Children.value.append(geometry)
         
@@ -208,6 +193,11 @@ class Portal(avango.script.Script):
         self.GEOMETRY.Transform.value  = self.GEOMETRY.Transform.value * avango.gua.make_trans_mat(X, Y, Z)
         self.sf_portal_pos.value = self.sf_portal_pos.value * avango.gua.make_trans_mat(X, Y, Z)
         self.EXITPOS = self.EXITPOS * avango.gua.make_trans_mat(X, Y, Z)
+
+    def zoom(self, FACTOR):
+        #self.EXITSCENE["/" + self.NAME + "Screen"].Width.value  = self.WIDTH * FACTOR
+        #self.EXITSCENE["/" + self.NAME + "Screen"].Height.value = self.HEIGHT * FACTOR
+        self.sf_portal_zoom.value = FACTOR
 
     def append_node(self, NODE):
         NODE.Transform.value =  avango.gua.make_inverse_mat(self.GEOMETRY.Transform.value) * \

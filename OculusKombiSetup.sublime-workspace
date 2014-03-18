@@ -4,6 +4,154 @@
 		"selected_items":
 		[
 			[
+				"visi",
+				"visible_cube"
+			],
+			[
+				"GR",
+				"GroupNames"
+			],
+			[
+				"room",
+				"room1"
+			],
+			[
+				"SCE",
+				"SCENEMANAGER"
+			],
+			[
+				"sf",
+				"sf_visible"
+			],
+			[
+				"sf_porta",
+				"sf_portal_button"
+			],
+			[
+				"portal",
+				"portal_switch"
+			],
+			[
+				"make",
+				"make_scale_mat"
+			],
+			[
+				"COn",
+				"CONSOLE_NODE"
+			],
+			[
+				"porta",
+				"portal_button"
+			],
+			[
+				"RightP",
+				"RightPointer"
+			],
+			[
+				"scene",
+				"scene_manager"
+			],
+			[
+				"leve",
+				"level1"
+			],
+			[
+				"light",
+				"light_rooms"
+			],
+			[
+				"view",
+				"viewing_manager"
+			],
+			[
+				"por",
+				"portal_manager"
+			],
+			[
+				"create",
+				"create_geometry_from_file"
+			],
+			[
+				"init",
+				"init_portal_buttons"
+			],
+			[
+				"ROOM",
+				"ROOMPORTALS"
+			],
+			[
+				"ini",
+				"init_room_lines"
+			],
+			[
+				"con",
+				"console_node"
+			],
+			[
+				"cra",
+				"create_geometry_from_file"
+			],
+			[
+				"Make",
+				"make_scale_mat"
+			],
+			[
+				"Ge",
+				"geometry"
+			],
+			[
+				"sf_",
+				"sf_resize"
+			],
+			[
+				"Tr",
+				"TRANSFORMATION"
+			],
+			[
+				"right",
+				"right_pointer_one_press"
+			],
+			[
+				"in",
+				"InteractivGeometry"
+			],
+			[
+				"_ray_visual_mi",
+				"_ray_visual_minus_z"
+			],
+			[
+				"_ray_visual_plus",
+				"_ray_visual_plus_z"
+			],
+			[
+				"_ray_visual_minu",
+				"_ray_visual_minus_x"
+			],
+			[
+				"_ray_visual_",
+				"_ray_visual_plus_x"
+			],
+			[
+				"_ray_visual_pl",
+				"_ray_visual_plus_y"
+			],
+			[
+				"_ray_visualmi",
+				"_ray_visual_minus_x"
+			],
+			[
+				"_ray",
+				"_ray_visual"
+			],
+			[
+				"Tran",
+				"TransformNode"
+			],
+			[
+				"Lights",
+				"LIGHTEXITS"
+			],
+			[
 				"a",
 				"animation_end_pos"
 			],
@@ -32,36 +180,12 @@
 				"Transform"
 			],
 			[
-				"init",
-				"init_lightexits"
-			],
-			[
-				"light",
-				"LIGHTEXIT"
-			],
-			[
-				"sf",
-				"sf_rot_up"
-			],
-			[
 				"sf_key",
 				"sf_key_right_pointer"
 			],
 			[
-				"right",
-				"right_pointer_pressed"
-			],
-			[
 				"rot",
 				"rot_up_button"
-			],
-			[
-				"make",
-				"make_trans_mat"
-			],
-			[
-				"Tran",
-				"Transform"
 			],
 			[
 				"Light",
@@ -74,10 +198,6 @@
 			[
 				"button",
 				"button_geometry"
-			],
-			[
-				"create",
-				"create_gamescene"
 			],
 			[
 				"Tra",
@@ -160,10 +280,6 @@
 				"Material"
 			],
 			[
-				"Tr",
-				"Transform"
-			],
-			[
 				"LF",
 				"LEFTHAND"
 			],
@@ -174,10 +290,6 @@
 			[
 				"picked",
 				"picked_object"
-			],
-			[
-				"Ge",
-				"GeometryNode"
 			],
 			[
 				"L",
@@ -295,15 +407,15 @@
 			"file": "lib/User.py",
 			"settings":
 			{
-				"buffer_size": 11749,
+				"buffer_size": 11992,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "lib/DesktopUser.py",
+			"file": "lib/Platform.py",
 			"settings":
 			{
-				"buffer_size": 4951,
+				"buffer_size": 8670,
 				"line_ending": "Unix"
 			}
 		},
@@ -311,119 +423,7 @@
 			"file": "lib/interface_lib/Manipulator.py",
 			"settings":
 			{
-				"buffer_size": 15152,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/portal_lib/Portal.py",
-			"settings":
-			{
-				"buffer_size": 6234,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/game_lib/LightCube.py",
-			"settings":
-			{
-				"buffer_size": 19959,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/game_lib/LightRoom.py",
-			"settings":
-			{
-				"buffer_size": 3008,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/line_creater.py",
-			"settings":
-			{
-				"buffer_size": 2271,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/Navigation.py",
-			"settings":
-			{
-				"buffer_size": 19199,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "daemon.py",
-			"settings":
-			{
-				"buffer_size": 10658,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/Device.py",
-			"settings":
-			{
-				"buffer_size": 16378,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/GroundFollowing.py",
-			"settings":
-			{
-				"buffer_size": 7132,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/Intersection.py",
-			"settings":
-			{
-				"buffer_size": 4104,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/interface_lib/InteractivGeometry.py",
-			"settings":
-			{
-				"buffer_size": 7299,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/interface_lib/Interface.py",
-			"settings":
-			{
-				"buffer_size": 8857,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/portal_lib/PortalController.py",
-			"settings":
-			{
-				"buffer_size": 7269,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/SceneManager.py",
-			"settings":
-			{
-				"buffer_size": 14376,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "main.py",
-			"settings":
-			{
-				"buffer_size": 2534,
+				"buffer_size": 15447,
 				"line_ending": "Unix"
 			}
 		},
@@ -431,7 +431,97 @@
 			"file": "lib/portal_lib/PortalManager.py",
 			"settings":
 			{
-				"buffer_size": 10291,
+				"buffer_size": 16902,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/portal_lib/PortalController.py",
+			"settings":
+			{
+				"buffer_size": 10078,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/SceneManager.py",
+			"settings":
+			{
+				"buffer_size": 14028,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/game_lib/LightCube.py",
+			"settings":
+			{
+				"buffer_size": 33038,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/game_lib/LightRoom.py",
+			"settings":
+			{
+				"buffer_size": 4962,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/interface_lib/Interface.py",
+			"settings":
+			{
+				"buffer_size": 8731,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/OVRUser.py",
+			"settings":
+			{
+				"buffer_size": 9044,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 35 files for \"prerender\"\n\n/home/senu8384/Desktop/github/oculus-portal/lib/portal_lib/PortalController.py:\n  208        pre_pipes.append(p.PRE_PIPE)\n  209  \n  210:     self.PIPELINE.PreRenderPipelines.value = pre_pipes\n  211  \n  212    def update_prepipes(self):\n  ...\n  215        pre_pipes.append(p.PRE_PIPE)\n  216  \n  217:     self.PIPELINE.PreRenderPipelines.value = pre_pipes\n  218  \n  219      for view_pipe in self.VIEWINGPIPELINES.value:\n  220        if view_pipe == self.PIPELINE:\n  221:         view_pipe.PreRenderPipelines.value = self.PIPELINE.PreRenderPipelines.value\n  222  \n  223    def initialize_portal_group_names(self):\n\n4 matches in 1 file\n",
+			"settings":
+			{
+				"buffer_size": 669,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "lib/Device.py",
+			"settings":
+			{
+				"buffer_size": 16493,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.py",
+			"settings":
+			{
+				"buffer_size": 2830,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/portal_lib/PortalCube.py",
+			"settings":
+			{
+				"buffer_size": 9367,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/portal_lib/Portal.py",
+			"settings":
+			{
+				"buffer_size": 9751,
 				"line_ending": "Unix"
 			}
 		}
@@ -463,6 +553,25 @@
 	},
 	"file_history":
 	[
+		"/home/senu8384/Desktop/github/oculus-portal/lib/portal_lib/Portal.py",
+		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Portalportal_0_DESK_0.gmd",
+		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Portalportal_0_OVR_0.gmd",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/portal_lib/PortalCube.py",
+		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Portal.gsd",
+		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Portal.gmd",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/line_creater.py",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/interface_lib/Interface.py",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/interface_lib/InteractivGeometry.py",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/User.py",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/Navigation.py",
+		"/home/senu8384/Desktop/github/oculus-portal/daemon.py",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/Intersection.py",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/GroundFollowing.py",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/Device.py",
+		"/home/senu8384/Desktop/github/oculus-portal/start.sh",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/Platform.py",
+		"/home/senu8384/Desktop/github/oculus-portal/documentation/html/installdox",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/DesktopUser.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/game_lib/LightCube.pyc",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/game_lib/LightRoom.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/game_lib/LightCube.py",
@@ -472,13 +581,8 @@
 		"/home/senu8384/Desktop/github/oculus-portal/lib/ViewingManager.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/TrackingReader.py",
 		"/home/senu8384/Desktop/github/oculus-portal/data/materials/ComplexPhongBricks.gmd",
-		"/home/senu8384/Desktop/github/oculus-portal/start.sh",
-		"/home/senu8384/Desktop/github/oculus-portal/lib/Device.py",
-		"/home/senu8384/Desktop/github/oculus-portal/daemon.py",
 		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Wood.gmd",
-		"/home/senu8384/Desktop/github/oculus-portal/lib/DesktopUser.py",
 		"/opt/guacamole/current/avango/examples/picking/main.py",
-		"/home/senu8384/Desktop/github/oculus-portal/lib/Platform.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/BorderObserver.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/game_lib/lightroom.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/Tools.py",
@@ -517,11 +621,9 @@
 		"/home/senu8384/Desktop/github/oculus-portal/data/materials/AvatarGreyShadeless.gmd",
 		"/home/senu8384/Desktop/github/oculus-portal/data/materials/AvatarMagentaShadeless.gmd",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/InputMapping.py",
-		"/home/senu8384/Desktop/github/oculus-portal/lib/Navigation.py",
 		"/home/senu8384/Desktop/github/oculus-portal/configs/desktop_ovr.xml",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/SceneManager.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/PowerWallUser.py",
-		"/home/senu8384/Desktop/github/oculus-portal/lib/User.py",
 		"/home/senu8384/Desktop/oculus_interface/Tools.py",
 		"/home/senu8384/Desktop/oculus_interface/handsome.py",
 		"/home/senu8384/Desktop/oculus_interface/daemon.py",
@@ -578,19 +680,7 @@
 		"/home/senu8384/Desktop/guacamole/src/gua/renderer/NURBS.cpp",
 		"/home/senu8384/Desktop/guacamole/include/gua/renderer/Video3DLoader.hpp",
 		"/home/senu8384/Desktop/guacamole/src/gua/renderer/MeshLoader.cpp",
-		"/home/senu8384/Desktop/guacamole/include/gua/renderer/VolumeLoader.hpp",
-		"/home/senu8384/Desktop/guacamole/include/gua/scenegraph/GeometryNode.hpp",
-		"/home/senu8384/Desktop/guacamole/include/gua/scenegraph/Video3DNode.hpp",
-		"/home/senu8384/Documents/svn/kinect/include/KinectPlayer.hpp",
-		"/home/senu8384/Desktop/guacamole/src/gua/renderer/Video3D.cpp",
-		"/home/senu8384/Desktop/guacamole/include/gua/renderer/GBufferNURBSUberShader.hpp",
-		"/home/senu8384/Desktop/guacamole/include/gua/renderer/SerializedNode.hpp",
-		"/home/senu8384/Desktop/guacamole/include/gua/renderer/GBufferPass.hpp",
-		"/home/senu8384/Desktop/guacamole/src/gua/renderer/GBufferPass.cpp",
-		"/home/senu8384/Desktop/guacamole/src/gua/renderer/UberShader.cpp",
-		"/home/senu8384/Desktop/guacamole/include/gua/renderer/UberShader.hpp",
-		"/home/senu8384/Desktop/guacamole/src/gua/renderer/Video3DLoader.cpp",
-		"/home/senu8384/Desktop/guacamole/src/gua/renderer/GBufferMeshUberShader.cpp"
+		"/home/senu8384/Desktop/guacamole/include/gua/renderer/VolumeLoader.hpp"
 	],
 	"find":
 	{
@@ -610,6 +700,29 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"update_pre",
+			"update",
+			"prerender",
+			"PreRender",
+			"create_active_portals",
+			"update_prepipes",
+			"PIPELINE",
+			"print",
+			"sf_portal_button",
+			"sf_portal",
+			"portal_button",
+			"initalize_console",
+			"sf_portal",
+			"update_portal_picker",
+			"interactive",
+			"self.ray_visual_trans_plus_x",
+			"_ray_visual_plus_x",
+			"console_node",
+			"RightPicker.Mask.",
+			"interface_element",
+			"ray_visual_trans_minus_z",
+			"_ray_visual",
+			":\n",
 			"field",
 			"has_field",
 			"_avatar_group_",
@@ -657,6 +770,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"initialize_prepipes",
+			"initialize_portal_picker",
 			"Shadeless"
 		],
 		"reverse": false,
@@ -677,15 +792,46 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11749,
+						"buffer_size": 11992,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3632,
-								3632
+								3508,
+								3508
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1721.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lib/Platform.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8670,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3079,
+								3079
 							]
 						],
 						"settings":
@@ -694,41 +840,11 @@
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 1874.0,
+						"translation.x": 2.0,
+						"translation.y": 765.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "lib/DesktopUser.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4951,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3077,
-								3077
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 649.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 15,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -737,15 +853,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15152,
+						"buffer_size": 15447,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2441,
-								2441
+								3289,
+								3289
 							]
 						],
 						"settings":
@@ -755,57 +871,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 922.0,
+						"translation.y": 1020.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "lib/portal_lib/Portal.py",
+					"file": "lib/portal_lib/PortalManager.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6234,
+						"buffer_size": 16902,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6234,
-								6234
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1232.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "lib/game_lib/LightCube.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19959,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10826,
-								10896
+								157,
+								157
 							]
 						],
 						"settings":
@@ -815,7 +901,37 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3301.0,
+						"translation.y": 51.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "lib/portal_lib/PortalController.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10078,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10076,
+								10076
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -823,54 +939,86 @@
 				},
 				{
 					"buffer": 5,
-					"file": "lib/game_lib/LightRoom.py",
+					"file": "lib/SceneManager.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3008,
+						"buffer_size": 14028,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								460,
-								460
+								2194,
+								2194
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 408.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "lib/line_creater.py",
+					"file": "lib/game_lib/LightCube.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2271,
+						"buffer_size": 33038,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2141,
-								2141
+								1244,
+								1244
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 241.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "lib/game_lib/LightRoom.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4962,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								321,
+								321
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -878,52 +1026,28 @@
 					},
 					"stack_index": 10,
 					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "lib/Navigation.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 19199,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								15206,
-								15206
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 5852.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 6,
+			"sheets":
+			[
 				{
 					"buffer": 8,
-					"file": "daemon.py",
+					"file": "lib/interface_lib/Interface.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10658,
+						"buffer_size": 8731,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6336,
-								6336
+								4797,
+								4797
 							]
 						],
 						"settings":
@@ -933,57 +1057,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3315.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "lib/Device.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 16378,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5977,
-								5977
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2805.0,
+						"translation.y": 1020.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "lib/GroundFollowing.py",
+					"buffer": 9,
+					"file": "lib/OVRUser.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7132,
+						"buffer_size": 9044,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5282,
-								5282
+								331,
+								331
 							]
 						],
 						"settings":
@@ -993,183 +1087,85 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1734.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 669,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										191,
+										200
+									],
+									[
+										353,
+										362
+									],
+									[
+										524,
+										533
+									],
+									[
+										565,
+										574
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
 					"buffer": 11,
-					"file": "lib/Intersection.py",
+					"file": "lib/Device.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4104,
+						"buffer_size": 16493,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2001,
-								2001
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 612.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 17,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 2,
-			"sheets":
-			[
-				{
-					"buffer": 12,
-					"file": "lib/interface_lib/InteractivGeometry.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7299,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1740,
-								1740
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 561.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "lib/interface_lib/Interface.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8857,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3332,
-								3332
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 245.0,
-						"translation.y": 786.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "lib/portal_lib/PortalController.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7269,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								433,
-								433
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 204.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "lib/SceneManager.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 14376,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								935,
-								935
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 255.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 16,
-					"file": "main.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2534,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								349,
-								349
+								1537,
+								1537
 							]
 						],
 						"settings":
@@ -1186,20 +1182,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 17,
-					"file": "lib/portal_lib/PortalManager.py",
+					"buffer": 12,
+					"file": "main.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10291,
+						"buffer_size": 2830,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8647,
-								8647
+								545,
+								545
 							]
 						],
 						"settings":
@@ -1209,10 +1205,102 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1542.0,
+						"translation.y": 51.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 0,
+					"file": "lib/User.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11992,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11992,
+								11992
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 3672.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "lib/portal_lib/PortalCube.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9367,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1381,
+								1381
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "lib/portal_lib/Portal.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3924,
+								3924
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 846.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1246,7 +1334,7 @@
 		"cols":
 		[
 			0.0,
-			0.531525851198,
+			0.516580932815,
 			1.0
 		],
 		"rows":
@@ -1271,6 +1359,34 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"ovr",
+				"lib/OVRUser.py"
+			],
+			[
+				"plat",
+				"lib/Platform.py"
+			],
+			[
+				"user",
+				"lib/User.py"
+			],
+			[
+				"portal",
+				"lib/portal_lib/PortalCube.py"
+			],
+			[
+				"scen",
+				"lib/SceneManager.py"
+			],
+			[
+				"port",
+				"lib/portal_lib/Portal.py"
+			],
+			[
+				"interac",
+				"lib/interface_lib/InteractivGeometry.py"
+			],
 			[
 				"header",
 				"resources/shaders/common/header.glsl"
@@ -1433,7 +1549,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 112.0,
+	"side_bar_width": 188.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
