@@ -147,9 +147,9 @@ class InteractivGeometry(avango.script.Script):
   @field_has_changed(sf_switch_enable)
   def change_switch_enable(self):
     if self.sf_switch_enable.value:
-      self.geometry.Material.value = "AvatarYellow"
+      self.geometry.Material.value = "CarPaintOrange"
     elif self.sf_switch_enable.value == False:
-      self.geometry.Material.value = "Stone"
+      self.geometry.Material.value = "CarPaintBlue"
 
   @field_has_changed(sf_resize)
   def change_size(self):

@@ -1,0 +1,12 @@
+
+{
+	"shading_model" : "Planet",
+	"uniforms" : 
+	{
+		"atmo_color" : "(0.100  0.100  0.100)",
+		"diffuse_map" : "data/textures/Moon.jpg",
+		"normal_map" : "data/textures/moon_normal.png",
+		"shinyness" : "100",
+		"specular_map" : "data/textures/moon_spec.jpg"
+	}
+}

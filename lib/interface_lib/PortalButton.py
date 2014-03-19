@@ -36,7 +36,7 @@ class PortalButton(avango.script.Script):
 
     self.LOADER = avango.gua.nodes.GeometryLoader()
     self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/arrow.obj',
-                            "Yellow" , avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
+                            "Ray" , avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     rot_mat = avango.gua.make_rot_mat(-90,0,1,0)
 
     if (SIDE == "left"):

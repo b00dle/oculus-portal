@@ -18,6 +18,26 @@ from lib.interface_lib.Manipulator import *
 # import python libraries
 import sys
 
+## Helper class to update material values with respect to the current time.
+class TimedMaterialUniformUpdate(avango.script.Script):
+
+  ## @var TimeIn
+  # Field containing the current time in milliseconds.
+  TimeIn = avango.SFFloat()
+
+  ## @var MaterialName
+  # Field containing the name of the material to be updated
+  MaterialName = avango.SFString()
+
+  ## @var UniformName
+  # Field containing the name of the uniform value to be updated
+  UniformName = avango.SFString()
+  ## Called whenever TimeIn changes.
+  @field_has_changed(TimeIn)
+  def update(self):
+    avango.gua.set_material_uniform(self.MaterialName.value,
+                                    self.UniformName.value,
+                                    self.TimeIn.value)
 
 ## Main method for the application
 def start():
@@ -56,6 +76,12 @@ def start():
   portal_manager.my_constructor(viewing_manager, scene_manager)
 
   viewing_manager.setup_portal_render_masks()
+
+  timer                             = avango.nodes.TimeSensor()
+  water_updater                     = TimedMaterialUniformUpdate()
+  water_updater.MaterialName.value  = "Ray"
+  water_updater.UniformName.value   = "time"
+  water_updater.TimeIn.connect_from(timer.Time)
 
   # print("user 0 pipes:")
   # print("pipe count:" + str(len(viewing_manager.viewer.Pipelines.value[0].PreRenderPipelines.value)))

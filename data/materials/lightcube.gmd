@@ -3,6 +3,6 @@
 	"shading_model" : "Shadeless",
 	"uniforms" : 
 	{
-		"diffuse_color" : "(0.100  0.100  0.300)"
+		"diffuse_color" : "(0.100  0.200  0.500)"
 	}
 }

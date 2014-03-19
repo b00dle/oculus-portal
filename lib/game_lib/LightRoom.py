@@ -34,16 +34,16 @@ class LightRoom(avango.script.Script):
     plane.GroupNames.value.append("do_not_display_group")
     self.room_transform.Children.value.append(plane)
 
-    room = self.loader.create_geometry_from_file('room_solid', 'data/objects/lightroom_frame.obj', "Black" , avango.gua.LoaderFlags.DEFAULTS)
+    room = self.loader.create_geometry_from_file('room_solid', 'data/objects/lightroom_light.obj', "PhongWhite" , avango.gua.LoaderFlags.DEFAULTS)
     room.Transform.value = avango.gua.make_trans_mat(0,1.5,0) * avango.gua.make_scale_mat(0.3,0.3,0.2)#avango.gua.make_scale_mat(2.4,1,2)
     self.room_transform.Children.value.append(room)
 
-    room_l = self.loader.create_geometry_from_file('room_light', 'data/objects/lightroom_light.obj', "Stone" , avango.gua.LoaderFlags.DEFAULTS)
+    #room_l = self.loader.create_geometry_from_file('room_light', 'data/objects/lightroom_light.obj', "Stone" , avango.gua.LoaderFlags.DEFAULTS)
     #room_l.Transform.value = avango.gua.make_trans_mat(0,1.5,0) * avango.gua.make_scale_mat(0.3,0.3,0.2)#avango.gua.make_scale_mat(2.4,1,2)
-    room.Children.value.append(room_l)
+    #room.Children.value.append(room_l)
 
 
-    self.console_box = self.loader.create_geometry_from_file('console_box', 'data/objects/terminal.obj', "Black" , avango.gua.LoaderFlags.DEFAULTS)
+    self.console_box = self.loader.create_geometry_from_file('console_box', 'data/objects/terminal.obj', COLOR , avango.gua.LoaderFlags.DEFAULTS)
     self.console_box.Transform.value = avango.gua.make_trans_mat(0.0, 0.8, -0.21) *\
                                        avango.gua.make_rot_mat(75, 1, 0, 0)*\
                                        avango.gua.make_scale_mat(0.25, 0.25, 0.25) 
@@ -53,7 +53,7 @@ class LightRoom(avango.script.Script):
     self.init_room_lines()
 
     self.lightcube = LightCube()
-    self.lightcube.my_constructor(self.NAME, self.SCENEGRAPH, self.room_transform, ACTIV, EXITS, self.console_box)
+    self.lightcube.my_constructor(self.NAME, self.SCENEGRAPH, self.room_transform, ACTIV, EXITS, self.console_box, COLOR)
 
 
   def init_room_lines(self):

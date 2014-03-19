@@ -1,8 +1,0 @@
-{
-	"shading_model" : "Stencil",
-	"uniforms" : 
-	{
-		"color" : "data/textures/start_diffuse.jpg",
-		"stencil_map" : "data/textures/start.jpg"
-	}
-}

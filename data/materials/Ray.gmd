@@ -1,0 +1,9 @@
+
+{
+	"shading_model" : "Ray",
+	"uniforms" : 
+	{
+		"liquid_texture" : "data/textures/white_wall1.jpg",
+		"time" : "0"
+	}
+}

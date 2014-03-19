@@ -1,0 +1,12 @@
+
+{
+	"shading_model" : "Planet",
+	"uniforms" : 
+	{
+		"atmo_color" : "(0.500  0.300  0.300)",
+		"diffuse_map" : "data/textures/planets/europa2_out.jpg",
+		"normal_map" : "path/to/texture.png",
+		"shinyness" : "100",
+		"specular_map" : "path/to/texture.png"
+	}
+}

@@ -20,6 +20,28 @@ import time
 from interface_lib.InteractivGeometry import *
 from game_lib.LightRoom import *
 
+## Helper class to update material values with respect to the current time.
+class TimedRotate(avango.script.Script):
+
+  TransformOut  = avango.gua.SFMatrix4()
+  TransformIn   = avango.gua.SFMatrix4()
+  TimeIn        = avango.SFFloat()
+  RotationAngleIn = avango.gua.SFVec3()
+  RotationPointIn = avango.gua.SFVec3()
+
+  def my_constructor(self, ROTATIONANGLE, ROTATIONPOINT):
+    self.RotationAngleIn.value = ROTATIONANGLE
+    self.RotationPointIn.value = ROTATIONPOINT
+
+  @field_has_changed(TimeIn)
+  def update(self):
+    self.TransformOut.value = avango.gua.make_rot_mat(self.TimeIn.value * 3.0,
+                                                      self.RotationAngleIn.value.x,
+                                                      self.RotationAngleIn.value.y,
+                                                      self.RotationAngleIn.value.z) * \
+                              avango.gua.make_trans_mat(self.RotationPointIn.value) * \
+                              self.TransformIn.value * \
+                              avango.gua.make_rot_mat(self.TimeIn.value * 4.0, 0.0, 1.0, 0.0)
 
 ## Class for building a scene and appending the necessary nodes to the scenegraph.
 #
@@ -51,24 +73,35 @@ class SceneManager:
     loader = avango.gua.nodes.GeometryLoader()
 
     # create light
-    spot = avango.gua.nodes.SpotLightNode(Name = "sun",
+    light = avango.gua.nodes.PointLightNode(Name = "sun",
                                           Color = avango.gua.Color(1.0, 1.0, 1.0),
                                           Falloff = 0.009,
-                                          Softness = 0.003,
+                                          #Softness = 0.003,
                                           EnableShadows = True,
-                                          EnableGodrays = False,
+                                          EnableGodrays = True,
                                           EnableDiffuseShading = True,
-                                          EnableSpecularShading = True,
-                                          ShadowMapSize = 2048,
-                                          ShadowOffset = 0.001)
+                                          EnableSpecularShading = True)
+                                          #ShadowMapSize = 2048,
+                                          #ShadowOffset = 0.001)
 
-    spot.Transform.value = avango.gua.make_trans_mat(0.0, 40.0, 40.0) * \
+    light.Transform.value = avango.gua.make_trans_mat(-5.0, 10.0, 20.0) * \
                           avango.gua.make_rot_mat(-45.0, 1.0, 0.0, 0.0) * \
                           avango.gua.make_scale_mat(100.0, 100.0, 160.0)
 
-    graph.Root.value.Children.value.append(spot)
+    graph.Root.value.Children.value.append(light)
 
+    earth = loader.create_geometry_from_file("earth", 'data/objects/sphere.obj', 'earth', avango.gua.LoaderFlags.DEFAULTS)
+    earth.Transform.value = avango.gua.make_trans_mat(20.0, 5.0, 0.0) * \
+                            avango.gua.make_scale_mat(10.0, 10.0, 10.0)
+    
+    self.timer                  = avango.nodes.TimeSensor()
+    self.timedRotate            = TimedRotate()
+    self.timedRotate.my_constructor(avango.gua.Vec3(0.0,1.0,0.0), avango.gua.Vec3(0.0,0.0,-40.0))
+    self.timedRotate.TimeIn.connect_from(self.timer.Time)
+    self.timedRotate.TransformIn.value = earth.Transform.value
+    earth.Transform.connect_from(self.timedRotate.TransformOut)
 
+    graph.Root.value.Children.value.append(earth)
     #####      Create LightRooms       #####
 
     #level1 = LightRoom()
@@ -101,17 +134,21 @@ class SceneManager:
 
     #####     Create InteractivGeometries     #####
 
-    #box2 = InteractivGeometry()
-    #box2.my_constructor('box2', 'data/objects/cube.obj', 'Stone', avango.gua.make_trans_mat(-10.6,1.5,-13) * avango.gua.make_scale_mat(0.8,0.8,0.8),
-    #  graph.Root.value, ["size"])
+    sphere = InteractivGeometry()
+    sphere.my_constructor('sphere1', 'data/objects/sphere.obj', 'moon', avango.gua.make_trans_mat(-7.8,1.5,-12) * avango.gua.make_scale_mat(0.8,0.8,0.8),
+          graph.Root.value, ["size"])
 
-    #monkey = InteractivGeometry()
-    #monkey.my_constructor('monkey', 'data/objects/monkey.obj', 'slider_mat_1', avango.gua.make_trans_mat(-4.6,1.5,-7) * avango.gua.make_scale_mat(1.8,1.8,1.8),
-    #  graph.Root.value, ["red", "green", "blue", "size"])
+    teapot = InteractivGeometry()
+    teapot.my_constructor('teapot', 'data/objects/teapot.obj', 'slider_mat_1', avango.gua.make_trans_mat(2.0,3.5,-18) *\
+                                                                               avango.gua.make_scale_mat(1.4,1.4,1.4) *\
+                                                                               avango.gua.make_rot_mat(36.0, 1, 0, 1) *\
+                                                                               avango.gua.make_rot_mat(-30.0, 0, 1, 0),
+          graph.Root.value, ["red", "green", "blue"])
 
-    #teapot = InteractivGeometry()
-    #teapot.my_constructor('teapot', 'data/objects/teapot.obj', 'slider_mat_2', avango.gua.make_trans_mat(-0,1.5,-17) * avango.gua.make_scale_mat(1.2,1.2,1.2) * avango.gua.make_rot_mat(45,0,1,1),
-    #  graph.Root.value, ["red", "green", "blue"])
+
+    trophy = InteractivGeometry()
+    trophy.my_constructor('trophy', 'data/objects/trophy.obj', 'CarPaintBlue', avango.gua.make_trans_mat(0,1.5,-25) * avango.gua.make_scale_mat(0.5,0.5,0.5) * avango.gua.make_rot_mat(30,1.0,0.0,0.0) * avango.gua.make_rot_mat(180,0.0,1.0,0.0),
+      graph.Root.value, ["enable"])
 
     #sphere = InteractivGeometry()
     #sphere.my_constructor('sphere', 'data/objects/cube.obj', 'slider_mat_3', avango.gua.make_trans_mat(0,5.5,-2) * avango.gua.make_scale_mat(0.9,0.9,0.9) * avango.gua.make_rot_mat(45,0,1,1),
@@ -176,7 +213,7 @@ class SceneManager:
     # screen
     screen = avango.gua.nodes.ScreenNode(Name = "screen", Width = 1.6, Height = 0.9)
 
-    #screen.Transform.value = avango.gua.make_rot_mat(-90.0, 0, 1, 0) * \
+    #screen.Transform.value = avango.gua.make_rot_mat(-90.0, 0,  1, 0) * \
     #                                                   avango.gua.make_trans_mat(0, 1.5, 0)
 
     # head, mono_eye, left und right eye
