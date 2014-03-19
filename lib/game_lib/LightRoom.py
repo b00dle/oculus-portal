@@ -36,11 +36,12 @@ class LightRoom(avango.script.Script):
 
     room = self.loader.create_geometry_from_file('room_solid', 'data/objects/lightroom_light.obj', "PhongWhite" , avango.gua.LoaderFlags.DEFAULTS)
     room.Transform.value = avango.gua.make_trans_mat(0,1.5,0) * avango.gua.make_scale_mat(0.3,0.3,0.2)#avango.gua.make_scale_mat(2.4,1,2)
-    self.room_transform.Children.value.append(room)
-
-    #room_l = self.loader.create_geometry_from_file('room_light', 'data/objects/lightroom_light.obj', "Stone" , avango.gua.LoaderFlags.DEFAULTS)
+    
+    room_l = self.loader.create_geometry_from_file('room_light', 'data/objects/lightroom_frame.obj', "PhongGrey" , avango.gua.LoaderFlags.DEFAULTS)
     #room_l.Transform.value = avango.gua.make_trans_mat(0,1.5,0) * avango.gua.make_scale_mat(0.3,0.3,0.2)#avango.gua.make_scale_mat(2.4,1,2)
-    #room.Children.value.append(room_l)
+    
+    room.Children.value.append(room_l)
+    self.room_transform.Children.value.append(room)
 
 
     self.console_box = self.loader.create_geometry_from_file('console_box', 'data/objects/terminal.obj', COLOR , avango.gua.LoaderFlags.DEFAULTS)

@@ -560,6 +560,7 @@ class ViewingManager():
 
   ## Sets RenderMask for hiding portals not owned by user
   def setup_portal_render_masks(self):
+    
     # extend render mask for oculus users
     for OVR_user in self.ovr_user_list:
       for other_OVR_user in self.ovr_user_list:
@@ -578,7 +579,7 @@ class ViewingManager():
       OVR_user.pipeline.Camera.value = OVR_user.camera
       OVR_user.portal_controller.PIPELINE = OVR_user.pipeline
       
-    # extend render mask for oculus users
+    # extend render mask for desktop users
     for DESK_user in self.desktop_user_list:
       for other_DESK_user in self.desktop_user_list:
         if other_DESK_user.id != DESK_user.id:
@@ -596,7 +597,7 @@ class ViewingManager():
       DESK_user.pipeline.Camera.value = DESK_user.camera
       DESK_user.portal_controller.PIPELINE = DESK_user.pipeline
       
-    # extend render mask for oculus users
+    # extend render mask for powerwall users
     for PW_user in self.powerwall_user_list:
       for other_PW_user in self.powerwall_user_list:
         if other_PW_user.id != PW_user.id:

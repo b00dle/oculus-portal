@@ -3,7 +3,7 @@
 	"shading_model" : "SimplePhong",
 	"uniforms" : 
 	{
-		"diffuse_color" : "(0.000  0.000  0.000)",
+		"diffuse_color" : "(0.650  0.650  0.650)",
 		"shinyness" : "10",
 		"spec_color" : "(0.000  0.000  0.000)"
 	}
