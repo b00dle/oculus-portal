@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"button",
+				"button_geometry"
+			],
+			[
+				"make",
+				"make_rot_mat"
+			],
+			[
 				"visi",
 				"visible_cube"
 			],
@@ -30,10 +38,6 @@
 			[
 				"portal",
 				"portal_switch"
-			],
-			[
-				"make",
-				"make_scale_mat"
 			],
 			[
 				"COn",
@@ -194,10 +198,6 @@
 			[
 				"Lig",
 				"lightcube"
-			],
-			[
-				"button",
-				"button_geometry"
 			],
 			[
 				"Tra",
@@ -407,15 +407,7 @@
 			"file": "lib/User.py",
 			"settings":
 			{
-				"buffer_size": 11992,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/Platform.py",
-			"settings":
-			{
-				"buffer_size": 8670,
+				"buffer_size": 12067,
 				"line_ending": "Unix"
 			}
 		},
@@ -423,7 +415,7 @@
 			"file": "lib/interface_lib/Manipulator.py",
 			"settings":
 			{
-				"buffer_size": 15447,
+				"buffer_size": 13818,
 				"line_ending": "Unix"
 			}
 		},
@@ -431,7 +423,7 @@
 			"file": "lib/portal_lib/PortalManager.py",
 			"settings":
 			{
-				"buffer_size": 16902,
+				"buffer_size": 23811,
 				"line_ending": "Unix"
 			}
 		},
@@ -439,7 +431,15 @@
 			"file": "lib/portal_lib/PortalController.py",
 			"settings":
 			{
-				"buffer_size": 10078,
+				"buffer_size": 11217,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "daemon.py",
+			"settings":
+			{
+				"buffer_size": 10769,
 				"line_ending": "Unix"
 			}
 		},
@@ -447,7 +447,7 @@
 			"file": "lib/SceneManager.py",
 			"settings":
 			{
-				"buffer_size": 14028,
+				"buffer_size": 14811,
 				"line_ending": "Unix"
 			}
 		},
@@ -455,7 +455,7 @@
 			"file": "lib/game_lib/LightCube.py",
 			"settings":
 			{
-				"buffer_size": 33038,
+				"buffer_size": 24033,
 				"line_ending": "Unix"
 			}
 		},
@@ -463,7 +463,7 @@
 			"file": "lib/game_lib/LightRoom.py",
 			"settings":
 			{
-				"buffer_size": 4962,
+				"buffer_size": 3378,
 				"line_ending": "Unix"
 			}
 		},
@@ -471,7 +471,15 @@
 			"file": "lib/interface_lib/Interface.py",
 			"settings":
 			{
-				"buffer_size": 8731,
+				"buffer_size": 9023,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/interface_lib/InteractivGeometry.py",
+			"settings":
+			{
+				"buffer_size": 7858,
 				"line_ending": "Unix"
 			}
 		},
@@ -484,13 +492,19 @@
 			}
 		},
 		{
-			"contents": "Searching 35 files for \"prerender\"\n\n/home/senu8384/Desktop/github/oculus-portal/lib/portal_lib/PortalController.py:\n  208        pre_pipes.append(p.PRE_PIPE)\n  209  \n  210:     self.PIPELINE.PreRenderPipelines.value = pre_pipes\n  211  \n  212    def update_prepipes(self):\n  ...\n  215        pre_pipes.append(p.PRE_PIPE)\n  216  \n  217:     self.PIPELINE.PreRenderPipelines.value = pre_pipes\n  218  \n  219      for view_pipe in self.VIEWINGPIPELINES.value:\n  220        if view_pipe == self.PIPELINE:\n  221:         view_pipe.PreRenderPipelines.value = self.PIPELINE.PreRenderPipelines.value\n  222  \n  223    def initialize_portal_group_names(self):\n\n4 matches in 1 file\n",
+			"file": "lib/Platform.py",
 			"settings":
 			{
-				"buffer_size": 669,
-				"line_ending": "Unix",
-				"name": "Find Results",
-				"scratch": true
+				"buffer_size": 9037,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/interface_lib/PortalButton.py",
+			"settings":
+			{
+				"buffer_size": 3704,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -513,7 +527,7 @@
 			"file": "lib/portal_lib/PortalCube.py",
 			"settings":
 			{
-				"buffer_size": 9367,
+				"buffer_size": 9750,
 				"line_ending": "Unix"
 			}
 		},
@@ -521,7 +535,7 @@
 			"file": "lib/portal_lib/Portal.py",
 			"settings":
 			{
-				"buffer_size": 9751,
+				"buffer_size": 9929,
 				"line_ending": "Unix"
 			}
 		}
@@ -553,9 +567,10 @@
 	},
 	"file_history":
 	[
+		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Portalportal_0_OVR_0.gmd",
+		"/home/senu8384/Desktop/github/oculus-portal/lib/Platform.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/portal_lib/Portal.py",
 		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Portalportal_0_DESK_0.gmd",
-		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Portalportal_0_OVR_0.gmd",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/portal_lib/PortalCube.py",
 		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Portal.gsd",
 		"/home/senu8384/Desktop/github/oculus-portal/data/materials/Portal.gmd",
@@ -569,7 +584,6 @@
 		"/home/senu8384/Desktop/github/oculus-portal/lib/GroundFollowing.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/Device.py",
 		"/home/senu8384/Desktop/github/oculus-portal/start.sh",
-		"/home/senu8384/Desktop/github/oculus-portal/lib/Platform.py",
 		"/home/senu8384/Desktop/github/oculus-portal/documentation/html/installdox",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/DesktopUser.py",
 		"/home/senu8384/Desktop/github/oculus-portal/lib/game_lib/LightCube.pyc",
@@ -700,6 +714,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"0.05,0.05,0.05",
+			"0.2,0.2,0.2",
+			"rot mat",
+			"make_scale_mat",
+			"7",
 			"update_pre",
 			"update",
 			"prerender",
@@ -770,6 +789,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"0.08,0.08,0.08",
+			"0.05,0.05,0.05",
+			"rot_mat",
 			"initialize_prepipes",
 			"initialize_portal_picker",
 			"Shadeless"
@@ -783,7 +805,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -792,15 +814,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11992,
+						"buffer_size": 12067,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3508,
-								3508
+								11234,
+								11234
 							]
 						],
 						"settings":
@@ -811,87 +833,57 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1721.0,
+						"translation.y": 2541.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "lib/interface_lib/Manipulator.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13818,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5100.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "lib/Platform.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8670,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3079,
-								3079
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 2.0,
-						"translation.y": 765.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
 					"buffer": 2,
-					"file": "lib/interface_lib/Manipulator.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 15447,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3289,
-								3289
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1020.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "lib/portal_lib/PortalManager.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16902,
+						"buffer_size": 23811,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								157,
-								157
+								23589,
+								23589
 							]
 						],
 						"settings":
@@ -901,27 +893,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 51.0,
+						"translation.y": 6222.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "lib/portal_lib/PortalController.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10078,
+						"buffer_size": 11217,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10076,
-								10076
+								5300,
+								5300
 							]
 						],
 						"settings":
@@ -931,10 +923,40 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2142.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "daemon.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10769,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 102.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
@@ -943,15 +965,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14028,
+						"buffer_size": 14811,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2194,
-								2194
+								987,
+								987
 							]
 						],
 						"settings":
@@ -961,10 +983,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 408.0,
+						"translation.y": 632.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
@@ -973,15 +995,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 33038,
+						"buffer_size": 24033,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1244,
-								1244
+								12757,
+								12757
 							]
 						],
 						"settings":
@@ -991,10 +1013,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 241.0,
+						"translation.y": 4954.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -1003,15 +1025,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4962,
+						"buffer_size": 3378,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								321,
-								321
+								3227,
+								3227
 							]
 						],
 						"settings":
@@ -1024,13 +1046,13 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 6,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -1039,15 +1061,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8731,
+						"buffer_size": 9023,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4797,
-								4797
+								5011,
+								5011
 							]
 						],
 						"settings":
@@ -1057,14 +1079,44 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1020.0,
+						"translation.y": 1071.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 9,
+					"file": "lib/interface_lib/InteractivGeometry.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7858,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
 					"file": "lib/OVRUser.py",
 					"semi_transient": false,
 					"settings":
@@ -1090,41 +1142,18 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 11,
+					"file": "lib/Platform.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 669,
+						"buffer_size": 9037,
 						"regions":
 						{
-							"match":
-							{
-								"flags": 112,
-								"regions":
-								[
-									[
-										191,
-										200
-									],
-									[
-										353,
-										362
-									],
-									[
-										524,
-										533
-									],
-									[
-										565,
-										574
-									]
-								],
-								"scope": ""
-							}
 						},
 						"selection":
 						[
@@ -1135,24 +1164,49 @@
 						],
 						"settings":
 						{
-							"detect_indentation": false,
-							"line_numbers": false,
-							"output_tag": 1,
-							"result_base_dir": "",
-							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
-							"result_line_regex": "^ +([0-9]+):",
-							"scroll_past_end": true,
-							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 306.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
+					"file": "lib/interface_lib/PortalButton.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3704,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1957,
+								1957
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 199.0,
+						"translation.y": 204.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
 					"file": "lib/Device.py",
 					"semi_transient": false,
 					"settings":
@@ -1175,14 +1229,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2601.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 14,
 					"file": "main.py",
 					"semi_transient": false,
 					"settings":
@@ -1194,8 +1248,8 @@
 						"selection":
 						[
 							[
-								545,
-								545
+								513,
+								513
 							]
 						],
 						"settings":
@@ -1208,7 +1262,7 @@
 						"translation.y": 51.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
@@ -1217,15 +1271,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11992,
+						"buffer_size": 12067,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11992,
-								11992
+								12067,
+								12067
 							]
 						],
 						"settings":
@@ -1239,24 +1293,24 @@
 						"translation.y": 3672.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 15,
 					"file": "lib/portal_lib/PortalCube.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9367,
+						"buffer_size": 9750,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1381,
-								1381
+								0,
+								0
 							]
 						],
 						"settings":
@@ -1269,24 +1323,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 16,
 					"file": "lib/portal_lib/Portal.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9751,
+						"buffer_size": 9929,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3924,
-								3924
+								7588,
+								7588
 							]
 						],
 						"settings":
@@ -1297,10 +1351,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 846.0,
+						"translation.y": 1458.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -1334,7 +1388,7 @@
 		"cols":
 		[
 			0.0,
-			0.516580932815,
+			0.477373512917,
 			1.0
 		],
 		"rows":
@@ -1359,6 +1413,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"portalbu",
+				"lib/interface_lib/PortalButton.py"
+			],
 			[
 				"ovr",
 				"lib/OVRUser.py"

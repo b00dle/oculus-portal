@@ -40,21 +40,34 @@ class PortalButton(avango.script.Script):
     rot_mat = avango.gua.make_rot_mat(-90,0,1,0)
 
     if (SIDE == "left"):
-      self.button_pos  = avango.gua.make_trans_mat(-1.5, 1.5, 0) * avango.gua.make_rot_mat(90,0,1,0) *\
+      self.button_pos  = avango.gua.make_trans_mat(-1.5, 1.5, 0) *\
+                         avango.gua.make_rot_mat(90,0,1,0) *\
                          rot_mat* avango.gua.make_scale_mat(0.08,0.08,0.08)
     elif (SIDE == "right"):
-      self.button_pos  = avango.gua.make_trans_mat(1.5, 1.5, 0) * avango.gua.make_rot_mat(-90,0,1,0)* rot_mat* avango.gua.make_scale_mat(0.08,0.08,0.08)
+      self.button_pos  = avango.gua.make_trans_mat(1.5, 1.5, 0) *\
+                         avango.gua.make_rot_mat(-90,0,1,0) *\
+                         rot_mat *\
+                         avango.gua.make_scale_mat(0.08,0.08,0.08)
     elif (SIDE == "up"):
-      self.button_pos  = avango.gua.make_trans_mat(0, 3, 0) * avango.gua.make_rot_mat(90,1,0,0)* rot_mat* avango.gua.make_scale_mat(0.08,0.08,0.08)
+      self.button_pos  = avango.gua.make_trans_mat(0, 3, 0) *\
+                         avango.gua.make_rot_mat(90,1,0,0) *\
+                         rot_mat *\
+                         avango.gua.make_scale_mat(0.08,0.08,0.08)
     elif (SIDE == "down"):
-      self.button_pos  = avango.gua.make_trans_mat(0, 0, 0) * avango.gua.make_rot_mat(-90,1,0,0)* rot_mat*avango.gua.make_scale_mat(0.08,0.08,0.08)
+      self.button_pos  = avango.gua.make_trans_mat(0, 0, 0) *\
+                         avango.gua.make_rot_mat(-90,1,0,0) *\
+                         rot_mat *\
+                         avango.gua.make_scale_mat(0.08,0.08,0.08)
     elif (SIDE == "front"):
-      self.button_pos  = avango.gua.make_trans_mat(0, 1.5, -1.5)* rot_mat*avango.gua.make_scale_mat(0.08,0.08,0.08)
+      self.button_pos  = avango.gua.make_trans_mat(0, 1.5, -1.5) *\
+                         rot_mat *\
+                         avango.gua.make_scale_mat(0.08,0.08,0.08)
     elif (SIDE == "back"):
-      self.button_pos  = avango.gua.make_trans_mat(0, 1.5, 1.5) * avango.gua.make_rot_mat(180,0,1,0)*rot_mat  * avango.gua.make_scale_mat(0.08,0.08,0.08)
+      self.button_pos  = avango.gua.make_trans_mat(0, 1.5, 1.5) *\
+                         avango.gua.make_rot_mat(180,0,1,0) *\
+                         rot_mat *\
+                         avango.gua.make_scale_mat(0.08,0.08,0.08)
 
-    #self.button_geometry = self.LOADER.create_geometry_from_file('button_' + NAME, 'data/objects/cube.obj',
-     #                                                       'Blue' , avango.gua.LoaderFlags.DEFAULTS | avango.gua.LoaderFlags.MAKE_PICKABLE)
     self.button_geometry.GroupNames.value.append("console")
     self.button_geometry.add_and_init_field(avango.script.SFObject(), "Button", self)
 
