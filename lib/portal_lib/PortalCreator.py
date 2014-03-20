@@ -403,7 +403,7 @@ class PortalCreator():
 
     elif USER_TYPE == "DESK":
       self.DESK_user_portalcubes[USER_ID].append(PortalCube())
-      index = len(self.PW_user_portalcubes[USER_ID]) - 1
+      index = len(self.DESK_user_portalcubes[USER_ID]) - 1
       self.DESK_user_portalcubes[USER_ID][index].my_constructor(NAME,
                                                               ENTRY_SCENE,
                                                               EXIT_SCENE,
